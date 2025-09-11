@@ -1,0 +1,95 @@
+# ================================
+# 🔒 Seguridad básica
+# ================================
+<IfModule mod_headers.c>
+  # Evitar mostrar versión del servidor
+  Header unset X-Powered-By
+  Header always unset X-Powered-By
+
+  # Seguridad recomendada
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ================================
+# ⚡ Compresión Gzip/Brotli
+# ================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/plain text/html text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# ================================
+# 📦 Caché optimizada
+# ================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML (corto, para que cambios se reflejen rápido)
+  ExpiresByType text/html "access plus 1 hour"
+
+  # CSS y JS (agresivo, pero se invalidan con versión querystring)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType application/x-javascript "access plus 1 year"
+
+  # Imágenes
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Fuentes
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+</IfModule>
+
+# ================================
+# 🔄 Cache-Control
+# ================================
+<IfModule mod_headers.c>
+  # HTML - no muy cacheado
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=3600, must-revalidate"
+  </FilesMatch>
+
+  # CSS y JS (caché agresiva)
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imágenes
+  <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Fuentes
+  <FilesMatch "\.(ttf|woff|woff2|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ================================
+# 🔀 Forzar HTTPS y www (opcional)
+# ================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Forzar sin www (opcional: cámbialo según tu preferencia)
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>

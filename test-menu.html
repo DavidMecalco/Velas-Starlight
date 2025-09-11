@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Menú Móvil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beige-almond': '#F6F1E9',
+                        'dark-green': '#2D3E33',
+                        'warm-cream': '#EDE6DA',
+                        'sage-green': '#3A5A40',
+                        'leaf-green': '#A3B18A',
+                        'gray-sand': '#D6CEC3',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-beige-almond">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <!-- Logo -->
+            <div class="text-dark-green font-bold text-xl">Velas Starlight</div>
+
+            <!-- Links Desktop -->
+            <nav class="hidden md:flex space-x-8 font-medium text-dark-green items-center">
+                <a href="#" class="hover:text-sage-green">Inicio</a>
+                <a href="#" class="hover:text-sage-green">Productos</a>
+                <a href="#" class="hover:text-sage-green">Contacto</a>
+            </nav>
+
+            <!-- Botón menú móvil -->
+            <button id="menu-toggle" class="md:hidden text-dark-green text-2xl focus:outline-none ml-auto">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+            <div class="px-6 py-4 space-y-1">
+                <a href="#" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-home mr-3 text-sage-green"></i>
+                    <span class="font-medium">Inicio</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-cube mr-3 text-sage-green"></i>
+                    <span class="font-medium">Productos</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-phone mr-3 text-sage-green"></i>
+                    <span class="font-medium">Contacto</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20 p-8">
+        <h1 class="text-3xl font-bold text-dark-green mb-4">Test del Menú Móvil</h1>
+        <p class="text-gray-600 mb-4">Reduce el ancho de la ventana para ver el menú móvil.</p>
+        <p class="text-gray-600">Haz clic en el botón hamburguesa para probar la funcionalidad.</p>
+        
+        <div class="mt-8 p-4 bg-white rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-2">Instrucciones:</h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                <li>Reduce el ancho de la ventana a menos de 768px</li>
+                <li>Deberías ver el botón hamburguesa (☰)</li>
+                <li>Haz clic en el botón</li>
+                <li>El menú debería aparecer</li>
+                <li>El icono debería cambiar a X</li>
+                <li>Haz clic en X para cerrar</li>
+            </ol>
+        </div>
+    </main>
+
+    <!-- Script del menú -->
+    <script>
+        console.log('🧪 Iniciando test del menú móvil...');
+        
+        function initTestMenu() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!menuToggle || !mobileMenu) {
+                console.log('❌ Elementos no encontrados');
+                return;
+            }
+            
+            console.log('✅ Elementos encontrados');
+            
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('🔥 Click en menú toggle');
+                
+                const isHidden = mobileMenu.classList.contains('hidden');
+                const icon = menuToggle.querySelector('i');
+                
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    if (icon) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                    console.log('📱 Menú abierto');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    console.log('📱 Menú cerrado');
+                }
+            });
+            
+            // Cerrar al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+            
+            console.log('✅ Test menú inicializado');
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTestMenu);
+        } else {
+            initTestMenu();
+        }
+    </script>
+</body>
+</html>

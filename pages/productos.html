@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Velas Artesanales | Velas Starlight - Soya y Parafina</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Explora nuestro catálogo completo de velas artesanales. Velas de soya, parafina, con más de 15 fragancias naturales. Flor en Cemento, Suspiro de Ángel, Bosque Encantado y más.">
+    <meta name="keywords"
+        content="catálogo velas, velas artesanales México, velas soya parafina, fragancias naturales, velas decorativas, comprar velas online, velas aromáticas premium">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Catálogo de Velas Artesanales | Velas Starlight">
+    <meta property="og:description"
+        content="Descubre nuestra colección completa de velas artesanales con fragancias naturales. Desde $55 MXN con envío gratis.">
+    <meta property="og:image" content="https://velasstarlight.com/images/vela-starlight-rosas.jpeg">
+    <meta property="og:url" content="https://velasstarlight.com/pages/productos.html">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://velasstarlight.com/pages/productos.html">
+
+    <!-- Control de caché agresivo para desarrollo -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Versionado automático para forzar actualización -->
+    <meta name="version" content="v2.2.0">
+    <meta name="last-modified" content="2025-01-08">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beige-almond': '#F6F1E9',
+                        'dark-green': '#2D3E33',
+                        'warm-cream': '#EDE6DA',
+                        'sage-green': '#3A5A40',
+                        'leaf-green': '#A3B18A',
+                        'gray-sand': '#D6CEC3',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    
+    <!-- CSS de correcciones -->
+    <link rel="stylesheet" href="../css/fixes.css?v=2.4.1">
+
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos Personalizados -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(45, 62, 51, 0.15);
+        }
+
+        .filter-active {
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+            color: white;
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+        }
+
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Estilos para zoom de imagen */
+        .cursor-zoom-in {
+            cursor: zoom-in;
+        }
+
+        .cursor-grab {
+            cursor: grab;
+        }
+
+        .cursor-grabbing {
+            cursor: grabbing;
+        }
+
+        /* Animación suave para zoom */
+        #modal-image {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Indicador de zoom */
+        .zoom-indicator {
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        /* Forzar altura uniforme en las tarjetas de productos */
+        #product-grid {
+            display: grid;
+            grid-auto-rows: 1fr;
+            align-items: stretch;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 450px; /* Altura mínima fija */
+        }
+
+        .product-card .p-6 {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 1.5rem !important;
+            justify-content: space-between;
+        }
+
+        /* Título con altura fija para evitar desalineación */
+        .product-card h3 {
+            min-height: 3.5rem; /* Espacio para 2 líneas */
+            display: flex;
+            align-items: center;
+        }
+
+        /* Ocultar descripción en las tarjetas */
+        .product-card .product-description {
+            display: none !important;
+        }
+
+        /* Mejorar espaciado entre elementos */
+        .product-card h3 {
+            margin-bottom: 1rem !important;
+        }
+
+        .product-card .price-badge {
+            margin-bottom: 1rem !important;
+        }
+
+        .product-card .space-y-2 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Espaciado más generoso en la información adicional */
+        .product-info-section {
+            padding: 0.75rem 0;
+        }
+
+        /* Estilos adicionales para las tarjetas originales */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Asegurar que las tarjetas tengan altura uniforme */
+        #product-grid > div {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        #product-grid > div > div:last-child {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body class="bg-beige-almond text-dark-green font-sans">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <!-- Logo -->
+            <a href="../index.html">
+                <img src="../images/logo.png" alt="Velas Starlight Logo" class="h-12 w-auto">
+            </a>
+
+            <!-- Links Desktop -->
+            <nav class="hidden md:flex space-x-8 font-medium text-dark-green items-center">
+                <a href="../index.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-home mr-1"></i>Inicio
+                </a>
+                <a href="productos.html" class="text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-cube mr-1"></i>Productos
+                </a>
+                <a href="contacto.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-phone mr-1"></i>Contacto
+                </a>
+                <!-- Carrito Desktop -->
+                <a href="carrito.html" class="relative hover:text-sage-green transition-colors duration-300">
+                    <i class="fa fa-shopping-cart text-xl"></i>
+                    <span id="cart-count"
+                        class="absolute -top-3 -right-3 bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </nav>
+
+            <!-- Botón menú móvil -->
+            <button id="menu-toggle" class="md:hidden text-dark-green text-2xl focus:outline-none ml-auto">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+            <div class="px-6 py-4 space-y-1">
+                <a href="../index.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-home mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Inicio</span>
+                </a>
+                <a href="productos.html"
+                    class="flex items-center px-4 py-3 text-sage-green bg-sage-green/10 rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-cube mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Productos</span>
+                </a>
+                <a href="contacto.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-phone mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Contacto</span>
+                </a>
+                <div class="border-t border-gray-200 my-2"></div>
+                <a href="carrito.html"
+                    class="flex items-center justify-between px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group bg-transparent">
+                    <div class="flex items-center">
+                        <i
+                            class="fa fa-shopping-cart mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                        <span class="font-medium">Carrito</span>
+                    </div>
+                    <span id="cart-count-mobile"
+                        class="bg-sage-green text-white text-xs px-2 py-1 rounded-full min-w-[20px] text-center">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="pt-20">
+
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-16">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
+                    <i class="fas fa-fire text-3xl"></i>
+                </div>
+                <h1 class="font-serif text-4xl md:text-6xl font-bold mb-6">Nuestros Productos</h1>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto mb-8">
+                    Descubre nuestra colección de velas artesanales. Cada pieza cuenta una historia única de elegancia y
+                    calidez.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
+                    <span class="bg-white/20 px-4 py-2 rounded-full">✨ Hechas a mano</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full">🌿 Ingredientes naturales</span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full">🎨 Diseños únicos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estadísticas -->
+        <section class="py-12 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div id="stats-products" class="text-3xl font-bold text-dark-green mb-2">0</div>
+                        <div class="text-gray-600">Productos</div>
+                    </div>
+                    <div>
+                        <div id="stats-fragrances" class="text-3xl font-bold text-dark-green mb-2">0</div>
+                        <div class="text-gray-600">Fragancias</div>
+                    </div>
+                    <div>
+                        <div id="stats-types" class="text-3xl font-bold text-dark-green mb-2">0</div>
+                        <div class="text-gray-600">Tipos de Cera</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-dark-green mb-2">100%</div>
+                        <div class="text-gray-600">Artesanal</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtros -->
+        <section class="py-8 bg-beige-almond">
+            <div class="max-w-6xl mx-auto px-6">
+
+                <!-- Búsqueda -->
+                <div class="mb-8">
+                    <div class="relative max-w-2xl mx-auto">
+                        <input type="text" id="search-input" placeholder="Buscar productos..."
+                            class="w-full pl-12 pr-16 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-sage-green bg-white shadow-lg">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
+                        <button id="clear-search"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 hidden">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categorías -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-dark-green mb-4 text-center">Filtrar por Categoría</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button class="category-btn filter-active px-6 py-3 rounded-full font-medium transition-all"
+                            data-category="all">
+                            <i class="fas fa-th-large mr-2"></i>Todos
+                        </button>
+                        <button
+                            class="category-btn bg-white text-dark-green px-6 py-3 rounded-full font-medium hover:bg-sage-green hover:text-white transition-all"
+                            data-category="Vela">
+                            <i class="fas fa-fire mr-2"></i>Velas
+                        </button>
+                        <button
+                            class="category-btn bg-white text-dark-green px-6 py-3 rounded-full font-medium hover:bg-sage-green hover:text-white transition-all"
+                            data-category="Decoracion">
+                            <i class="fas fa-home mr-2"></i>Decoración
+                        </button>
+                        <button
+                            class="category-btn bg-white text-dark-green px-6 py-3 rounded-full font-medium hover:bg-sage-green hover:text-white transition-all"
+                            data-category="Belleza">
+                            <i class="fas fa-spa mr-2"></i>Belleza
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultados -->
+                <div class="flex justify-between items-center">
+                    <div class="text-gray-600">
+                        <span id="results-count">18</span> productos encontrados
+                    </div>
+                    <button id="reset-filters" class="text-sage-green hover:text-dark-green font-medium">
+                        <i class="fas fa-undo mr-1"></i>Limpiar Filtros
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Productos -->
+        <section class="py-12 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <!-- Contenedor de productos - se llena dinámicamente con JavaScript -->
+                <div id="product-grid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+                    <!-- Los productos se generan automáticamente aquí -->
+                </div>
+
+                <!-- Mensaje de no resultados -->
+                <div id="no-results" class="hidden text-center py-16">
+                    <div class="text-6xl mb-4">🔍</div>
+                    <h3 class="text-xl font-semibold text-dark-green mb-2">No se encontraron productos</h3>
+                    <p class="text-gray-600 mb-6">Intenta ajustar tus filtros o buscar con otros términos</p>
+                    <button id="show-all-products"
+                        class="bg-sage-green text-white px-6 py-3 rounded-lg hover:bg-dark-green transition-colors">
+                        <i class="fas fa-eye mr-2"></i>Ver Todos los Productos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Fragancias Populares -->
+        <section class="py-16 bg-beige-almond">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-green mb-4">
+                        Fragancias Más Populares
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Descubre los aromas que más enamoran a nuestros clientes
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
+                        data-fragrance="Vainilla">
+                        <div class="text-3xl mb-2">🍦</div>
+                        <div class="font-semibold text-dark-green">Vainilla</div>
+                        <div class="text-xs text-gray-500">Dulce y relajante</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
+                        data-fragrance="Lavanda">
+                        <div class="text-3xl mb-2">💜</div>
+                        <div class="font-semibold text-dark-green">Lavanda</div>
+                        <div class="text-xs text-gray-500">Calmante y floral</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
+                        data-fragrance="Rosas Especiales">
+                        <div class="text-3xl mb-2">🌹</div>
+                        <div class="font-semibold text-dark-green">Rosas</div>
+                        <div class="text-xs text-gray-500">Romántico y elegante</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
+                        data-fragrance="Canela">
+                        <div class="text-3xl mb-2">🍂</div>
+                        <div class="font-semibold text-dark-green">Canela</div>
+                        <div class="text-xs text-gray-500">Cálido y acogedor</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
+                        data-fragrance="Citricos">
+                        <div class="text-3xl mb-2">🍊</div>
+                        <div class="font-semibold text-dark-green">Cítricos</div>
+                        <div class="text-xs text-gray-500">Fresco y energizante</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main> 
+   <!-- Footer -->
+    <footer class="bg-gradient-to-br from-dark-green via-dark-green to-sage-green text-white relative overflow-hidden">
+        <!-- Elementos decorativos -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-sage-green rounded-full blur-3xl"></div>
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-leaf-green rounded-full blur-3xl">
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <!-- Contenido principal del footer -->
+            <div class="container mx-auto px-6 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Logo y descripción -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <img src="../images/logo.png" alt="Velas Starlight"
+                                class="h-12 w-auto filter brightness-0 invert">
+                        </div>
+                        <p class="text-gray-300 leading-relaxed max-w-md">
+                            Creamos experiencias sensoriales únicas con velas artesanales y productos de belleza
+                            natural, elaborados con amor y dedicación para iluminar tu mundo.
+                        </p>
+                    </div>
+
+                    <!-- Enlaces rápidos -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold mb-4 text-white">Enlaces Rápidos</h4>
+                        <ul class="space-y-3">
+                            <li><a href="../index.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>Inicio
+                                </a></li>
+                            <li><a href="productos.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-cube mr-2 group-hover:scale-110 transition-transform duration-300"></i>Productos
+                                </a></li>
+                            <li><a href="contacto.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-phone mr-2 group-hover:scale-110 transition-transform duration-300"></i>Contacto
+                                </a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contacto y redes sociales -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold mb-4 text-white">Conecta con Nosotros</h4>
+
+                        <!-- Información de contacto -->
+                        <div class="space-y-3 text-gray-300">
+                            <a href="mailto:ventas@velasstarlight.com" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                                <i class="fa fa-envelope text-white"></i>
+                                <span>ventas@velasstarlight.com</span>
+                            </a>
+                            <a href="tel:+525564682112" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                                <i class="fa fa-phone text-white"></i>
+                                <span>5564682112</span>
+                            </a>
+                        </div>
+
+                        <!-- Redes sociales -->
+                        <div class="pt-4">
+                            <h5 class="font-medium mb-3">Síguenos</h5>
+                            <div class="flex space-x-4">
+                                <a href="https://wa.me/5564682112" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-whatsapp text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="https://www.instagram.com/velas_starlight/" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-instagram text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-facebook-f text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-tiktok text-lg group-hover:text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Línea divisoria -->
+            <div class="border-t border-white/20"></div>
+
+            <!-- Copyright y enlaces legales -->
+            <div class="container mx-auto px-6 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-gray-300 text-sm">
+                        <p>&copy; 2025 Velas Starlight. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="flex items-center space-x-6 text-sm text-gray-300">
+                        <a href="terminos.html" class="hover:text-white transition-colors duration-300">Términos
+                            y Condiciones</a>
+                        <span class="text-gray-500">|</span>
+                        <a href="politicas.html" class="hover:text-white transition-colors duration-300">Política
+                            de Privacidad</a>
+                        <span class="text-gray-500">|</span>
+                        <span class="flex items-center space-x-1">
+                            <i class="fa fa-heart text-red-400"></i>
+                            <span>Hecho con amor</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Scripts de productos -->
+    <script src="../js/mobile-menu-clean.js"></script>
+    <script src="../js/productos-data.js"></script>
+    <script src="../js/product-generator.js"></script>
+    <script src="../js/main.js"></script>
+
+    <!-- Script principal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🚀 Inicializando página de productos...');
+
+
+
+            // ========================================
+            // FUNCIONES DE FILTRADO Y BÚSQUEDA
+            // ========================================
+
+            // Función para actualizar contador de resultados
+            function updateResultsCount(count) {
+                const resultsElement = document.getElementById('results-count');
+                if (resultsElement) {
+                    resultsElement.textContent = count;
+                }
+            }
+
+            // Configurar filtros de categoría
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const category = this.dataset.category;
+
+                    // Actualizar botones activos
+                    categoryButtons.forEach(btn => btn.classList.remove('filter-active'));
+                    categoryButtons.forEach(btn => btn.classList.add('bg-white', 'text-dark-green'));
+                    this.classList.add('filter-active');
+                    this.classList.remove('bg-white', 'text-dark-green');
+
+                    // Filtrar productos
+                    if (window.productGenerator) {
+                        window.productGenerator.filterByCategory(category);
+                    }
+                });
+            });
+
+            // Configurar búsqueda
+            const searchInput = document.getElementById('search-input');
+            const clearSearchBtn = document.getElementById('clear-search');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    const searchTerm = this.value.trim();
+
+                    if (searchTerm.length > 0) {
+                        clearSearchBtn.classList.remove('hidden');
+                        if (window.productGenerator) {
+                            window.productGenerator.searchProducts(searchTerm);
+                        }
+                    } else {
+                        clearSearchBtn.classList.add('hidden');
+                        if (window.productGenerator) {
+                            window.productGenerator.filterByCategory('all');
+                        }
+                    }
+                });
+            }
+
+            if (clearSearchBtn) {
+                clearSearchBtn.addEventListener('click', function () {
+                    searchInput.value = '';
+                    this.classList.add('hidden');
+                    if (window.productGenerator) {
+                        window.productGenerator.filterByCategory('all');
+                    }
+                });
+            }
+
+            // Botón reset filtros
+            const resetFiltersBtn = document.getElementById('reset-filters');
+            if (resetFiltersBtn) {
+                resetFiltersBtn.addEventListener('click', function () {
+                    // Limpiar búsqueda
+                    if (searchInput) {
+                        searchInput.value = '';
+                        clearSearchBtn.classList.add('hidden');
+                    }
+
+                    // Resetear categorías
+                    categoryButtons.forEach(btn => btn.classList.remove('filter-active'));
+                    categoryButtons.forEach(btn => btn.classList.add('bg-white', 'text-dark-green'));
+                    document.querySelector('[data-category="all"]').classList.add('filter-active');
+                    document.querySelector('[data-category="all"]').classList.remove('bg-white', 'text-dark-green');
+
+                    // Mostrar todos los productos
+                    if (window.productGenerator) {
+                        window.productGenerator.filterByCategory('all');
+                    }
+                });
+            }
+
+            // ========================================
+            // MODAL DE PRODUCTO
+            // ========================================
+
+            const modal = document.getElementById('product-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const closeModalBtn = document.getElementById('close-modal');
+            const modalImage = document.getElementById('modal-image');
+            const imageContainer = document.getElementById('image-container');
+
+            // Función para abrir modal
+            function openModal(product) {
+                console.log('🎯 Abriendo modal para:', product.title);
+
+                // Llenar información del producto
+                document.getElementById('modal-title').textContent = product.title;
+                document.getElementById('modal-description').textContent = product.description;
+                document.getElementById('modal-image').src = product.image;
+                document.getElementById('modal-category-badge').textContent = product.category;
+
+                // Precio mínimo
+                const minPrice = Math.min(...product.sizes.map(s => s.price));
+                document.getElementById('modal-price').textContent = `$${minPrice} MXN`;
+
+                // Tipos de cera
+                const typeOptions = document.getElementById('modal-type-options');
+                typeOptions.innerHTML = '';
+                product.types.forEach(type => {
+                    const typeBtn = document.createElement('span');
+                    typeBtn.className = 'bg-sage-green text-white px-3 py-1 rounded-full text-sm';
+                    typeBtn.textContent = type;
+                    typeOptions.appendChild(typeBtn);
+                });
+
+                // Tamaños
+                const sizeOptions = document.getElementById('modal-size-options');
+                sizeOptions.innerHTML = '';
+                product.sizes.forEach((size, index) => {
+                    const sizeOption = document.createElement('label');
+                    sizeOption.className = 'flex items-center justify-between p-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-sage-green transition-colors';
+                    sizeOption.innerHTML = `
+                        <div class="flex items-center">
+                            <input type="radio" name="size" value="${index}" class="mr-3" ${index === 0 ? 'checked' : ''}>
+                            <span class="font-medium">${size.label}</span>
+                        </div>
+                        <span class="font-bold text-sage-green">$${size.price} MXN</span>
+                    `;
+                    sizeOptions.appendChild(sizeOption);
+                });
+
+                // Fragancias
+                const fragranceSelect = document.getElementById('modal-fragrance');
+                fragranceSelect.innerHTML = '<option>Selecciona una fragancia</option>';
+                product.fragrances.forEach(fragrance => {
+                    const option = document.createElement('option');
+                    option.value = fragrance;
+                    option.textContent = fragrance;
+                    fragranceSelect.appendChild(option);
+                });
+
+                // Mostrar modal
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+
+                // Resetear zoom
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform();
+            }
+
+            // Función para cerrar modal
+            function closeModal() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                
+                // Resetear zoom
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform();
+            }
+
+            // Event listeners del modal
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            if (modalBackdrop) {
+                modalBackdrop.addEventListener('click', closeModal);
+            }
+
+            // Cerrar con ESC
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // ========================================
+            // FUNCIONALIDAD DE ZOOM
+            // ========================================
+
+            function updateImageTransform() {
+                if (modalImage) {
+                    modalImage.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+                }
+            }
+
+            function zoomImage(delta) {
+                const newZoom = Math.max(1, Math.min(3, currentZoom + delta));
+                if (newZoom !== currentZoom) {
+                    currentZoom = newZoom;
+                    updateImageTransform();
+
+                    if (currentZoom > 1) {
+                        modalImage.style.cursor = 'grab';
+                    } else {
+                        modalImage.style.cursor = 'zoom-in';
+                        translateX = 0;
+                        translateY = 0;
+                    }
+                }
+            }
+
+            // Zoom con doble clic
+            if (modalImage) {
+                modalImage.addEventListener('dblclick', function (e) {
+                    e.preventDefault();
+                    if (currentZoom === 1) {
+                        zoomImage(1);
+                    } else {
+                        currentZoom = 1;
+                        translateX = 0;
+                        translateY = 0;
+                        updateImageTransform();
+                        modalImage.style.cursor = 'zoom-in';
+                    }
+                });
+            }
+
+            // ========================================
+            // INICIALIZAR GENERADOR DE PRODUCTOS
+            // ========================================
+
+            console.log('🚀 Inicializando generador de productos...');
+
+            // Verificar que los datos y el generador estén disponibles
+            if (window.ProductGenerator && window.productosData) {
+                const productGenerator = new ProductGenerator();
+                productGenerator.init('product-grid', window.productosData);
+
+                // Hacer disponible globalmente para los filtros
+                window.productGenerator = productGenerator;
+
+                console.log('✅ Generador de productos inicializado correctamente');
+                console.log(`📦 ${window.productosData.length} productos cargados`);
+
+                // Actualizar contador inicial
+                updateResultsCount(window.productosData.length);
+
+            } else {
+                console.error('❌ Error: ProductGenerator o productosData no disponibles');
+                console.log('ProductGenerator disponible:', !!window.ProductGenerator);
+                console.log('productosData disponible:', !!window.productosData);
+            }
+
+            // Hacer funciones disponibles globalmente
+            window.updateResultsCount = updateResultsCount;
+
+            console.log('✅ Página de productos cargada correctamente');
+        });
+    </script>
+
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+
+</body>
+
+</html>

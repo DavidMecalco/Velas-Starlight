@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Producto | Velas Starlight</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" id="page-description" content="Descubre nuestros productos artesanales únicos">
+    <meta name="keywords" content="velas artesanales, productos belleza, soya, parafina, fragancias naturales">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" id="og-title" content="Producto | Velas Starlight">
+    <meta property="og:description" id="og-description" content="Descubre nuestros productos artesanales únicos">
+    <meta property="og:image" id="og-image" content="">
+    <meta property="og:url" id="og-url" content="">
+
+    <!-- Control de caché -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beige-almond': '#F6F1E9',
+                        'dark-green': '#2D3E33',
+                        'warm-cream': '#EDE6DA',
+                        'sage-green': '#3A5A40',
+                        'leaf-green': '#A3B18A',
+                        'gray-sand': '#D6CEC3',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    
+    <!-- CSS de correcciones -->
+    <link rel="stylesheet" href="../css/fixes.css?v=2.4.1">
+
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos Personalizados -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(45, 62, 51, 0.15);
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+        }
+
+        /* Zoom de imagen */
+        .product-image {
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image.zoomed {
+            transform: scale(2);
+            cursor: zoom-out;
+        }
+
+        /* Galería de imágenes */
+        .image-gallery {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .main-image {
+            grid-column: 1 / -1;
+        }
+
+        .thumbnail {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #3A5A40;
+            transform: scale(1.05);
+        }
+
+        /* Animaciones para opciones */
+        .option-card {
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 62, 51, 0.1);
+        }
+
+        .option-card.selected {
+            border-color: #3A5A40;
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+            color: white;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumb {
+            color: #6B7280;
+        }
+
+        .breadcrumb:hover {
+            color: #3A5A40;
+        }
+
+        /* Sticky add to cart */
+        .sticky-cart {
+            position: sticky;
+            top: 100px;
+            z-index: 40;
+        }
+
+        /* Notificaciones elegantes */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .notification.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .notification .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .notification .close-btn:hover {
+            opacity: 1;
+        }
+
+        /* Estilos mejorados para la página de producto */
+        .product-hero {
+            background: linear-gradient(135deg, #F6F1E9 0%, #EDE6DA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23A3B18A" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%233A5A40" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%232D3E33" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .product-image-container {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                0 20px 40px rgba(45, 62, 51, 0.1),
+                0 10px 20px rgba(45, 62, 51, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .product-image {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(45, 62, 51, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.2);
+        }
+
+        .product-info-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(45, 62, 51, 0.08),
+                0 10px 20px rgba(45, 62, 51, 0.04);
+            border: 1px solid rgba(163, 177, 138, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3A5A40 0%, #A3B18A 50%, #3A5A40 100%);
+        }
+
+        .price-display {
+            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .option-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(58, 90, 64, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option-card:hover::before {
+            left: 100%;
+        }
+
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(45, 62, 51, 0.15);
+            border-color: #A3B18A;
+        }
+
+        .option-card.selected {
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+            color: white;
+            border-color: #3A5A40;
+            box-shadow: 0 10px 30px rgba(58, 90, 64, 0.3);
+        }
+
+        .option-card.selected span {
+            color: white;
+        }
+
+        .fragrance-select {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .fragrance-select:focus {
+            border-color: #3A5A40;
+            box-shadow: 0 0 0 3px rgba(58, 90, 64, 0.1);
+            outline: none;
+        }
+
+        .quantity-controls {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            padding: 0.5rem;
+            border: 2px solid #e9ecef;
+        }
+
+        .quantity-btn {
+            background: linear-gradient(145deg, #3A5A40 0%, #2D3E33 100%);
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(45, 62, 51, 0.3);
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
+            border-radius: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .add-to-cart-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.3);
+        }
+
+        .features-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(163, 177, 138, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .features-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.1);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #A3B18A 0%, #3A5A40 100%);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 10px 20px rgba(163, 177, 138, 0.3);
+        }
+
+        .related-product-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(163, 177, 138, 0.1);
+        }
+
+        .related-product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(45, 62, 51, 0.15);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(45, 62, 51, 0.3);
+        }
+
+        .badge.featured {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .badge.new {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        /* Animaciones de entrada */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-beige-almond text-dark-green font-sans">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <!-- Logo -->
+            <a href="../index.html">
+                <img src="../images/logo.png" alt="Velas Starlight Logo" class="h-12 w-auto">
+            </a>
+
+            <!-- Links Desktop -->
+            <nav class="hidden md:flex space-x-8 font-medium text-dark-green items-center">
+                <a href="../index.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-home mr-1"></i>Inicio
+                </a>
+                <a href="productos.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-cube mr-1"></i>Productos
+                </a>
+                <a href="contacto.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-phone mr-1"></i>Contacto
+                </a>
+                <!-- Carrito Desktop -->
+                <a href="carrito.html" class="relative hover:text-sage-green transition-colors duration-300">
+                    <i class="fa fa-shopping-cart text-xl"></i>
+                    <span id="cart-count"
+                        class="absolute -top-3 -right-3 bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </nav>
+
+            <!-- Botón menú móvil -->
+            <button id="menu-toggle" class="md:hidden text-dark-green text-2xl focus:outline-none ml-auto">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+            <div class="px-6 py-4 space-y-1">
+                <a href="../index.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-home mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Inicio</span>
+                </a>
+                <a href="productos.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-cube mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Productos</span>
+                </a>
+                <a href="contacto.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-phone mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Contacto</span>
+                </a>
+                <div class="border-t border-gray-200 my-2"></div>
+                <a href="carrito.html"
+                    class="flex items-center justify-between px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group bg-transparent">
+                    <div class="flex items-center">
+                        <i
+                            class="fa fa-shopping-cart mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                        <span class="font-medium">Carrito</span>
+                    </div>
+                    <span id="cart-count-mobile"
+                        class="bg-sage-green text-white text-xs px-2 py-1 rounded-full min-w-[20px] text-center">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="pt-20">
+
+        <!-- Breadcrumbs -->
+        <section class="py-4 bg-white border-b">
+            <div class="max-w-6xl mx-auto px-6">
+                <nav class="flex items-center space-x-2 text-sm">
+                    <a href="../index.html" class="breadcrumb hover:text-sage-green transition-colors">
+                        <i class="fas fa-home mr-1"></i>Inicio
+                    </a>
+                    <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    <a href="productos.html" class="breadcrumb hover:text-sage-green transition-colors">Productos</a>
+                    <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    <span id="breadcrumb-category" class="text-sage-green font-medium">Velas</span>
+                    <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    <span id="breadcrumb-product" class="text-dark-green font-medium">Producto</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Producto Principal -->
+        <section class="py-12 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                    <!-- Galería de Imágenes -->
+                    <div class="space-y-6" data-aos="fade-right">
+                        <!-- Imagen Principal -->
+                        <div
+                            class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-beige-almond to-warm-cream p-6">
+                            <img id="main-product-image" src="" alt="Producto"
+                                class="product-image w-full h-96 object-cover rounded-xl shadow-lg">
+
+                            <!-- Badges -->
+                            <div class="absolute top-8 left-8 flex flex-col space-y-2" id="product-badges">
+                                <!-- Se llenan dinámicamente -->
+                            </div>
+
+                            <!-- Categoría -->
+                            <div class="absolute top-8 right-8">
+                                <span id="product-category-badge"
+                                    class="bg-sage-green text-white px-4 py-2 rounded-full text-sm font-semibold">
+                                    Producto
+                                </span>
+                            </div>
+
+                            <!-- Zoom hint -->
+                            <div class="absolute bottom-8 left-8 right-8">
+                                <div
+                                    class="bg-dark-green/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-center">
+                                    <p class="text-sm opacity-90">
+                                        <i class="fas fa-search-plus mr-2"></i>
+                                        Haz clic para hacer zoom
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Miniaturas (si hay múltiples imágenes) -->
+                        <div id="image-thumbnails" class="hidden grid grid-cols-4 gap-3">
+                            <!-- Se llenan dinámicamente -->
+                        </div>
+
+                        <!-- Indicadores de calidad -->
+                        <div class="flex justify-center space-x-6 text-sm text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-leaf text-green-500 mr-2"></i>Natural
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-hand-sparkles text-blue-500 mr-2"></i>Artesanal
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-heart text-red-500 mr-2"></i>Hecho con amor
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información del Producto -->
+                    <div class="space-y-8" data-aos="fade-left">
+
+                        <!-- Título y Descripción -->
+                        <div>
+                            <h1 id="product-title"
+                                class="font-serif text-4xl md:text-5xl font-bold text-dark-green mb-4">
+                                Nombre del Producto
+                            </h1>
+                            <p id="product-description" class="text-lg text-gray-600 leading-relaxed">
+                                Descripción del producto...
+                            </p>
+                        </div>
+
+                        <!-- Precio -->
+                        <div class="bg-gradient-to-r from-dark-green to-sage-green text-white p-6 rounded-2xl">
+                            <div class="flex items-center justify-center">
+                                <div class="text-center">
+                                    <span class="text-lg opacity-90">Precio desde:</span>
+                                    <div id="product-price" class="text-3xl font-bold">$0 MXN</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Opciones del Producto -->
+                        <div class="space-y-6">
+
+                            <!-- Tipo/Material -->
+                            <div id="type-section">
+                                <label class="block text-lg font-semibold text-dark-green mb-4" id="type-label">
+                                    Tipo de Cera:
+                                </label>
+                                <div id="type-options" class="flex flex-wrap gap-3">
+                                    <!-- Se llena dinámicamente -->
+                                </div>
+                            </div>
+
+                            <!-- Tamaños -->
+                            <div>
+                                <label class="block text-lg font-semibold text-dark-green mb-4">
+                                    Tamaño:
+                                </label>
+                                <div id="size-options" class="space-y-3">
+                                    <!-- Se llena dinámicamente -->
+                                </div>
+                            </div>
+
+                            <!-- Fragancias -->
+                            <div>
+                                <label class="block text-lg font-semibold text-dark-green mb-4" id="fragrance-label">
+                                    Fragancia:
+                                </label>
+                                <select id="fragrance-select"
+                                    class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-sage-green bg-white">
+                                    <option>Selecciona una fragancia</option>
+                                </select>
+                            </div>
+
+                            <!-- Cantidad -->
+                            <div>
+                                <label class="block text-lg font-semibold text-dark-green mb-4">
+                                    Cantidad:
+                                </label>
+                                <div class="flex items-center space-x-4">
+                                    <button id="decrease-qty"
+                                        class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-lg">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input id="quantity-input" type="number" value="1" min="1"
+                                        class="w-24 text-center p-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:border-sage-green">
+                                    <button id="increase-qty"
+                                        class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-lg">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="space-y-4 sticky-cart">
+                            <button id="add-to-cart-btn"
+                                class="w-full bg-gradient-to-r from-dark-green to-sage-green text-white py-4 px-6 rounded-xl hover:from-sage-green hover:to-dark-green transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold text-lg">
+                                <i class="fas fa-shopping-cart mr-3"></i>
+                                Agregar al Carrito
+                            </button>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <button id="whatsapp-btn"
+                                    class="bg-green-500 text-white py-3 px-4 rounded-xl hover:bg-green-600 transition-colors font-medium">
+                                    <i class="fab fa-whatsapp mr-2"></i>
+                                    WhatsApp
+                                </button>
+                                <button id="share-btn"
+                                    class="bg-gray-500 text-white py-3 px-4 rounded-xl hover:bg-gray-600 transition-colors font-medium">
+                                    <i class="fas fa-share-alt mr-2"></i>
+                                    Compartir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información Adicional -->
+        <section class="py-16 bg-beige-almond">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Características -->
+                    <div class="bg-white rounded-2xl p-8 hover-lift" data-aos="fade-up">
+                        <div class="text-center mb-6">
+                            <div
+                                class="inline-flex items-center justify-center w-16 h-16 bg-sage-green/10 rounded-full mb-4">
+                                <i class="fas fa-star text-2xl text-sage-green"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark-green">Características</h3>
+                        </div>
+                        <ul id="product-features" class="space-y-3 text-gray-600">
+                            <!-- Se llena dinámicamente según el tipo de producto -->
+                        </ul>
+                    </div>
+
+                    <!-- Cuidados -->
+                    <div class="bg-white rounded-2xl p-8 hover-lift" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-center mb-6">
+                            <div
+                                class="inline-flex items-center justify-center w-16 h-16 bg-sage-green/10 rounded-full mb-4">
+                                <i class="fas fa-heart text-2xl text-sage-green"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark-green">Cuidados</h3>
+                        </div>
+                        <ul id="product-care" class="space-y-3 text-gray-600">
+                            <!-- Se llena dinámicamente según el tipo de producto -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Productos Relacionados -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-green mb-4">
+                        Productos Relacionados
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Descubre otros productos que podrían interesarte
+                    </p>
+                </div>
+
+                <div id="related-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Botón Volver -->
+        <section class="py-8 bg-beige-almond">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <a href="productos.html"
+                    class="inline-flex items-center bg-sage-green text-white px-8 py-4 rounded-xl hover:bg-dark-green transition-colors font-semibold text-lg">
+                    <i class="fas fa-arrow-left mr-3"></i>
+                    Volver al Catálogo
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-dark-green via-dark-green to-sage-green text-white relative overflow-hidden">
+        <!-- Elementos decorativos -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-sage-green rounded-full blur-3xl"></div>
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-leaf-green rounded-full blur-3xl">
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <!-- Contenido principal del footer -->
+            <div class="container mx-auto px-6 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Logo y descripción -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <img src="../images/logo.png" alt="Velas Starlight"
+                                class="h-12 w-auto filter brightness-0 invert">
+                        </div>
+                        <p class="text-gray-300 leading-relaxed max-w-md">
+                            Creamos experiencias sensoriales únicas con velas artesanales y productos de belleza
+                            natural, elaborados con amor y dedicación para iluminar tu mundo.
+                        </p>
+                    </div>
+
+                    <!-- Enlaces rápidos -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold mb-4 text-white">Enlaces Rápidos</h4>
+                        <ul class="space-y-3">
+                            <li><a href="../index.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>Inicio
+                                </a></li>
+                            <li><a href="productos.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-cube mr-2 group-hover:scale-110 transition-transform duration-300"></i>Productos
+                                </a></li>
+                            <li><a href="contacto.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-phone mr-2 group-hover:scale-110 transition-transform duration-300"></i>Contacto
+                                </a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contacto y redes sociales -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold mb-4 text-white">Conecta con Nosotros</h4>
+
+                        <!-- Información de contacto -->
+                        <div class="space-y-3 text-gray-300">
+                            <a href="mailto:ventas@velasstarlight.com" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                                <i class="fa fa-envelope text-white"></i>
+                                <span>ventas@velasstarlight.com</span>
+                            </a>
+                            <a href="tel:+525564682112" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                                <i class="fa fa-phone text-white"></i>
+                                <span>5564682112</span>
+                            </a>
+                        </div>
+
+                        <!-- Redes sociales -->
+                        <div class="pt-4">
+                            <h5 class="font-medium mb-3">Síguenos</h5>
+                            <div class="flex space-x-4">
+                                <a href="https://wa.me/5564682112" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-whatsapp text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="https://www.instagram.com/velas_starlight/" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-instagram text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-facebook-f text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-tiktok text-lg group-hover:text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Línea divisoria -->
+            <div class="border-t border-white/20"></div>
+
+            <!-- Copyright y enlaces legales -->
+            <div class="container mx-auto px-6 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-gray-300 text-sm">
+                        <p>&copy; 2025 Velas Starlight. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="flex items-center space-x-6 text-sm text-gray-300">
+                        <a href="terminos.html" class="hover:text-white transition-colors duration-300">Términos
+                            y Condiciones</a>
+                        <span class="text-gray-500">|</span>
+                        <a href="politicas.html" class="hover:text-white transition-colors duration-300">Política
+                            de Privacidad</a>
+                        <span class="text-gray-500">|</span>
+                        <span class="flex items-center space-x-1">
+                            <i class="fa fa-heart text-red-400"></i>
+                            <span>Hecho con amor</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/mobile-menu-clean.js"></script>
+    <script src="../js/productos-data.js"></script>
+    <script src="../js/producto-detalle.js"></script>
+
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Inicialización simple
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof ProductDetailPage !== 'undefined') {
+                const productDetailPage = new ProductDetailPage();
+                productDetailPage.init();
+                console.log('✅ Página de producto detalle inicializada');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

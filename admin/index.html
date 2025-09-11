@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Administración | Velas Starlight</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beige-almond': '#F6F1E9',
+                        'dark-green': '#2D3E33',
+                        'warm-cream': '#EDE6DA',
+                        'sage-green': '#3A5A40',
+                        'leaf-green': '#A3B18A',
+                        'gray-sand': '#D6CEC3',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .admin-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(45, 62, 51, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(45, 62, 51, 0.3);
+        }
+
+        .form-input {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #3A5A40;
+            box-shadow: 0 0 0 3px rgba(58, 90, 64, 0.1);
+            outline: none;
+        }
+
+        .modal {
+            backdrop-filter: blur(10px);
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 0.25rem;
+            display: inline-block;
+        }
+
+        .characteristic-item,
+        .care-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .icon-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .icon-option {
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-option:hover,
+        .icon-option.selected {
+            border-color: #3A5A40;
+            background: #f0f8f0;
+            transform: scale(1.05);
+        }
+
+        /* Asegurar que el modal esté siempre encima */
+        #icon-modal {
+            position: fixed !important;
+            z-index: 99999 !important;
+        }
+
+        #icon-modal > div {
+            position: relative !important;
+            z-index: 100000 !important;
+        }
+
+        /* Estilos para selectores de color */
+        .color-option {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Colores específicos para los selectores */
+        .bg-red-500 { background-color: #ef4444 !important; }
+        .bg-blue-500 { background-color: #3b82f6 !important; }
+        .bg-green-500 { background-color: #10b981 !important; }
+        .bg-yellow-500 { background-color: #f59e0b !important; }
+        .bg-purple-500 { background-color: #8b5cf6 !important; }
+        .bg-pink-500 { background-color: #ec4899 !important; }
+        .bg-orange-500 { background-color: #f97316 !important; }
+        .bg-teal-500 { background-color: #14b8a6 !important; }
+        .bg-indigo-500 { background-color: #6366f1 !important; }
+        .bg-gray-500 { background-color: #6b7280 !important; }
+    </style>
+</head>
+
+<body class="bg-beige-almond min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="../images/logo.png" alt="Velas Starlight" class="h-12">
+                    <div>
+                        <h1 class="text-2xl font-bold text-dark-green">Portal de Administración</h1>
+                        <p class="text-gray-600">Gestiona productos localmente → Usa "Generar Código" para producción</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="admin-user" class="text-sm text-gray-600"></span>
+                    <span id="product-count" class="bg-sage-green text-white px-4 py-2 rounded-full font-semibold">0
+                        productos</span>
+                    <a href="../index.html" class="text-sage-green hover:text-dark-green transition-colors">
+                        <i class="fas fa-external-link-alt mr-2"></i>Ver Tienda
+                    </a>
+                    <button id="logout-btn" class="text-red-500 hover:text-red-700 transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Salir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+
+        <!-- Actions Bar -->
+        <div class="admin-card p-6 mb-8">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <button id="add-product-btn" class="btn-primary text-white px-6 py-3 rounded-xl font-semibold">
+                        <i class="fas fa-plus mr-2"></i>Agregar Producto
+                    </button>
+                    <button id="export-images-btn"
+                        class="bg-purple-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-purple-600 transition-colors">
+                        <i class="fas fa-images mr-2"></i>Exportar Imágenes
+                    </button>
+                    <button id="generate-code-btn"
+                        class="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors">
+                        <i class="fas fa-code mr-2"></i>Generar Código
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <select id="category-filter" class="form-input px-4 py-2">
+                        <option value="all">Todas las categorías</option>
+                        <option value="Vela">Velas</option>
+                        <option value="Belleza">Belleza</option>
+                        <option value="Decoracion">Decoración</option>
+                    </select>
+                    <input type="text" id="search-input" placeholder="Buscar productos..."
+                        class="form-input px-4 py-2 w-64">
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Products will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-16">
+            <i class="fas fa-box-open text-6xl text-gray-400 mb-4"></i>
+            <h3 class="text-2xl font-bold text-gray-600 mb-2">No hay productos</h3>
+            <p class="text-gray-500 mb-6">Comienza agregando tu primer producto</p>
+            <button class="btn-primary text-white px-6 py-3 rounded-xl font-semibold">
+                <i class="fas fa-plus mr-2"></i>Agregar Producto
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Product Modal -->
+    <div id="product-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 modal hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h2 id="modal-title" class="text-2xl font-bold text-dark-green">Agregar Producto</h2>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <form id="product-form" class="p-6 space-y-6">
+                <!-- Basic Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre del Producto *</label>
+                        <input type="text" id="product-title" class="form-input w-full px-4 py-3" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Categoría *</label>
+                        <select id="product-category" class="form-input w-full px-4 py-3" required>
+                            <option value="">Seleccionar categoría</option>
+                            <option value="Vela">Vela</option>
+                            <option value="Belleza">Belleza</option>
+                            <option value="Decoracion">Decoración</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Descripción *</label>
+                    <textarea id="product-description" class="form-input w-full px-4 py-3 h-32" required></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Imagen del Producto *</label>
+
+                    <!-- Image Upload Options -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">Subir desde tu
+                                computadora</label>
+                            <div class="relative">
+                                <input type="file" id="image-file" accept="image/*" class="hidden">
+                                <button type="button" id="upload-btn"
+                                    class="w-full form-input px-4 py-3 text-left text-gray-500 hover:text-gray-700 transition-colors">
+                                    <i class="fas fa-upload mr-2"></i>Seleccionar imagen...
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">La imagen se copiará a la carpeta /images/</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">O usar URL externa</label>
+                            <input type="text" id="product-image" class="form-input w-full px-4 py-3"
+                                placeholder="https://ejemplo.com/imagen.jpg o ../images/imagen.jpg">
+                        </div>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div id="image-preview" class="mt-4 hidden">
+                        <div class="flex items-start space-x-4">
+                            <img id="preview-img" class="w-32 h-32 object-cover rounded-lg border">
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-700">Vista previa</p>
+                                <p id="image-path" class="text-xs text-gray-500 mt-1"></p>
+                                <button type="button" id="remove-image"
+                                    class="text-red-500 hover:text-red-700 text-sm mt-2">
+                                    <i class="fas fa-trash mr-1"></i>Quitar imagen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Types/Materials -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Tipos/Materiales</label>
+
+                    <!-- Predefined Types -->
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600 mb-2">Tipos disponibles:</p>
+                        <div class="flex flex-wrap gap-2" id="predefined-types">
+                            <button type="button"
+                                class="predefined-type bg-gray-100 hover:bg-sage-green hover:text-white px-3 py-1 rounded-full text-sm transition-colors"
+                                data-type="Soya">Soya</button>
+                            <button type="button"
+                                class="predefined-type bg-gray-100 hover:bg-sage-green hover:text-white px-3 py-1 rounded-full text-sm transition-colors"
+                                data-type="Parafina">Parafina</button>
+                            <button type="button"
+                                class="predefined-type bg-gray-100 hover:bg-sage-green hover:text-white px-3 py-1 rounded-full text-sm transition-colors"
+                                data-type="Origen Natural">Origen Natural</button>
+                            <button type="button"
+                                class="predefined-type bg-gray-100 hover:bg-sage-green hover:text-white px-3 py-1 rounded-full text-sm transition-colors"
+                                data-type="Cera de Abeja">Cera de Abeja</button>
+                        </div>
+                    </div>
+
+                    <!-- Selected Types -->
+                    <div class="flex flex-wrap gap-2 mb-2" id="types-display"></div>
+
+                    <!-- Add New Type -->
+                    <div class="flex gap-2">
+                        <input type="text" id="new-type" class="form-input flex-1 px-4 py-2"
+                            placeholder="Agregar nuevo tipo...">
+                        <button type="button" id="add-type" class="bg-sage-green text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Care Type (for Beauty products) -->
+                <div id="care-type-section" class="hidden">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Tipo de Cuidado</label>
+                    <select id="product-care-type" class="form-input w-full px-4 py-3">
+                        <option value="">Seleccionar tipo</option>
+                        <option value="Facial">Facial</option>
+                        <option value="Corporal">Corporal</option>
+                        <option value="Capilar">Capilar</option>
+                    </select>
+                </div>
+
+                <!-- Sizes -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Tamaños y Precios</label>
+                    <div id="sizes-container" class="space-y-3"></div>
+                    <button type="button" id="add-size" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2">
+                        <i class="fas fa-plus mr-2"></i>Agregar Tamaño
+                    </button>
+                </div>
+
+                <!-- Fragrances -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Fragancias/Variantes</label>
+
+                    <!-- Predefined Fragrances -->
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-sm text-gray-600">Fragancias disponibles:</p>
+                            <div class="relative">
+                                <input type="text" id="fragrance-search" 
+                                       class="form-input px-3 py-1 text-sm w-48 pl-8"
+                                       placeholder="Buscar fragancia...">
+                                <i class="fas fa-search absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 max-h-32 overflow-y-auto border rounded-lg p-2"
+                            id="predefined-fragrances">
+                            <!-- Se llenarán dinámicamente -->
+                        </div>
+                        <div id="no-fragrances-found" class="hidden text-center text-gray-500 text-sm py-4">
+                            No se encontraron fragancias
+                        </div>
+                    </div>
+
+                    <!-- Selected Fragrances -->
+                    <div class="flex flex-wrap gap-2 mb-2" id="fragrances-display"></div>
+
+                    <!-- Add New Fragrance -->
+                    <div class="flex gap-2">
+                        <input type="text" id="new-fragrance" class="form-input flex-1 px-4 py-2"
+                            placeholder="Agregar nueva fragancia...">
+                        <button type="button" id="add-fragrance" class="bg-sage-green text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Characteristics -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Características</label>
+                    <div id="characteristics-container" class="space-y-3"></div>
+                    <button type="button" id="add-characteristic"
+                        class="bg-purple-500 text-white px-4 py-2 rounded-lg mt-2">
+                        <i class="fas fa-plus mr-2"></i>Agregar Característica
+                    </button>
+                </div>
+
+                <!-- Care Instructions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Cuidados</label>
+                    <div id="care-container" class="space-y-3"></div>
+                    <button type="button" id="add-care" class="bg-orange-500 text-white px-4 py-2 rounded-lg mt-2">
+                        <i class="fas fa-plus mr-2"></i>Agregar Cuidado
+                    </button>
+                </div>
+
+                <!-- Product Status -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="product-featured" class="mr-2">
+                        <label for="product-featured" class="text-sm font-semibold text-gray-700">Destacado</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="product-new" class="mr-2">
+                        <label for="product-new" class="text-sm font-semibold text-gray-700">Nuevo</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="product-available" class="mr-2" checked>
+                        <label for="product-available" class="text-sm font-semibold text-gray-700">Disponible</label>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                    <button type="button" id="cancel-btn"
+                        class="px-6 py-3 border border-gray-300 rounded-xl font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary text-white px-6 py-3 rounded-xl font-semibold">
+                        <i class="fas fa-save mr-2"></i>Guardar Producto
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Icon Selector Modal -->
+    <div id="icon-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 modal hidden flex items-center justify-center p-4" 
+        style="z-index: 99999;">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto" style="z-index: 100000;">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-dark-green">Seleccionar Icono</h3>
+                    <button id="close-icon-modal" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="icon-selector" id="icon-selector">
+                    <!-- Icons will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/cache-manager.js"></script>
+    <script src="../js/version-manager.js"></script>
+    <script src="../js/productos-data.js"></script>
+    <script src="../js/debug-products.js"></script>
+    <script src="admin-portal.js"></script>
+
+</body>
+
+</html> 
+   <!-- Modal para Generar Código -->
+    <div id="code-modal" class="fixed inset-0 bg-black bg-opacity-50 modal hidden flex items-center justify-center p-4" style="z-index: 99999;">
+        <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto" style="z-index: 100000;">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-dark-green">Código para productos-data.js</h3>
+                    <button id="close-code-modal" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <p class="text-gray-600 mb-4">
+                        Copia este código y reemplaza el contenido del archivo <code class="bg-gray-100 px-2 py-1 rounded">js/productos-data.js</code>
+                    </p>
+                    <div class="flex gap-2 mb-4">
+                        <button id="copy-code-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-copy mr-2"></i>Copiar Código
+                        </button>
+                        <button id="download-code-btn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i>Descargar Archivo
+                        </button>
+                        <span id="copy-status" class="text-green-600 font-semibold hidden">¡Copiado!</span>
+                    </div>
+                </div>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-auto max-h-96">
+                    <pre id="generated-code" class="text-sm font-mono whitespace-pre-wrap"></pre>
+                </div>
+                <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">📋 Instrucciones:</h4>
+                    <ol class="text-sm text-blue-700 space-y-1">
+                        <li>1. Copia el código de arriba</li>
+                        <li>2. Abre el archivo <code>js/productos-data.js</code></li>
+                        <li>3. Reemplaza todo el contenido con el código copiado</li>
+                        <li>4. Guarda el archivo</li>
+                        <li>5. Sube el archivo a tu servidor</li>
+                        <li>6. ¡Listo! Los productos se actualizarán automáticamente</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
