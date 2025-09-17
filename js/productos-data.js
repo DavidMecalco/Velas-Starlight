@@ -4,12 +4,12 @@
 * Velas Starlight - Products Database
 * ========================================
 * 
-* 📅 Generado: 2025-09-17 a las 1:42:26 p.m.
+* 📅 Generado: 2025-09-17 a las 2:20:23 p.m.
 * 📊 Total productos: 18
 * 🏷️ Categorías: Vela, Belleza
 * 🌸 Fragancias únicas: 26
 * 🎯 Temáticas: 1
-* � PromocionAes activas: 3
+* � PromocionAes activas: 5
 * 
 * ========================================
 */
@@ -17,7 +17,6 @@
 // 🛍️ AQUÍ AGREGAS NUEVOS PRODUCTOS FÁCILMENTE
 const productosData = [
     {
-        "id": 1,
         "title": "Flor en Cemento",
         "category": "Vela",
         "description": "El aroma del jardín y la calma de la tierra se encuentran en nuestra Vela Flor en Cemento. Cada pieza es una escultura de paz, con una delicada flor que emerge de su sólido recipiente de yeso. Más que una vela, es un momento de pausa, un pequeño refugio para el alma. Ideal para aquellos que aprecian la belleza en la quietud.",
@@ -25,6 +24,7 @@ const productosData = [
         "imageData": null,
         "featured": false,
         "new": false,
+        "bestseller": false,
         "available": true,
         "types": [
             "Soya",
@@ -55,19 +55,19 @@ const productosData = [
         ],
         "characteristics": [
             {
-                "icon": "fas fa-leaf char-icon",
+                "icon": "fas fa-leaf char-icon char-icon",
                 "title": "Cera Natural",
                 "description": "Elaborada con cera de alta calidad",
                 "color": "text-green-500"
             },
             {
-                "icon": "fas fa-hand-sparkles char-icon",
+                "icon": "fas fa-hand-sparkles char-icon char-icon",
                 "title": "Artesanal",
                 "description": "Hecha a mano con dedicación",
                 "color": "text-blue-500"
             },
             {
-                "icon": "fas fa-home char-icon",
+                "icon": "fas fa-home char-icon char-icon",
                 "title": "Ambientador",
                 "description": "Ideal para crear atmósferas",
                 "color": "text-purple-500"
@@ -75,44 +75,42 @@ const productosData = [
         ],
         "care": [
             {
-                "icon": "fas fa-exclamation-triangle care-icon",
+                "icon": "fas fa-exclamation-triangle care-icon care-icon",
                 "title": "Supervisión",
                 "description": "Nunca dejar encendida sin supervisión",
                 "color": "text-yellow-500"
             },
             {
-                "icon": "fas fa-scissors care-icon",
+                "icon": "fas fa-scissors care-icon care-icon",
                 "title": "Mecha",
                 "description": "Recortar mecha a 5mm antes de encender",
                 "color": "text-gray-500"
             },
             {
-                "icon": "fas fa-clock care-icon",
+                "icon": "fas fa-clock care-icon care-icon",
                 "title": "Tiempo",
                 "description": "Encender máximo 4 horas continuas",
                 "color": "text-blue-500"
             }
         ],
-        "bestseller": false,
         "theme": null,
-        "promotion2x1": false,
-        "specialDiscount": null
+        "promotion2x1": true,
+        "specialDiscount": null,
+        "ingredients": []
     },
     {
-        "id": 2,
         "title": "Suspiro de Ángel",
         "category": "Vela",
         "description": "Deja que un Suspiro de Ángel ilumine tus momentos. Esta exquisita vela artesanal, con su delicada forma de querubín acunado entre suaves alas, es una invitación a la calma y la serenidad. Más que una luz, es una presencia que infunde paz, consuelo y pureza en cualquier rincón. Perfecta para honrar un recuerdo, celebrar un nuevo comienzo o simplemente rodearte de una atmósfera celestial. ",
         "image": "../images/vela-starlight-angeles.jpeg",
+        "imageData": null,
+        "featured": false,
+        "new": false,
+        "bestseller": false,
+        "available": true,
         "types": [
             "Soya",
             "Parafina"
-        ],
-        "sizes": [
-            {
-                "label": "120 gr",
-                "price": 65
-            }
         ],
         "fragrances": [
             "Lavanda",
@@ -131,21 +129,27 @@ const productosData = [
             "Menta",
             "Sandalo"
         ],
+        "sizes": [
+            {
+                "label": "120 gr",
+                "price": 65
+            }
+        ],
         "characteristics": [
             {
-                "icon": "fas fa-heart",
+                "icon": "fas fa-heart char-icon",
                 "title": "Serenidad",
                 "description": "Diseño angelical que transmite paz",
                 "color": "text-pink-500"
             },
             {
-                "icon": "fas fa-leaf",
+                "icon": "fas fa-leaf char-icon",
                 "title": "Cera Premium",
                 "description": "Soya y parafina de alta calidad",
                 "color": "text-green-500"
             },
             {
-                "icon": "fas fa-star",
+                "icon": "fas fa-star char-icon",
                 "title": "Artesanal",
                 "description": "Elaborada con dedicación y amor",
                 "color": "text-yellow-500"
@@ -153,31 +157,31 @@ const productosData = [
         ],
         "care": [
             {
-                "icon": "fas fa-exclamation-triangle",
+                "icon": "fas fa-exclamation-triangle care-icon",
                 "title": "Supervisión",
                 "description": "Nunca dejar encendida sin supervisión",
                 "color": "text-yellow-500"
             },
             {
-                "icon": "fas fa-scissors",
+                "icon": "fas fa-scissors care-icon",
                 "title": "Mecha",
                 "description": "Recortar mecha a 5mm antes de encender",
                 "color": "text-gray-500"
             },
             {
-                "icon": "fas fa-shield-alt",
+                "icon": "fas fa-shield-alt care-icon",
                 "title": "Superficie",
                 "description": "Colocar sobre superficie resistente al calor",
                 "color": "text-blue-500"
             }
         ],
-        "featured": false,
-        "new": false,
-        "available": true,
-        "bestseller": false,
         "theme": null,
         "promotion2x1": false,
-        "specialDiscount": null
+        "specialDiscount": {
+            "percentage": 10,
+            "text": "Oferta especial"
+        },
+        "ingredients": []
     },
     {
         "id": 3,
@@ -241,8 +245,7 @@ const productosData = [
         "promotion2x1": false,
         "specialDiscount": null
     },
-    {   
-         "id": 5,
+    {
         "title": "Flor de Cempasúchil",
         "category": "Vela",
         "description": "Enciende la luz de la tradición con nuestra Vela Flor del Sol, una pieza artesanal que captura la esencia vibrante de la flor de Cempasúchil. Su diseño detallado, con cada pétalo cuidadosamente formado, evoca la calidez y el resplandor de los caminos que guían a nuestros seres queridos de regreso a casa.",
@@ -447,7 +450,6 @@ const productosData = [
         "specialDiscount": null
     },
     {
-         "id": 10,
         "title": "Jack Calavera",
         "category": "Vela",
         "description": "Celebra la tradición con un toque de encanto inesperado con nuestra Vela Jack Calavera. Inspirada en la icónica figura del cine, esta pieza artesanal captura la esencia del Día de Muertos con un diseño único y un aire de misterio. Cada vela está elaborada con cera de alta calidad y detalles que la hacen inconfundible. Su suave llama ilumina los espacios, creando un ambiente acogedor y un puente entre el recuerdo y la festividad. Es el detalle perfecto para decorar altares, mesas de celebración o simplemente para añadir un toque de originalidad a tu hogar.",

@@ -501,4 +501,55 @@ input:focus-visible {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+}/
+* ========================================
+   ESTILOS PARA BADGES DE PROMOCIONES EN DETALLE
+   ======================================== */
+
+.promotion-badge-detail {
+    animation: promotion-pulse 2s infinite;
+    transition: all 0.3s ease;
+}
+
+.promotion-badge-detail:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes promotion-pulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Estilos específicos para promociones en carrito */
+.promotion-display {
+    animation: slide-in-promotion 0.5s ease-out;
+}
+
+@keyframes slide-in-promotion {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive para badges de promociones */
+@media (max-width: 768px) {
+    .promotion-badge-detail {
+        font-size: 0.875rem;
+        padding: 8px 16px;
+    }
+    
+    .promotion-display {
+        padding: 12px;
+        margin-top: 12px;
+    }
 }

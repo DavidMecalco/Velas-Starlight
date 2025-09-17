@@ -82,12 +82,29 @@ class QuotePDFGeneratorUltimate {
      * Generar y descargar PDF de cotización
      */
     generateQuotePDF(cartData, shippingData) {
+        console.log('🔄 Iniciando generación de PDF con datos:', { cartData, shippingData });
+
+        // Validaciones mejoradas
         if (!this.jsPDF) {
-            alert('Error: No se pudo cargar el generador de PDF. Inténtalo de nuevo.');
+            console.error('❌ jsPDF no disponible');
+            alert('Error: No se pudo cargar el generador de PDF. Recarga la página e inténtalo de nuevo.');
+            return;
+        }
+
+        if (!cartData || !cartData.items || cartData.items.length === 0) {
+            console.error('❌ No hay items en el carrito');
+            alert('Error: No hay productos en el carrito para generar la cotización.');
+            return;
+        }
+
+        if (!shippingData || !shippingData.fullName) {
+            console.error('❌ Datos de envío incompletos');
+            alert('Error: Los datos de envío son requeridos para generar la cotización.');
             return;
         }
 
         try {
+            console.log('📄 Creando documento PDF...');
             const doc = new this.jsPDF();
             let yPosition = 20;
 
@@ -123,12 +140,31 @@ class QuotePDFGeneratorUltimate {
             const fileName = `Cotizacion_VelasStarlight_${dateString}.pdf`;
 
             // Descargar PDF
-            doc.save(fileName);
-            console.log('✅ PDF generado exitosamente:', fileName);
+            try {
+                doc.save(fileName);
+                console.log('✅ PDF generado exitosamente:', fileName);
+                console.log('📁 Archivo guardado como:', fileName);
+            } catch (saveError) {
+                console.error('❌ Error guardando PDF:', saveError);
+                alert('Error al guardar el PDF. Verifica los permisos de descarga.');
+                return;
+            }
 
         } catch (error) {
             console.error('❌ Error generando PDF:', error);
-            alert('Error generando el PDF. Por favor, inténtalo de nuevo.');
+            console.error('Stack trace:', error.stack);
+
+            // Mensaje de error más específico
+            let errorMessage = 'Error generando el PDF. ';
+            if (error.message.includes('jsPDF')) {
+                errorMessage += 'Problema con la librería PDF.';
+            } else if (error.message.includes('canvas')) {
+                errorMessage += 'Problema con el procesamiento de imágenes.';
+            } else {
+                errorMessage += 'Por favor, inténtalo de nuevo.';
+            }
+
+            alert(errorMessage);
         }
     }
 
@@ -281,22 +317,49 @@ class QuotePDFGeneratorUltimate {
         yPos += 8;
 
         items.forEach((item, index) => {
-            const price = parseFloat(item.price) || 75;
+            // Validaciones mejoradas para cada item
+            const unitPrice = parseFloat(item.unitPrice || item.size?.price || item.price) || 75;
             const quantity = parseInt(item.quantity) || 1;
+            const itemTitle = item.title || 'Producto sin nombre';
+            const itemType = item.type || item.category || 'Soya';
+            const itemSize = item.size?.label || item.size || '50 gr';
+            const itemFragrance = item.fragrance || 'Sin fragancia';
+
+            console.log(`📦 Procesando item ${index + 1}:`, { itemTitle, unitPrice, quantity });
 
             if (yPos > 250) {
                 doc.addPage();
                 yPos = 20;
             }
 
-            doc.text(this.truncateText(item.title, 25), 20, yPos);
-            doc.text(item.type || 'Soya', 80, yPos);
-            doc.text(item.size || '50 gr', 110, yPos);
-            doc.text(this.truncateText(item.fragrance || 'Vainilla', 15), 130, yPos);
+            doc.text(this.truncateText(itemTitle, 25), 20, yPos);
+            doc.text(this.truncateText(itemType, 10), 80, yPos);
+            doc.text(this.truncateText(itemSize, 8), 110, yPos);
+            doc.text(this.truncateText(itemFragrance, 15), 130, yPos);
             doc.text(quantity.toString(), 160, yPos);
-            doc.text(`$${price.toFixed(2)}`, 175, yPos);
+            doc.text(`$${unitPrice.toFixed(2)}`, 175, yPos);
 
             yPos += 6;
+
+            // Agregar información de promociones si aplica
+            if (item.promotion2x1 && quantity >= 2) {
+                const freeItems = Math.floor(quantity / 2);
+                doc.setFontSize(8);
+                doc.setTextColor(0, 150, 0); // Verde
+                doc.text(`   ↳ Promoción 2x1: ${freeItems} producto${freeItems > 1 ? 's' : ''} gratis`, 20, yPos);
+                yPos += 4;
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0); // Negro
+            }
+
+            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
+                doc.setFontSize(8);
+                doc.setTextColor(255, 100, 0); // Naranja
+                doc.text(`   ↳ Descuento especial: ${item.specialDiscount.percentage}%`, 20, yPos);
+                yPos += 4;
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0); // Negro
+            }
         });
 
         return yPos;
@@ -306,10 +369,13 @@ class QuotePDFGeneratorUltimate {
      * Agregar totales
      */
     addTotals(doc, cartData, yPos) {
-        const subtotal = cartData.subtotal || 0;
-        const shipping = cartData.shipping || (cartData.items && cartData.items.length > 0 ? 50 : 0);
-        const discount = cartData.discount || 0;
-        const total = subtotal + shipping - discount;
+        // Cálculos más robustos
+        const subtotal = parseFloat(cartData.subtotal) || 0;
+        const shipping = parseFloat(cartData.shipping) || (cartData.items && cartData.items.length > 0 ? 50 : 0);
+        const discount = parseFloat(cartData.discount) || 0;
+        const total = Math.max(0, subtotal + shipping - discount); // Asegurar que no sea negativo
+
+        console.log('💰 Calculando totales:', { subtotal, shipping, discount, total });
 
         // Línea separadora
         doc.line(130, yPos, 190, yPos);
@@ -486,6 +552,82 @@ class QuotePDFGeneratorUltimate {
     }
 }
 
+// Función de diagnóstico para verificar el estado del generador
+window.checkPDFGenerator = function() {
+    console.log('🔍 Diagnóstico del Generador de PDF:');
+    console.log('- jsPDF disponible:', typeof window.jsPDF !== 'undefined');
+    console.log('- jsPDF versión:', window.jsPDF ? 'Disponible' : 'No disponible');
+    console.log('- Generador PDF disponible:', typeof window.quotePDFGenerator !== 'undefined');
+    console.log('- Logo cargado:', window.quotePDFGenerator ? !!window.quotePDFGenerator.logoBase64 : false);
+
+    if (window.quotePDFGenerator) {
+        console.log('- Generador listo para usar: ✅');
+    } else {
+        console.log('- Generador NO disponible: ❌');
+    }
+
+    return {
+        jsPDF: typeof window.jsPDF !== 'undefined',
+        generator: typeof window.quotePDFGenerator !== 'undefined',
+        logo: window.quotePDFGenerator ? !!window.quotePDFGenerator.logoBase64 : false
+    };
+};
+
+// Función de prueba para verificar el generador
+window.testPDFGenerator = function() {
+    console.log('🧪 Probando generador de PDF...');
+
+    const testCartData = {
+        items: [
+            {
+                title: 'Vela Aromática de Lavanda',
+                type: 'Soya',
+                size: { label: '100 gr' },
+                fragrance: 'Lavanda',
+                unitPrice: 85,
+                quantity: 2,
+                total: 170
+            }
+        ],
+        subtotal: 170,
+        shipping: 50,
+        discount: 0,
+        total: 220
+    };
+
+    const testShippingData = {
+        fullName: 'Cliente de Prueba',
+        email: 'cliente@test.com',
+        phone: '+52 55 1234 5678',
+        address: 'Calle de Prueba 123',
+        city: 'Ciudad de México',
+        state: 'CDMX',
+        postalCode: '12345',
+        references: 'Entre calle A y calle B'
+    };
+
+    try {
+        if (window.quotePDFGenerator) {
+            window.quotePDFGenerator.generateQuotePDF(testCartData, testShippingData);
+            console.log('✅ Prueba de PDF iniciada correctamente');
+        } else {
+            console.error('❌ Generador de PDF no disponible para prueba');
+        }
+    } catch (error) {
+        console.error('❌ Error en prueba de PDF:', error);
+    }
+};
+
 // Reemplazar la instancia global del generador de PDF
 window.quotePDFGenerator = new QuotePDFGeneratorUltimate();
 console.log('✅ PDF Generator Ultimate cargado (con logo embebido y proceso completo)');
+
+// Verificar estado después de un breve delay
+setTimeout(() => {
+    const status = window.checkPDFGenerator();
+    if (!status.generator || !status.jsPDF) {
+        console.warn('⚠️ El generador de PDF puede tener problemas. Estado:', status);
+    } else {
+        console.log('🎉 Generador de PDF completamente funcional');
+    }
+}, 2000);

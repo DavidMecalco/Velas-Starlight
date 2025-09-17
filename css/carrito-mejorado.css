@@ -59,6 +59,25 @@
     margin-bottom: 2rem;
 }
 
+/* Ocultar scrollbars en los pasos */
+.flex.items-center.space-x-4.overflow-x-auto {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.flex.items-center.space-x-4.overflow-x-auto::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+/* Contenedor de pasos sin scroll */
+.steps-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .step-indicator {
     display: flex;
     align-items: center;
@@ -446,6 +465,9 @@
 .discount-input-group {
     display: flex;
     gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .discount-input {
@@ -474,6 +496,8 @@
     cursor: pointer;
     transition: var(--transition-smooth);
     white-space: nowrap;
+    flex-shrink: 0;
+    min-width: fit-content;
 }
 
 .discount-btn:hover {
@@ -821,6 +845,260 @@
     }
 }
 
+/* Header responsive improvements */
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem 1rem;
+    }
+
+    .cart-hero h1 {
+        font-size: 2rem;
+    }
+
+    .cart-hero p {
+        font-size: 1rem;
+    }
+
+    /* Mobile menu improvements */
+    .mobile-menu {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .mobile-menu a {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Logo size on mobile */
+    .logo-mobile {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Cart items responsive */
+    .cart-item {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+        align-self: center;
+    }
+
+    .cart-item-details {
+        text-align: center;
+    }
+
+    .cart-item-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .cart-item-specs {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        text-align: center;
+    }
+
+    /* Quantity controls responsive */
+    .quantity-controls {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .quantity-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
+
+    .quantity-display {
+        min-width: 50px;
+        font-size: 0.9rem;
+    }
+
+    /* Price display responsive */
+    .price-display {
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    .price-main {
+        font-size: 1.1rem;
+    }
+
+    .price-unit {
+        font-size: 0.8rem;
+    }
+
+    /* Action buttons responsive */
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* Steps responsive */
+    .steps-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .step-indicator {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        min-width: 80px;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .step-connector {
+        width: 2px;
+        height: 30px;
+        margin: 0.5rem 0;
+        background: #e5e7eb;
+    }
+
+    .step-text {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        max-width: 80px;
+        word-wrap: break-word;
+    }
+
+    /* Hide step text on very small screens */
+    .step-text.sm\\:hidden {
+        display: none;
+    }
+
+    /* Show abbreviated text on small screens */
+    .step-text.hidden.sm\\:inline {
+        display: block;
+        font-size: 0.7rem;
+    }
+}
+
+    /* Forms responsive */
+    .form-section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-section-title {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    .form-input {
+        padding: 0.75rem;
+        font-size: 1rem;
+        width: 100%;
+        border-radius: 0.5rem;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #3A5A40;
+        box-shadow: 0 0 0 3px rgba(58, 90, 64, 0.1);
+    }
+
+    /* Grid adjustments for forms */
+    .grid.grid-cols-1.md\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Select specific styling */
+    select.form-input {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+
+    /* Textarea responsive */
+    textarea.form-input {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    /* Shipping options responsive */
+    .shipping-options {
+        padding: 1rem;
+    }
+
+    .shipping-option {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.2s ease;
+    }
+
+    .shipping-option:hover {
+        border-color: #3A5A40;
+        background-color: rgba(58, 90, 64, 0.02);
+    }
+
+    .shipping-option.selected {
+        border-color: #3A5A40;
+        background-color: rgba(58, 90, 64, 0.05);
+    }
+
+    .shipping-option input[type="radio"] {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.75rem;
+    }
+
+    .shipping-option-details {
+        flex: 1;
+    }
+
+    .shipping-option-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .shipping-option-description {
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+
+    .shipping-option-price {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #3A5A40;
+    }
+}
+
 @media (max-width: 768px) {
     .cart-card {
         padding: 1.5rem;
@@ -843,6 +1121,12 @@
     
     .discount-input-group {
         flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .discount-btn {
+        padding: 0.75rem 1rem;
+        width: 100%;
     }
     
     .steps-container {
@@ -864,20 +1148,182 @@
     .empty-cart {
         padding: 2rem 1rem;
     }
-    
+
     .empty-cart-icon {
         font-size: 3rem;
     }
-    
+
     .notification {
         right: 10px;
         left: 10px;
         max-width: none;
         transform: translateY(-100px);
     }
-    
+
     .notification.show {
         transform: translateY(0);
+    }
+
+    /* Additional small screen adjustments */
+    .cart-hero {
+        padding: 2rem 1rem;
+    }
+
+    .cart-hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .cart-hero p {
+        font-size: 0.9rem;
+    }
+
+    .summary-card {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .summary-title {
+        font-size: 1.25rem;
+    }
+
+    /* Cart items on very small screens */
+    .cart-item {
+        padding: 0.75rem;
+    }
+
+    .cart-item-title {
+        font-size: 1rem;
+    }
+
+    .cart-item-spec {
+        font-size: 0.8rem;
+    }
+
+    /* Form improvements for small screens */
+    .form-input {
+        padding: 0.625rem;
+        font-size: 0.9rem;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    /* Button adjustments */
+    .btn-primary, .btn-secondary {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Summary card responsive improvements */
+    .summary-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-top: 1rem;
+    }
+
+    .summary-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .summary-line {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+    }
+
+    .summary-value {
+        font-size: 0.9rem;
+    }
+
+    .summary-line.total {
+        font-size: 1rem;
+        padding: 0.75rem 0;
+        margin-top: 0.75rem;
+    }
+
+    .summary-line.total .summary-value {
+        font-size: 1rem;
+    }
+
+    /* Discount section responsive */
+    .discount-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .discount-input-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .discount-input {
+        padding: 0.625rem;
+        font-size: 0.9rem;
+    }
+
+    .discount-btn {
+        padding: 0.625rem 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    /* Action buttons responsive */
+    .action-buttons {
+        gap: 0.75rem;
+    }
+
+    .action-buttons .btn-primary,
+    .action-buttons .btn-secondary {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* Footer responsive */
+    footer .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    footer h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* General mobile improvements */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Ensure proper spacing on mobile */
+    .py-16 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .py-8 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    /* Improve touch targets */
+    button, .btn-primary, .btn-secondary {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Better text readability on mobile */
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
 
@@ -907,4 +1353,123 @@ select:focus-visible {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+}/*
+ ========================================
+   ESTILOS PARA BADGES DE PROMOCIONES
+   ======================================== */
+
+.promotion-badge {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 8px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    animation: pulse-promotion 2s infinite;
+}
+
+.promotion-badge i {
+    margin-right: 6px;
+}
+
+@keyframes pulse-promotion {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+    }
+}
+
+/* Estilos para descuentos especiales */
+.promotion-badge .text-orange-600 {
+    color: #ea580c !important;
+}
+
+.promotion-badge .text-orange-500 {
+    color: #f97316 !important;
+}
+
+/* Animación para badges de 2x1 */
+.promotion-badge:has(.text-green-600) {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Animación para badges de descuento especial */
+.promotion-badge:has(.text-orange-600) {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+    border-color: rgba(234, 88, 12, 0.2);
+}
+
+/* Hover effects para badges */
+.cart-item:hover .promotion-badge {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive para badges */
+@media (max-width: 768px) {
+    .promotion-badge {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+    }
+}
+
+/* ========================================
+   MEJORAS ADICIONALES PARA PASOS Y DESCUENTOS
+   ======================================== */
+
+/* Contenedor de pasos responsive */
+@media (max-width: 640px) {
+    .steps-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .step-indicator {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .step-connector {
+        flex: 1;
+        height: 2px;
+        background: #d1d5db;
+        margin: 0 0.5rem;
+        align-self: center;
+    }
+}
+
+/* Estilos para el contenedor de descuento */
+.discount-section {
+    background: rgba(163, 177, 138, 0.05);
+    border: 1px solid rgba(163, 177, 138, 0.2);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Mejorar la sección de resumen */
+.summary-card {
+    background: var(--gradient-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(163, 177, 138, 0.15);
+    position: sticky;
+    top: 2rem;
+}
+
+/* Responsive para summary card */
+@media (max-width: 1024px) {
+    .summary-card {
+        position: static;
+        margin-top: 2rem;
+    }
 }

@@ -48,8 +48,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-
 </head>
 
 <body class="bg-beige-almond text-dark-green font-sans">
@@ -75,8 +73,7 @@
                 <!-- Carrito Desktop -->
                 <a href="carrito.html" class="relative text-sage-green transition-colors duration-300">
                     <i class="fa fa-shopping-cart text-xl"></i>
-                    <span id="cart-count"
-                        class="absolute -top-3 -right-3 bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                    <span id="cart-count" class="absolute -top-3 -right-3 bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
                 </a>
             </nav>
 
@@ -87,74 +84,57 @@
         </div>
 
         <!-- Menú móvil -->
-        <div id="mobile-menu"
-            class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
             <div class="px-6 py-4 space-y-1">
-                <a href="../index.html"
-                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
-                    <i
-                        class="fa fa-home mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                <a href="../index.html" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-home mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
                     <span class="font-medium">Inicio</span>
                 </a>
-                <a href="productos.html"
-                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
-                    <i
-                        class="fa fa-cube mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                <a href="productos.html" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-cube mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
                     <span class="font-medium">Productos</span>
                 </a>
-                <a href="contacto.html"
-                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
-                    <i
-                        class="fa fa-phone mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                <a href="contacto.html" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-phone mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
                     <span class="font-medium">Contacto</span>
                 </a>
-                <div class="border-t border-gray-200 my-2"></div>
-                <a href="carrito.html"
-                    class="flex items-center justify-between px-4 py-3 text-sage-green bg-sage-green/10 rounded-lg transition-all duration-200 group">
-                    <div class="flex items-center">
-                        <i
-                            class="fa fa-shopping-cart mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
-                        <span class="font-medium">Carrito</span>
-                    </div>
-                    <span id="cart-count-mobile"
-                        class="bg-sage-green text-white text-xs px-2 py-1 rounded-full min-w-[20px] text-center">0</span>
+                <a href="carrito.html" class="flex items-center px-4 py-3 text-sage-green bg-sage-green/10 rounded-lg transition-all duration-200 group">
+                    <i class="fa fa-shopping-cart mr-3 group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Carrito</span>
+                    <span id="cart-count-mobile" class="ml-auto bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
                 </a>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="pt-20 cart-container">
-        <!-- Hero Section Mejorado -->
-        <section class="cart-hero py-16 md:py-20">
-            <div class="cart-hero-content max-w-7xl mx-auto px-6 text-center">
-                <div class="animate-fade-in">
-                    <h1 class="font-serif text-3xl md:text-5xl font-bold mb-4 text-white">
-                        <i class="fas fa-shopping-cart mr-3"></i>Tu Carrito de Compras
-                    </h1>
-                    <p class="text-lg md:text-xl opacity-90 text-white max-w-2xl mx-auto">
-                        Revisa tus productos seleccionados y finaliza tu compra de manera segura
-                    </p>
-                    <div class="w-24 h-1 bg-white mx-auto mt-6 rounded-full opacity-75"></div>
-                </div>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="cart-hero py-16">
+            <div class="cart-hero-content container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in">
+                    Tu Carrito de Compras
+                </h1>
+                <p class="text-xl text-white/90 animate-slide-up">
+                    Revisa tus productos seleccionados y completa tu pedido
+                </p>
             </div>
         </section>
 
-        <!-- Indicador de Pasos Mejorado -->
-        <section class="max-w-7xl mx-auto px-6 py-8">
-            <div class="steps-container animate-slide-up">
-                <div class="flex items-center justify-center overflow-x-auto">
-                    <div class="flex items-center min-w-max">
+        <!-- Checkout Process -->
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <!-- Progress Steps -->
+                <div class="flex items-center justify-center mb-12">
+                    <div class="steps-wrapper">
                         <!-- Paso 1: Carrito -->
                         <div id="step-1" class="step-indicator active">
                             <div class="step-number">
                                 <span>1</span>
                             </div>
                             <span class="step-text hidden sm:inline">Carrito</span>
-                            <span class="step-text sm:hidden">Carrito</span>
                         </div>
                         
-                        <!-- Conector 1-2 -->
                         <div class="step-connector"></div>
                         
                         <!-- Paso 2: Envío -->
@@ -166,7 +146,6 @@
                             <span class="step-text sm:hidden">Envío</span>
                         </div>
                         
-                        <!-- Conector 2-3 -->
                         <div class="step-connector"></div>
                         
                         <!-- Paso 3: Pago -->
@@ -174,349 +153,352 @@
                             <div class="step-number">
                                 <span>3</span>
                             </div>
-                            <span class="step-text">Pago</span>
+                            <span class="step-text hidden sm:inline">Pago</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Contenido del Carrito -->
-        <section class="max-w-7xl mx-auto px-6 pb-16">
-            <!-- Paso 1: Carrito -->
-            <div id="cart-step" class="checkout-step">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Lista de Productos -->
-                    <div class="lg:col-span-2">
-                        <!-- Header del Carrito -->
-                        <div class="cart-card mb-6 animate-fade-in">
-                            <div class="flex items-center justify-between mb-4">
-                                <h2 class="text-2xl font-bold text-dark-green">
-                                    <i class="fas fa-list mr-3"></i>Productos en tu carrito
-                                </h2>
-                                <button id="clear-cart" class="remove-btn">
-                                    <i class="fas fa-trash"></i>
-                                    <span class="sr-only">Vaciar carrito</span>
-                                </button>
-                            </div>
-                            <div class="flex items-center gap-4 text-gray-600">
-                                <span class="flex items-center gap-2">
-                                    <i class="fas fa-box text-sage-green"></i>
-                                    <span id="cart-items-count">0</span> productos
-                                </span>
-                                <span class="flex items-center gap-2">
-                                    <i class="fas fa-layer-group text-sage-green"></i>
-                                    <span id="cart-units-count">0</span> unidades
-                                </span>
+                <!-- Paso 1: Carrito -->
+                <div id="cart-step" class="checkout-step">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Lista de Productos -->
+                        <div class="lg:col-span-2">
+                            <div class="cart-items-section animate-fade-in">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h2 class="text-3xl font-bold text-dark-green">
+                                        <i class="fas fa-shopping-bag mr-3"></i>Productos en tu carrito
+                                    </h2>
+                                    <div class="flex items-center space-x-4 text-gray-600">
+                                        <span><i class="fas fa-box mr-1"></i><span id="cart-items-count">0</span> productos</span>
+                                        <span><i class="fas fa-layer-group mr-1"></i><span id="cart-units-count">0</span> unidades</span>
+                                    </div>
+                                </div>
+
+                                <!-- Contenedor de productos -->
+                                <div id="cart-items-container" class="space-y-4">
+                                    <!-- Los productos se cargan dinámicamente -->
+                                </div>
+
+                                <!-- Mensaje de carrito vacío -->
+                                <div id="empty-cart-message" class="hidden text-center py-16">
+                                    <div class="empty-cart-icon mb-6">
+                                        <i class="fas fa-shopping-cart text-6xl text-gray-300"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-600 mb-4">Tu carrito está vacío</h3>
+                                    <p class="text-gray-500 mb-8">¡Descubre nuestros productos artesanales únicos!</p>
+                                    <a href="productos.html" class="btn-primary inline-flex items-center">
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        <span>Explorar Productos</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Contenedor de Items -->
-                        <div id="cart-items-container" class="space-y-4">
-                            <!-- Los productos se insertan aquí dinámicamente -->
-                        </div>
-
-                        <!-- Mensaje de Carrito Vacío -->
-                        <div id="empty-cart-message" class="empty-cart animate-scale-in">
-                            <div class="empty-cart-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <h3 class="empty-cart-title">Tu carrito está vacío</h3>
-                            <p class="empty-cart-description">
-                                ¡Descubre nuestros productos artesanales y agrega algunos a tu carrito!
-                            </p>
-                            <a href="productos.html" class="btn-primary inline-flex">
-                                <i class="fas fa-cube"></i>
-                                <span>Explorar Productos</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Resumen de Compra -->
-                    <div class="lg:col-span-1">
-                        <div class="summary-card animate-slide-up">
-                            <h3 class="summary-title">
-                                <i class="fas fa-calculator"></i>
-                                Resumen de compra
-                            </h3>
-
-                            <!-- Líneas del Resumen -->
-                            <div class="space-y-1 mb-6">
-                                <div class="summary-line">
-                                    <span class="summary-label">Subtotal:</span>
-                                    <span id="subtotal" class="summary-value">$0.00 MXN</span>
+                        <!-- Resumen del Pedido -->
+                        <div class="lg:col-span-1">
+                            <div class="summary-card animate-slide-up">
+                                <h3 class="text-2xl font-bold text-dark-green mb-6">
+                                    <i class="fas fa-receipt mr-2"></i>Resumen de compra
+                                </h3>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Subtotal:</span>
+                                        <span id="subtotal" class="font-semibold">$0.00 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Envío:</span>
+                                        <span id="shipping" class="font-semibold">$50.00 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Descuento:</span>
+                                        <span id="discount" class="font-semibold text-green-600">-$0.00 MXN</span>
+                                    </div>
+                                    <hr class="border-gray-200">
+                                    <div class="flex justify-between text-lg font-bold">
+                                        <span>Total:</span>
+                                        <span id="total" class="text-dark-green">$0.00 MXN</span>
+                                    </div>
                                 </div>
-                                <div class="summary-line">
-                                    <span class="summary-label">Envío:</span>
-                                    <span id="shipping" class="summary-value">$50.00 MXN</span>
-                                </div>
-                                <div class="summary-line">
-                                    <span class="summary-label">Descuento:</span>
-                                    <span id="discount" class="summary-value discount">-$0.00 MXN</span>
-                                </div>
-                                <div class="summary-line total">
-                                    <span>Total:</span>
-                                    <span id="total">$0.00 MXN</span>
-                                </div>
-                            </div>
 
-                            <!-- Sección de Descuento -->
-                            <div class="discount-section">
-                                <label class="discount-label">
-                                    <i class="fas fa-tag mr-2"></i>
-                                    Código de descuento
-                                </label>
-                                <div class="discount-input-group">
-                                    <input type="text" id="discount-code" placeholder="NUEVOSITIO15" class="discount-input">
-                                    <button id="apply-discount" class="discount-btn">
-                                        Aplicar
+                                <!-- Código de descuento -->
+                                <div class="bg-sage-green/5 border border-sage-green/20 rounded-lg p-4 mb-6">
+                                    <div class="text-sm text-sage-green mb-3 flex items-center">
+                                        <i class="fas fa-tag mr-2"></i>
+                                        <span>Usa <strong>NUEVOSITIO15</strong> para obtener 15% de descuento</span>
+                                    </div>
+                                    
+                                    <div class="flex gap-2">
+                                        <input type="text" id="discount-code" placeholder="Código de descuento" 
+                                               class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-sage-green">
+                                        <button id="apply-discount" 
+                                                class="px-4 py-2 bg-sage-green text-white rounded-lg text-sm font-semibold hover:bg-dark-green transition-colors">
+                                            <i class="fas fa-check mr-1"></i>Aplicar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Botones de acción -->
+                                <div class="action-buttons">
+                                    <button id="continue-to-shipping" class="btn-primary">
+                                        <i class="fas fa-arrow-right"></i>
+                                        <span>Continuar al envío</span>
+                                    </button>
+                                    <a href="productos.html" class="btn-secondary">
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        <span>Seguir comprando</span>
+                                    </a>
+                                    <button id="clear-cart" class="btn-danger">
+                                        <i class="fas fa-trash mr-2"></i>
+                                        <span>Vaciar carrito</span>
                                     </button>
                                 </div>
-                                <div class="discount-hint">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <span>Usa <strong>NUEVOSITIO15</strong> para obtener 15% de descuento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Información de Envío -->
+                <div id="shipping-step" class="checkout-step hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Formulario de Envío -->
+                        <div class="lg:col-span-2">
+                            <div class="shipping-form animate-fade-in">
+                                <h2 class="text-3xl font-bold text-dark-green mb-6">
+                                    <i class="fas fa-shipping-fast mr-3"></i>Información de Envío
+                                </h2>
+                                <p class="text-gray-600 mb-8">
+                                    Completa tus datos para que podamos enviarte tus productos
+                                </p>
+
+                                <form id="shipping-form" class="space-y-6">
+                                    <!-- Información Personal -->
+                                    <div class="form-section">
+                                        <h3 class="form-section-title">
+                                            <i class="fas fa-user mr-2"></i>Información Personal
+                                        </h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Nombre completo *</label>
+                                                <input type="text" id="full-name" class="form-input" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Teléfono *</label>
+                                                <input type="tel" id="phone" class="form-input" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email *</label>
+                                            <input type="email" id="email" class="form-input" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Dirección de Envío -->
+                                    <div class="form-section">
+                                        <h3 class="form-section-title">
+                                            <i class="fas fa-map-marker-alt mr-2"></i>Dirección de Envío
+                                        </h3>
+                                        <div class="space-y-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Dirección completa *</label>
+                                                <input type="text" id="address" class="form-input" placeholder="Calle, número, colonia" required>
+                                            </div>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Ciudad *</label>
+                                                    <input type="text" id="city" class="form-input" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Estado *</label>
+                                                    <select id="state" class="form-input" required>
+                                                        <option value="">Selecciona tu estado</option>
+                                                        <option value="aguascalientes">Aguascalientes</option>
+                                                        <option value="baja-california">Baja California</option>
+                                                        <option value="baja-california-sur">Baja California Sur</option>
+                                                        <option value="campeche">Campeche</option>
+                                                        <option value="chiapas">Chiapas</option>
+                                                        <option value="chihuahua">Chihuahua</option>
+                                                        <option value="coahuila">Coahuila</option>
+                                                        <option value="colima">Colima</option>
+                                                        <option value="durango">Durango</option>
+                                                        <option value="guanajuato">Guanajuato</option>
+                                                        <option value="guerrero">Guerrero</option>
+                                                        <option value="hidalgo">Hidalgo</option>
+                                                        <option value="jalisco">Jalisco</option>
+                                                        <option value="mexico">México</option>
+                                                        <option value="michoacan">Michoacán</option>
+                                                        <option value="morelos">Morelos</option>
+                                                        <option value="nayarit">Nayarit</option>
+                                                        <option value="nuevo-leon">Nuevo León</option>
+                                                        <option value="oaxaca">Oaxaca</option>
+                                                        <option value="puebla">Puebla</option>
+                                                        <option value="queretaro">Querétaro</option>
+                                                        <option value="quintana-roo">Quintana Roo</option>
+                                                        <option value="san-luis-potosi">San Luis Potosí</option>
+                                                        <option value="sinaloa">Sinaloa</option>
+                                                        <option value="sonora">Sonora</option>
+                                                        <option value="tabasco">Tabasco</option>
+                                                        <option value="tamaulipas">Tamaulipas</option>
+                                                        <option value="tlaxcala">Tlaxcala</option>
+                                                        <option value="veracruz">Veracruz</option>
+                                                        <option value="yucatan">Yucatán</option>
+                                                        <option value="zacatecas">Zacatecas</option>
+                                                        <option value="cdmx">Ciudad de México</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Código Postal *</label>
+                                                <input type="text" id="postal-code" class="form-input" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Referencias adicionales (opcional)</label>
+                                                <textarea id="references" class="form-input" rows="3" placeholder="Entre qué calles, puntos de referencia, etc."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Opciones de Envío -->
+                                    <div class="shipping-options">
+                                        <h3 class="text-lg font-bold text-dark-green mb-4">
+                                            <i class="fas fa-truck mr-2"></i>Opciones de Envío
+                                        </h3>
+                                        <div id="shipping-options-container" class="space-y-3">
+                                            <!-- Las opciones se cargan dinámicamente -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Resumen del Pedido -->
+                        <div class="lg:col-span-1">
+                            <div class="summary-card animate-slide-up">
+                                <h3 class="text-2xl font-bold text-dark-green mb-6">
+                                    <i class="fas fa-receipt mr-2"></i>Resumen del Pedido
+                                </h3>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Subtotal:</span>
+                                        <span id="shipping-subtotal" class="font-semibold">$0.00 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Envío:</span>
+                                        <span id="shipping-cost" class="font-semibold">$50.00 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Descuento:</span>
+                                        <span id="shipping-discount" class="font-semibold text-green-600">-$0.00 MXN</span>
+                                    </div>
+                                    <hr class="border-gray-200">
+                                    <div class="flex justify-between text-lg font-bold">
+                                        <span>Total:</span>
+                                        <span id="shipping-total" class="text-dark-green">$0.00 MXN</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Botones de Acción -->
-                            <div class="space-y-3">
-                                <button id="continue-to-shipping" class="btn-primary">
-                                    <i class="fas fa-arrow-right"></i>
-                                    <span>Continuar al envío</span>
-                                </button>
-                                <a href="productos.html" class="btn-secondary">
-                                    <i class="fas fa-arrow-left"></i>
-                                    <span>Seguir comprando</span>
-                                </a>
-                            </div>
-
-                            <!-- Información Adicional -->
-                            <div class="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-                                <div class="flex items-center text-green-700 text-sm">
-                                    <i class="fas fa-shield-alt mr-2"></i>
-                                    <span>Compra 100% segura y protegida</span>
+                                <!-- Botones de navegación -->
+                                <div class="action-buttons">
+                                    <button id="continue-to-payment" class="btn-primary">
+                                        <i class="fas fa-credit-card mr-2"></i>
+                                        <span>Continuar al pago</span>
+                                    </button>
+                                    <button id="back-to-cart" class="btn-secondary">
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        <span>Volver al carrito</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Paso 2: Información de Envío -->
-            <div id="shipping-step" class="checkout-step hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Formulario de Envío -->
-                    <div class="lg:col-span-2">
-                        <div class="shipping-form animate-fade-in">
-                            <h2 class="text-3xl font-bold text-dark-green mb-6">
-                                <i class="fas fa-shipping-fast mr-3"></i>Información de Envío
-                            </h2>
-                            <p class="text-gray-600 mb-8">
-                                Completa tus datos para que podamos enviarte tus productos de manera segura
-                            </p>
-                            
-                            <form id="shipping-form" class="space-y-6">
-                                <!-- Datos Personales -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            <i class="fas fa-user"></i>Nombre completo *
-                                        </label>
-                                        <input type="text" id="full-name" required class="form-input" 
-                                               placeholder="Tu nombre completo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            <i class="fas fa-envelope"></i>Correo electrónico *
-                                        </label>
-                                        <input type="email" id="email" required class="form-input" 
-                                               placeholder="tu@email.com">
-                                    </div>
-                                </div>
+                <!-- Paso 3: Pago -->
+                <div id="payment-step" class="checkout-step hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Información de Pago -->
+                        <div class="lg:col-span-2">
+                            <div class="payment-form animate-fade-in">
+                                <h2 class="text-3xl font-bold text-dark-green mb-6">
+                                    <i class="fas fa-credit-card mr-3"></i>Finalizar Pedido
+                                </h2>
+                                <p class="text-gray-600 mb-8">
+                                    Revisa tu pedido y genera tu cotización en PDF
+                                </p>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            <i class="fas fa-phone"></i>Teléfono *
-                                        </label>
-                                        <input type="tel" id="phone" required class="form-input" 
-                                               placeholder="55 1234 5678">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            <i class="fas fa-map-marker-alt"></i>Código postal *
-                                        </label>
-                                        <input type="text" id="postal-code" required class="form-input" 
-                                               placeholder="12345">
-                                    </div>
-                                </div>
-
-                                <!-- Dirección -->
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        <i class="fas fa-home"></i>Dirección completa *
-                                    </label>
-                                    <input type="text" id="address" required class="form-input" 
-                                           placeholder="Calle, número, colonia">
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            <i class="fas fa-city"></i>Ciudad *
-                                        </label>
-                                        <input type="text" id="city" required class="form-input" 
-                                               placeholder="Tu ciudad">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            <i class="fas fa-flag"></i>Estado *
-                                        </label>
-                                        <select id="state" required class="form-input">
-                                            <option value="">Selecciona tu estado</option>
-                                            <option value="CDMX">Ciudad de México</option>
-                                            <option value="MEX">Estado de México</option>
-                                            <option value="JAL">Jalisco</option>
-                                            <option value="NL">Nuevo León</option>
-                                            <option value="PUE">Puebla</option>
-                                            <option value="GTO">Guanajuato</option>
-                                            <option value="VER">Veracruz</option>
-                                            <option value="YUC">Yucatán</option>
-                                            <option value="CHIH">Chihuahua</option>
-                                            <option value="COAH">Coahuila</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Referencias -->
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        <i class="fas fa-info-circle"></i>Referencias adicionales (opcional)
-                                    </label>
-                                    <textarea id="references" rows="3" class="form-input" 
-                                              placeholder="Entre qué calles, puntos de referencia, etc."></textarea>
-                                </div>
-
-                                <!-- Opciones de Envío -->
-                                <div class="shipping-options">
-                                    <h3 class="text-lg font-bold text-dark-green mb-4">
-                                        <i class="fas fa-truck mr-2"></i>Opciones de Envío
+                                <!-- Información del pedido -->
+                                <div class="order-review">
+                                    <h3 class="text-xl font-bold text-dark-green mb-4">
+                                        <i class="fas fa-clipboard-list mr-2"></i>Resumen del Pedido
                                     </h3>
-                                    <div class="space-y-3">
-                                        <label class="shipping-option">
-                                            <input type="radio" name="shipping-method" value="standard" checked>
-                                            <div class="shipping-option-details">
-                                                <div class="shipping-option-name">Envío Estándar</div>
-                                                <div class="shipping-option-description">3-5 días hábiles • Entrega en horario laboral</div>
-                                            </div>
-                                            <div class="shipping-option-price">$50.00</div>
-                                        </label>
-                                        <label class="shipping-option">
-                                            <input type="radio" name="shipping-method" value="express">
-                                            <div class="shipping-option-details">
-                                                <div class="shipping-option-name">Envío Express</div>
-                                                <div class="shipping-option-description">1-2 días hábiles • Entrega prioritaria</div>
-                                            </div>
-                                            <div class="shipping-option-price">$120.00</div>
-                                        </label>
+                                    <div id="final-order-summary" class="bg-gray-50 rounded-lg p-6 mb-6">
+                                        <!-- Se llena dinámicamente -->
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <!-- Resumen del Pedido -->
-                    <div class="lg:col-span-1">
-                        <div class="summary-card animate-slide-up">
-                            <h3 class="summary-title">
-                                <i class="fas fa-receipt"></i>
-                                Resumen del Pedido
-                            </h3>
-                            <div id="order-summary"></div>
-                            <div class="space-y-3">
-                                <button id="continue-to-payment" class="btn-primary">
-                                    <i class="fas fa-credit-card"></i>
-                                    <span>Continuar al pago</span>
-                                </button>
-                                <button id="back-to-cart" class="btn-secondary">
-                                    <i class="fas fa-arrow-left"></i>
-                                    <span>Volver al carrito</span>
-                                </button>
+                                <!-- Botones de acción -->
+                                <div class="payment-actions">
+                                    <button id="generate-pdf" class="btn-primary">
+                                        <i class="fas fa-file-pdf mr-2"></i>
+                                        <span>Generar Cotización PDF</span>
+                                    </button>
+
+                                    <!-- Botón de diagnóstico (solo visible en desarrollo) -->
+                                    <button id="diagnose-pdf" class="btn-secondary text-xs mt-2" style="display: none;">
+                                        <i class="fas fa-stethoscope mr-1"></i>
+                                        <span>Diagnosticar PDF</span>
+                                    </button>
+
+                                    <p class="text-sm text-gray-600 mt-4">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        Se generará un PDF con tu cotización que podrás enviar por WhatsApp o email para confirmar tu pedido.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Step 3: Payment -->
-            <div id="payment-step" class="checkout-step hidden">
-                <div class="max-w-4xl mx-auto">
-                    <!-- Mensaje de sitio en construcción -->
-                    <div class="bg-white rounded-xl shadow-md p-8 text-center mb-8">
-                        <div class="mb-6">
-                            <i class="fas fa-tools text-6xl text-yellow-500 mb-4"></i>
-                            <h2 class="text-3xl font-bold text-dark-green mb-4">
-                                ¡Sitio en Construcción!
-                            </h2>
-                            <p class="text-lg text-gray-600 mb-6">
-                                Estamos trabajando para ofrecerte la mejor experiencia de compra online.
-                                Mientras tanto, puedes descargar tu cotización y contactarnos directamente.
-                            </p>
-                        </div>
+                        <!-- Resumen Final -->
+                        <div class="lg:col-span-1">
+                            <div class="summary-card animate-slide-up">
+                                <h3 class="text-2xl font-bold text-dark-green mb-6">
+                                    <i class="fas fa-check-circle mr-2"></i>Pedido Final
+                                </h3>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Subtotal:</span>
+                                        <span id="final-subtotal" class="font-semibold">$0.00 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Envío:</span>
+                                        <span id="final-shipping" class="font-semibold">$50.00 MXN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Descuento:</span>
+                                        <span id="final-discount" class="font-semibold text-green-600">-$0.00 MXN</span>
+                                    </div>
+                                    <hr class="border-gray-200">
+                                    <div class="flex justify-between text-lg font-bold">
+                                        <span>Total:</span>
+                                        <span id="final-total" class="text-dark-green">$0.00 MXN</span>
+                                    </div>
+                                </div>
 
-                        <!-- Información de pago actual -->
-                        <div class="bg-sage-green/10 rounded-lg p-6 mb-6">
-                            <h3 class="text-xl font-bold text-dark-green mb-3">
-                                <i class="fas fa-university mr-2"></i>
-                                Método de Pago Disponible
-                            </h3>
-                            <p class="text-gray-700 mb-2">
-                                Por el momento, solo aceptamos <strong>transferencias interbancarias</strong>.
-                            </p>
-                            <p class="text-sm text-gray-600">
-                                Te enviaremos los datos bancarios junto con tu cotización.
-                            </p>
-                        </div>
+                                <!-- Botones de navegación -->
+                                <div class="action-buttons">
+                                    <button id="back-to-shipping" class="btn-secondary">
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        <span>Volver a Datos de Envío</span>
+                                    </button>
+                                </div>
 
-                        <!-- Botones de acción -->
-                        <div class="space-y-4">
-                            <button id="download-quote"
-                                class="w-full bg-dark-green text-white py-4 px-6 rounded-lg hover:bg-sage-green transition font-semibold text-lg">
-                                <i class="fas fa-download mr-2"></i>
-                                Descargar Cotización (PDF)
-                            </button>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <a href="mailto:ventas@velasstarlight.com?subject=Cotización%20de%20Velas%20Starlight&body=Hola,%0A%0AMe%20interesa%20realizar%20un%20pedido%20de%20velas.%20Adjunto%20mi%20cotización%20en%20PDF.%0A%0AGracias."
-                                    class="bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition font-semibold inline-flex items-center justify-center">
-                                    <i class="fas fa-envelope mr-2"></i>
-                                    Enviar por Email
-                                </a>
-
-                                <a href="https://wa.me/5564682112?text=Hola%20Velas%20Starlight,%0A%0AMe%20interesa%20realizar%20un%20pedido%20de%20velas.%20He%20descargado%20mi%20cotización%20y%20me%20gustaría%20proceder%20con%20la%20compra.%0A%0A¿Podrían%20proporcionarme%20los%20datos%20bancarios%20para%20la%20transferencia?%0A%0AGracias."
-                                    target="_blank"
-                                    class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition font-semibold inline-flex items-center justify-center">
-                                    <i class="fab fa-whatsapp mr-2"></i>
-                                    WhatsApp
-                                </a>
+                                <!-- Garantía -->
+                                <div class="guarantee-badge">
+                                    <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                                    <span class="text-green-700 font-semibold">Compra 100% segura y protegida</span>
+                                </div>
                             </div>
-
-                            <button id="back-to-shipping"
-                                class="w-full bg-gray-100 text-dark-green py-3 px-6 rounded-lg hover:bg-gray-200 transition font-semibold">
-                                <i class="fas fa-arrow-left mr-2"></i>
-                                Volver a Datos de Envío
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Resumen del pedido para el paso de pago -->
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <h3 class="text-xl font-bold text-dark-green mb-6">
-                            <i class="fas fa-receipt mr-2"></i>
-                            Resumen Final del Pedido
-                        </h3>
-                        <div id="final-order-summary">
-                            <!-- Se llena dinámicamente -->
                         </div>
                     </div>
                 </div>
@@ -530,649 +512,96 @@
     <script src="../js/productos-data.js"></script>
     <script src="../js/pdf-generator-ultimate.js"></script>
     <script src="../js/carrito-mejorado.js"></script>
+
+    <!-- Script de diagnóstico para PDF -->
     <script>
-        // Inicialización simple - el carrito mejorado se encarga de todo
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('🛒 Carrito mejorado cargado correctamente');
+        // Verificar que todo esté cargado correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                console.log('🔍 Verificando carga de componentes PDF...');
 
-            let discountApplied = false;
-            let discountPercentage = 0;
-            let currentShippingCost = 50;
-
-            function loadCart() {
-                return JSON.parse(localStorage.getItem('cart') || '[]');
-            }
-
-            function displayCartItems() {
-                const cart = loadCart();
-                const container = document.getElementById('cart-items-container');
-                const emptyMessage = document.getElementById('empty-cart-message');
-                const itemsCount = document.getElementById('cart-items-count');
-
-                if (cart.length === 0) {
-                    container.style.display = 'none';
-                    emptyMessage.style.display = 'block';
-                    itemsCount.textContent = '0';
-                    updateTotals(0, 0);
-                    return;
-                }
-
-                container.style.display = 'block';
-                emptyMessage.style.display = 'none';
-                itemsCount.textContent = cart.length;
-                container.innerHTML = '';
-
-                let subtotal = 0;
-
-                cart.forEach((item, index) => {
-                    let typeDisplay = item.type || 'N/A';
-                    if (item.category === 'Belleza') {
-                        if (item.careType) {
-                            typeDisplay = `Cuidado ${item.careType}`;
-                        } else if (window.productosData) {
-                            const originalProduct = window.productosData.find(p => p.id === item.id);
-                            if (originalProduct && originalProduct.careType) {
-                                typeDisplay = `Cuidado ${originalProduct.careType}`;
-                            }
-                        }
-                    }
-
-                    // Calcular el precio unitario correcto
-                    const unitPrice = item.unitPrice || item.size.price || (item.price / (item.quantity || 1));
-                    const itemTotal = item.total || (unitPrice * item.quantity);
-                    subtotal += itemTotal;
-
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'cart-item bg-white rounded-xl shadow-md p-6 flex flex-col md:flex-row items-start md:items-center gap-4';
-                    itemElement.innerHTML = `
-                        <div class="flex-shrink-0">
-                            <img src="${item.image}" alt="${item.title}" class="w-20 h-20 object-cover rounded-lg">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-bold text-dark-green text-lg mb-2">${item.title}</h3>
-                            <div class="space-y-1 text-sm text-gray-600">
-                                <p><i class="fas fa-tag mr-2"></i>Categoría: ${item.category}</p>
-                                <p><i class="fas fa-leaf mr-2"></i>Tipo: ${typeDisplay}</p>
-                                <p><i class="fas fa-weight mr-2"></i>Tamaño: ${item.size.label}</p>
-                                <p><i class="fas fa-palette mr-2"></i>Fragancia: ${item.fragrance}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="flex items-center space-x-2">
-                                <button onclick="changeQuantity(${index}, -1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
-                                    <i class="fas fa-minus text-sm"></i>
-                                </button>
-                                <span class="w-12 text-center font-semibold">${item.quantity}</span>
-                                <button onclick="changeQuantity(${index}, 1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
-                                    <i class="fas fa-plus text-sm"></i>
-                                </button>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-lg font-bold text-dark-green">$${itemTotal.toFixed(2)} MXN</div>
-                                <div class="text-sm text-gray-500">$${unitPrice.toFixed(2)} c/u</div>
-                            </div>
-                            <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 transition-colors p-2">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(itemElement);
-                });
-
-                updateTotals(subtotal, cart.length);
-            }
-
-            function updateTotals(subtotal, itemCount) {
-                const shipping = itemCount > 0 ? currentShippingCost : 0;
-                const discountAmount = discountApplied ? (subtotal * discountPercentage / 100) : 0;
-                const total = subtotal + shipping - discountAmount;
-
-                document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)} MXN`;
-                document.getElementById('shipping').textContent = `$${shipping.toFixed(2)} MXN`;
-                document.getElementById('discount').textContent = `-$${discountAmount.toFixed(2)} MXN`;
-                document.getElementById('total').textContent = `$${total.toFixed(2)} MXN`;
-
-                updateOrderSummary(subtotal, shipping, discountAmount, total, itemCount);
-            }
-
-            function updateOrderSummary(subtotal, shipping, discount, total, itemCount) {
-                const orderSummary = document.getElementById('order-summary');
-                if (orderSummary) {
-                    const cart = loadCart();
-                    const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-                    orderSummary.innerHTML = `
-                        <div class="space-y-4 mb-6">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Subtotal:</span>
-                                <span class="font-semibold">$${subtotal.toFixed(2)} MXN</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Envío:</span>
-                                <span class="font-semibold">$${shipping.toFixed(2)} MXN</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Descuento:</span>
-                                <span class="font-semibold text-green-600">-$${discount.toFixed(2)} MXN</span>
-                            </div>
-                            <hr class="border-gray-200">
-                            <div class="flex justify-between text-lg font-bold">
-                                <span>Total:</span>
-                                <span class="text-dark-green">$${total.toFixed(2)} MXN</span>
-                            </div>
-                            <div class="text-sm text-gray-500 mt-2">
-                                <p>${itemCount} productos • ${totalUnits} unidades</p>
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-
-            function updateFinalOrderSummary() {
-                const cart = loadCart();
-                const subtotal = cart.reduce((sum, item) => sum + (item.total || item.price * item.quantity), 0);
-                const shipping = cart.length > 0 ? currentShippingCost : 0;
-                const discountAmount = discountApplied ? (subtotal * discountPercentage / 100) : 0;
-                const total = subtotal + shipping - discountAmount;
-                const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-                const finalSummary = document.getElementById('final-order-summary');
-                if (finalSummary) {
-                    finalSummary.innerHTML = `
-                        <div class="space-y-4 mb-6">
-                            <h4 class="font-semibold text-dark-green mb-4">Productos:</h4>
-                            ${cart.map(item => {
-                        let typeDisplay = item.type || 'N/A';
-                        if (item.category === 'Belleza') {
-                            if (item.careType) {
-                                typeDisplay = `Cuidado ${item.careType}`;
-                            } else if (window.productosData) {
-                                const originalProduct = window.productosData.find(p => p.id === item.id);
-                                if (originalProduct && originalProduct.careType) {
-                                    typeDisplay = `Cuidado ${originalProduct.careType}`;
-                                }
-                            }
-                        }
-
-                        return `
-                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                                        <div class="flex-1">
-                                            <p class="font-medium">${item.title}</p>
-                                            <p class="text-sm text-gray-600">${typeDisplay} • ${item.size.label} • ${item.fragrance}</p>
-                                            <p class="text-sm text-gray-500">Cantidad: ${item.quantity}</p>
-                                        </div>
-                                        <div class="text-right">
-                                            <p class="font-semibold">$${(item.total || (item.unitPrice || item.size.price) * item.quantity).toFixed(2)} MXN</p>
-                                        </div>
-                                    </div>
-                                `;
-                    }).join('')}
-                            
-                            <div class="pt-4 space-y-2">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Subtotal:</span>
-                                    <span class="font-semibold">$${subtotal.toFixed(2)} MXN</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Envío:</span>
-                                    <span class="font-semibold">$${shipping.toFixed(2)} MXN</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Descuento:</span>
-                                    <span class="font-semibold text-green-600">-$${discountAmount.toFixed(2)} MXN</span>
-                                </div>
-                                <hr class="border-gray-200">
-                                <div class="flex justify-between text-lg font-bold">
-                                    <span>Total:</span>
-                                    <span class="text-dark-green">$${total.toFixed(2)} MXN</span>
-                                </div>
-                                <div class="text-sm text-gray-500 mt-2">
-                                    <p>${cart.length} productos • ${totalUnits} unidades</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-
-            window.changeQuantity = function (index, change) {
-                const cart = loadCart();
-                if (cart[index]) {
-                    const newQuantity = cart[index].quantity + change;
-                    if (newQuantity > 0) {
-                        cart[index].quantity = newQuantity;
-                        // Usar el precio unitario del size para calcular el total correctamente
-                        const unitPrice = cart[index].unitPrice || cart[index].size.price || cart[index].price;
-                        cart[index].total = unitPrice * newQuantity;
-                        // Actualizar el precio para mantener compatibilidad
-                        cart[index].price = unitPrice;
-                        localStorage.setItem('cart', JSON.stringify(cart));
-                        displayCartItems();
-                        updateCartCount();
-                        console.log('🛒 Cantidad actualizada:', {
-                            producto: cart[index].title,
-                            cantidad: newQuantity,
-                            precioUnitario: unitPrice,
-                            total: cart[index].total
-                        });
-                    }
-                }
-            };
-
-            window.removeFromCart = function (index) {
-                const cart = loadCart();
-                cart.splice(index, 1);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                displayCartItems();
-                updateCartCount();
-            };
-
-            function updateCartCount() {
-                const cart = loadCart();
-                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-                document.getElementById('cart-count').textContent = totalItems;
-            }
-
-            // Apply discount
-            document.getElementById('apply-discount').addEventListener('click', function () {
-                const code = document.getElementById('discount-code').value.trim().toUpperCase();
-
-                // Usar el sistema de promociones dinámico
-                const promotions = new PromotionsManager();
-                const validPromo = promotions.validatePromoCode(code);
-
-                if (validPromo && !discountApplied) {
-                    discountApplied = true;
-                    discountPercentage = validPromo.discount;
-
-                    const cart = loadCart();
-                    const subtotal = cart.reduce((sum, item) => sum + (item.total || item.price * item.quantity), 0);
-                    updateTotals(subtotal, cart.length);
-
-                    this.textContent = '✅ Aplicado';
-                    this.classList.add('bg-green-500');
-                    this.classList.remove('bg-dark-green');
-                    document.getElementById('discount-code').disabled = true;
-
-                    showNotification('¡Descuento del 15% aplicado correctamente!', 'success');
-                } else if (discountApplied) {
-                    showNotification('El código de descuento ya ha sido aplicado', 'warning');
+                if (typeof window.jsPDF === 'undefined') {
+                    console.error('❌ jsPDF no se cargó correctamente');
                 } else {
-                    showNotification('Código de descuento inválido', 'warning');
-                }
-            });
-
-            // Shipping options
-            document.querySelectorAll('input[name="shipping-method"]').forEach(option => {
-                option.addEventListener('change', function () {
-                    currentShippingCost = this.value === 'express' ? 120 : 50;
-                    const cart = loadCart();
-                    const subtotal = cart.reduce((sum, item) => sum + (item.total || item.price * item.quantity), 0);
-                    updateTotals(subtotal, cart.length);
-                });
-            });
-
-            // Clear cart
-            document.getElementById('clear-cart').addEventListener('click', function () {
-                if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
-                    localStorage.removeItem('cart');
-                    discountApplied = false;
-                    discountPercentage = 0;
-                    displayCartItems();
-                    updateCartCount();
-                    showNotification('Carrito vaciado correctamente', 'info');
-                }
-            });
-
-            // Navigation
-            document.getElementById('continue-to-shipping').addEventListener('click', function () {
-                const cart = loadCart();
-                if (cart.length === 0) {
-                    showNotification('Tu carrito está vacío. Agrega algunos productos primero.', 'warning');
-                    return;
+                    console.log('✅ jsPDF cargado correctamente');
                 }
 
-                document.getElementById('cart-step').classList.add('hidden');
-                document.getElementById('shipping-step').classList.remove('hidden');
-                document.getElementById('step-1').classList.remove('active');
-                document.getElementById('step-2').classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            document.getElementById('continue-to-payment').addEventListener('click', function () {
-                // Validar formulario
-                const form = document.getElementById('shipping-form');
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return;
+                if (typeof window.quotePDFGenerator === 'undefined') {
+                    console.error('❌ Generador de PDF no se cargó correctamente');
+                } else {
+                    console.log('✅ Generador de PDF cargado correctamente');
                 }
 
-                document.getElementById('shipping-step').classList.add('hidden');
-                document.getElementById('payment-step').classList.remove('hidden');
-                document.getElementById('step-2').classList.remove('active');
-                document.getElementById('step-3').classList.add('active');
+                // Verificar estado completo
+                if (window.checkPDFGenerator) {
+                    const status = window.checkPDFGenerator();
+                    console.log('📊 Estado del generador:', status);
+                }
 
-                // Actualizar resumen final
-                updateFinalOrderSummary();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            document.getElementById('back-to-cart').addEventListener('click', function () {
-                document.getElementById('shipping-step').classList.add('hidden');
-                document.getElementById('cart-step').classList.remove('hidden');
-                document.getElementById('step-2').classList.remove('active');
-                document.getElementById('step-1').classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            document.getElementById('back-to-shipping').addEventListener('click', function () {
-                document.getElementById('payment-step').classList.add('hidden');
-                document.getElementById('shipping-step').classList.remove('hidden');
-                document.getElementById('step-3').classList.remove('active');
-                document.getElementById('step-2').classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // PDF Generation
-            document.getElementById('download-quote').addEventListener('click', function () {
-                generatePDF();
-            });
-
-            // Función para mostrar notificaciones elegantes
-            function showNotification(message, type = 'info') {
-                // Remover notificaciones existentes
-                const existingNotifications = document.querySelectorAll('.notification');
-                existingNotifications.forEach(notification => notification.remove());
-
-                // Crear nueva notificación
-                const notification = document.createElement('div');
-                notification.className = `notification ${type}`;
-
-                const icon = type === 'success' ? '✅' : type === 'warning' ? '⚠️' : type === 'info' ? 'ℹ️' : '🗑️';
-
-                notification.innerHTML = `
-                    <div class="flex items-center">
-                        <span class="text-xl mr-3">${icon}</span>
-                        <span>${message}</span>
-                    </div>
-                    <button class="close-btn" onclick="this.parentElement.remove()">×</button>
-                `;
-
-                document.body.appendChild(notification);
-
-                // Mostrar con animación
-                setTimeout(() => notification.classList.add('show'), 100);
-
-                // Auto-remover después de 4 segundos
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                    setTimeout(() => notification.remove(), 300);
-                }, 4000);
-            }
-
-            function generatePDF() {
-                console.log('📄 Iniciando generación de PDF...');
-
-                try {
-                    // Verificar que el generador esté disponible
-                    if (!window.quotePDFGenerator) {
-                        console.error('❌ quotePDFGenerator no está disponible');
-                        alert('Error: El generador de PDF no está disponible. Recarga la página e inténtalo de nuevo.');
-                        return;
+                // Hacer disponibles funciones de diagnóstico en consola
+                window.diagnosePDF = () => {
+                    if (window.enhancedCart) {
+                        return window.enhancedCart.diagnosePDFIssues();
+                    } else {
+                        console.error('Carrito no disponible');
                     }
+                };
 
-                    const cart = loadCart();
-                    console.log('🛒 Carrito cargado:', cart.length, 'productos');
-
-                    if (cart.length === 0) {
-                        alert('Tu carrito está vacío. Agrega algunos productos antes de generar la cotización.');
-                        return;
+                window.testPDF = () => {
+                    if (window.testPDFGenerator) {
+                        window.testPDFGenerator();
+                    } else {
+                        console.error('Función de prueba no disponible');
                     }
+                };
 
-                    const subtotal = cart.reduce((sum, item) => sum + (item.total || item.price * item.quantity), 0);
-                    const shipping = cart.length > 0 ? currentShippingCost : 0;
-                    const discountAmount = discountApplied ? (subtotal * discountPercentage / 100) : 0;
-
-                    console.log('💰 Totales calculados:', { subtotal, shipping, discountAmount });
-
-                    // Preparar datos del carrito
-                    const cartItems = cart.map(item => {
-                        let typeDisplay = item.type || 'Soya';
-                        let sizeDisplay = item.size;
-
-                        // Manejar el tamaño correctamente
-                        if (typeof item.size === 'object' && item.size.label) {
-                            sizeDisplay = item.size.label;
-                        } else if (typeof item.size === 'string') {
-                            sizeDisplay = item.size;
-                        } else {
-                            sizeDisplay = '45 gr';
-                        }
-
-                        return {
-                            ...item,
-                            type: typeDisplay,
-                            size: sizeDisplay,
-                            price: item.price || item.unitPrice || 60,
-                            quantity: item.quantity || 1
-                        };
-                    });
-
-                    const cartData = {
-                        items: cartItems,
-                        subtotal: subtotal,
-                        shipping: shipping,
-                        discount: discountAmount
-                    };
-
-                    console.log('📦 Datos del carrito preparados:', cartData);
-
-                    // Obtener datos del formulario
-                    let shippingData = {};
-                    try {
-                        if (window.quotePDFGenerator.getShippingData) {
-                            shippingData = window.quotePDFGenerator.getShippingData();
-                        } else {
-                            // Datos por defecto si no hay formulario
-                            shippingData = {
-                                fullName: 'Cliente',
-                                email: 'cliente@email.com',
-                                phone: 'No especificado',
-                                address: 'Dirección por confirmar',
-                                city: 'Ciudad',
-                                state: 'Estado',
-                                postalCode: '00000'
-                            };
-                        }
-                    } catch (error) {
-                        console.warn('⚠️ Error obteniendo datos de envío, usando datos por defecto:', error);
-                        shippingData = {
-                            fullName: 'Cliente',
-                            email: 'cliente@email.com',
-                            phone: 'No especificado',
-                            address: 'Dirección por confirmar',
-                            city: 'Ciudad',
-                            state: 'Estado',
-                            postalCode: '00000'
-                        };
-                    }
-
-                    console.log('📋 Datos de envío:', shippingData);
-
-                    // Generar PDF
-                    console.log('🚀 Generando PDF...');
-                    window.quotePDFGenerator.generateQuotePDF(cartData, shippingData);
-
-                    console.log('✅ PDF generado exitosamente');
-                    showNotification('Cotización PDF descargada correctamente', 'success');
-
-                } catch (error) {
-                    console.error('❌ Error generando PDF:', error);
-                    alert(`Error al generar el PDF: ${error.message || error}. Por favor, inténtalo de nuevo.`);
-                }
-            }
-
-            // Initialize
-            displayCartItems();
-            updateCartCount();
-
-            console.log('✅ Carrito completo inicializado');
+                console.log('💡 Funciones de diagnóstico disponibles:');
+                console.log('- diagnosePDF(): Diagnosticar problemas con PDF');
+                console.log('- testPDF(): Generar PDF de prueba');
+                console.log('- checkPDFGenerator(): Ver estado del generador');
+            }, 3000);
         });
     </script>
-
-    <!-- MENÚ MÓVIL CARRITO - VERSIÓN FINAL FUNCIONAL -->
     <script>
-        console.log('🎉 MENÚ MÓVIL CARRITO - VERSIÓN FINAL');
+        // Inicialización del carrito mejorado
+        let enhancedCart;
         
-        setTimeout(function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🛒 Inicializando carrito mejorado...');
             
-            if (!menuToggle || !mobileMenu) {
-                console.log('❌ Elementos no encontrados');
-                return;
-            }
+            // Crear instancia del carrito mejorado
+            enhancedCart = new EnhancedShoppingCart();
+            enhancedCart.init();
             
-            console.log('✅ Configurando menú final...');
-            
-            let menuAbierto = false;
-            
-            function mostrarMenu() {
-                mobileMenu.classList.remove('hidden');
-                
-                // USAR EL CSS QUE SABEMOS QUE FUNCIONA (del test exitoso)
-                mobileMenu.style.display = 'block';
-                mobileMenu.style.position = 'fixed'; // Fixed como en el test
-                mobileMenu.style.top = '80px'; // Posición fija desde arriba
-                mobileMenu.style.left = '0';
-                mobileMenu.style.right = '0';
-                mobileMenu.style.width = '100vw';
-                mobileMenu.style.zIndex = '99999';
-                mobileMenu.style.backgroundColor = 'white';
-                mobileMenu.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
-                mobileMenu.style.border = '1px solid #d1d5db';
-                mobileMenu.style.maxHeight = '400px';
-                mobileMenu.style.overflow = 'auto';
-                
-                // Cambiar icono
-                const botonActual = document.getElementById('menu-toggle');
-                const icon = botonActual ? botonActual.querySelector('i') : null;
-                if (icon) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                }
-                
-                menuAbierto = true;
-                console.log('📱 Menú mostrado con CSS del test exitoso');
-                
-                // Verificar que realmente esté visible
-                const rect = mobileMenu.getBoundingClientRect();
-                console.log('   - Posición:', { top: rect.top, left: rect.left, width: rect.width, height: rect.height });
-                console.log('   - Display computed:', window.getComputedStyle(mobileMenu).display);
-            }
-            
-            function ocultarMenu() {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.style.display = 'none';
-                
-                // Cambiar icono
-                const botonActual = document.getElementById('menu-toggle');
-                const icon = botonActual ? botonActual.querySelector('i') : null;
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-                
-                menuAbierto = false;
-                console.log('📱 Menú ocultado correctamente');
-            }
-            
-            // Limpiar listeners previos
-            const nuevoBoton = menuToggle.cloneNode(true);
-            menuToggle.parentNode.replaceChild(nuevoBoton, menuToggle);
-            
-            // Evento principal
-            nuevoBoton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                console.log('🔥 CLICK DETECTADO - Estado actual:', menuAbierto);
-                
-                if (menuAbierto) {
-                    ocultarMenu();
-                } else {
-                    mostrarMenu();
-                    
-                    // Verificación adicional después de mostrar
-                    setTimeout(function() {
-                        const isVisible = window.getComputedStyle(mobileMenu).display !== 'none';
-                        const hasHiddenClass = mobileMenu.classList.contains('hidden');
-                        console.log('🔍 VERIFICACIÓN POST-MOSTRAR:');
-                        console.log('   - Display computed:', window.getComputedStyle(mobileMenu).display);
-                        console.log('   - Tiene clase hidden:', hasHiddenClass);
-                        console.log('   - Es visible:', isVisible);
-                        
-                        if (!isVisible) {
-                            console.log('⚠️ MENÚ NO VISIBLE - FORZANDO VISUALIZACIÓN');
-                            mobileMenu.style.display = 'block !important';
-                            mobileMenu.style.visibility = 'visible !important';
-                            mobileMenu.classList.remove('hidden');
-                        }
-                    }, 100);
-                }
-            });
-            
-            // Cerrar al hacer clic fuera
+            console.log('✅ Carrito mejorado inicializado correctamente');
+
+            // Configurar menú móvil
             setTimeout(function() {
-                document.addEventListener('click', function(e) {
-                    if (menuAbierto && !nuevoBoton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                        ocultarMenu();
+                const menuToggle = document.getElementById('menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                if (!menuToggle || !mobileMenu) {
+                    console.log('❌ Elementos del menú no encontrados');
+                    return;
+                }
+
+                menuToggle.addEventListener('click', function() {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenu.style.display = 'block';
+                        console.log('📱 Menú móvil mostrado');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.style.display = 'none';
+                        console.log('📱 Menú móvil ocultado');
                     }
                 });
+
+                console.log('✅ Menú móvil configurado correctamente');
             }, 500);
-            
-            // Cerrar en enlaces
-            const enlaces = mobileMenu.querySelectorAll('a');
-            enlaces.forEach(enlace => {
-                enlace.addEventListener('click', ocultarMenu);
-            });
-            
-            // Cerrar en responsive
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768 && menuAbierto) {
-                    ocultarMenu();
-                }
-            });
-            
-            // SOBRESCRIBIR CUALQUIER CSS CONFLICTIVO
-            const style = document.createElement('style');
-            style.textContent = `
-                #mobile-menu {
-                    display: none !important;
-                }
-                #mobile-menu:not(.hidden) {
-                    display: block !important;
-                    position: fixed !important;
-                    top: 80px !important;
-                    left: 0 !important;
-                    right: 0 !important;
-                    width: 100vw !important;
-                    z-index: 99999 !important;
-                    background-color: white !important;
-                    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
-                    border: 1px solid #d1d5db !important;
-                    max-height: 400px !important;
-                    overflow: auto !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    transform: none !important;
-                }
-            `;
-            document.head.appendChild(style);
-            
-            console.log('🎉 MENÚ MÓVIL CARRITO CONFIGURADO CON CSS FORZADO');
-            
-        }, 1000);
+        });
     </script>
 
     <!-- Footer -->
@@ -1181,120 +610,52 @@
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
             <div class="absolute bottom-10 right-10 w-48 h-48 bg-sage-green rounded-full blur-3xl"></div>
-            <div
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-leaf-green rounded-full blur-3xl">
-            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-leaf-green rounded-full blur-3xl"></div>
         </div>
 
         <div class="relative z-10">
             <!-- Contenido principal del footer -->
             <div class="container mx-auto px-6 py-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
                     <!-- Logo y descripción -->
                     <div class="lg:col-span-2 space-y-6">
                         <div class="flex items-center space-x-3">
-                            <img src="../images/logo.png" alt="Velas Starlight"
-                                class="h-12 w-auto filter brightness-0 invert">
+                            <img src="../images/logo.png" alt="Velas Starlight" class="h-12 w-auto filter brightness-0 invert">
                         </div>
                         <p class="text-gray-300 leading-relaxed max-w-md">
-                            Creamos experiencias sensoriales únicas con velas artesanales y productos de belleza
-                            natural, elaborados con amor y dedicación para iluminar tu mundo.
+                            Creamos experiencias sensoriales únicas con velas artesanales y productos de belleza naturales.
                         </p>
                     </div>
 
                     <!-- Enlaces rápidos -->
-                    <div class="space-y-4">
-                        <h4 class="text-lg font-semibold mb-4 text-white">Enlaces Rápidos</h4>
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-semibold">Enlaces Rápidos</h3>
                         <ul class="space-y-3">
-                            <li><a href="../index.html"
-                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
-                                    <i
-                                        class="fa fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>Inicio
-                                </a></li>
-                            <li><a href="productos.html"
-                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
-                                    <i
-                                        class="fa fa-cube mr-2 group-hover:scale-110 transition-transform duration-300"></i>Productos
-                                </a></li>
-                            <li><a href="contacto.html"
-                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
-                                    <i
-                                        class="fa fa-phone mr-2 group-hover:scale-110 transition-transform duration-300"></i>Contacto
-                                </a></li>
+                            <li><a href="../index.html" class="text-gray-300 hover:text-white transition-colors">Inicio</a></li>
+                            <li><a href="productos.html" class="text-gray-300 hover:text-white transition-colors">Productos</a></li>
+                            <li><a href="contacto.html" class="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
                         </ul>
                     </div>
 
-                    <!-- Contacto y redes sociales -->
-                    <div class="space-y-4">
-                        <h4 class="text-lg font-semibold mb-4 text-white">Conecta con Nosotros</h4>
-
-                        <!-- Información de contacto -->
+                    <!-- Contacto -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-semibold">Contacto</h3>
                         <div class="space-y-3 text-gray-300">
-                            <a href="mailto:ventas@velasstarlight.com"
-                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
-                                <i class="fa fa-envelope text-white"></i>
-                                <span>ventas@velasstarlight.com</span>
-                            </a>
-                            <a href="tel:+525564682112"
-                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
-                                <i class="fa fa-phone text-white"></i>
-                                <span>5564682112</span>
-                            </a>
-                        </div>
-
-                        <!-- Redes sociales -->
-                        <div class="pt-4">
-                            <h5 class="font-medium mb-3">Síguenos</h5>
-                            <div class="flex space-x-4">
-                                <a href="https://wa.me/5564682112" target="_blank"
-                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
-                                    <i class="fab fa-whatsapp text-lg group-hover:text-white"></i>
-                                </a>
-                                <a href="https://www.instagram.com/velas_starlight/" target="_blank"
-                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
-                                    <i class="fab fa-instagram text-lg group-hover:text-white"></i>
-                                </a>
-                                <a href="#" target="_blank"
-                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
-                                    <i class="fab fa-facebook-f text-lg group-hover:text-white"></i>
-                                </a>
-                                <a href="#" target="_blank"
-                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
-                                    <i class="fab fa-tiktok text-lg group-hover:text-white"></i>
-                                </a>
-                            </div>
+                            <p class="flex items-center"><i class="fas fa-envelope mr-3"></i>info@velasstarlight.com</p>
+                            <p class="flex items-center"><i class="fas fa-phone mr-3"></i>+52 123 456 7890</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Línea divisoria -->
-            <div class="border-t border-white/20"></div>
-
-            <!-- Copyright y enlaces legales -->
-            <div class="container mx-auto px-6 py-6">
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <div class="text-gray-300 text-sm">
-                        <p>&copy; 2025 Velas Starlight. Todos los derechos reservados.</p>
-                    </div>
-                    <div class="flex items-center space-x-6 text-sm text-gray-300">
-                        <a href="terminos.html" class="hover:text-white transition-colors duration-300">Términos
-                            y Condiciones</a>
-                        <span class="text-gray-500">|</span>
-                        <a href="politicas.html" class="hover:text-white transition-colors duration-300">Política
-                            de Privacidad</a>
-                        <span class="text-gray-500">|</span>
-                        <span class="flex items-center space-x-1">
-                            <i class="fa fa-heart text-red-400"></i>
-                            <span>Hecho con amor</span>
-                        </span>
-                    </div>
+            <!-- Copyright -->
+            <div class="border-t border-white/20 py-6">
+                <div class="container mx-auto px-6 text-center text-gray-300">
+                    <p>&copy; 2024 Velas Starlight. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
     </footer>
 
 </body>
-
 </html>

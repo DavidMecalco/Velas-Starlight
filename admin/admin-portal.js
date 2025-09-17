@@ -102,6 +102,9 @@ class AdminPortal {
 
         // Promociones y configuración
         this.promotions = this.loadPromotions();
+        
+        // Configuración de envíos
+        this.shippingConfig = this.loadShippingConfig();
     }
 
     /**
@@ -185,6 +188,7 @@ class AdminPortal {
         // Main buttons
         document.getElementById('add-product-btn').addEventListener('click', () => this.openProductModal());
         document.getElementById('manage-promos-btn').addEventListener('click', () => this.openPromotionsModal());
+        document.getElementById('manage-shipping-btn').addEventListener('click', () => this.openShippingModal());
         document.getElementById('export-images-btn').addEventListener('click', () => this.exportImages());
         document.getElementById('generate-code-btn').addEventListener('click', () => this.generateCode());
         document.getElementById('logout-btn').addEventListener('click', () => this.logout());
@@ -224,6 +228,10 @@ class AdminPortal {
 
         // Promotions modal
         document.getElementById('close-promotions-modal').addEventListener('click', () => this.closePromotionsModal());
+        
+        // Shipping modal
+        document.getElementById('close-shipping-modal').addEventListener('click', () => this.closeShippingModal());
+        document.getElementById('save-shipping-config').addEventListener('click', () => this.saveShippingConfig());
         document.getElementById('save-promo-code').addEventListener('click', () => this.savePromoCode());
         document.getElementById('save-promotions').addEventListener('click', () => this.savePromotions());
         document.getElementById('reset-promotions').addEventListener('click', () => this.resetPromotions());
@@ -2196,6 +2204,152 @@ if (typeof module !== 'undefined' && module.exports) {
         });
 
         this.displayProducts(filteredProducts);
+    }
+
+    /**
+     * ========================================
+     * CONFIGURACIÓN DE ENVÍOS
+     * ========================================
+     */
+
+    /**
+     * Cargar configuración de envíos desde localStorage
+     */
+    loadShippingConfig() {
+        const saved = localStorage.getItem('starlightShippingConfig');
+        if (saved) {
+            return JSON.parse(saved);
+        }
+
+        // Configuración por defecto
+        return {
+            standard: {
+                cost: 50,
+                name: 'Envío Estándar',
+                description: 'Entrega en 3-5 días hábiles',
+                active: true
+            },
+            express: {
+                cost: 120,
+                name: 'Envío Express',
+                description: 'Entrega en 1-2 días hábiles',
+                active: true
+            },
+            freeShippingThreshold: 500
+        };
+    }
+
+    /**
+     * Guardar configuración de envíos en localStorage
+     */
+    saveShippingConfigData() {
+        localStorage.setItem('starlightShippingConfig', JSON.stringify(this.shippingConfig));
+        console.log('✅ Configuración de envíos guardada');
+    }
+
+    /**
+     * Abrir modal de configuración de envíos
+     */
+    openShippingModal() {
+        document.getElementById('shipping-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        this.loadShippingUI();
+    }
+
+    /**
+     * Cerrar modal de configuración de envíos
+     */
+    closeShippingModal() {
+        document.getElementById('shipping-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    /**
+     * Cargar datos de envíos en la UI
+     */
+    loadShippingUI() {
+        const config = this.shippingConfig;
+        
+        // Envío estándar
+        document.getElementById('standard-cost').value = config.standard.cost;
+        document.getElementById('standard-name').value = config.standard.name;
+        document.getElementById('standard-description').value = config.standard.description;
+        document.getElementById('standard-active').checked = config.standard.active;
+
+        // Envío express
+        document.getElementById('express-cost').value = config.express.cost;
+        document.getElementById('express-name').value = config.express.name;
+        document.getElementById('express-description').value = config.express.description;
+        document.getElementById('express-active').checked = config.express.active;
+
+        // Umbral de envío gratis
+        document.getElementById('free-shipping-threshold').value = config.freeShippingThreshold;
+    }
+
+    /**
+     * Guardar configuración de envíos
+     */
+    saveShippingConfig() {
+        try {
+            // Obtener valores del formulario
+            const standardCost = parseFloat(document.getElementById('standard-cost').value) || 50;
+            const standardName = document.getElementById('standard-name').value.trim() || 'Envío Estándar';
+            const standardDescription = document.getElementById('standard-description').value.trim() || 'Entrega en 3-5 días hábiles';
+            const standardActive = document.getElementById('standard-active').checked;
+
+            const expressCost = parseFloat(document.getElementById('express-cost').value) || 120;
+            const expressName = document.getElementById('express-name').value.trim() || 'Envío Express';
+            const expressDescription = document.getElementById('express-description').value.trim() || 'Entrega en 1-2 días hábiles';
+            const expressActive = document.getElementById('express-active').checked;
+
+            const freeShippingThreshold = parseFloat(document.getElementById('free-shipping-threshold').value) || 500;
+
+            // Actualizar configuración
+            this.shippingConfig = {
+                standard: {
+                    cost: standardCost,
+                    name: standardName,
+                    description: standardDescription,
+                    active: standardActive
+                },
+                express: {
+                    cost: expressCost,
+                    name: expressName,
+                    description: expressDescription,
+                    active: expressActive
+                },
+                freeShippingThreshold: freeShippingThreshold
+            };
+
+            this.saveShippingConfigData();
+            this.showNotification('Configuración de envíos guardada correctamente', 'success');
+            this.closeShippingModal();
+
+            // Actualizar carrito si está disponible
+            this.updateCartShippingCosts();
+
+        } catch (error) {
+            console.error('❌ Error guardando configuración de envíos:', error);
+            this.showNotification('Error al guardar la configuración', 'error');
+        }
+    }
+
+    /**
+     * Actualizar costos de envío en el carrito
+     */
+    updateCartShippingCosts() {
+        // Actualizar variables globales para el carrito
+        if (window.enhancedCart) {
+            window.enhancedCart.currentShippingCost = this.shippingConfig.standard.cost;
+            window.enhancedCart.updateTotals();
+        }
+
+        // También actualizar en el carrito básico si existe
+        if (window.currentShippingCost !== undefined) {
+            window.currentShippingCost = this.shippingConfig.standard.cost;
+        }
+
+        console.log('🚚 Costos de envío actualizados en el carrito');
     }
 }
 

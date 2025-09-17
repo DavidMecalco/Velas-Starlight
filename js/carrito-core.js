@@ -165,7 +165,19 @@
     // ==========================================
     
     function updateTotals(subtotal, itemCount) {
-        const shipping = itemCount > 0 ? (window.currentShippingCost || 50) : 0;
+        // Cargar costo de envío desde configuración
+        let shippingCost = 50; // valor por defecto
+        try {
+            const shippingConfig = localStorage.getItem('starlightShippingConfig');
+            if (shippingConfig) {
+                const config = JSON.parse(shippingConfig);
+                shippingCost = config.standard.cost || 50;
+            }
+        } catch (error) {
+            console.error('❌ Error cargando configuración de envío:', error);
+        }
+        
+        const shipping = itemCount > 0 ? (window.currentShippingCost || shippingCost) : 0;
         const discountApplied = window.discountApplied || false;
         const discountPercentage = window.discountPercentage || 0;
         const discountAmount = discountApplied ? (subtotal * discountPercentage / 100) : 0;
