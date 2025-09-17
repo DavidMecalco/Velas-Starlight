@@ -60,9 +60,12 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
-    
+
     <!-- CSS de correcciones -->
     <link rel="stylesheet" href="../css/fixes.css?v=2.4.1">
+
+    <!-- CSS de mejoras para productos -->
+    <link rel="stylesheet" href="../css/productos-enhanced.css?v=1.0.0">
 
     <!-- AOS Animations -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
@@ -146,7 +149,8 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            min-height: 450px; /* Altura mínima fija */
+            min-height: 450px;
+            /* Altura mínima fija */
         }
 
         .product-card .p-6 {
@@ -159,7 +163,8 @@
 
         /* Título con altura fija para evitar desalineación */
         .product-card h3 {
-            min-height: 3.5rem; /* Espacio para 2 líneas */
+            min-height: 3.5rem;
+            /* Espacio para 2 líneas */
             display: flex;
             align-items: center;
         }
@@ -196,13 +201,13 @@
         }
 
         /* Asegurar que las tarjetas tengan altura uniforme */
-        #product-grid > div {
+        #product-grid>div {
             display: flex;
             flex-direction: column;
             height: 100%;
         }
 
-        #product-grid > div > div:last-child {
+        #product-grid>div>div:last-child {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -247,7 +252,8 @@
         </div>
 
         <!-- Menú móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
             <div class="px-6 py-4 space-y-1">
                 <a href="../index.html"
                     class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
@@ -286,43 +292,61 @@
     <main class="pt-20">
 
         <!-- Hero Section -->
-        <section class="gradient-bg text-white py-16">
-            <div class="max-w-6xl mx-auto px-6 text-center">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6">
-                    <i class="fas fa-fire text-3xl"></i>
+        <section class="gradient-bg text-white py-20 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+                <div
+                    class="hero-icon inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-full mb-8 backdrop-blur-sm">
+                    <i class="fas fa-fire text-4xl"></i>
                 </div>
-                <h1 class="font-serif text-4xl md:text-6xl font-bold mb-6">Nuestros Productos</h1>
-                <p class="text-xl opacity-90 max-w-3xl mx-auto mb-8">
+                <h1 class="font-serif text-5xl md:text-7xl font-bold mb-8 animate-slide-up">Nuestros Productos</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto mb-10 leading-relaxed animate-slide-up">
                     Descubre nuestra colección de velas artesanales. Cada pieza cuenta una historia única de elegancia y
-                    calidez.
+                    calidez que transformará tu espacio.
                 </p>
-                <div class="flex flex-wrap justify-center gap-4 text-sm">
-                    <span class="bg-white/20 px-4 py-2 rounded-full">✨ Hechas a mano</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full">🌿 Ingredientes naturales</span>
-                    <span class="bg-white/20 px-4 py-2 rounded-full">🎨 Diseños únicos</span>
+                <div class="flex flex-wrap justify-center gap-6 text-sm md:text-base animate-slide-up">
+                    <span
+                        class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full border border-white/30 hover:bg-white/30 transition-all duration-300">✨
+                        Hechas a mano</span>
+                    <span
+                        class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full border border-white/30 hover:bg-white/30 transition-all duration-300">🌿
+                        Ingredientes naturales</span>
+                    <span
+                        class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full border border-white/30 hover:bg-white/30 transition-all duration-300">🎨
+                        Diseños únicos</span>
                 </div>
             </div>
+
+            <!-- Elementos decorativos de fondo -->
+            <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 bg-sage-green/20 rounded-full blur-3xl animate-pulse"
+                style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-leaf-green/10 rounded-full blur-3xl animate-pulse"
+                style="animation-delay: 2s;"></div>
         </section>
 
         <!-- Estadísticas -->
-        <section class="py-12 bg-white">
+        <section class="stats-section py-16 bg-white">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div>
-                        <div id="stats-products" class="text-3xl font-bold text-dark-green mb-2">0</div>
-                        <div class="text-gray-600">Productos</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="stat-item animate-slide-up">
+                        <div id="stats-products" class="stat-number mb-3">0</div>
+                        <div class="text-gray-600 font-medium">Productos</div>
+                        <div class="text-xs text-gray-400 mt-1">Únicos y artesanales</div>
                     </div>
-                    <div>
-                        <div id="stats-fragrances" class="text-3xl font-bold text-dark-green mb-2">0</div>
-                        <div class="text-gray-600">Fragancias</div>
+                    <div class="stat-item animate-slide-up" style="animation-delay: 0.1s;">
+                        <div id="stats-fragrances" class="stat-number mb-3">0</div>
+                        <div class="text-gray-600 font-medium">Fragancias</div>
+                        <div class="text-xs text-gray-400 mt-1">Aromas naturales</div>
                     </div>
-                    <div>
-                        <div id="stats-types" class="text-3xl font-bold text-dark-green mb-2">0</div>
-                        <div class="text-gray-600">Tipos de Cera</div>
+                    <div class="stat-item animate-slide-up" style="animation-delay: 0.2s;">
+                        <div id="stats-types" class="stat-number mb-3">0</div>
+                        <div class="text-gray-600 font-medium">Tipos de Cera</div>
+                        <div class="text-xs text-gray-400 mt-1">Soya y parafina</div>
                     </div>
-                    <div>
-                        <div class="text-3xl font-bold text-dark-green mb-2">100%</div>
-                        <div class="text-gray-600">Artesanal</div>
+                    <div class="stat-item animate-slide-up" style="animation-delay: 0.3s;">
+                        <div class="stat-number mb-3">100%</div>
+                        <div class="text-gray-600 font-medium">Artesanal</div>
+                        <div class="text-xs text-gray-400 mt-1">Hecho con amor</div>
                     </div>
                 </div>
             </div>
@@ -333,51 +357,46 @@
             <div class="max-w-6xl mx-auto px-6">
 
                 <!-- Búsqueda -->
-                <div class="mb-8">
-                    <div class="relative max-w-2xl mx-auto">
-                        <input type="text" id="search-input" placeholder="Buscar productos..."
-                            class="w-full pl-12 pr-16 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-sage-green bg-white shadow-lg">
-                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
-                        <button id="clear-search"
-                            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 hidden">
-                            <i class="fas fa-times text-xl"></i>
+                <div class="mb-10">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Buscar productos, fragancias, tipos..."
+                            class="search-input">
+                        <i class="search-icon fas fa-search"></i>
+                        <button id="clear-search" class="hidden">
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
 
                 <!-- Categorías -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-dark-green mb-4 text-center">Filtrar por Categoría</h3>
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <button class="category-btn filter-active px-6 py-3 rounded-full font-medium transition-all"
-                            data-category="all">
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-dark-green mb-6 text-center">Filtrar por Categoría</h3>
+                    <div class="category-filters">
+                        <button class="category-btn filter-active" data-category="all">
                             <i class="fas fa-th-large mr-2"></i>Todos
                         </button>
-                        <button
-                            class="category-btn bg-white text-dark-green px-6 py-3 rounded-full font-medium hover:bg-sage-green hover:text-white transition-all"
-                            data-category="Vela">
+                        <button class="category-btn" data-category="Vela">
                             <i class="fas fa-fire mr-2"></i>Velas
                         </button>
-                        <button
-                            class="category-btn bg-white text-dark-green px-6 py-3 rounded-full font-medium hover:bg-sage-green hover:text-white transition-all"
-                            data-category="Decoracion">
+                        <button class="category-btn" data-category="Decoracion">
                             <i class="fas fa-home mr-2"></i>Decoración
                         </button>
-                        <button
-                            class="category-btn bg-white text-dark-green px-6 py-3 rounded-full font-medium hover:bg-sage-green hover:text-white transition-all"
-                            data-category="Belleza">
+                        <button class="category-btn" data-category="Belleza">
                             <i class="fas fa-spa mr-2"></i>Belleza
                         </button>
                     </div>
                 </div>
 
                 <!-- Resultados -->
-                <div class="flex justify-between items-center">
-                    <div class="text-gray-600">
+                <div
+                    class="flex justify-between items-center bg-white/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-200">
+                    <div class="text-gray-700 font-medium">
+                        <i class="fas fa-cube mr-2 text-sage-green"></i>
                         <span id="results-count">18</span> productos encontrados
                     </div>
-                    <button id="reset-filters" class="text-sage-green hover:text-dark-green font-medium">
-                        <i class="fas fa-undo mr-1"></i>Limpiar Filtros
+                    <button id="reset-filters"
+                        class="text-sage-green hover:text-dark-green font-semibold transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-undo mr-2"></i>Limpiar Filtros
                     </button>
                 </div>
             </div>
@@ -393,14 +412,16 @@
                 </div>
 
                 <!-- Mensaje de no resultados -->
-                <div id="no-results" class="hidden text-center py-16">
-                    <div class="text-6xl mb-4">🔍</div>
-                    <h3 class="text-xl font-semibold text-dark-green mb-2">No se encontraron productos</h3>
-                    <p class="text-gray-600 mb-6">Intenta ajustar tus filtros o buscar con otros términos</p>
-                    <button id="show-all-products"
-                        class="bg-sage-green text-white px-6 py-3 rounded-lg hover:bg-dark-green transition-colors">
-                        <i class="fas fa-eye mr-2"></i>Ver Todos los Productos
-                    </button>
+                <div id="no-results" class="hidden">
+                    <div class="no-results-container">
+                        <div class="no-results-icon">🔍</div>
+                        <h3 class="no-results-title">No se encontraron productos</h3>
+                        <p class="no-results-description">Intenta ajustar tus filtros o buscar con otros términos.
+                            Tenemos una gran variedad de productos esperándote.</p>
+                        <button id="show-all-products" class="btn-show-all">
+                            <i class="fas fa-eye mr-2"></i>Ver Todos los Productos
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -417,43 +438,38 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" data-aos="fade-up"
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" data-aos="fade-up"
                     data-aos-delay="200">
-                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
-                        data-fragrance="Vainilla">
-                        <div class="text-3xl mb-2">🍦</div>
-                        <div class="font-semibold text-dark-green">Vainilla</div>
-                        <div class="text-xs text-gray-500">Dulce y relajante</div>
+                    <div class="fragrance-card fragrance-filter" data-fragrance="Vainilla">
+                        <div class="fragrance-emoji">🍦</div>
+                        <div class="fragrance-name">Vainilla</div>
+                        <div class="fragrance-description">Dulce y relajante</div>
                     </div>
-                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
-                        data-fragrance="Lavanda">
-                        <div class="text-3xl mb-2">💜</div>
-                        <div class="font-semibold text-dark-green">Lavanda</div>
-                        <div class="text-xs text-gray-500">Calmante y floral</div>
+                    <div class="fragrance-card fragrance-filter" data-fragrance="Lavanda">
+                        <div class="fragrance-emoji">💜</div>
+                        <div class="fragrance-name">Lavanda</div>
+                        <div class="fragrance-description">Calmante y floral</div>
                     </div>
-                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
-                        data-fragrance="Rosas Especiales">
-                        <div class="text-3xl mb-2">🌹</div>
-                        <div class="font-semibold text-dark-green">Rosas</div>
-                        <div class="text-xs text-gray-500">Romántico y elegante</div>
+                    <div class="fragrance-card fragrance-filter" data-fragrance="Rosas Especiales">
+                        <div class="fragrance-emoji">🌹</div>
+                        <div class="fragrance-name">Rosas</div>
+                        <div class="fragrance-description">Romántico y elegante</div>
                     </div>
-                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
-                        data-fragrance="Canela">
-                        <div class="text-3xl mb-2">🍂</div>
-                        <div class="font-semibold text-dark-green">Canela</div>
-                        <div class="text-xs text-gray-500">Cálido y acogedor</div>
+                    <div class="fragrance-card fragrance-filter" data-fragrance="Canela">
+                        <div class="fragrance-emoji">🍂</div>
+                        <div class="fragrance-name">Canela</div>
+                        <div class="fragrance-description">Cálido y acogedor</div>
                     </div>
-                    <div class="bg-white rounded-xl p-4 text-center hover-lift cursor-pointer fragrance-filter"
-                        data-fragrance="Citricos">
-                        <div class="text-3xl mb-2">🍊</div>
-                        <div class="font-semibold text-dark-green">Cítricos</div>
-                        <div class="text-xs text-gray-500">Fresco y energizante</div>
+                    <div class="fragrance-card fragrance-filter" data-fragrance="Citricos">
+                        <div class="fragrance-emoji">🍊</div>
+                        <div class="fragrance-name">Cítricos</div>
+                        <div class="fragrance-description">Fresco y energizante</div>
                     </div>
                 </div>
             </div>
         </section>
-    </main> 
-   <!-- Footer -->
+    </main>
+    <!-- Footer -->
     <footer class="bg-gradient-to-br from-dark-green via-dark-green to-sage-green text-white relative overflow-hidden">
         <!-- Elementos decorativos -->
         <div class="absolute inset-0 opacity-10">
@@ -509,11 +525,13 @@
 
                         <!-- Información de contacto -->
                         <div class="space-y-3 text-gray-300">
-                            <a href="mailto:ventas@velasstarlight.com" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                            <a href="mailto:ventas@velasstarlight.com"
+                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
                                 <i class="fa fa-envelope text-white"></i>
                                 <span>ventas@velasstarlight.com</span>
                             </a>
-                            <a href="tel:+525564682112" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                            <a href="tel:+525564682112"
+                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
                                 <i class="fa fa-phone text-white"></i>
                                 <span>5564682112</span>
                             </a>
@@ -576,7 +594,15 @@
     <!-- Scripts de productos -->
     <script src="../js/mobile-menu-clean.js"></script>
     <script src="../js/productos-data.js"></script>
-    <script src="../js/product-generator.js"></script>
+    <script src="../js/immediate-fix.js"></script>
+    <script src="../js/emergency-products.js"></script>
+    <script src="../js/fix-product-ids.js"></script>
+    <script src="../js/fix-products-data.js"></script>
+    <script src="../js/debug-products-render.js"></script>
+    <script src="../js/simple-debug.js"></script>
+    <script src="../js/simple-product-generator.js"></script>
+    <script src="../js/product-generator-enhanced.js"></script>
+    <script src="../js/productos-enhanced.js"></script>
     <script src="../js/main.js"></script>
 
     <!-- Script principal -->
@@ -747,7 +773,7 @@
             function closeModal() {
                 modal.classList.add('hidden');
                 document.body.style.overflow = 'auto';
-                
+
                 // Resetear zoom
                 currentZoom = 1;
                 translateX = 0;
@@ -819,25 +845,133 @@
 
             console.log('🚀 Inicializando generador de productos...');
 
-            // Verificar que los datos y el generador estén disponibles
-            if (window.ProductGenerator && window.productosData) {
-                const productGenerator = new ProductGenerator();
-                productGenerator.init('product-grid', window.productosData);
+            // Función simplificada para inicializar
+            function initializeGenerator() {
+                console.log('🔄 Intentando inicializar generador...');
 
-                // Hacer disponible globalmente para los filtros
-                window.productGenerator = productGenerator;
+                // Verificar disponibilidad básica
+                if (!window.EnhancedProductGenerator) {
+                    console.error('❌ EnhancedProductGenerator no disponible');
+                    return false;
+                }
 
-                console.log('✅ Generador de productos inicializado correctamente');
-                console.log(`📦 ${window.productosData.length} productos cargados`);
+                if (!window.productosData) {
+                    console.error('❌ productosData no disponible');
+                    return false;
+                }
 
-                // Actualizar contador inicial
-                updateResultsCount(window.productosData.length);
+                if (!Array.isArray(window.productosData)) {
+                    console.error('❌ productosData no es un array:', typeof window.productosData);
+                    return false;
+                }
 
-            } else {
-                console.error('❌ Error: ProductGenerator o productosData no disponibles');
-                console.log('ProductGenerator disponible:', !!window.ProductGenerator);
-                console.log('productosData disponible:', !!window.productosData);
+                if (window.productosData.length === 0) {
+                    console.error('❌ productosData está vacío');
+                    return false;
+                }
+
+                console.log(`📊 Inicializando con ${window.productosData.length} productos`);
+
+                try {
+                    const productGenerator = new EnhancedProductGenerator();
+                    productGenerator.init('product-grid', window.productosData);
+                    window.productGenerator = productGenerator;
+
+                    console.log('✅ Generador inicializado correctamente');
+
+                    // Verificar contenedor después de un momento
+                    setTimeout(() => {
+                        const container = document.getElementById('product-grid');
+                        if (container) {
+                            console.log(`🎨 Contenedor tiene ${container.children.length} elementos`);
+                            if (container.children.length === 0) {
+                                console.error('❌ Contenedor vacío, intentando productos de emergencia');
+                                if (window.useEmergencyProducts) {
+                                    window.useEmergencyProducts();
+                                    setTimeout(() => initializeGenerator(), 100);
+                                }
+                            }
+                        }
+                    }, 200);
+
+                    // Actualizar contador
+                    if (typeof updateResultsCount === 'function') {
+                        updateResultsCount(window.productosData.length);
+                    }
+
+                    return true;
+
+                } catch (error) {
+                    console.error('❌ Error inicializando generador:', error);
+                    return false;
+                }
             }
+
+            // Intentar inicialización múltiples veces
+            let initAttempts = 0;
+            const maxAttempts = 10;
+
+            function tryInitialize() {
+                initAttempts++;
+                console.log(`🔄 Intento de inicialización ${initAttempts}/${maxAttempts}`);
+
+                if (initializeGenerator()) {
+                    console.log('🎉 Inicialización exitosa');
+                    return;
+                }
+
+                if (initAttempts < maxAttempts) {
+                    setTimeout(tryInitialize, 200);
+                } else {
+                    console.error('❌ Falló la inicialización después de todos los intentos');
+
+                    // Intentar con generador simple
+                    if (window.useSimpleGenerator && window.useSimpleGenerator()) {
+                        console.log('✅ Generador simple funcionando');
+                        return;
+                    }
+
+                    // Último recurso: usar productos de emergencia
+                    if (window.useEmergencyProducts) {
+                        console.log('🚨 Usando productos de emergencia como último recurso');
+                        window.useEmergencyProducts();
+                        setTimeout(() => {
+                            if (window.useSimpleGenerator) {
+                                window.useSimpleGenerator();
+                            }
+                        }, 100);
+                    }
+                }
+            }
+
+            // Iniciar intentos de inicialización
+            setTimeout(tryInitialize, 100);
+
+            // Funciones de emergencia disponibles en consola
+            window.forceSimpleGenerator = function () {
+                console.log('🔧 Forzando generador simple...');
+                if (window.useSimpleGenerator) {
+                    return window.useSimpleGenerator();
+                }
+                return false;
+            };
+
+            window.forceEmergencyProducts = function () {
+                console.log('🔧 Forzando productos de emergencia...');
+                if (window.useEmergencyProducts) {
+                    window.useEmergencyProducts();
+                    return window.useSimpleGenerator ? window.useSimpleGenerator() : false;
+                }
+                return false;
+            };
+
+            window.debugProductsNow = function () {
+                console.log('🔧 Debug inmediato...');
+                console.log('productosData:', window.productosData);
+                console.log('EnhancedProductGenerator:', window.EnhancedProductGenerator);
+                console.log('SimpleProductGenerator:', window.SimpleProductGenerator);
+                console.log('Contenedor:', document.getElementById('product-grid'));
+            };
 
             // Hacer funciones disponibles globalmente
             window.updateResultsCount = updateResultsCount;

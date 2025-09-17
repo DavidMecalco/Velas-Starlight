@@ -1,7 +1,7 @@
 /**
  * ========================================
- * PÁGINA DE DETALLE DEL PRODUCTO
- * Velas Starlight - Product Detail Page
+ * PÁGINA DE DETALLE DEL PRODUCTO MEJORADA
+ * Velas Starlight - Enhanced Product Detail Page
  * ========================================
  */
 
@@ -12,6 +12,15 @@ class ProductDetailPage {
         this.selectedFragrance = null;
         this.selectedType = null;
         this.quantity = 1;
+        this.isLoading = false;
+        this.currentImageIndex = 0;
+        this.productImages = [];
+        
+        // Configuración de animaciones
+        this.animationConfig = {
+            duration: 300,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+        };
     }
 
     /**
@@ -65,53 +74,227 @@ class ProductDetailPage {
     }
 
     /**
-     * Renderizar producto en la página
+     * Renderizar producto en la página con animaciones mejoradas
      */
     renderProduct() {
         const product = this.product;
         
-        // Limpiar secciones dinámicas anteriores
-        this.clearDynamicSections();
+        // Mostrar loading state
+        this.showLoadingState();
         
-        // Actualizar título de la página
+        // Simular un pequeño delay para mostrar la transición
+        setTimeout(() => {
+            // Limpiar secciones dinámicas anteriores
+            this.clearDynamicSections();
+            
+            // Actualizar metadatos de la página
+            this.updatePageMetadata(product);
+            
+            // Actualizar breadcrumbs con animación
+            this.updateBreadcrumbs(product);
+            
+            // Configurar galería de imágenes
+            this.setupImageGallery(product);
+            
+            // Renderizar información del producto
+            this.renderProductInfo(product);
+            
+            // Renderizar opciones del producto
+            this.renderProductOptions(product);
+            
+            // Configurar botones de acción
+            this.setupButtons();
+            
+            // Renderizar productos relacionados
+            this.renderRelatedProducts();
+            
+            // Ocultar loading state
+            this.hideLoadingState();
+            
+            // Inicializar animaciones de entrada
+            this.initializeAnimations();
+            
+        }, 300);
+    }
+
+    /**
+     * Actualizar metadatos de la página
+     */
+    updatePageMetadata(product) {
         document.title = `${product.title} | Velas Starlight`;
-        document.getElementById('page-title').textContent = `${product.title} | Velas Starlight`;
-        document.getElementById('page-description').content = product.description;
         
-        // Actualizar breadcrumbs
-        document.getElementById('breadcrumb-category').textContent = product.category;
-        document.getElementById('breadcrumb-product').textContent = product.title;
+        // Actualizar meta tags
+        const pageTitle = document.getElementById('page-title');
+        const pageDescription = document.getElementById('page-description');
+        const ogTitle = document.getElementById('og-title');
+        const ogDescription = document.getElementById('og-description');
+        const ogImage = document.getElementById('og-image');
         
-        // Imagen principal
-        const mainImage = document.getElementById('main-product-image');
-        if (product.imageData && product.imageData.base64) {
-            console.log(`🖼️ Cargando imagen base64 para: ${product.title}`);
-            mainImage.src = product.imageData.base64;
-        } else {
-            console.log(`🖼️ Cargando imagen URL para: ${product.title}`);
-            mainImage.src = product.image || '../images/placeholder-vela.jpg';
+        if (pageTitle) pageTitle.textContent = `${product.title} | Velas Starlight`;
+        if (pageDescription) pageDescription.content = product.description;
+        if (ogTitle) ogTitle.content = `${product.title} | Velas Starlight`;
+        if (ogDescription) ogDescription.content = product.description;
+        if (ogImage && product.image) ogImage.content = product.image;
+    }
+
+    /**
+     * Actualizar breadcrumbs con animación
+     */
+    updateBreadcrumbs(product) {
+        const categoryElement = document.getElementById('breadcrumb-category');
+        const productElement = document.getElementById('breadcrumb-product');
+        
+        if (categoryElement) {
+            categoryElement.style.opacity = '0';
+            setTimeout(() => {
+                categoryElement.textContent = product.category;
+                categoryElement.style.opacity = '1';
+            }, 150);
         }
+        
+        if (productElement) {
+            productElement.style.opacity = '0';
+            setTimeout(() => {
+                productElement.textContent = product.title;
+                productElement.style.opacity = '1';
+            }, 200);
+        }
+    }
+
+    /**
+     * Configurar galería de imágenes mejorada
+     */
+    setupImageGallery(product) {
+        const mainImage = document.getElementById('main-product-image');
+        
+        // Configurar imagen principal
+        if (product.imageData && product.imageData.base64) {
+            this.productImages = [product.imageData.base64];
+            mainImage.src = product.imageData.base64;
+        } else if (product.image) {
+            this.productImages = [product.image];
+            mainImage.src = product.image;
+        } else {
+            this.productImages = ['../images/placeholder-vela.jpg'];
+            mainImage.src = '../images/placeholder-vela.jpg';
+        }
+        
         mainImage.alt = product.title;
         
-        // Verificar si la imagen se carga correctamente
-        mainImage.onerror = function() {
+        // Manejar errores de carga de imagen
+        mainImage.onerror = () => {
             console.error(`❌ Error cargando imagen para: ${product.title}`);
-            this.src = '../images/placeholder-vela.jpg';
+            mainImage.src = '../images/placeholder-vela.jpg';
         };
         
+        // Agregar efecto de carga suave
+        mainImage.onload = () => {
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.style.opacity = '1';
+            }, 100);
+        };
+        
+        // Configurar zoom de imagen
+        this.setupImageZoom(mainImage);
+    }
+
+    /**
+     * Configurar zoom de imagen mejorado
+     */
+    setupImageZoom(imageElement) {
+        let isZoomed = false;
+        
+        imageElement.addEventListener('click', () => {
+            if (!isZoomed) {
+                // Crear overlay para zoom
+                const overlay = document.createElement('div');
+                overlay.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center cursor-zoom-out';
+                overlay.style.animation = 'fadeIn 0.3s ease-out';
+                
+                const zoomedImage = document.createElement('img');
+                zoomedImage.src = imageElement.src;
+                zoomedImage.alt = imageElement.alt;
+                zoomedImage.className = 'max-w-[90vw] max-h-[90vh] object-contain';
+                zoomedImage.style.animation = 'scaleIn 0.3s ease-out';
+                
+                overlay.appendChild(zoomedImage);
+                document.body.appendChild(overlay);
+                
+                // Cerrar al hacer clic
+                overlay.addEventListener('click', () => {
+                    overlay.style.animation = 'fadeOut 0.3s ease-out';
+                    setTimeout(() => {
+                        document.body.removeChild(overlay);
+                        isZoomed = false;
+                    }, 300);
+                });
+                
+                isZoomed = true;
+            }
+        });
+    }
+
+    /**
+     * Renderizar información del producto
+     */
+    renderProductInfo(product) {
         // Badges
         this.renderBadges();
         
         // Categoría
-        document.getElementById('product-category-badge').textContent = product.category;
+        const categoryBadge = document.getElementById('product-category-badge');
+        if (categoryBadge) {
+            categoryBadge.textContent = product.category;
+            categoryBadge.style.animation = 'fadeIn 0.5s ease-out';
+        }
         
-        // Título y descripción
-        document.getElementById('product-title').textContent = product.title;
-        document.getElementById('product-description').textContent = product.description;
+        // Título con animación de escritura
+        const titleElement = document.getElementById('product-title');
+        if (titleElement) {
+            this.typewriterEffect(titleElement, product.title);
+        }
         
-        // Precio
-        this.updatePrice();
+        // Descripción con fade in
+        const descriptionElement = document.getElementById('product-description');
+        if (descriptionElement) {
+            descriptionElement.style.opacity = '0';
+            descriptionElement.textContent = product.description;
+            setTimeout(() => {
+                descriptionElement.style.opacity = '1';
+                descriptionElement.style.transition = 'opacity 0.5s ease-out';
+            }, 500);
+        }
         
+        // Precio con animación
+        this.updatePrice(true);
+    }
+
+    /**
+     * Efecto de escritura para el título
+     */
+    typewriterEffect(element, text) {
+        element.textContent = '';
+        element.style.borderRight = '2px solid var(--primary-green)';
+        
+        let i = 0;
+        const timer = setInterval(() => {
+            element.textContent += text.charAt(i);
+            i++;
+            
+            if (i >= text.length) {
+                clearInterval(timer);
+                setTimeout(() => {
+                    element.style.borderRight = 'none';
+                }, 500);
+            }
+        }, 50);
+    }
+
+    /**
+     * Renderizar opciones del producto
+     */
+    renderProductOptions(product) {
         // Tipos/Materiales
         this.renderTypes();
         
@@ -121,17 +304,69 @@ class ProductDetailPage {
         // Fragancias
         this.renderFragrances();
         
-        // Características (si existen)
+        // Características
         this.renderCharacteristics();
         
-        // Cuidados (si existen)
+        // Cuidados
         this.renderCare();
+    }
+
+    /**
+     * Mostrar estado de carga
+     */
+    showLoadingState() {
+        const mainContent = document.querySelector('.product-container');
+        if (mainContent) {
+            mainContent.style.opacity = '0.7';
+            mainContent.style.pointerEvents = 'none';
+        }
         
-        // Configurar botones
-        this.setupButtons();
+        // Agregar spinner si no existe
+        if (!document.getElementById('loading-spinner')) {
+            const spinner = document.createElement('div');
+            spinner.id = 'loading-spinner';
+            spinner.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50';
+            spinner.innerHTML = `
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-sage-green"></div>
+            `;
+            document.body.appendChild(spinner);
+        }
+    }
+
+    /**
+     * Ocultar estado de carga
+     */
+    hideLoadingState() {
+        const mainContent = document.querySelector('.product-container');
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.pointerEvents = 'auto';
+            mainContent.style.transition = 'opacity 0.3s ease-out';
+        }
         
-        // Renderizar productos relacionados
-        this.renderRelatedProducts();
+        const spinner = document.getElementById('loading-spinner');
+        if (spinner) {
+            spinner.remove();
+        }
+    }
+
+    /**
+     * Inicializar animaciones de entrada
+     */
+    initializeAnimations() {
+        // Animar elementos con stagger
+        const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+        
+        animatedElements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+                element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 100);
+        });
     }
 
     /**

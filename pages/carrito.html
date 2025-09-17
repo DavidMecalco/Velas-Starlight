@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras | Velas Starlight</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,137 +21,35 @@
                         'gray-sand': '#D6CEC3',
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
+                        sans: ['Inter', 'Poppins', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    }
                 }
             }
         }
     </script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
+    
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="../css/carrito-mejorado.css">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        .step-indicator.active .w-6,
-        .step-indicator.active .w-8 {
-            background-color: #3A5A40 !important;
-            color: white !important;
-        }
 
-        .step-indicator.active span {
-            color: #2D3E33 !important;
-            font-weight: 600;
-        }
-
-        /* Notificaciones elegantes */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 16px 24px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transform: translateX(400px);
-            transition: all 0.3s ease;
-            max-width: 350px;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.success {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .notification.warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .notification.info {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-        }
-
-        .notification .close-btn {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            opacity: 0.7;
-        }
-
-        .notification .close-btn:hover {
-            opacity: 1;
-        }
-
-        /* Prevenir overflow horizontal */
-        html,
-        body {
-            overflow-x: hidden;
-            max-width: 100vw;
-        }
-
-        /* Asegurar que todos los contenedores respeten el viewport */
-        * {
-            box-sizing: border-box;
-        }
-
-        .container,
-        .max-w-7xl,
-        .max-w-6xl {
-            max-width: 100%;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        /* Mejorar responsividad del código de descuento */
-        @media (max-width: 640px) {
-            .discount-container {
-                flex-direction: column;
-            }
-
-            .discount-input {
-                margin-bottom: 0.5rem;
-            }
-
-            .discount-button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Asegurar que las tarjetas no se salgan del viewport */
-        .cart-item,
-        .bg-white {
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        /* Botón de aplicar descuento responsivo */
-        #apply-discount {
-            min-width: 80px;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 640px) {
-            #apply-discount {
-                width: 100%;
-                min-width: auto;
-            }
-        }
-    </style>
 </head>
 
 <body class="bg-beige-almond text-dark-green font-sans">
@@ -224,209 +124,255 @@
     </header>
 
     <!-- Main Content -->
-    <main class="pt-20">
-        <!-- Hero -->
-        <section class="bg-gradient-to-r from-dark-green to-sage-green text-white py-12 md:py-16">
-            <div class="max-w-7xl mx-auto px-2 sm:px-4 text-center">
-                <h1 class="font-serif text-2xl md:text-4xl font-bold mb-4">
-                    <i class="fas fa-shopping-cart mr-2 md:mr-3"></i>Tu Carrito de Compras
-                </h1>
-                <p class="text-lg md:text-xl opacity-90">Revisa tus productos seleccionados y finaliza tu compra</p>
+    <main class="pt-20 cart-container">
+        <!-- Hero Section Mejorado -->
+        <section class="cart-hero py-16 md:py-20">
+            <div class="cart-hero-content max-w-7xl mx-auto px-6 text-center">
+                <div class="animate-fade-in">
+                    <h1 class="font-serif text-3xl md:text-5xl font-bold mb-4 text-white">
+                        <i class="fas fa-shopping-cart mr-3"></i>Tu Carrito de Compras
+                    </h1>
+                    <p class="text-lg md:text-xl opacity-90 text-white max-w-2xl mx-auto">
+                        Revisa tus productos seleccionados y finaliza tu compra de manera segura
+                    </p>
+                    <div class="w-24 h-1 bg-white mx-auto mt-6 rounded-full opacity-75"></div>
+                </div>
             </div>
         </section>
 
-        <!-- Steps -->
-        <section class="max-w-7xl mx-auto px-2 sm:px-4 py-8">
-            <div class="bg-white rounded-xl shadow-md p-4 md:p-6 mb-8">
+        <!-- Indicador de Pasos Mejorado -->
+        <section class="max-w-7xl mx-auto px-6 py-8">
+            <div class="steps-container animate-slide-up">
                 <div class="flex items-center justify-center overflow-x-auto">
-                    <div class="flex items-center space-x-2 md:space-x-4 min-w-max">
-                        <div id="step-1" class="flex items-center space-x-1 md:space-x-2 step-indicator active">
-                            <div
-                                class="w-6 md:w-8 h-6 md:h-8 bg-sage-green text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold">
-                                1</div>
-                            <span class="font-semibold text-dark-green text-sm md:text-base">Carrito</span>
+                    <div class="flex items-center min-w-max">
+                        <!-- Paso 1: Carrito -->
+                        <div id="step-1" class="step-indicator active">
+                            <div class="step-number">
+                                <span>1</span>
+                            </div>
+                            <span class="step-text hidden sm:inline">Carrito</span>
+                            <span class="step-text sm:hidden">Carrito</span>
                         </div>
-                        <div class="w-4 md:w-8 h-0.5 bg-gray-300"></div>
-                        <div id="step-2" class="flex items-center space-x-1 md:space-x-2 step-indicator">
-                            <div
-                                class="w-6 md:w-8 h-6 md:h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xs md:text-sm font-bold">
-                                2</div>
-                            <span class="font-semibold text-gray-500 text-sm md:text-base hidden sm:inline">Datos de
-                                Envío</span>
-                            <span class="font-semibold text-gray-500 text-sm md:text-base sm:hidden">Envío</span>
+                        
+                        <!-- Conector 1-2 -->
+                        <div class="step-connector"></div>
+                        
+                        <!-- Paso 2: Envío -->
+                        <div id="step-2" class="step-indicator">
+                            <div class="step-number">
+                                <span>2</span>
+                            </div>
+                            <span class="step-text hidden sm:inline">Datos de Envío</span>
+                            <span class="step-text sm:hidden">Envío</span>
                         </div>
-                        <div class="w-4 md:w-8 h-0.5 bg-gray-300"></div>
-                        <div id="step-3" class="flex items-center space-x-1 md:space-x-2 step-indicator">
-                            <div
-                                class="w-6 md:w-8 h-6 md:h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xs md:text-sm font-bold">
-                                3</div>
-                            <span class="font-semibold text-gray-500 text-sm md:text-base">Pago</span>
+                        
+                        <!-- Conector 2-3 -->
+                        <div class="step-connector"></div>
+                        
+                        <!-- Paso 3: Pago -->
+                        <div id="step-3" class="step-indicator">
+                            <div class="step-number">
+                                <span>3</span>
+                            </div>
+                            <span class="step-text">Pago</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Cart Content -->
-        <section class="max-w-7xl mx-auto px-2 sm:px-4 pb-12">
-            <!-- Step 1: Cart -->
+        <!-- Contenido del Carrito -->
+        <section class="max-w-7xl mx-auto px-6 pb-16">
+            <!-- Paso 1: Carrito -->
             <div id="cart-step" class="checkout-step">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
-                    <!-- Products List -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Lista de Productos -->
                     <div class="lg:col-span-2">
-                        <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6">
-                            <div class="flex items-center justify-between">
+                        <!-- Header del Carrito -->
+                        <div class="cart-card mb-6 animate-fade-in">
+                            <div class="flex items-center justify-between mb-4">
                                 <h2 class="text-2xl font-bold text-dark-green">
-                                    <i class="fas fa-list mr-2"></i>Productos en tu carrito
+                                    <i class="fas fa-list mr-3"></i>Productos en tu carrito
                                 </h2>
-                                <button id="clear-cart" class="text-red-500 hover:text-red-700 transition">
-                                    <i class="fas fa-trash mr-1"></i>Vaciar carrito
+                                <button id="clear-cart" class="remove-btn">
+                                    <i class="fas fa-trash"></i>
+                                    <span class="sr-only">Vaciar carrito</span>
                                 </button>
                             </div>
-                            <p class="text-gray-600 mt-2">
-                                <span id="cart-items-count">0</span> productos seleccionados
-                            </p>
+                            <div class="flex items-center gap-4 text-gray-600">
+                                <span class="flex items-center gap-2">
+                                    <i class="fas fa-box text-sage-green"></i>
+                                    <span id="cart-items-count">0</span> productos
+                                </span>
+                                <span class="flex items-center gap-2">
+                                    <i class="fas fa-layer-group text-sage-green"></i>
+                                    <span id="cart-units-count">0</span> unidades
+                                </span>
+                            </div>
                         </div>
 
+                        <!-- Contenedor de Items -->
                         <div id="cart-items-container" class="space-y-4">
-                            <!-- Products inserted here -->
+                            <!-- Los productos se insertan aquí dinámicamente -->
                         </div>
 
-                        <!-- Empty cart message -->
-                        <div id="empty-cart-message" class="bg-white rounded-xl shadow-md p-12 text-center">
-                            <i class="fas fa-shopping-cart text-6xl text-gray-300 mb-4"></i>
-                            <h3 class="text-2xl font-bold text-gray-500 mb-2">Tu carrito está vacío</h3>
-                            <p class="text-gray-400 mb-6">¡Agrega algunos productos para comenzar!</p>
-                            <a href="productos.html"
-                                class="bg-dark-green text-white px-6 py-3 rounded-lg hover:bg-sage-green transition inline-flex items-center">
-                                <i class="fas fa-cube mr-2"></i>Ver productos
+                        <!-- Mensaje de Carrito Vacío -->
+                        <div id="empty-cart-message" class="empty-cart animate-scale-in">
+                            <div class="empty-cart-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3 class="empty-cart-title">Tu carrito está vacío</h3>
+                            <p class="empty-cart-description">
+                                ¡Descubre nuestros productos artesanales y agrega algunos a tu carrito!
+                            </p>
+                            <a href="productos.html" class="btn-primary inline-flex">
+                                <i class="fas fa-cube"></i>
+                                <span>Explorar Productos</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Summary -->
+                    <!-- Resumen de Compra -->
                     <div class="lg:col-span-1">
-                        <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 sticky top-24">
-                            <h3 class="text-lg sm:text-xl font-bold text-dark-green mb-4 sm:mb-6">
-                                <i class="fas fa-calculator mr-2"></i>Resumen de compra
+                        <div class="summary-card animate-slide-up">
+                            <h3 class="summary-title">
+                                <i class="fas fa-calculator"></i>
+                                Resumen de compra
                             </h3>
 
-                            <div class="space-y-4 mb-6">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Subtotal:</span>
-                                    <span id="subtotal" class="font-semibold">$0.00 MXN</span>
+                            <!-- Líneas del Resumen -->
+                            <div class="space-y-1 mb-6">
+                                <div class="summary-line">
+                                    <span class="summary-label">Subtotal:</span>
+                                    <span id="subtotal" class="summary-value">$0.00 MXN</span>
                                 </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Envío:</span>
-                                    <span id="shipping" class="font-semibold">$50.00 MXN</span>
+                                <div class="summary-line">
+                                    <span class="summary-label">Envío:</span>
+                                    <span id="shipping" class="summary-value">$50.00 MXN</span>
                                 </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Descuento:</span>
-                                    <span id="discount" class="font-semibold text-green-600">-$0.00 MXN</span>
+                                <div class="summary-line">
+                                    <span class="summary-label">Descuento:</span>
+                                    <span id="discount" class="summary-value discount">-$0.00 MXN</span>
                                 </div>
-                                <hr class="border-gray-200">
-                                <div class="flex justify-between text-lg font-bold">
+                                <div class="summary-line total">
                                     <span>Total:</span>
-                                    <span id="total" class="text-dark-green">$0.00 MXN</span>
+                                    <span id="total">$0.00 MXN</span>
                                 </div>
                             </div>
 
-                            <!-- Discount code -->
-                            <div class="mb-6">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Código de
-                                    descuento</label>
-                                <div class="flex flex-col sm:flex-row gap-2">
-                                    <input type="text" id="discount-code" placeholder="NUEVOSITIO15"
-                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-dark-green text-sm">
-                                    <button id="apply-discount"
-                                        class="bg-dark-green text-white px-4 py-2 rounded-lg hover:bg-sage-green transition whitespace-nowrap text-sm font-medium">Aplicar</button>
+                            <!-- Sección de Descuento -->
+                            <div class="discount-section">
+                                <label class="discount-label">
+                                    <i class="fas fa-tag mr-2"></i>
+                                    Código de descuento
+                                </label>
+                                <div class="discount-input-group">
+                                    <input type="text" id="discount-code" placeholder="NUEVOSITIO15" class="discount-input">
+                                    <button id="apply-discount" class="discount-btn">
+                                        Aplicar
+                                    </button>
                                 </div>
-                                <p class="text-xs text-gray-500 mt-2">💡 Usa <strong>NUEVOSITIO15</strong> para obtener
-                                    15% de descuento</p>
+                                <div class="discount-hint">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Usa <strong>NUEVOSITIO15</strong> para obtener 15% de descuento</span>
+                                </div>
                             </div>
 
+                            <!-- Botones de Acción -->
                             <div class="space-y-3">
-                                <button id="continue-to-shipping"
-                                    class="w-full bg-dark-green text-white py-3 rounded-lg hover:bg-sage-green transition font-semibold">
-                                    <i class="fas fa-arrow-right mr-2"></i>Continuar al envío
+                                <button id="continue-to-shipping" class="btn-primary">
+                                    <i class="fas fa-arrow-right"></i>
+                                    <span>Continuar al envío</span>
                                 </button>
-                                <a href="productos.html"
-                                    class="w-full bg-gray-100 text-dark-green py-3 rounded-lg hover:bg-gray-200 transition font-semibold text-center block">
-                                    <i class="fas fa-arrow-left mr-2"></i>Seguir comprando
+                                <a href="productos.html" class="btn-secondary">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Seguir comprando</span>
                                 </a>
+                            </div>
+
+                            <!-- Información Adicional -->
+                            <div class="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="flex items-center text-green-700 text-sm">
+                                    <i class="fas fa-shield-alt mr-2"></i>
+                                    <span>Compra 100% segura y protegida</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 2: Shipping -->
+            <!-- Paso 2: Información de Envío -->
             <div id="shipping-step" class="checkout-step hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Formulario de Envío -->
                     <div class="lg:col-span-2">
-                        <div class="bg-white rounded-xl shadow-md p-8">
-                            <h2 class="text-2xl font-bold text-dark-green mb-6">
-                                <i class="fas fa-shipping-fast mr-2"></i>Información de Envío
+                        <div class="shipping-form animate-fade-in">
+                            <h2 class="text-3xl font-bold text-dark-green mb-6">
+                                <i class="fas fa-shipping-fast mr-3"></i>Información de Envío
                             </h2>
+                            <p class="text-gray-600 mb-8">
+                                Completa tus datos para que podamos enviarte tus productos de manera segura
+                            </p>
+                            
                             <form id="shipping-form" class="space-y-6">
-                                <!-- Datos personales -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-semibold text-dark-green mb-2">
-                                            <i class="fas fa-user mr-1"></i>Nombre completo *
+                                <!-- Datos Personales -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-user"></i>Nombre completo *
                                         </label>
-                                        <input type="text" id="full-name" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                        <input type="text" id="full-name" required class="form-input" 
+                                               placeholder="Tu nombre completo">
                                     </div>
-                                    <div>
-                                        <label class="block text-sm font-semibold text-dark-green mb-2">
-                                            <i class="fas fa-envelope mr-1"></i>Correo electrónico *
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-envelope"></i>Correo electrónico *
                                         </label>
-                                        <input type="email" id="email" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                        <input type="email" id="email" required class="form-input" 
+                                               placeholder="tu@email.com">
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-semibold text-dark-green mb-2">
-                                            <i class="fas fa-phone mr-1"></i>Teléfono *
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-phone"></i>Teléfono *
                                         </label>
-                                        <input type="tel" id="phone" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                        <input type="tel" id="phone" required class="form-input" 
+                                               placeholder="55 1234 5678">
                                     </div>
-                                    <div>
-                                        <label class="block text-sm font-semibold text-dark-green mb-2">
-                                            <i class="fas fa-map-marker-alt mr-1"></i>Código postal *
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-map-marker-alt"></i>Código postal *
                                         </label>
-                                        <input type="text" id="postal-code" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                        <input type="text" id="postal-code" required class="form-input" 
+                                               placeholder="12345">
                                     </div>
                                 </div>
 
                                 <!-- Dirección -->
-                                <div>
-                                    <label class="block text-sm font-semibold text-dark-green mb-2">
-                                        <i class="fas fa-home mr-1"></i>Dirección completa *
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-home"></i>Dirección completa *
                                     </label>
-                                    <input type="text" id="address" required placeholder="Calle, número, colonia"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                    <input type="text" id="address" required class="form-input" 
+                                           placeholder="Calle, número, colonia">
                                 </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-semibold text-dark-green mb-2">
-                                            <i class="fas fa-city mr-1"></i>Ciudad *
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-city"></i>Ciudad *
                                         </label>
-                                        <input type="text" id="city" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                        <input type="text" id="city" required class="form-input" 
+                                               placeholder="Tu ciudad">
                                     </div>
-                                    <div>
-                                        <label class="block text-sm font-semibold text-dark-green mb-2">
-                                            <i class="fas fa-flag mr-1"></i>Estado *
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-flag"></i>Estado *
                                         </label>
-                                        <select id="state" required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                                        <select id="state" required class="form-input">
                                             <option value="">Selecciona tu estado</option>
                                             <option value="CDMX">Ciudad de México</option>
                                             <option value="MEX">Estado de México</option>
@@ -443,37 +389,35 @@
                                 </div>
 
                                 <!-- Referencias -->
-                                <div>
-                                    <label class="block text-sm font-semibold text-dark-green mb-2">
-                                        <i class="fas fa-info-circle mr-1"></i>Referencias adicionales (opcional)
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-info-circle"></i>Referencias adicionales (opcional)
                                     </label>
-                                    <textarea id="references" rows="3"
-                                        placeholder="Entre qué calles, puntos de referencia, etc."
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition"></textarea>
+                                    <textarea id="references" rows="3" class="form-input" 
+                                              placeholder="Entre qué calles, puntos de referencia, etc."></textarea>
                                 </div>
 
-                                <!-- Shipping options -->
-                                <div class="bg-gray-50 rounded-lg p-6">
-                                    <h3 class="text-lg font-bold text-dark-green mb-4">Opciones de Envío</h3>
+                                <!-- Opciones de Envío -->
+                                <div class="shipping-options">
+                                    <h3 class="text-lg font-bold text-dark-green mb-4">
+                                        <i class="fas fa-truck mr-2"></i>Opciones de Envío
+                                    </h3>
                                     <div class="space-y-3">
-                                        <label
-                                            class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-white transition">
-                                            <input type="radio" name="shipping-method" value="standard" checked
-                                                class="mr-3">
-                                            <div class="flex-1">
-                                                <div class="font-semibold">Envío Estándar (3-5 días hábiles)</div>
-                                                <div class="text-sm text-gray-600">Entrega en horario laboral</div>
+                                        <label class="shipping-option">
+                                            <input type="radio" name="shipping-method" value="standard" checked>
+                                            <div class="shipping-option-details">
+                                                <div class="shipping-option-name">Envío Estándar</div>
+                                                <div class="shipping-option-description">3-5 días hábiles • Entrega en horario laboral</div>
                                             </div>
-                                            <div class="font-bold text-sage-green">$50.00</div>
+                                            <div class="shipping-option-price">$50.00</div>
                                         </label>
-                                        <label
-                                            class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-white transition">
-                                            <input type="radio" name="shipping-method" value="express" class="mr-3">
-                                            <div class="flex-1">
-                                                <div class="font-semibold">Envío Express (1-2 días hábiles)</div>
-                                                <div class="text-sm text-gray-600">Entrega prioritaria</div>
+                                        <label class="shipping-option">
+                                            <input type="radio" name="shipping-method" value="express">
+                                            <div class="shipping-option-details">
+                                                <div class="shipping-option-name">Envío Express</div>
+                                                <div class="shipping-option-description">1-2 días hábiles • Entrega prioritaria</div>
                                             </div>
-                                            <div class="font-bold text-sage-green">$120.00</div>
+                                            <div class="shipping-option-price">$120.00</div>
                                         </label>
                                     </div>
                                 </div>
@@ -481,18 +425,22 @@
                         </div>
                     </div>
 
+                    <!-- Resumen del Pedido -->
                     <div class="lg:col-span-1">
-                        <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
-                            <h3 class="text-xl font-bold text-dark-green mb-6">Resumen del Pedido</h3>
+                        <div class="summary-card animate-slide-up">
+                            <h3 class="summary-title">
+                                <i class="fas fa-receipt"></i>
+                                Resumen del Pedido
+                            </h3>
                             <div id="order-summary"></div>
                             <div class="space-y-3">
-                                <button id="continue-to-payment"
-                                    class="w-full bg-dark-green text-white py-3 rounded-lg hover:bg-sage-green transition font-semibold">
-                                    <i class="fas fa-credit-card mr-2"></i>Continuar al pago
+                                <button id="continue-to-payment" class="btn-primary">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Continuar al pago</span>
                                 </button>
-                                <button id="back-to-cart"
-                                    class="w-full bg-gray-100 text-dark-green py-3 rounded-lg hover:bg-gray-200 transition font-semibold">
-                                    <i class="fas fa-arrow-left mr-2"></i>Volver al carrito
+                                <button id="back-to-cart" class="btn-secondary">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Volver al carrito</span>
                                 </button>
                             </div>
                         </div>
@@ -578,13 +526,14 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="../js/promotions-config.js"></script>
     <script src="../js/productos-data.js"></script>
-
-    <script src="../js/carrito-core.js"></script>
     <script src="../js/pdf-generator-ultimate.js"></script>
+    <script src="../js/carrito-mejorado.js"></script>
     <script>
+        // Inicialización simple - el carrito mejorado se encarga de todo
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('🛒 Inicializando carrito limpio');
+            console.log('🛒 Carrito mejorado cargado correctamente');
 
             let discountApplied = false;
             let discountPercentage = 0;
@@ -828,9 +777,13 @@
             document.getElementById('apply-discount').addEventListener('click', function () {
                 const code = document.getElementById('discount-code').value.trim().toUpperCase();
 
-                if (code === 'NUEVOSITIO15' && !discountApplied) {
+                // Usar el sistema de promociones dinámico
+                const promotions = new PromotionsManager();
+                const validPromo = promotions.validatePromoCode(code);
+
+                if (validPromo && !discountApplied) {
                     discountApplied = true;
-                    discountPercentage = 15;
+                    discountPercentage = validPromo.discount;
 
                     const cart = loadCart();
                     const subtotal = cart.reduce((sum, item) => sum + (item.total || item.price * item.quantity), 0);

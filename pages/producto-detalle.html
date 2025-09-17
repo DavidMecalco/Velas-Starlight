@@ -37,9 +37,15 @@
                         'gray-sand': '#D6CEC3',
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
+                        sans: ['Inter', 'Poppins', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'shimmer': 'shimmer 2s infinite',
+                    }
                 }
             }
         }
@@ -51,244 +57,134 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
     
-    <!-- CSS de correcciones -->
-    <link rel="stylesheet" href="../css/fixes.css?v=2.4.1">
-
-    <!-- AOS Animations -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="../css/producto-detalle.css">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Estilos Personalizados -->
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
+        /* Variables CSS para consistencia */
+        :root {
+            --primary-green: #2D3E33;
+            --secondary-green: #3A5A40;
+            --accent-green: #A3B18A;
+            --cream: #F6F1E9;
+            --warm-cream: #EDE6DA;
+            --shadow-light: rgba(45, 62, 51, 0.08);
+            --shadow-medium: rgba(45, 62, 51, 0.15);
+            --shadow-heavy: rgba(45, 62, 51, 0.25);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
         }
 
-        .hover-lift {
-            transition: all 0.3s ease;
+        /* Animaciones base */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(45, 62, 51, 0.15);
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .price-badge {
-            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Zoom de imagen */
-        .product-image {
-            transition: transform 0.3s ease;
-            cursor: zoom-in;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
-        .product-image:hover {
-            transform: scale(1.05);
+        /* Layout principal */
+        .product-container {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-cream) 100%);
+            min-height: 100vh;
         }
 
-        .product-image.zoomed {
-            transform: scale(2);
-            cursor: zoom-out;
-        }
-
-        /* Galería de imágenes */
-        .image-gallery {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .main-image {
-            grid-column: 1 / -1;
-        }
-
-        .thumbnail {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .thumbnail:hover,
-        .thumbnail.active {
-            border-color: #3A5A40;
-            transform: scale(1.05);
-        }
-
-        /* Animaciones para opciones */
-        .option-card {
-            transition: all 0.3s ease;
-        }
-
-        .option-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(45, 62, 51, 0.1);
-        }
-
-        .option-card.selected {
-            border-color: #3A5A40;
-            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
-            color: white;
-        }
-
-        /* Breadcrumbs */
-        .breadcrumb {
-            color: #6B7280;
-        }
-
-        .breadcrumb:hover {
-            color: #3A5A40;
-        }
-
-        /* Sticky add to cart */
-        .sticky-cart {
-            position: sticky;
-            top: 100px;
-            z-index: 40;
-        }
-
-        /* Notificaciones elegantes */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 16px 24px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transform: translateX(400px);
-            transition: all 0.3s ease;
-            max-width: 350px;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.success {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .notification.warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .notification.info {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-        }
-
-        .notification .close-btn {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            opacity: 0.7;
-        }
-
-        .notification .close-btn:hover {
-            opacity: 1;
-        }
-
-        /* Estilos mejorados para la página de producto */
-        .product-hero {
-            background: linear-gradient(135deg, #F6F1E9 0%, #EDE6DA 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23A3B18A" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%233A5A40" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%232D3E33" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .product-image-container {
+        /* Imagen del producto mejorada */
+        .product-image-wrapper {
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-            border-radius: 20px;
+            border-radius: var(--border-radius-lg);
             padding: 2rem;
             box-shadow: 
-                0 20px 40px rgba(45, 62, 51, 0.1),
-                0 10px 20px rgba(45, 62, 51, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+                0 25px 50px var(--shadow-light),
+                0 15px 30px var(--shadow-medium);
             position: relative;
             overflow: hidden;
         }
 
-        .product-image-container::before {
+        .product-image-wrapper::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
             transform: rotate(45deg);
             animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            pointer-events: none;
         }
 
         .product-image {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(45, 62, 51, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--border-radius);
+            transition: var(--transition-smooth);
+            cursor: zoom-in;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px var(--shadow-medium);
         }
 
         .product-image:hover {
-            transform: scale(1.03) rotate(1deg);
-            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px var(--shadow-heavy);
         }
 
-        .product-info-card {
+        /* Información del producto */
+        .product-info {
             background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
-            border-radius: 20px;
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
             box-shadow: 
-                0 20px 40px rgba(45, 62, 51, 0.08),
-                0 10px 20px rgba(45, 62, 51, 0.04);
-            border: 1px solid rgba(163, 177, 138, 0.2);
+                0 20px 40px var(--shadow-light),
+                0 10px 20px var(--shadow-medium);
+            border: 1px solid rgba(163, 177, 138, 0.15);
             position: relative;
-            overflow: hidden;
         }
 
-        .product-info-card::before {
+        .product-info::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #3A5A40 0%, #A3B18A 50%, #3A5A40 100%);
+            background: linear-gradient(90deg, var(--secondary-green) 0%, var(--accent-green) 50%, var(--secondary-green) 100%);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
         }
 
-        .price-display {
-            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
-            border-radius: 15px;
-            padding: 1.5rem;
+        /* Precio destacado */
+        .price-card {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            border-radius: var(--border-radius);
+            padding: 2rem;
             color: white;
+            text-align: center;
             position: relative;
             overflow: hidden;
+            margin: 2rem 0;
         }
 
-        .price-display::before {
+        .price-card::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -304,11 +200,14 @@
             50% { opacity: 1; }
         }
 
+        /* Opciones de producto */
         .option-card {
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
             border: 2px solid #e9ecef;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
@@ -329,63 +228,78 @@
         }
 
         .option-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(45, 62, 51, 0.15);
-            border-color: #A3B18A;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--shadow-medium);
+            border-color: var(--accent-green);
         }
 
         .option-card.selected {
-            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
             color: white;
-            border-color: #3A5A40;
-            box-shadow: 0 10px 30px rgba(58, 90, 64, 0.3);
+            border-color: var(--secondary-green);
+            box-shadow: 0 15px 35px rgba(58, 90, 64, 0.3);
         }
 
-        .option-card.selected span {
-            color: white;
-        }
-
-        .fragrance-select {
+        /* Controles de cantidad */
+        .quantity-wrapper {
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .fragrance-select:focus {
-            border-color: #3A5A40;
-            box-shadow: 0 0 0 3px rgba(58, 90, 64, 0.1);
-            outline: none;
-        }
-
-        .quantity-controls {
-            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 0.5rem;
             border: 2px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .quantity-btn {
-            background: linear-gradient(145deg, #3A5A40 0%, #2D3E33 100%);
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
             color: white;
+            border: none;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
         }
 
         .quantity-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(45, 62, 51, 0.3);
+            box-shadow: 0 5px 15px var(--shadow-medium);
         }
 
-        .add-to-cart-btn {
-            background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
-            border-radius: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .quantity-input {
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            width: 60px;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+        }
+
+        /* Botón principal */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
-        .add-to-cart-btn::before {
+        .btn-primary::before {
             content: '';
             position: absolute;
             top: 50%;
@@ -398,33 +312,70 @@
             transition: width 0.6s, height 0.6s;
         }
 
-        .add-to-cart-btn:hover::before {
+        .btn-primary:hover::before {
             width: 300px;
             height: 300px;
         }
 
-        .add-to-cart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.3);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px var(--shadow-heavy);
         }
 
-        .features-card {
+        /* Botones secundarios */
+        .btn-secondary {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px var(--shadow-light);
+            border-color: var(--accent-green);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+        }
+
+        /* Características del producto */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
             background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
-            border-radius: 20px;
-            border: 1px solid rgba(163, 177, 138, 0.2);
-            transition: all 0.3s ease;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(163, 177, 138, 0.15);
+            transition: var(--transition-smooth);
         }
 
-        .features-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(45, 62, 51, 0.1);
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px var(--shadow-light);
         }
 
         .feature-icon {
-            background: linear-gradient(135deg, #A3B18A 0%, #3A5A40 100%);
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--secondary-green) 100%);
+            color: white;
             width: 60px;
             height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -432,80 +383,77 @@
             box-shadow: 0 10px 20px rgba(163, 177, 138, 0.3);
         }
 
-        .related-product-card {
-            background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
-            border-radius: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(163, 177, 138, 0.1);
+        /* Breadcrumbs */
+        .breadcrumb-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(163, 177, 138, 0.1);
         }
 
-        .related-product-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(45, 62, 51, 0.15);
+        .breadcrumb-link {
+            color: #6B7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        .badge {
-            background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+        .breadcrumb-link:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Notificaciones */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
             font-weight: 600;
-            box-shadow: 0 5px 15px rgba(45, 62, 51, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 350px;
         }
 
-        .badge.featured {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        .notification.show {
+            transform: translateX(0);
         }
 
-        .badge.new {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .notification.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-info {
+                padding: 1.5rem;
+            }
+            
+            .product-image-wrapper {
+                padding: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Animaciones de entrada */
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out;
         }
 
-        .fade-in-left {
-            animation: fadeInLeft 0.8s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .fade-in-right {
-            animation: fadeInRight 0.8s ease-out;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .animate-scale-in {
+            animation: scaleIn 0.4s ease-out;
         }
     </style>
 </head>
@@ -582,17 +530,17 @@
     </header>
 
     <!-- Contenido Principal -->
-    <main class="pt-20">
+    <main class="pt-20 product-container">
 
         <!-- Breadcrumbs -->
-        <section class="py-4 bg-white border-b">
-            <div class="max-w-6xl mx-auto px-6">
+        <section class="breadcrumb-nav py-4">
+            <div class="max-w-7xl mx-auto px-6">
                 <nav class="flex items-center space-x-2 text-sm">
-                    <a href="../index.html" class="breadcrumb hover:text-sage-green transition-colors">
+                    <a href="../index.html" class="breadcrumb-link flex items-center">
                         <i class="fas fa-home mr-1"></i>Inicio
                     </a>
                     <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
-                    <a href="productos.html" class="breadcrumb hover:text-sage-green transition-colors">Productos</a>
+                    <a href="productos.html" class="breadcrumb-link">Productos</a>
                     <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
                     <span id="breadcrumb-category" class="text-sage-green font-medium">Velas</span>
                     <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
@@ -602,159 +550,172 @@
         </section>
 
         <!-- Producto Principal -->
-        <section class="py-12 bg-white">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
                     <!-- Galería de Imágenes -->
-                    <div class="space-y-6" data-aos="fade-right">
+                    <div class="animate-fade-in">
                         <!-- Imagen Principal -->
-                        <div
-                            class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-beige-almond to-warm-cream p-6">
-                            <img id="main-product-image" src="" alt="Producto"
-                                class="product-image w-full h-96 object-cover rounded-xl shadow-lg">
+                        <div class="product-image-wrapper mb-6">
+                            <img id="main-product-image" src="" alt="Producto" class="product-image">
 
-                            <!-- Badges -->
-                            <div class="absolute top-8 left-8 flex flex-col space-y-2" id="product-badges">
+                            <!-- Badges flotantes -->
+                            <div class="absolute top-6 left-6 flex flex-col space-y-2" id="product-badges">
                                 <!-- Se llenan dinámicamente -->
                             </div>
 
                             <!-- Categoría -->
-                            <div class="absolute top-8 right-8">
+                            <div class="absolute top-6 right-6">
                                 <span id="product-category-badge"
-                                    class="bg-sage-green text-white px-4 py-2 rounded-full text-sm font-semibold">
+                                    class="bg-sage-green text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                     Producto
                                 </span>
                             </div>
 
-                            <!-- Zoom hint -->
-                            <div class="absolute bottom-8 left-8 right-8">
-                                <div
-                                    class="bg-dark-green/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-center">
-                                    <p class="text-sm opacity-90">
+                            <!-- Indicador de zoom -->
+                            <div class="absolute bottom-6 left-6 right-6 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <div class="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-center">
+                                    <p class="text-sm">
                                         <i class="fas fa-search-plus mr-2"></i>
-                                        Haz clic para hacer zoom
+                                        Haz clic para ampliar
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Miniaturas (si hay múltiples imágenes) -->
-                        <div id="image-thumbnails" class="hidden grid grid-cols-4 gap-3">
+                        <!-- Miniaturas -->
+                        <div id="image-thumbnails" class="hidden grid grid-cols-4 gap-3 mb-6">
                             <!-- Se llenan dinámicamente -->
                         </div>
 
-                        <!-- Indicadores de calidad -->
-                        <div class="flex justify-center space-x-6 text-sm text-gray-600">
-                            <div class="flex items-center">
-                                <i class="fas fa-leaf text-green-500 mr-2"></i>Natural
+                        <!-- Características destacadas -->
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-leaf text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-dark-green mb-1">100% Natural</h4>
+                                <p class="text-sm text-gray-600">Ingredientes naturales</p>
                             </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-hand-sparkles text-blue-500 mr-2"></i>Artesanal
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-hand-sparkles text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-dark-green mb-1">Artesanal</h4>
+                                <p class="text-sm text-gray-600">Hecho a mano</p>
                             </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-heart text-red-500 mr-2"></i>Hecho con amor
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-heart text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-dark-green mb-1">Con Amor</h4>
+                                <p class="text-sm text-gray-600">Cuidado en cada detalle</p>
+                            </div>
+                        </div>
+
+                        <!-- Ingredientes (lado izquierdo) -->
+                        <div id="product-ingredients-left" class="mt-8 bg-white rounded-2xl p-6 shadow-lg" style="display: none;">
+                            <div class="text-center mb-4">
+                                <div class="inline-flex items-center justify-center w-12 h-12 bg-sage-green/10 rounded-full mb-3">
+                                    <i class="fas fa-leaf text-lg text-sage-green"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-dark-green">Ingredientes</h3>
+                                <p class="text-gray-600 text-xs mt-1">Componentes naturales seleccionados</p>
+                            </div>
+                            <div id="ingredients-list-left" class="space-y-3">
+                                <!-- Se llena dinámicamente con los ingredientes del producto -->
                             </div>
                         </div>
                     </div>
 
                     <!-- Información del Producto -->
-                    <div class="space-y-8" data-aos="fade-left">
+                    <div class="animate-slide-up">
+                        <div class="product-info">
+                            <!-- Título y Descripción -->
+                            <div class="mb-8">
+                                <h1 id="product-title" class="font-serif text-4xl lg:text-5xl font-bold text-dark-green mb-4 leading-tight">
+                                    Nombre del Producto
+                                </h1>
+                                <p id="product-description" class="text-lg text-gray-600 leading-relaxed">
+                                    Descripción del producto que destaca sus características únicas y beneficios...
+                                </p>
+                            </div>
 
-                        <!-- Título y Descripción -->
-                        <div>
-                            <h1 id="product-title"
-                                class="font-serif text-4xl md:text-5xl font-bold text-dark-green mb-4">
-                                Nombre del Producto
-                            </h1>
-                            <p id="product-description" class="text-lg text-gray-600 leading-relaxed">
-                                Descripción del producto...
-                            </p>
-                        </div>
-
-                        <!-- Precio -->
-                        <div class="bg-gradient-to-r from-dark-green to-sage-green text-white p-6 rounded-2xl">
-                            <div class="flex items-center justify-center">
+                            <!-- Precio destacado -->
+                            <div class="price-card">
                                 <div class="text-center">
-                                    <span class="text-lg opacity-90">Precio desde:</span>
-                                    <div id="product-price" class="text-3xl font-bold">$0 MXN</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Opciones del Producto -->
-                        <div class="space-y-6">
-
-                            <!-- Tipo/Material -->
-                            <div id="type-section">
-                                <label class="block text-lg font-semibold text-dark-green mb-4" id="type-label">
-                                    Tipo de Cera:
-                                </label>
-                                <div id="type-options" class="flex flex-wrap gap-3">
-                                    <!-- Se llena dinámicamente -->
+                                    <span class="text-lg opacity-90 block mb-2">Precio desde:</span>
+                                    <div id="product-price" class="text-4xl font-bold">$0 MXN</div>
                                 </div>
                             </div>
 
-                            <!-- Tamaños -->
-                            <div>
-                                <label class="block text-lg font-semibold text-dark-green mb-4">
-                                    Tamaño:
-                                </label>
-                                <div id="size-options" class="space-y-3">
-                                    <!-- Se llena dinámicamente -->
+                            <!-- Opciones del Producto -->
+                            <div class="space-y-8">
+                                <!-- Tipo/Material -->
+                                <div id="type-section">
+                                    <label class="block text-lg font-semibold text-dark-green mb-4" id="type-label">
+                                        Tipo de Cera:
+                                    </label>
+                                    <div id="type-options" class="grid grid-cols-2 gap-3">
+                                        <!-- Se llena dinámicamente -->
+                                    </div>
+                                </div>
+
+                                <!-- Tamaños -->
+                                <div>
+                                    <label class="block text-lg font-semibold text-dark-green mb-4">
+                                        Tamaño:
+                                    </label>
+                                    <div id="size-options" class="space-y-3">
+                                        <!-- Se llena dinámicamente -->
+                                    </div>
+                                </div>
+
+                                <!-- Fragancias -->
+                                <div>
+                                    <label class="block text-lg font-semibold text-dark-green mb-4" id="fragrance-label">
+                                        Fragancia:
+                                    </label>
+                                    <select id="fragrance-select" class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-sage-green bg-white transition-all duration-300">
+                                        <option>Selecciona una fragancia</option>
+                                    </select>
+                                </div>
+
+                                <!-- Cantidad -->
+                                <div>
+                                    <label class="block text-lg font-semibold text-dark-green mb-4">
+                                        Cantidad:
+                                    </label>
+                                    <div class="quantity-wrapper">
+                                        <button id="decrease-qty" class="quantity-btn">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input id="quantity-input" type="number" value="1" min="1" class="quantity-input">
+                                        <button id="increase-qty" class="quantity-btn">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Fragancias -->
-                            <div>
-                                <label class="block text-lg font-semibold text-dark-green mb-4" id="fragrance-label">
-                                    Fragancia:
-                                </label>
-                                <select id="fragrance-select"
-                                    class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-sage-green bg-white">
-                                    <option>Selecciona una fragancia</option>
-                                </select>
-                            </div>
-
-                            <!-- Cantidad -->
-                            <div>
-                                <label class="block text-lg font-semibold text-dark-green mb-4">
-                                    Cantidad:
-                                </label>
-                                <div class="flex items-center space-x-4">
-                                    <button id="decrease-qty"
-                                        class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-lg">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input id="quantity-input" type="number" value="1" min="1"
-                                        class="w-24 text-center p-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:border-sage-green">
-                                    <button id="increase-qty"
-                                        class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors text-lg">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Botones de Acción -->
-                        <div class="space-y-4 sticky-cart">
-                            <button id="add-to-cart-btn"
-                                class="w-full bg-gradient-to-r from-dark-green to-sage-green text-white py-4 px-6 rounded-xl hover:from-sage-green hover:to-dark-green transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold text-lg">
-                                <i class="fas fa-shopping-cart mr-3"></i>
-                                Agregar al Carrito
-                            </button>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <button id="whatsapp-btn"
-                                    class="bg-green-500 text-white py-3 px-4 rounded-xl hover:bg-green-600 transition-colors font-medium">
-                                    <i class="fab fa-whatsapp mr-2"></i>
-                                    WhatsApp
+                            <!-- Botones de Acción -->
+                            <div class="space-y-4 mt-8">
+                                <button id="add-to-cart-btn" class="btn-primary">
+                                    <i class="fas fa-shopping-cart mr-3"></i>
+                                    Agregar al Carrito
                                 </button>
-                                <button id="share-btn"
-                                    class="bg-gray-500 text-white py-3 px-4 rounded-xl hover:bg-gray-600 transition-colors font-medium">
-                                    <i class="fas fa-share-alt mr-2"></i>
-                                    Compartir
-                                </button>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <button id="whatsapp-btn" class="btn-secondary btn-whatsapp">
+                                        <i class="fab fa-whatsapp mr-2"></i>
+                                        WhatsApp
+                                    </button>
+                                    <button id="share-btn" class="btn-secondary">
+                                        <i class="fas fa-share-alt mr-2"></i>
+                                        Compartir
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -781,6 +742,8 @@
                         </ul>
                     </div>
 
+
+
                     <!-- Cuidados -->
                     <div class="bg-white rounded-2xl p-8 hover-lift" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center mb-6">
@@ -799,33 +762,33 @@
         </section>
 
         <!-- Productos Relacionados -->
-        <section class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-green mb-4">
-                        Productos Relacionados
+        <section class="py-20 bg-gradient-to-br from-beige-almond to-warm-cream">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 animate-fade-in">
+                    <h2 class="font-serif text-4xl font-bold text-dark-green mb-4">
+                        También Te Podría Interesar
                     </h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Descubre otros productos que podrían interesarte
+                        Descubre otros productos artesanales de nuestra colección
                     </p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-sage-green to-dark-green mx-auto mt-6 rounded-full"></div>
                 </div>
 
-                <div id="related-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="related-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Se llena dinámicamente -->
                 </div>
+
+                <!-- Botón ver más productos -->
+                <div class="text-center mt-12">
+                    <a href="productos.html" class="btn-secondary inline-flex items-center px-8 py-4 text-lg">
+                        <i class="fas fa-th-large mr-3"></i>
+                        Ver Todos los Productos
+                    </a>
+                </div>
             </div>
         </section>
 
-        <!-- Botón Volver -->
-        <section class="py-8 bg-beige-almond">
-            <div class="max-w-6xl mx-auto px-6 text-center">
-                <a href="productos.html"
-                    class="inline-flex items-center bg-sage-green text-white px-8 py-4 rounded-xl hover:bg-dark-green transition-colors font-semibold text-lg">
-                    <i class="fas fa-arrow-left mr-3"></i>
-                    Volver al Catálogo
-                </a>
-            </div>
-        </section>
+       
     </main>
 
     <!-- Footer -->
@@ -949,24 +912,24 @@
     <!-- Scripts -->
     <script src="../js/mobile-menu-clean.js"></script>
     <script src="../js/productos-data.js"></script>
-    <script src="../js/producto-detalle.js"></script>
+    <script src="../js/immediate-fix.js"></script>
+    <script src="../js/fix-products-data.js"></script>
+    <script src="../js/debug-product-detail.js"></script>
+    <script src="../js/producto-detalle-mejorado.js"></script>
 
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-        // Inicialización simple
+        // Inicialización mejorada con animaciones
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof ProductDetailPage !== 'undefined') {
-                const productDetailPage = new ProductDetailPage();
-                productDetailPage.init();
-                console.log('✅ Página de producto detalle inicializada');
-            }
+            // Inicializar contador del carrito
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const cartCountElements = document.querySelectorAll('#cart-count, #cart-count-mobile');
+            cartCountElements.forEach(element => {
+                element.textContent = totalItems;
+            });
+            
+            console.log('✅ Página de producto detalle mejorada lista');
         });
     </script>
 

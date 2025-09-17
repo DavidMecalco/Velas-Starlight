@@ -226,9 +226,13 @@
             applyDiscountBtn.addEventListener('click', function () {
                 const code = document.getElementById('discount-code').value.trim().toUpperCase();
 
-                if (code === 'NUEVOSITIO15' && !discountApplied) {
+                // Usar el sistema de promociones dinámico
+                const promotions = new PromotionsManager();
+                const validPromo = promotions.validatePromoCode(code);
+
+                if (validPromo && !discountApplied) {
                     discountApplied = true;
-                    discountPercentage = 15;
+                    discountPercentage = validPromo.discount;
                     window.discountApplied = true;
                     window.discountPercentage = 15;
 
