@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito Simple - Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Pasos ultra minimalistas */
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem 0;
+            max-width: 300px;
+            margin: 2rem auto;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+        
+        .step-circle {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #d1d5db;
+            background: #f9fafb;
+            color: #6b7280;
+        }
+        
+        .step-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+        }
+        
+        .progress-step.active .step-circle {
+            background: #374151;
+            color: white;
+            border-color: #374151;
+        }
+        
+        .progress-step.active .step-label {
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .progress-step.completed .step-circle {
+            background: #059669;
+            color: white;
+            border-color: #059669;
+        }
+        
+        .progress-step.completed .step-label {
+            color: #059669;
+            font-weight: 500;
+        }
+        
+        .progress-line {
+            position: absolute;
+            top: 0.875rem;
+            left: 60%;
+            width: 4rem;
+            height: 1px;
+            background: #e5e7eb;
+        }
+        
+        .progress-step:last-child .progress-line {
+            display: none;
+        }
+        
+        .progress-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #059669;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-step.completed .progress-line::before {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Carrito de Velas Starlight</h1>
+
+        <!-- Progress Steps Ultra Minimalistas -->
+        <div class="progress-container">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <span class="step-label">Carrito</span>
+                <div class="progress-line"></div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <span class="step-label">Envío</span>
+                <div class="progress-line"></div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">3</div>
+                <span class="step-label">PDF</span>
+            </div>
+        </div>
+
+        <!-- Botones de prueba -->
+        <div class="flex gap-4 justify-center mb-8 flex-wrap">
+            <button onclick="addVelaJack()" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                <i class="fas fa-plus mr-2"></i>Agregar Vela Jack
+            </button>
+            <button onclick="addVelaRosa()" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                <i class="fas fa-plus mr-2"></i>Agregar Vela Rosa
+            </button>
+            <button onclick="clearAllCart()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                <i class="fas fa-trash mr-2"></i>Limpiar Todo
+            </button>
+        </div>
+
+        <!-- Contenedor del carrito -->
+        <div class="max-w-4xl mx-auto">
+            <!-- Header del carrito -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-shopping-cart mr-3 text-green-600"></i>
+                        Productos en tu carrito
+                    </h2>
+                    <div class="flex gap-6 text-sm">
+                        <span class="flex items-center text-gray-600">
+                            <i class="fas fa-box mr-2 text-green-600"></i>
+                            <span id="product-count">0</span> productos
+                        </span>
+                        <span class="flex items-center text-gray-600">
+                            <i class="fas fa-layer-group mr-2 text-green-600"></i>
+                            <span id="unit-count">0</span> unidades
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de productos -->
+            <div id="cart-container" class="space-y-4">
+                <!-- Los productos aparecerán aquí -->
+            </div>
+
+            <!-- Mensaje de carrito vacío -->
+            <div id="empty-message" class="bg-white rounded-lg shadow-md p-12 text-center">
+                <i class="fas fa-shopping-cart text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-600 mb-2">Tu carrito está vacío</h3>
+                <p class="text-gray-500">Agrega algunos productos para comenzar</p>
+            </div>
+
+            <!-- Resumen del carrito -->
+            <div id="cart-summary" class="bg-white rounded-lg shadow-md p-6 mt-6 hidden">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Resumen del pedido</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span>Subtotal:</span>
+                        <span id="subtotal-amount">$0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Envío:</span>
+                        <span id="shipping-amount">$120.00</span>
+                    </div>
+                    <div class="flex justify-between text-green-600" id="savings-row" style="display: none;">
+                        <span>Ahorros por promociones:</span>
+                        <span id="savings-amount">-$0.00</span>
+                    </div>
+                    <hr>
+                    <div class="flex justify-between text-xl font-bold">
+                        <span>Total:</span>
+                        <span id="total-amount">$120.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array global para el carrito
+        let cart = [];
+
+        // Función para agregar Vela Jack
+        function addVelaJack() {
+            const product = {
+                id: Date.now(),
+                name: 'Vela Jack Calabaza',
+                price: 80,
+                quantity: 1,
+                image: 'https://via.placeholder.com/100x100/FF6B35/FFFFFF?text=🎃',
+                fragrance: 'Canela y Naranja',
+                color: 'Naranja',
+                size: 'Mediana',
+                promotion2x1: true
+            };
+            
+            cart.push(product);
+            updateCartDisplay();
+            console.log('Vela Jack agregada:', product);
+        }
+
+        // Función para agregar Vela Rosa
+        function addVelaRosa() {
+            const product = {
+                id: Date.now() + 1,
+                name: 'Vela Rosa Romántica',
+                price: 120,
+                quantity: 1,
+                image: 'https://via.placeholder.com/100x100/FF69B4/FFFFFF?text=🌹',
+                fragrance: 'Rosas y Vainilla',
+                color: 'Rosa',
+                size: 'Grande',
+                promotion2x1: false,
+                specialDiscount: 15
+            };
+            
+            cart.push(product);
+            updateCartDisplay();
+            console.log('Vela Rosa agregada:', product);
+        }
+
+        // Función para limpiar carrito
+        function clearAllCart() {
+            cart = [];
+            updateCartDisplay();
+            console.log('Carrito limpiado');
+        }
+
+        // Función para cambiar cantidad
+        function changeQuantity(index, change) {
+            if (cart[index]) {
+                cart[index].quantity += change;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+                updateCartDisplay();
+            }
+        }
+
+        // Función para eliminar producto
+        function removeProduct(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        // Función principal para actualizar la visualización
+        function updateCartDisplay() {
+            const container = document.getElementById('cart-container');
+            const emptyMessage = document.getElementById('empty-message');
+            const summary = document.getElementById('cart-summary');
+            const productCount = document.getElementById('product-count');
+            const unitCount = document.getElementById('unit-count');
+
+            // Actualizar contadores
+            const totalProducts = cart.length;
+            const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            productCount.textContent = totalProducts;
+            unitCount.textContent = totalUnits;
+
+            if (cart.length === 0) {
+                // Mostrar mensaje vacío
+                container.innerHTML = '';
+                emptyMessage.style.display = 'block';
+                summary.classList.add('hidden');
+            } else {
+                // Ocultar mensaje vacío y mostrar productos
+                emptyMessage.style.display = 'none';
+                summary.classList.remove('hidden');
+                
+                // Renderizar productos
+                container.innerHTML = cart.map((item, index) => {
+                    let originalPrice = item.price * item.quantity;
+                    let finalPrice = originalPrice;
+                    let savings = 0;
+                    let promotionBadge = '';
+
+                    // Calcular promoción 2x1
+                    if (item.promotion2x1) {
+                        finalPrice = item.price * Math.ceil(item.quantity / 2);
+                        savings = originalPrice - finalPrice;
+                        promotionBadge = `
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                                <i class="fas fa-gift mr-1"></i>2x1 - Ahorras $${savings.toFixed(2)}
+                            </span>
+                        `;
+                    }
+
+                    // Calcular descuento especial
+                    if (item.specialDiscount) {
+                        const discount = finalPrice * (item.specialDiscount / 100);
+                        finalPrice -= discount;
+                        savings += discount;
+                        promotionBadge += `
+                            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full ml-2">
+                                <i class="fas fa-percent mr-1"></i>${item.specialDiscount}% OFF - Ahorras $${discount.toFixed(2)}
+                            </span>
+                        `;
+                    }
+
+                    return `
+                        <div class="bg-white rounded-lg shadow-md p-6 flex items-center gap-6">
+                            <img src="${item.image}" alt="${item.name}" class="w-24 h-24 rounded-lg object-cover">
+                            
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">${item.name}</h3>
+                                <div class="text-sm text-gray-600 space-y-1 mb-3">
+                                    <div><i class="fas fa-leaf text-green-500 mr-2"></i>${item.fragrance}</div>
+                                    <div><i class="fas fa-palette text-blue-500 mr-2"></i>${item.color}</div>
+                                    <div><i class="fas fa-ruler text-purple-500 mr-2"></i>${item.size}</div>
+                                </div>
+                                ${promotionBadge}
+                            </div>
+
+                            <div class="flex items-center gap-4 bg-gray-50 rounded-lg px-4 py-3">
+                                <button onclick="changeQuantity(${index}, -1)" 
+                                        class="w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="font-bold text-xl min-w-[3rem] text-center">${item.quantity}</span>
+                                <button onclick="changeQuantity(${index}, 1)" 
+                                        class="w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center transition-colors">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="text-right min-w-[120px]">
+                                <div class="text-2xl font-bold text-gray-800">$${finalPrice.toFixed(2)}</div>
+                                <div class="text-sm text-gray-500">$${item.price.toFixed(2)} c/u</div>
+                                ${savings > 0 ? `
+                                    <div class="text-xs text-gray-400 line-through">
+                                        Original: $${originalPrice.toFixed(2)}
+                                    </div>
+                                ` : ''}
+                            </div>
+
+                            <button onclick="removeProduct(${index})" 
+                                    class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors" 
+                                    title="Eliminar producto">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+                // Actualizar resumen
+                updateSummary();
+            }
+        }
+
+        // Función para actualizar resumen
+        function updateSummary() {
+            let subtotal = 0;
+            let totalSavings = 0;
+
+            cart.forEach(item => {
+                let originalPrice = item.price * item.quantity;
+                let finalPrice = originalPrice;
+
+                if (item.promotion2x1) {
+                    finalPrice = item.price * Math.ceil(item.quantity / 2);
+                    totalSavings += originalPrice - finalPrice;
+                }
+
+                if (item.specialDiscount) {
+                    const discount = finalPrice * (item.specialDiscount / 100);
+                    finalPrice -= discount;
+                    totalSavings += discount;
+                }
+
+                subtotal += finalPrice;
+            });
+
+            const shipping = subtotal >= 500 ? 0 : 120;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal-amount').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('shipping-amount').textContent = shipping === 0 ? 'GRATIS' : `$${shipping.toFixed(2)}`;
+            document.getElementById('total-amount').textContent = `$${total.toFixed(2)}`;
+
+            const savingsRow = document.getElementById('savings-row');
+            if (totalSavings > 0) {
+                document.getElementById('savings-amount').textContent = `-$${totalSavings.toFixed(2)}`;
+                savingsRow.style.display = 'flex';
+            } else {
+                savingsRow.style.display = 'none';
+            }
+        }
+
+        // Inicializar la visualización al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+            console.log('Carrito inicializado');
+        });
+    </script>
+</body>
+</html>

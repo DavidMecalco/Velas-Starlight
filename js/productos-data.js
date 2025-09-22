@@ -4,11 +4,11 @@
 * Velas Starlight - Products Database
 * ========================================
 * 
-* 📅 Generado: 2025-09-17 a las 2:20:23 p.m.
+* 📅 Generado: 2025-09-22 a las 10:14:26 a.m.
 * 📊 Total productos: 18
 * 🏷️ Categorías: Vela, Belleza
 * 🌸 Fragancias únicas: 26
-* 🎯 Temáticas: 1
+* 🎯 Temáticas: 2
 * � PromocionAes activas: 5
 * 
 * ========================================
@@ -184,20 +184,18 @@ const productosData = [
         "ingredients": []
     },
     {
-        "id": 3,
         "title": "Bosque Encantado",
         "category": "Vela",
         "description": "Trae la magia de las fiestas a tu hogar con nuestra Vela Bosque Encantado. Esta encantadora vela artesanal captura la esencia de la Navidad en un diseño exquisito: un pequeño árbol festivo que se alza majestuosamente dentro de un elegante vaso de cristal. Perfecta para evocar la alegría de la temporada, su sutil brillo y aroma (personalizable con fragancias navideñas) transformarán cualquier espacio en un refugio festivo.",
         "image": "../images/vela-starlight-pino.jpeg",
+        "imageData": null,
+        "featured": true,
+        "new": false,
+        "bestseller": false,
+        "available": false,
         "types": [
             "Soya",
             "Parafina"
-        ],
-        "sizes": [
-            {
-                "label": "140 gr",
-                "price": 120
-            }
         ],
         "fragrances": [
             "Pino Fresco",
@@ -206,13 +204,18 @@ const productosData = [
             "Menta",
             "Sándalo"
         ],
-        "featured": true,
-        "new": false,
-        "available": true,
-        "bestseller": false,
-        "theme": null,
+        "sizes": [
+            {
+                "label": "140 gr",
+                "price": 120
+            }
+        ],
+        "characteristics": [],
+        "care": [],
+        "theme": "Navidad",
         "promotion2x1": false,
-        "specialDiscount": null
+        "specialDiscount": null,
+        "ingredients": []
     },
     {
         "id": 4,
@@ -422,13 +425,22 @@ const productosData = [
         "specialDiscount": null
     },
     {
-        "id": 9,
         "title": "Muñeco Calabaza",
         "category": "Vela",
         "description": "Celebra la magia de la temporada con una pieza única que fusiona dos íconos de las festividades: la calidez de la calabaza y la alegría de un muñeco. Nuestra Vela Muñeco Calabaza es una creación artesanal que llenará tu hogar de encanto y tradición. Con un diseño ingenioso y divertido, esta vela no solo ilumina, sino que se convierte en el centro de atención de cualquier decoración. Sus detalles, desde el simpático rostro hasta el pequeño sombrero de bruja, evocan la esencia del Día de Muertos y Halloween, mientras que el toque de color naranja y la ambientación festiva la hacen inolvidable.",
         "image": "../images/vela-calabza.png",
+        "imageData": null,
+        "featured": false,
+        "new": false,
+        "bestseller": true,
+        "available": true,
         "types": [
             "Parafina"
+        ],
+        "fragrances": [
+            "Cempasúchil",
+            "Incienso",
+            "Copal"
         ],
         "sizes": [
             {
@@ -436,18 +448,12 @@ const productosData = [
                 "price": 80
             }
         ],
-        "fragrances": [
-            "Cempasúchil",
-            "Incienso",
-            "Copal"
-        ],
-        "featured": false,
-        "new": true,
-        "available": true,
-        "bestseller": false,
-        "theme": null,
+        "characteristics": [],
+        "care": [],
+        "theme": "Día de Muertos",
         "promotion2x1": false,
-        "specialDiscount": null
+        "specialDiscount": null,
+        "ingredients": []
     },
     {
         "title": "Jack Calavera",
