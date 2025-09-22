@@ -87,26 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const productCards = document.querySelectorAll('.product-card');
         
         productCards.forEach(card => {
+            // Efectos simples sin rotación
             card.addEventListener('mouseenter', function(e) {
-                this.style.transform = 'translateY(-12px) scale(1.02)';
-            });
-            
-            card.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                
-                this.style.transform = `translateY(-12px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                this.style.transform = 'translateY(-4px)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+                this.style.transform = 'translateY(0)';
             });
         });
     }

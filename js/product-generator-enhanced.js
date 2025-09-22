@@ -26,6 +26,14 @@ class EnhancedProductGenerator {
             return;
         }
 
+        // Debug: Verificar temáticas en productos originales
+        console.log('🔍 Verificando temáticas en productos originales:');
+        this.products.forEach((product, index) => {
+            if (product.theme) {
+                console.log(`🎭 TEMÁTICA ENCONTRADA: ${product.title} - ${product.theme} (ID: ${product.id})`);
+            }
+        });
+
         this.render();
         this.updateStats();
         console.log(`✅ EnhancedProductGenerator inicializado con ${this.products.length} productos`);
@@ -96,6 +104,13 @@ class EnhancedProductGenerator {
         }
 
         console.log(`🔄 Renderizando ${this.filteredProducts.length} productos`);
+        
+        // Debug: Mostrar todos los productos con temática
+        const productsWithTheme = this.filteredProducts.filter(p => p.theme);
+        console.log(`🎭 Productos con temática encontrados: ${productsWithTheme.length}`);
+        productsWithTheme.forEach(p => {
+            console.log(`  - ${p.title}: ${p.theme} (ID: ${p.id})`);
+        });
 
         if (this.filteredProducts.length === 0) {
             console.log('⚠️ No hay productos para mostrar');
@@ -171,11 +186,16 @@ class EnhancedProductGenerator {
             const badges = this.generateBadges(product);
             const productInfo = this.generateProductInfo(product);
             const animationDelay = (index * 0.1).toFixed(1);
+            
+            // Debug: Log productos con temática
+            if (product.theme) {
+                console.log(`🎭 Producto con temática encontrado: ${product.title} - Temática: ${product.theme}`);
+            }
 
         return `
-            <div class="product-card animate-slide-up" 
+            <div class="product-card" 
                  onclick="if(event.target.tagName !== 'BUTTON' && event.target.tagName !== 'I') { window.location.href='producto-detalle.html?id=${product.id}'; }"
-                 style="animation-delay: ${animationDelay}s; cursor: pointer;"
+                 style="cursor: pointer;">
                 
                 <!-- Imagen del producto -->
                 <div class="product-image-container">
@@ -186,18 +206,14 @@ class EnhancedProductGenerator {
                          onerror="this.src='../images/placeholder-vela.jpg'">
                     
                     <!-- Badges -->
-                    <div class="absolute top-3 left-3 flex flex-col space-y-1 z-20 max-w-[calc(100%-6rem)]">
+                    <div class="badges-container">
                         ${badges}
                     </div>
                     
-                    <!-- Categoría en esquina superior derecha -->
-                    <div class="absolute top-4 right-4 z-10">
-                        <span class="bg-white/90 backdrop-blur-sm text-dark-green px-3 py-1 rounded-full text-xs font-semibold border border-gray-200">
-                            ${product.category}
-                        </span>
+                    <!-- Categoría -->
+                    <div class="category-badge">
+                        ${product.category}
                     </div>
-                    
-
                 </div>
                 
                 <!-- Contenido -->
@@ -209,30 +225,36 @@ class EnhancedProductGenerator {
                     
                     <!-- Precio -->
                     <div class="product-price">
-                        <span class="text-sm opacity-80">Desde </span>
-                        <span class="text-xl font-bold">${minPrice} MXN</span>
+                        <div style="font-size: 0.875rem; opacity: 0.9;">Desde</div>
+                        <div style="font-size: 1.25rem; font-weight: 800;">${minPrice} MXN</div>
                     </div>
+                    
+                    <!-- Temática (solo el badge, sin marco) -->
+                    ${product.theme ? (() => {
+                        const themeInfo = this.getThemeInfo(product.theme);
+                        return `
+                            <div class="product-theme">
+                                <span class="theme-badge" style="background: ${themeInfo.color};">
+                                    <span class="theme-emoji">${themeInfo.emoji}</span>
+                                    ${product.theme}
+                                </span>
+                            </div>
+                        `;
+                    })() : `<div class="product-theme-placeholder"></div>`}
                     
                     <!-- Características -->
                     <div class="product-features">
                         ${productInfo}
                     </div>
                     
-                    <!-- Temática -->
-                    ${product.theme ? `
-                        <div class="product-theme mt-4 text-center">
-                            <span class="theme-badge">
-                                <i class="fas fa-calendar-alt mr-1"></i>${product.theme}
-                            </span>
-                        </div>
-                    ` : ''}
-                    
                     <!-- Botones de acción -->
                     <div class="product-actions">
                         <button class="btn-view-product"
                                 onclick="event.stopPropagation(); window.location.href='producto-detalle.html?id=${product.id}'"
-                                aria-label="Ver detalles de ${product.title}">
-                            <i class="fas fa-eye mr-2"></i>Ver
+                                aria-label="Ver detalles de ${product.title}"
+                                type="button">
+                            <i class="fas fa-eye"></i>
+                            <span>Ver Detalles</span>
                         </button>
                     </div>
                 </div>
@@ -278,16 +300,16 @@ class EnhancedProductGenerator {
         // Promociones especiales (prioridad alta)
         if (product.promotion2x1) {
             badges.push(`
-                <span class="product-badge" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                    <i class="fas fa-gift mr-1"></i>2x1
+                <span class="product-badge promotion">
+                    <i class="fas fa-gift"></i>2x1
                 </span>
             `);
         }
 
         if (product.specialDiscount) {
             badges.push(`
-                <span class="product-badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                    <i class="fas fa-percentage mr-1"></i>${product.specialDiscount.percentage}% OFF
+                <span class="product-badge discount">
+                    <i class="fas fa-percentage"></i>${product.specialDiscount.percentage}% OFF
                 </span>
             `);
         }
@@ -296,7 +318,7 @@ class EnhancedProductGenerator {
         if (product.new) {
             badges.push(`
                 <span class="product-badge new">
-                    <i class="fas fa-star mr-1"></i>Nuevo
+                    <i class="fas fa-star"></i>Nuevo
                 </span>
             `);
         }
@@ -304,7 +326,7 @@ class EnhancedProductGenerator {
         if (product.featured) {
             badges.push(`
                 <span class="product-badge featured">
-                    <i class="fas fa-crown mr-1"></i>Destacado
+                    <i class="fas fa-crown"></i>Destacado
                 </span>
             `);
         }
@@ -312,15 +334,15 @@ class EnhancedProductGenerator {
         if (product.bestseller) {
             badges.push(`
                 <span class="product-badge bestseller">
-                    <i class="fas fa-fire mr-1"></i>Más Vendido
+                    <i class="fas fa-fire"></i>Más Vendido
                 </span>
             `);
         }
 
         if (!product.available) {
             badges.push(`
-                <span class="product-badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                    <i class="fas fa-times mr-1"></i>Agotado
+                <span class="product-badge" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
+                    <i class="fas fa-times"></i>Agotado
                 </span>
             `);
         }
@@ -329,7 +351,25 @@ class EnhancedProductGenerator {
     }
 
     /**
-     * Generar información del producto mejorada
+     * Obtener emoji y estilo para temática
+     */
+    getThemeInfo(theme) {
+        const themes = {
+            'Navidad': { emoji: '🎄', color: '#dc2626', bgColor: '#fef2f2' },
+            'Día de Muertos': { emoji: '💀', color: '#7c3aed', bgColor: '#faf5ff' },
+            'San Valentín': { emoji: '💕', color: '#ec4899', bgColor: '#fdf2f8' },
+            'Halloween': { emoji: '🎃', color: '#ea580c', bgColor: '#fff7ed' },
+            'Primavera': { emoji: '🌸', color: '#10b981', bgColor: '#f0fdf4' },
+            'Verano': { emoji: '☀️', color: '#f59e0b', bgColor: '#fffbeb' },
+            'Otoño': { emoji: '🍂', color: '#92400e', bgColor: '#fef3c7' },
+            'Invierno': { emoji: '❄️', color: '#3b82f6', bgColor: '#eff6ff' }
+        };
+        
+        return themes[theme] || { emoji: '🎉', color: '#6b7280', bgColor: '#f9fafb' };
+    }
+
+    /**
+     * Generar información del producto mejorada con iconos coloridos
      */
     generateProductInfo(product) {
         const info = [];
@@ -382,35 +422,11 @@ class EnhancedProductGenerator {
     }
 
     /**
-     * Aplicar efectos mejorados después del render
+     * Aplicar efectos simples después del render
      */
     applyEnhancedEffects() {
-        const productCards = document.querySelectorAll('.product-card');
-
-        productCards.forEach((card, index) => {
-            // Efecto de hover con inclinación
-            card.addEventListener('mouseenter', function (e) {
-                this.style.transform = 'translateY(-12px) scale(1.02)';
-            });
-
-            card.addEventListener('mousemove', function (e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = (y - centerY) / 30;
-                const rotateY = (centerX - x) / 30;
-
-                this.style.transform = `translateY(-12px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            card.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
-            });
-        });
+        // Efectos simples ya están manejados por CSS
+        console.log('✅ Efectos aplicados a las tarjetas de productos');
     }
 
 
