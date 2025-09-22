@@ -606,6 +606,12 @@
                                         <span>Descuento:</span>
                                         <span id="discount" class="font-semibold text-green-600">-$0.00 MXN</span>
                                     </div>
+                                    <!-- Código de descuento aplicado -->
+                                    <div id="applied-discount-info" class="summary-line hidden">
+                                        <span class="text-sm text-gray-600">Código aplicado:</span>
+                                        <span id="applied-discount-code"
+                                            class="text-sm font-medium text-green-600"></span>
+                                    </div>
                                     <div class="summary-divider"></div>
                                     <div class="summary-total">
                                         <span>Total:</span>
@@ -772,6 +778,12 @@
                                         <span>Descuento:</span>
                                         <span id="shipping-discount" class="text-green-600">-$0.00 MXN</span>
                                     </div>
+                                    <!-- Código de descuento aplicado -->
+                                    <div id="applied-discount-info-shipping" class="summary-line hidden">
+                                        <span class="text-sm text-gray-600">Código aplicado:</span>
+                                        <span id="applied-discount-code-shipping"
+                                            class="text-sm font-medium text-green-600"></span>
+                                    </div>
                                     <div class="summary-divider"></div>
                                     <div class="summary-total">
                                         <span>Total:</span>
@@ -914,6 +926,12 @@
                                     <div class="summary-line">
                                         <span>Descuento:</span>
                                         <span id="final-discount" class="text-green-600">-$0.00 MXN</span>
+                                    </div>
+                                    <!-- Código de descuento aplicado -->
+                                    <div id="applied-discount-info-final" class="summary-line hidden">
+                                        <span class="text-sm text-gray-600">Código aplicado:</span>
+                                        <span id="applied-discount-code-final"
+                                            class="text-sm font-medium text-green-600"></span>
                                     </div>
                                     <div class="summary-divider"></div>
                                     <div class="summary-total">
@@ -1365,10 +1383,25 @@
                 finalSubtotal += finalPrice;
             });
 
-            const shipping = finalSubtotal >= 500 ? 0 : 120;
-            const total = finalSubtotal + shipping;
+            // Aplicar código de descuento si existe
+            let codeDiscount = 0;
+            let appliedCode = null;
+            try {
+                const savedCode = localStorage.getItem('appliedDiscountCode');
+                if (savedCode) {
+                    appliedCode = JSON.parse(savedCode);
+                    codeDiscount = finalSubtotal * appliedCode.discount;
+                    console.log('💳 Código aplicado:', appliedCode.code, 'Descuento:', codeDiscount.toFixed(2));
+                }
+            } catch (error) {
+                console.error('Error aplicando código:', error);
+            }
 
-            console.log(`💰 Resumen calculado - Subtotal: $${finalSubtotal.toFixed(2)}, Envío: ${shipping === 0 ? 'GRATIS' : `$${shipping.toFixed(2)}`}, Total: $${total.toFixed(2)}`);
+            const subtotalAfterCode = finalSubtotal - codeDiscount;
+            const shipping = subtotalAfterCode >= 500 ? 0 : 120;
+            const total = subtotalAfterCode + shipping;
+
+            console.log(`💰 Resumen calculado - Subtotal: $${finalSubtotal.toFixed(2)}, Código: -$${codeDiscount.toFixed(2)}, Envío: ${shipping === 0 ? 'GRATIS' : `$${shipping.toFixed(2)}`}, Total: $${total.toFixed(2)}`);
 
             // Actualizar elementos del DOM
             const subtotalEl = document.getElementById('subtotal');
@@ -1392,7 +1425,7 @@
                 const discountLabel = discountParent.querySelector('span:first-child');
 
                 if (totalSavings > 0) {
-                    discountEl.textContent = `-$${totalSavings.toFixed(2)} MXN`;
+                    discountEl.textContent = `-$${(totalSavings + codeDiscount).toFixed(2)} MXN`;
                     if (discountLabel) {
                         discountLabel.innerHTML = `
                             Descuento:
@@ -1419,7 +1452,7 @@
                 const shippingDiscountLabel = shippingDiscountParent.querySelector('span:first-child');
 
                 if (totalSavings > 0) {
-                    shippingDiscountEl.textContent = `-$${totalSavings.toFixed(2)} MXN`;
+                    shippingDiscountEl.textContent = `-$${(totalSavings + codeDiscount).toFixed(2)} MXN`;
                     if (shippingDiscountLabel) {
                         shippingDiscountLabel.innerHTML = `
                             Descuento:
@@ -1436,7 +1469,38 @@
                 }
             }
 
-            console.log(`💰 Resumen actualizado - Subtotal: $${finalSubtotal.toFixed(2)}, Ahorros: $${totalSavings.toFixed(2)}, Total: $${total.toFixed(2)}`);
+            // Actualizar también los elementos del paso 3 (final)
+            const finalSubtotalEl = document.getElementById('final-subtotal');
+            const finalShippingEl = document.getElementById('final-shipping');
+            const finalDiscountEl = document.getElementById('final-discount');
+            const finalTotalEl = document.getElementById('final-total');
+
+            if (finalSubtotalEl) finalSubtotalEl.textContent = `$${finalSubtotal.toFixed(2)} MXN`;
+            if (finalShippingEl) finalShippingEl.textContent = shipping === 0 ? 'GRATIS' : `$${shipping.toFixed(2)} MXN`;
+            if (finalDiscountEl) finalDiscountEl.textContent = `-$${(totalSavings + codeDiscount).toFixed(2)} MXN`;
+            if (finalTotalEl) finalTotalEl.textContent = `$${total.toFixed(2)} MXN`;
+
+            // Mostrar código aplicado en todos los pasos
+            updateDiscountCodeDisplay(appliedCode);
+
+            console.log(`💰 Resumen actualizado - Subtotal: $${finalSubtotal.toFixed(2)}, Ahorros: $${totalSavings.toFixed(2)}, Código: $${codeDiscount.toFixed(2)}, Total: $${total.toFixed(2)}`);
+        }
+
+        // Función para actualizar la visualización del código de descuento en todos los pasos
+        function updateDiscountCodeDisplay(appliedCode) {
+            const steps = ['', '-shipping', '-final'];
+
+            steps.forEach(step => {
+                const appliedDiscountInfo = document.getElementById(`applied-discount-info${step}`);
+                const appliedDiscountCodeEl = document.getElementById(`applied-discount-code${step}`);
+
+                if (appliedCode && appliedDiscountInfo && appliedDiscountCodeEl) {
+                    appliedDiscountInfo.classList.remove('hidden');
+                    appliedDiscountCodeEl.textContent = `${appliedCode.code} (${appliedCode.description})`;
+                } else if (appliedDiscountInfo) {
+                    appliedDiscountInfo.classList.add('hidden');
+                }
+            });
         }
 
         // Funciones para navegación entre pasos
@@ -1564,10 +1628,23 @@
                     };
 
                     if (code && discountCodes[code]) {
+                        // Guardar el código aplicado
+                        localStorage.setItem('appliedDiscountCode', JSON.stringify({
+                            code: code,
+                            discount: discountCodes[code].discount,
+                            description: discountCodes[code].description
+                        }));
+
                         showToast(`Código aplicado: ${discountCodes[code].description}`, 'success');
                         applyDiscountBtn.innerHTML = '<i class="fas fa-check"></i> Aplicado';
                         applyDiscountBtn.classList.add('bg-green-600');
                         applyDiscountBtn.disabled = true;
+
+                        // Actualizar el resumen inmediatamente
+                        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                        updateCartSummary(cart);
+
+                        console.log('💳 Código de descuento aplicado:', code, discountCodes[code]);
                     } else if (code) {
                         showToast('Código de descuento inválido', 'error');
                     } else {
@@ -1813,9 +1890,22 @@
 
             previewHTML += '</div></div>';
 
-            // Resumen financiero
-            const shipping = subtotal >= 500 ? 0 : 120;
-            const total = subtotal + shipping;
+            // Aplicar código de descuento en la vista previa
+            let codeDiscount = 0;
+            let appliedCode = null;
+            try {
+                const savedCode = localStorage.getItem('appliedDiscountCode');
+                if (savedCode) {
+                    appliedCode = JSON.parse(savedCode);
+                    codeDiscount = subtotal * appliedCode.discount;
+                }
+            } catch (error) {
+                console.error('Error aplicando código en vista previa:', error);
+            }
+
+            const subtotalAfterCode = subtotal - codeDiscount;
+            const shipping = subtotalAfterCode >= 500 ? 0 : 120;
+            const total = subtotalAfterCode + shipping;
 
             previewHTML += `
                 <div class="bg-white rounded-lg p-4 border">
@@ -1829,6 +1919,12 @@
                             <div class="flex justify-between text-green-600">
                                 <span>Ahorros por promociones:</span>
                                 <span>-$${totalSavings.toFixed(2)} MXN</span>
+                            </div>
+                        ` : ''}
+                        ${codeDiscount > 0 ? `
+                            <div class="flex justify-between text-blue-600">
+                                <span>Descuento por código (${appliedCode.code}):</span>
+                                <span>-$${codeDiscount.toFixed(2)} MXN</span>
                             </div>
                         ` : ''}
                         <div class="flex justify-between">
@@ -1937,13 +2033,7 @@
                 doc.setFillColor(...primaryColor);
                 doc.rect(0, 0, pageWidth, 35, 'F');
 
-                // Logo placeholder (círculo simple)
-                doc.setFillColor(255, 255, 255);
-                doc.circle(30, 17.5, 8, 'F');
-                doc.setTextColor(...primaryColor);
-                doc.setFontSize(12);
-                doc.setFont(undefined, 'bold');
-                doc.text('🕯️', 30, 20, { align: 'center' });
+                // Sin logo - solo texto
 
                 // Nombre de la empresa
                 doc.setTextColor(255, 255, 255);
@@ -1981,17 +2071,7 @@
                 doc.text(`Cotización No: ${quotationNumber}`, margin, yPosition);
                 doc.text(`Fecha: ${currentDate}`, pageWidth - margin, yPosition, { align: 'right' });
 
-                // Código de barras simulado
-                yPosition += 10;
-                doc.setFillColor(...primaryColor);
-                for (let i = 0; i < 50; i++) {
-                    const barWidth = Math.random() > 0.5 ? 1 : 0.5;
-                    doc.rect(margin + (i * 2), yPosition, barWidth, 8, 'F');
-                }
-                doc.setFontSize(8);
-                doc.text(quotationNumber, margin, yPosition + 12);
-
-                yPosition += 25;
+                yPosition += 15;
 
                 // Datos del cliente en tabla
                 const formData = getShippingFormData();
@@ -2110,12 +2190,26 @@
                 doc.line(margin, yPosition, pageWidth - margin, yPosition);
                 yPosition += 15;
 
-                // Resumen financiero
-                const shipping = subtotal >= 500 ? 0 : 120;
-                const total = subtotal + shipping;
+                // Resumen financiero con código de descuento
+                let codeDiscount = 0;
+                let appliedCode = null;
+                try {
+                    const savedCode = localStorage.getItem('appliedDiscountCode');
+                    if (savedCode) {
+                        appliedCode = JSON.parse(savedCode);
+                        codeDiscount = subtotal * appliedCode.discount;
+                    }
+                } catch (error) {
+                    console.error('Error aplicando código en PDF:', error);
+                }
+
+                const subtotalAfterCode = subtotal - codeDiscount;
+                const shipping = subtotalAfterCode >= 500 ? 0 : 120;
+                const total = subtotalAfterCode + shipping;
 
                 const summaryItems = [
                     ['Subtotal:', `$${subtotal.toFixed(2)}`],
+                    ...(codeDiscount > 0 ? [['Descuento (' + appliedCode.code + '):', `-$${codeDiscount.toFixed(2)}`]] : []),
                     ['Envío:', shipping === 0 ? 'GRATIS' : `$${shipping.toFixed(2)}`]
                 ];
 
@@ -2225,11 +2319,28 @@
                 message += `   Cantidad: ${item.quantity} - $${itemPrice.toFixed(2)} MXN\n\n`;
             });
 
-            const shipping = subtotal >= 500 ? 0 : 120;
-            const total = subtotal + shipping;
+            // Aplicar código de descuento en WhatsApp
+            let codeDiscount = 0;
+            let appliedCode = null;
+            try {
+                const savedCode = localStorage.getItem('appliedDiscountCode');
+                if (savedCode) {
+                    appliedCode = JSON.parse(savedCode);
+                    codeDiscount = subtotal * appliedCode.discount;
+                }
+            } catch (error) {
+                console.error('Error aplicando código en WhatsApp:', error);
+            }
+
+            const subtotalAfterCode = subtotal - codeDiscount;
+            const shipping = subtotalAfterCode >= 500 ? 0 : 120;
+            const total = subtotalAfterCode + shipping;
 
             message += '*RESUMEN:*\n';
             message += `- Subtotal: $${subtotal.toFixed(2)} MXN\n`;
+            if (codeDiscount > 0) {
+                message += `- Descuento (${appliedCode.code}): -$${codeDiscount.toFixed(2)} MXN\n`;
+            }
             message += `- Envio: ${shipping === 0 ? 'GRATIS' : `$${shipping.toFixed(2)} MXN`}\n`;
             message += `- *TOTAL: $${total.toFixed(2)} MXN*\n\n`;
             message += 'Gracias por elegir Velas Starlight!';
