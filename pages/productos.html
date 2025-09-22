@@ -292,7 +292,7 @@
     <main class="pt-20">
 
         <!-- Hero Section -->
-        <section class="gradient-bg text-white py-20 relative overflow-hidden">
+        <section class="gradient-bg text-white py-20 relative overflow-hidden" style="margin-bottom: -10px !important;">
             <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
                 <div
                     class="hero-icon inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-full mb-8 backdrop-blur-sm">
@@ -325,26 +325,26 @@
         </section>
 
         <!-- Estadísticas -->
-        <section class="stats-section py-16 bg-white">
+        <section class="stats-section py-4 bg-white" style="margin-top: -20px !important; padding-top: 2rem !important; position: relative; z-index: 10;">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     <div class="stat-item">
-                        <div id="stats-products" class="stat-number mb-3">0</div>
+                        <div id="stats-products" class="stat-number mb-2">0</div>
                         <div class="text-gray-600 font-medium">Productos</div>
                         <div class="text-xs text-gray-400 mt-1">Únicos y artesanales</div>
                     </div>
                     <div class="stat-item">
-                        <div id="stats-fragrances" class="stat-number mb-3">0</div>
+                        <div id="stats-fragrances" class="stat-number mb-2">0</div>
                         <div class="text-gray-600 font-medium">Fragancias</div>
                         <div class="text-xs text-gray-400 mt-1">Aromas naturales</div>
                     </div>
                     <div class="stat-item">
-                        <div id="stats-types" class="stat-number mb-3">0</div>
+                        <div id="stats-types" class="stat-number mb-2">0</div>
                         <div class="text-gray-600 font-medium">Tipos de Cera</div>
                         <div class="text-xs text-gray-400 mt-1">Soya y parafina</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number mb-3">100%</div>
+                        <div class="stat-number mb-2">100%</div>
                         <div class="text-gray-600 font-medium">Artesanal</div>
                         <div class="text-xs text-gray-400 mt-1">Hecho con amor</div>
                     </div>
@@ -982,9 +982,12 @@
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
+        // Deshabilitar AOS temporalmente para evitar problemas de scroll
+        // AOS.init({
+        //     duration: 800,
+        //     easing: 'ease-in-out',
+        //     disable: 'mobile',
+        //     once: true
             once: true
         });
     </script>

@@ -15,8 +15,11 @@
 /* Mejoras para el hero section */
 .gradient-bg {
     background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 50%, #A3B18A 100%);
-    position: relative;
+    position: static !important;
     overflow: hidden;
+    margin-bottom: 0 !important;
+    transform: none !important;
+    will-change: auto !important;
 }
 
 .gradient-bg::before {
@@ -44,6 +47,10 @@
 .stats-section {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     position: relative;
+    margin: 0;
+    margin-top: -1px !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
 }
 
 .stats-section::before {
@@ -58,7 +65,7 @@
 
 .stat-item {
     position: relative;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
     border-radius: 16px;
     background: var(--gradient-secondary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -804,8 +811,157 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Efectos de parallax sutil */
+/* Efectos de parallax deshabilitados */
 .parallax-element {
-    transform: translateZ(0);
-    will-change: transform;
+    transform: none !important;
+    will-change: auto !important;
+}
+
+/* Deshabilitar cualquier transformación en la sección hero */
+.gradient-bg * {
+    transform: none !important;
+    will-change: auto !important;
+}
+/* ===== CORRECCIÓN DEFINITIVA PARA ELIMINAR ESPACIO ENTRE SECCIONES ===== */
+
+/* Eliminar completamente el espacio entre hero y estadísticas */
+.gradient-bg {
+    margin-bottom: -20px !important;
+    position: relative;
+    z-index: 1;
+}
+
+.stats-section {
+    margin-top: -20px !important;
+    padding-top: 2rem !important;
+    position: relative;
+    z-index: 10;
+}
+
+/* Agregar un pseudo-elemento que cubra cualquier espacio restante */
+.stats-section::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: white;
+    z-index: -1;
+}
+
+/* Asegurar que no haya espacios extra en el scroll */
+main {
+    margin: 0;
+    padding: 0;
+}
+
+main > section {
+    margin: 0;
+}
+
+/* Forzar que todas las secciones estén pegadas */
+section + section {
+    margin-top: -1px !important;
+}
+
+/* Corrección adicional para el espaciado */
+.stats-section .stat-item {
+    margin: 0;
+}
+/* ===== S
+OLUCIÓN RADICAL PARA EL ESPACIO EN BLANCO ===== */
+
+/* Cambiar el fondo del body temporalmente */
+body {
+    background: white !important;
+}
+
+/* Asegurar que el main no tenga fondo beige */
+main {
+    background: transparent !important;
+}
+
+/* Forzar que la sección de estadísticas cubra todo el espacio */
+.stats-section {
+    background: white !important;
+    box-shadow: 0 -10px 0 white !important;
+}
+
+/* Eliminar cualquier padding o margin del contenedor principal */
+.pt-20 {
+    padding-top: 5rem !important;
+}/* =====
+ PARCHE FINAL PARA ELIMINAR EL ESPACIO BEIGE ===== */
+
+/* Crear una superposición que cubra el espacio problemático */
+.gradient-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: white;
+    z-index: 5;
+}
+
+/* Asegurar que las estadísticas estén por encima */
+.stats-section {
+    z-index: 15 !important;
+}/* ====
+= CORRECCIÓN PARA EVITAR QUE LA SECCIÓN HERO SE MUEVA ===== */
+
+/* Fijar la sección hero para que no se mueva durante el scroll */
+.gradient-bg {
+    position: static !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+}
+
+/* Eliminar cualquier animación o transformación en elementos del hero */
+.gradient-bg .hero-icon,
+.gradient-bg h1,
+.gradient-bg p,
+.gradient-bg div {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Asegurar que el contenido del hero no tenga efectos de movimiento */
+.gradient-bg .max-w-6xl {
+    transform: none !important;
+    position: static !important;
+}
+
+/* Deshabilitar animaciones flotantes durante el scroll */
+@media (max-height: 800px) {
+    .hero-icon {
+        animation: none !important;
+    }
+}/* ===== D
+ESHABILITAR AOS EN LA SECCIÓN HERO ===== */
+
+/* Deshabilitar completamente AOS en la sección hero */
+.gradient-bg[data-aos],
+.gradient-bg [data-aos] {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Forzar que AOS no afecte la sección hero */
+.gradient-bg {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+    transition-property: none !important;
+}
+
+/* Eliminar cualquier efecto de AOS en elementos hijos */
+.gradient-bg * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-property: none !important;
 }
