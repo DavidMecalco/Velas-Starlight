@@ -9,7 +9,8 @@
 * 🏷️ Categorías: Vela, Belleza
 * 🌸 Fragancias únicas: 26
 * 🎯 Temáticas: 2
-* � PromocionAes activas: 5
+* 🎁 Promociones activas: 5
+* ✅ Todos los productos tienen ID único
 * 
 * ========================================
 */
@@ -17,6 +18,7 @@
 // 🛍️ AQUÍ AGREGAS NUEVOS PRODUCTOS FÁCILMENTE
 const productosData = [
     {
+        "id": 1,
         "title": "Flor en Cemento",
         "category": "Vela",
         "description": "El aroma del jardín y la calma de la tierra se encuentran en nuestra Vela Flor en Cemento. Cada pieza es una escultura de paz, con una delicada flor que emerge de su sólido recipiente de yeso. Más que una vela, es un momento de pausa, un pequeño refugio para el alma. Ideal para aquellos que aprecian la belleza en la quietud.",
@@ -99,6 +101,7 @@ const productosData = [
         "ingredients": []
     },
     {
+        "id": 2,
         "title": "Suspiro de Ángel",
         "category": "Vela",
         "description": "Deja que un Suspiro de Ángel ilumine tus momentos. Esta exquisita vela artesanal, con su delicada forma de querubín acunado entre suaves alas, es una invitación a la calma y la serenidad. Más que una luz, es una presencia que infunde paz, consuelo y pureza en cualquier rincón. Perfecta para honrar un recuerdo, celebrar un nuevo comienzo o simplemente rodearte de una atmósfera celestial. ",
@@ -184,6 +187,7 @@ const productosData = [
         "ingredients": []
     },
     {
+        "id": 3,
         "title": "Bosque Encantado",
         "category": "Vela",
         "description": "Trae la magia de las fiestas a tu hogar con nuestra Vela Bosque Encantado. Esta encantadora vela artesanal captura la esencia de la Navidad en un diseño exquisito: un pequeño árbol festivo que se alza majestuosamente dentro de un elegante vaso de cristal. Perfecta para evocar la alegría de la temporada, su sutil brillo y aroma (personalizable con fragancias navideñas) transformarán cualquier espacio en un refugio festivo.",
@@ -249,6 +253,7 @@ const productosData = [
         "specialDiscount": null
     },
     {
+        "id": 5,
         "title": "Flor de Cempasúchil",
         "category": "Vela",
         "description": "Enciende la luz de la tradición con nuestra Vela Flor del Sol, una pieza artesanal que captura la esencia vibrante de la flor de Cempasúchil. Su diseño detallado, con cada pétalo cuidadosamente formado, evoca la calidez y el resplandor de los caminos que guían a nuestros seres queridos de regreso a casa.",
@@ -425,6 +430,7 @@ const productosData = [
         "specialDiscount": null
     },
     {
+        "id": 9,
         "title": "Muñeco Calabaza",
         "category": "Vela",
         "description": "Celebra la magia de la temporada con una pieza única que fusiona dos íconos de las festividades: la calidez de la calabaza y la alegría de un muñeco. Nuestra Vela Muñeco Calabaza es una creación artesanal que llenará tu hogar de encanto y tradición. Con un diseño ingenioso y divertido, esta vela no solo ilumina, sino que se convierte en el centro de atención de cualquier decoración. Sus detalles, desde el simpático rostro hasta el pequeño sombrero de bruja, evocan la esencia del Día de Muertos y Halloween, mientras que el toque de color naranja y la ambientación festiva la hacen inolvidable.",
@@ -456,6 +462,7 @@ const productosData = [
         "ingredients": []
     },
     {
+        "id": 10,
         "title": "Jack Calavera",
         "category": "Vela",
         "description": "Celebra la tradición con un toque de encanto inesperado con nuestra Vela Jack Calavera. Inspirada en la icónica figura del cine, esta pieza artesanal captura la esencia del Día de Muertos con un diseño único y un aire de misterio. Cada vela está elaborada con cera de alta calidad y detalles que la hacen inconfundible. Su suave llama ilumina los espacios, creando un ambiente acogedor y un puente entre el recuerdo y la festividad. Es el detalle perfecto para decorar altares, mesas de celebración o simplemente para añadir un toque de originalidad a tu hogar.",

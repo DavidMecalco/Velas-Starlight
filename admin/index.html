@@ -249,6 +249,18 @@
                         class="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors">
                         <i class="fas fa-code mr-2"></i>Generar Código
                     </button>
+                    <button onclick="window.productIdFixer.download()"
+                        class="bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-colors">
+                        <i class="fas fa-download mr-2"></i>Corregir IDs
+                    </button>
+                    <button onclick="adminPortal.debugProductIds()"
+                        class="bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bug mr-2"></i>Debug IDs
+                    </button>
+                    <button onclick="adminPortal.forceReloadProducts()"
+                        class="bg-orange-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-orange-700 transition-colors">
+                        <i class="fas fa-sync mr-2"></i>Recargar
+                    </button>
                 </div>
                 <div class="flex items-center space-x-4">
                     <select id="category-filter" class="form-input px-4 py-2">
@@ -875,6 +887,7 @@
     <script src="../js/version-manager.js"></script>
     <script src="../js/productos-data.js"></script>
     <script src="../js/debug-products.js"></script>
+    <script src="fix-products-ids.js"></script>
     <script src="admin-portal.js"></script>
 
 </body>

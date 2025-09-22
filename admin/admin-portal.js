@@ -1267,7 +1267,18 @@ class AdminPortal {
      * Get next available ID
      */
     getNextId() {
-        return Math.max(...this.products.map(p => p.id), 0) + 1;
+        // Filtrar solo productos que tienen ID válido
+        const existingIds = this.products
+            .map(p => p.id)
+            .filter(id => id && typeof id === 'number' && id > 0);
+        
+        // Si no hay IDs válidos, empezar desde 1
+        if (existingIds.length === 0) {
+            return 1;
+        }
+        
+        // Retornar el siguiente ID disponible
+        return Math.max(...existingIds) + 1;
     }
 
     /**
@@ -1469,15 +1480,82 @@ class AdminPortal {
     }
 
     /**
+     * Ensure all products have unique IDs
+     */
+    ensureAllProductsHaveIds() {
+        let maxId = 0;
+        let productsUpdated = 0;
+
+        console.log('🔍 Verificando IDs de productos...');
+        console.log(`📊 Total productos a verificar: ${this.products.length}`);
+
+        // Encontrar el ID más alto existente
+        this.products.forEach(product => {
+            if (product.id && typeof product.id === 'number' && product.id > maxId) {
+                maxId = product.id;
+            }
+        });
+
+        console.log(`📈 ID más alto encontrado: ${maxId}`);
+
+        // Asignar IDs a productos que no los tengan
+        this.products.forEach((product, index) => {
+            if (!product.id || typeof product.id !== 'number') {
+                maxId++;
+                product.id = maxId;
+                productsUpdated++;
+                console.log(`✅ ID ${maxId} asignado a: "${product.title}"`);
+            } else {
+                console.log(`✓ "${product.title}" ya tiene ID: ${product.id}`);
+            }
+        });
+
+        if (productsUpdated > 0) {
+            console.log(`🎉 Se actualizaron ${productsUpdated} productos con nuevos IDs`);
+            this.showNotification(`Se asignaron IDs a ${productsUpdated} productos`, 'success');
+            
+            // Guardar los cambios en localStorage
+            this.saveProducts();
+            
+            // Actualizar la vista
+            this.loadProducts();
+            this.updateProductCount();
+        } else {
+            console.log('✅ Todos los productos ya tienen ID válido');
+        }
+
+        // Verificar que todos los productos tengan ID después de la corrección
+        const productsWithoutId = this.products.filter(p => !p.id || typeof p.id !== 'number');
+        if (productsWithoutId.length > 0) {
+            console.error('❌ Aún hay productos sin ID:', productsWithoutId.map(p => p.title));
+        } else {
+            console.log('✅ Verificación final: Todos los productos tienen ID');
+        }
+
+        return productsUpdated;
+    }
+
+    /**
      * Generate complete code for productos-data.js
      */
     generateCode() {
         const currentDate = new Date().toISOString().split('T')[0];
         const currentTime = new Date().toLocaleTimeString('es-MX');
 
-        // Preparar productos para exportación
-        const productsForExport = this.products.map(product => {
+        console.log('🚀 Iniciando generación de código...');
+        
+        // PASO 1: Asegurar que todos los productos tengan ID
+        this.ensureAllProductsHaveIds();
+
+        // PASO 2: Preparar productos para exportación
+        const productsForExport = this.products.map((product, index) => {
             const exportProduct = { ...product };
+
+            // CRÍTICO: Asegurar que el ID esté presente
+            if (!exportProduct.id || typeof exportProduct.id !== 'number') {
+                console.error(`❌ Producto sin ID encontrado: "${exportProduct.title}"`);
+                exportProduct.id = index + 1; // Asignar ID de emergencia
+            }
 
             // Si tiene imagen base64, convertir a nombre de archivo
             if (exportProduct.imageData && exportProduct.imageData.base64) {
@@ -1491,8 +1569,19 @@ class AdminPortal {
             exportProduct.promotion2x1 = exportProduct.promotion2x1 || false;
             exportProduct.specialDiscount = exportProduct.specialDiscount || null;
 
+            console.log(`✓ Producto preparado: ID ${exportProduct.id} - "${exportProduct.title}"`);
             return exportProduct;
         });
+
+        // PASO 3: Verificar que todos los productos exportados tengan ID
+        const productsWithoutId = productsForExport.filter(p => !p.id);
+        if (productsWithoutId.length > 0) {
+            console.error('❌ ERROR: Productos sin ID en exportación:', productsWithoutId.map(p => p.title));
+            this.showNotification('Error: Algunos productos no tienen ID. Revisa la consola.', 'error');
+            return;
+        }
+
+        console.log(`✅ ${productsForExport.length} productos preparados para exportación, todos con ID`);
 
         // Generar estadísticas
         const stats = this.generateProductStats(productsForExport);
@@ -1606,8 +1695,94 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 }`;
 
+        // PASO 4: Verificar que el código generado incluya IDs
+        console.log('🔍 Verificando código generado...');
+        
+        // Verificar que el JSON incluya IDs
+        const jsonMatch = codeContent.match(/const productosData = (\[[\s\S]*?\]);/);
+        if (jsonMatch) {
+            try {
+                const parsedProducts = JSON.parse(jsonMatch[1]);
+                const productsWithId = parsedProducts.filter(p => p.id);
+                const productsWithoutId = parsedProducts.filter(p => !p.id);
+                
+                console.log(`✅ Productos con ID en código: ${productsWithId.length}`);
+                console.log(`❌ Productos sin ID en código: ${productsWithoutId.length}`);
+                
+                if (productsWithoutId.length > 0) {
+                    console.error('❌ PRODUCTOS SIN ID EN CÓDIGO GENERADO:');
+                    productsWithoutId.forEach(p => console.error(`   - ${p.title}`));
+                    this.showNotification(`ERROR: ${productsWithoutId.length} productos sin ID en el código generado`, 'error');
+                } else {
+                    console.log('✅ ÉXITO: Todos los productos en el código tienen ID');
+                    this.showNotification('Código generado exitosamente con todos los IDs', 'success');
+                }
+            } catch (error) {
+                console.error('❌ Error al verificar código generado:', error);
+            }
+        }
+
         // Mostrar el modal con el código
         this.showCodeModal(codeContent);
+    }
+
+    /**
+     * Force reload products from file (bypass cache)
+     */
+    forceReloadProducts() {
+        console.log('🔄 Forzando recarga de productos desde archivo...');
+        
+        // Limpiar localStorage
+        localStorage.removeItem('adminProducts');
+        
+        // Recargar desde window.productosData
+        if (window.productosData) {
+            this.products = [...window.productosData];
+            console.log(`📦 Recargados ${this.products.length} productos desde archivo`);
+            
+            // Verificar IDs después de recargar
+            const report = this.debugProductIds();
+            
+            // Actualizar vista
+            this.loadProducts();
+            this.updateProductCount();
+            
+            this.showNotification(`Productos recargados: ${report.withId} con ID, ${report.withoutId} sin ID`, 'info');
+        } else {
+            console.error('❌ window.productosData no está disponible');
+            this.showNotification('Error: No se pudo recargar productos', 'error');
+        }
+    }
+
+    /**
+     * Debug function to check product IDs
+     */
+    debugProductIds() {
+        console.log('\n🔍 DEBUG: Verificando IDs de productos en memoria');
+        console.log('='.repeat(60));
+        
+        console.log(`📊 Total productos: ${this.products.length}`);
+        
+        const withId = [];
+        const withoutId = [];
+        
+        this.products.forEach((product, index) => {
+            if (product.id && typeof product.id === 'number') {
+                withId.push({ index, id: product.id, title: product.title });
+            } else {
+                withoutId.push({ index, title: product.title, id: product.id });
+            }
+        });
+        
+        console.log(`✅ Productos CON ID: ${withId.length}`);
+        withId.forEach(p => console.log(`   ${p.id}: ${p.title}`));
+        
+        console.log(`\n❌ Productos SIN ID: ${withoutId.length}`);
+        withoutId.forEach(p => console.log(`   Índice ${p.index}: ${p.title} (ID: ${p.id})`));
+        
+        console.log('='.repeat(60));
+        
+        return { withId: withId.length, withoutId: withoutId.length };
     }
 
     /**
