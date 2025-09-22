@@ -56,14 +56,16 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
-    
+
     <!-- CSS Personalizado -->
     <link rel="stylesheet" href="../css/producto-detalle.css">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Estilos Personalizados -->
     <style>
@@ -84,23 +86,49 @@
 
         /* Animaciones base */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* Layout principal */
@@ -114,7 +142,7 @@
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
             border-radius: var(--border-radius-lg);
             padding: 2rem;
-            box-shadow: 
+            box-shadow:
                 0 25px 50px var(--shadow-light),
                 0 15px 30px var(--shadow-medium);
             position: relative;
@@ -154,7 +182,7 @@
             background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
             border-radius: var(--border-radius-lg);
             padding: 2.5rem;
-            box-shadow: 
+            box-shadow:
                 0 20px 40px var(--shadow-light),
                 0 10px 20px var(--shadow-medium);
             border: 1px solid rgba(163, 177, 138, 0.15);
@@ -196,8 +224,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         /* Opciones de producto */
@@ -433,11 +468,11 @@
             .product-info {
                 padding: 1.5rem;
             }
-            
+
             .product-image-wrapper {
                 padding: 1rem;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -494,7 +529,8 @@
         </div>
 
         <!-- Menú móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
             <div class="px-6 py-4 space-y-1">
                 <a href="../index.html"
                     class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
@@ -574,7 +610,8 @@
                             </div>
 
                             <!-- Indicador de zoom -->
-                            <div class="absolute bottom-6 left-6 right-6 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div
+                                class="absolute bottom-6 left-6 right-6 opacity-0 hover:opacity-100 transition-opacity duration-300">
                                 <div class="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-center">
                                     <p class="text-sm">
                                         <i class="fas fa-search-plus mr-2"></i>
@@ -615,9 +652,11 @@
                         </div>
 
                         <!-- Ingredientes (lado izquierdo) -->
-                        <div id="product-ingredients-left" class="mt-8 bg-white rounded-2xl p-6 shadow-lg" style="display: none;">
+                        <div id="product-ingredients-left" class="mt-8 bg-white rounded-2xl p-6 shadow-lg"
+                            style="display: none;">
                             <div class="text-center mb-4">
-                                <div class="inline-flex items-center justify-center w-12 h-12 bg-sage-green/10 rounded-full mb-3">
+                                <div
+                                    class="inline-flex items-center justify-center w-12 h-12 bg-sage-green/10 rounded-full mb-3">
                                     <i class="fas fa-leaf text-lg text-sage-green"></i>
                                 </div>
                                 <h3 class="text-lg font-bold text-dark-green">Ingredientes</h3>
@@ -634,7 +673,8 @@
                         <div class="product-info">
                             <!-- Título y Descripción -->
                             <div class="mb-8">
-                                <h1 id="product-title" class="font-serif text-4xl lg:text-5xl font-bold text-dark-green mb-4 leading-tight">
+                                <h1 id="product-title"
+                                    class="font-serif text-4xl lg:text-5xl font-bold text-dark-green mb-4 leading-tight">
                                     Nombre del Producto
                                 </h1>
                                 <p id="product-description" class="text-lg text-gray-600 leading-relaxed">
@@ -679,10 +719,12 @@
 
                                 <!-- Fragancias -->
                                 <div>
-                                    <label class="block text-lg font-semibold text-dark-green mb-4" id="fragrance-label">
+                                    <label class="block text-lg font-semibold text-dark-green mb-4"
+                                        id="fragrance-label">
                                         Fragancia:
                                     </label>
-                                    <select id="fragrance-select" class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-sage-green bg-white transition-all duration-300">
+                                    <select id="fragrance-select"
+                                        class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-sage-green bg-white transition-all duration-300">
                                         <option>Selecciona una fragancia</option>
                                     </select>
                                 </div>
@@ -696,7 +738,8 @@
                                         <button id="decrease-qty" class="quantity-btn">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input id="quantity-input" type="number" value="1" min="1" class="quantity-input">
+                                        <input id="quantity-input" type="number" value="1" min="1"
+                                            class="quantity-input">
                                         <button id="increase-qty" class="quantity-btn">
                                             <i class="fas fa-plus"></i>
                                         </button>
@@ -776,7 +819,8 @@
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                         Descubre otros productos artesanales de nuestra colección
                     </p>
-                    <div class="w-24 h-1 bg-gradient-to-r from-sage-green to-dark-green mx-auto mt-6 rounded-full"></div>
+                    <div class="w-24 h-1 bg-gradient-to-r from-sage-green to-dark-green mx-auto mt-6 rounded-full">
+                    </div>
                 </div>
 
                 <div id="related-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -793,7 +837,7 @@
             </div>
         </section>
 
-       
+
     </main>
 
     <!-- Footer -->
@@ -852,11 +896,13 @@
 
                         <!-- Información de contacto -->
                         <div class="space-y-3 text-gray-300">
-                            <a href="mailto:ventas@velasstarlight.com" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                            <a href="mailto:ventas@velasstarlight.com"
+                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
                                 <i class="fa fa-envelope text-white"></i>
                                 <span>ventas@velasstarlight.com</span>
                             </a>
-                            <a href="tel:+525564682112" class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                            <a href="tel:+525564682112"
+                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
                                 <i class="fa fa-phone text-white"></i>
                                 <span>5564682112</span>
                             </a>
@@ -924,16 +970,16 @@
 
     <script>
         // Inicialización mejorada con animaciones
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Inicializar contador del carrito
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
+
             const cartCountElements = document.querySelectorAll('#cart-count, #cart-count-mobile');
             cartCountElements.forEach(element => {
                 element.textContent = totalItems;
             });
-            
+
             console.log('✅ Página de producto detalle mejorada lista');
         });
     </script>

@@ -1102,6 +1102,7 @@
     <!-- Script de inicialización del carrito -->
     <script>
         // Limpiar localStorage y inicializar carrito correctamente
+        let appliedCode = null;
         document.addEventListener('DOMContentLoaded', function () {
             console.log('🚀 Inicializando carrito...');
 
@@ -1385,16 +1386,9 @@
 
             // Aplicar código de descuento si existe
             let codeDiscount = 0;
-            let appliedCode = null;
-            try {
-                const savedCode = localStorage.getItem('appliedDiscountCode');
-                if (savedCode) {
-                    appliedCode = JSON.parse(savedCode);
-                    codeDiscount = finalSubtotal * appliedCode.discount;
-                    console.log('💳 Código aplicado:', appliedCode.code, 'Descuento:', codeDiscount.toFixed(2));
-                }
-            } catch (error) {
-                console.error('Error aplicando código:', error);
+            if (appliedCode) {
+                codeDiscount = finalSubtotal * appliedCode.discount;
+                console.log('💳 Código aplicado:', appliedCode.code, 'Descuento:', codeDiscount.toFixed(2));
             }
 
             const subtotalAfterCode = finalSubtotal - codeDiscount;
@@ -1423,16 +1417,32 @@
             if (discountEl) {
                 const discountParent = discountEl.parentNode;
                 const discountLabel = discountParent.querySelector('span:first-child');
+                const totalDiscount = totalSavings + codeDiscount;
 
-                if (totalSavings > 0) {
-                    discountEl.textContent = `-$${(totalSavings + codeDiscount).toFixed(2)} MXN`;
+                if (totalDiscount > 0) {
+                    discountEl.textContent = `-${totalDiscount.toFixed(2)} MXN`;
                     if (discountLabel) {
-                        discountLabel.innerHTML = `
-                            Descuento:
-                            <span class="text-xs text-green-600 block">
-                                (Incluye $${totalSavings.toFixed(2)} en promociones)
-                            </span>
-                        `;
+                        let labelHTML = 'Descuento:';
+                        if (totalSavings > 0 && codeDiscount > 0) {
+                            labelHTML += `
+                                <span class="text-xs text-green-600 block">
+                                    (Promociones: ${totalSavings.toFixed(2)}, Código: ${codeDiscount.toFixed(2)})
+                                </span>
+                            `;
+                        } else if (totalSavings > 0) {
+                            labelHTML += `
+                                <span class="text-xs text-green-600 block">
+                                    (Incluye ${totalSavings.toFixed(2)} en promociones)
+                                </span>
+                            `;
+                        } else if (codeDiscount > 0) {
+                            labelHTML += `
+                                <span class="text-xs text-green-600 block">
+                                    (Código: ${codeDiscount.toFixed(2)})
+                                </span>
+                            `;
+                        }
+                        discountLabel.innerHTML = labelHTML;
                     }
                 } else {
                     discountEl.textContent = '-$0.00 MXN';
@@ -1450,16 +1460,32 @@
             if (shippingDiscountEl) {
                 const shippingDiscountParent = shippingDiscountEl.parentNode;
                 const shippingDiscountLabel = shippingDiscountParent.querySelector('span:first-child');
+                const totalDiscount = totalSavings + codeDiscount;
 
-                if (totalSavings > 0) {
-                    shippingDiscountEl.textContent = `-$${(totalSavings + codeDiscount).toFixed(2)} MXN`;
+                if (totalDiscount > 0) {
+                    shippingDiscountEl.textContent = `-${totalDiscount.toFixed(2)} MXN`;
                     if (shippingDiscountLabel) {
-                        shippingDiscountLabel.innerHTML = `
-                            Descuento:
-                            <span class="text-xs text-green-600 block">
-                                (Incluye $${totalSavings.toFixed(2)} en promociones)
-                            </span>
-                        `;
+                        let labelHTML = 'Descuento:';
+                        if (totalSavings > 0 && codeDiscount > 0) {
+                            labelHTML += `
+                                <span class="text-xs text-green-600 block">
+                                    (Promociones: ${totalSavings.toFixed(2)}, Código: ${codeDiscount.toFixed(2)})
+                                </span>
+                            `;
+                        } else if (totalSavings > 0) {
+                            labelHTML += `
+                                <span class="text-xs text-green-600 block">
+                                    (Incluye ${totalSavings.toFixed(2)} en promociones)
+                                </span>
+                            `;
+                        } else if (codeDiscount > 0) {
+                            labelHTML += `
+                                <span class="text-xs text-green-600 block">
+                                    (Código: ${codeDiscount.toFixed(2)})
+                                </span>
+                            `;
+                        }
+                        shippingDiscountLabel.innerHTML = labelHTML;
                     }
                 } else {
                     shippingDiscountEl.textContent = '-$0.00 MXN';
@@ -1606,6 +1632,7 @@
                 clearCartBtn.addEventListener('click', function () {
                     if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
                         localStorage.removeItem('cart');
+                        appliedCode = null;
                         showCartFromLocalStorage();
                         showToast('Carrito vaciado', 'success');
                         console.log('🗑️ Carrito vaciado completamente');
@@ -1629,11 +1656,11 @@
 
                     if (code && discountCodes[code]) {
                         // Guardar el código aplicado
-                        localStorage.setItem('appliedDiscountCode', JSON.stringify({
+                        appliedCode = {
                             code: code,
                             discount: discountCodes[code].discount,
                             description: discountCodes[code].description
-                        }));
+                        };
 
                         showToast(`Código aplicado: ${discountCodes[code].description}`, 'success');
                         applyDiscountBtn.innerHTML = '<i class="fas fa-check"></i> Aplicado';
@@ -1893,15 +1920,6 @@
             // Aplicar código de descuento en la vista previa
             let codeDiscount = 0;
             let appliedCode = null;
-            try {
-                const savedCode = localStorage.getItem('appliedDiscountCode');
-                if (savedCode) {
-                    appliedCode = JSON.parse(savedCode);
-                    codeDiscount = subtotal * appliedCode.discount;
-                }
-            } catch (error) {
-                console.error('Error aplicando código en vista previa:', error);
-            }
 
             const subtotalAfterCode = subtotal - codeDiscount;
             const shipping = subtotalAfterCode >= 500 ? 0 : 120;
@@ -2192,15 +2210,8 @@
 
                 // Resumen financiero con código de descuento
                 let codeDiscount = 0;
-                let appliedCode = null;
-                try {
-                    const savedCode = localStorage.getItem('appliedDiscountCode');
-                    if (savedCode) {
-                        appliedCode = JSON.parse(savedCode);
-                        codeDiscount = subtotal * appliedCode.discount;
-                    }
-                } catch (error) {
-                    console.error('Error aplicando código en PDF:', error);
+                if (appliedCode) {
+                    codeDiscount = subtotal * appliedCode.discount;
                 }
 
                 const subtotalAfterCode = subtotal - codeDiscount;
@@ -2321,15 +2332,8 @@
 
             // Aplicar código de descuento en WhatsApp
             let codeDiscount = 0;
-            let appliedCode = null;
-            try {
-                const savedCode = localStorage.getItem('appliedDiscountCode');
-                if (savedCode) {
-                    appliedCode = JSON.parse(savedCode);
-                    codeDiscount = subtotal * appliedCode.discount;
-                }
-            } catch (error) {
-                console.error('Error aplicando código en WhatsApp:', error);
+            if (appliedCode) {
+                codeDiscount = subtotal * appliedCode.discount;
             }
 
             const subtotalAfterCode = subtotal - codeDiscount;
