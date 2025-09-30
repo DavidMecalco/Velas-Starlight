@@ -1,0 +1,509 @@
+/* ===== ESTILOS MODERNOS PARA PRODUCTO DETALLE ===== */
+
+/* Mejoras adicionales para el diseño moderno */
+
+/* Efectos de glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Animaciones de carga para imágenes */
+.image-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Efectos de partículas flotantes */
+.floating-particles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(163, 177, 138, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(58, 90, 64, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(163, 177, 138, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Mejoras para la galería de imágenes */
+.image-gallery-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-gallery-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-gallery-container:hover::after {
+    opacity: 1;
+}
+
+/* Efectos de texto animado */
+.animated-text {
+    background: linear-gradient(45deg, #2D3E33, #3A5A40, #A3B18A, #3A5A40, #2D3E33);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Botones con efectos de ondas */
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple-effect:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Mejoras para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .hover-lift:hover {
+        transform: none;
+    }
+    
+    .hover-lift:active {
+        transform: scale(0.98);
+    }
+    
+    .product-image:hover {
+        transform: none;
+    }
+    
+    .feature-card:hover .feature-icon {
+        transform: none;
+    }
+}
+
+/* Optimizaciones para pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .product-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Mejoras de accesibilidad para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Estados de carga */
+.loading-state {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading-state::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--secondary-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Efectos de scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mejoras para el modo oscuro (deshabilitado temporalmente) */
+/* 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --pure-white: #1F2937;
+        --text-dark: #F9FAFB;
+        --text-medium: #D1D5DB;
+        --soft-gray: #374151;
+    }
+}
+*/
+
+/* Animaciones de entrada escalonadas */
+.stagger-animation {
+    animation-delay: calc(var(--stagger-delay, 0) * 0.1s);
+}
+
+/* Efectos de parallax sutil */
+.parallax-element {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Mejoras para la experiencia de usuario */
+.smooth-corners {
+    border-radius: clamp(8px, 2vw, 24px);
+}
+
+.dynamic-shadow {
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dynamic-shadow:hover {
+    box-shadow: 
+        0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* Optimizaciones de rendimiento */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Efectos de micro-interacciones */
+.micro-bounce {
+    transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.micro-bounce:active {
+    transform: scale(0.95);
+}
+
+/* Gradientes animados para fondos */
+.animated-gradient {
+    background: linear-gradient(-45deg, #F6F1E9, #EDE6DA, #A3B18A, #3A5A40);
+    background-size: 400% 400%;
+    animation: gradient-flow 15s ease infinite;
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Mejoras para formularios */
+.form-field {
+    position: relative;
+}
+
+.form-field input:focus + label,
+.form-field input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5rem) scale(0.8);
+    color: var(--secondary-green);
+}
+
+.form-field label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    color: var(--text-medium);
+}
+
+/* Efectos de tooltip modernos */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.tooltip:hover::before {
+    opacity: 1;
+}
+
+/* Mejoras para la navegación por teclado */
+.keyboard-navigation:focus {
+    outline: 2px solid var(--secondary-green);
+    outline-offset: 2px;
+}
+
+/* Efectos de carga progresiva */
+.progressive-image {
+    background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Mejoras adicionales para características compactas */
+.features-compact {
+    background: #FFFFFF !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(163, 177, 138, 0.15);
+}
+
+.feature-item-compact::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--secondary-green), var(--accent-green));
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.feature-item-compact:hover::after {
+    width: 80%;
+}
+
+/* Animaciones de entrada para características */
+.feature-item-compact:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-item-compact:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-item-compact:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Efectos de pulso para iconos */
+@keyframes icon-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.feature-icon-compact:hover {
+    animation: icon-pulse 0.6s ease-in-out;
+}
+
+/* Mejoras para listas de información */
+.info-list-clean {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-list-clean li {
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(163, 177, 138, 0.08);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--text-medium);
+    transition: all 0.3s ease;
+    line-height: 1.5;
+}
+
+.info-list-clean li:last-child {
+    border-bottom: none;
+}
+
+.info-list-clean li:hover {
+    color: var(--primary-green);
+    background: rgba(163, 177, 138, 0.03);
+    padding-left: 0.5rem;
+    border-radius: 8px;
+}
+
+.info-list-clean li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.6rem;
+}
+
+/* Responsive para características compactas */
+@media (max-width: 640px) {
+    .features-compact {
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
+    
+    .feature-item-compact {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .feature-title-compact {
+        font-size: 0.8rem;
+    }
+    
+    .feature-description-compact {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+    
+    .info-list-clean li {
+        padding: 0.75rem 0;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-compact {
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .feature-item-compact {
+        padding: 0.5rem;
+        gap: 0.75rem;
+    }
+    
+    .feature-icon-compact {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    
+    .info-list-clean li {
+        padding: 0.625rem 0;
+        gap: 0.5rem;
+    }
+    
+    .info-list-clean li::before {
+        width: 5px;
+        height: 5px;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Corrección específica para botones de acción */
+#whatsapp-btn,
+#share-btn {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    min-height: 44px !important;
+}
+
+#whatsapp-btn {
+    background-color: #25D366 !important;
+    color: #ffffff !important;
+    border: 2px solid #25D366 !important;
+}
+
+#share-btn {
+    background-color: #3B82F6 !important;
+    color: #ffffff !important;
+    border: 2px solid #3B82F6 !important;
+}
+
+/* Optimizaciones finales */
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
