@@ -56,15 +56,15 @@ class EnhancedProductDetailPage {
         // Intentar cargar inmediatamente
         if (!tryLoadProduct()) {
             console.log('⏳ Esperando a que los productos estén disponibles...');
-            
+
             // Intentar varias veces
             let attempts = 0;
             const maxAttempts = 20;
-            
+
             const retryInterval = setInterval(() => {
                 attempts++;
                 console.log(`🔄 Intento ${attempts}/${maxAttempts} de cargar producto`);
-                
+
                 if (tryLoadProduct()) {
                     clearInterval(retryInterval);
                 } else if (attempts >= maxAttempts) {
@@ -84,7 +84,7 @@ class EnhancedProductDetailPage {
 
         // Obtener productos actuales con múltiples fallbacks
         let products = [];
-        
+
         if (window.productosData && Array.isArray(window.productosData)) {
             products = window.productosData;
         } else if (window.getCurrentProducts && typeof window.getCurrentProducts === 'function') {
@@ -92,16 +92,16 @@ class EnhancedProductDetailPage {
         } else {
             console.error('❌ No se pueden obtener los productos');
         }
-        
+
         console.log(`📊 Buscando en ${products.length} productos disponibles`);
 
         // Buscar producto con múltiples métodos de comparación
         this.product = products.find(p => {
-            return p.id == productId || 
-                   p.id === productId || 
-                   p.id === parseInt(productId) || 
-                   p.id === productId.toString() ||
-                   parseInt(p.id) === parseInt(productId);
+            return p.id == productId ||
+                p.id === productId ||
+                p.id === parseInt(productId) ||
+                p.id === productId.toString() ||
+                parseInt(p.id) === parseInt(productId);
         });
 
         if (!this.product) {
@@ -368,7 +368,7 @@ class EnhancedProductDetailPage {
         }
 
         badgesContainer.innerHTML = badges.join('');
-        
+
         // Renderizar badges de promociones por separado
         this.renderPromotionBadges();
     }
@@ -1026,7 +1026,7 @@ class EnhancedProductDetailPage {
      */
     downloadTechSheet() {
         console.log('📄 Iniciando descarga de ficha técnica...');
-        
+
         if (!this.product) {
             console.error('❌ No hay producto disponible para generar ficha técnica');
             this.showNotification('Error: No hay producto disponible', 'error');

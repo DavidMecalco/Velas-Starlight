@@ -60,7 +60,7 @@
             background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
         }
 
-        /* Progress Steps Elegante - Como en la imagen */
+        /* Progress Steps Elegante - Rediseñado */
         .progress-steps-elegant {
             display: flex;
             align-items: center;
@@ -68,6 +68,7 @@
             gap: 0;
             max-width: 600px;
             margin: 0 auto;
+            padding: 2rem 0;
         }
 
         .step-item {
@@ -79,39 +80,42 @@
         }
 
         .step-circle-elegant {
-            width: 4rem;
-            height: 4rem;
+            width: 4.5rem;
+            height: 4.5rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
             font-size: 1.25rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 2;
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            color: #adb5bd;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
         }
 
         .step-label-elegant {
-            margin-top: 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            color: #adb5bd;
-            transition: all 0.3s ease;
+            margin-top: 1.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
         }
 
         .step-connector {
             position: absolute;
-            top: 2rem;
+            top: 2.25rem;
             left: 60%;
             right: -60%;
-            height: 2px;
-            background: #e9ecef;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
             z-index: 1;
+            border-radius: 2px;
         }
 
         .step-item:last-child .step-connector {
@@ -124,37 +128,78 @@
             top: 0;
             left: 0;
             height: 100%;
-            background: #374151;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
             width: 0;
-            transition: width 0.6s ease;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
         }
 
         /* Estado activo */
         .step-item.active .step-circle-elegant {
-            background: #374151;
-            border-color: #374151;
-            color: white;
-            box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(255, 255, 255, 0.95);
+            color: #2D3E33;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         .step-item.active .step-label-elegant {
-            color: #374151;
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
         }
 
         /* Estado completado */
         .step-item.completed .step-circle-elegant {
-            background: #10b981;
+            background: linear-gradient(135deg, #10b981, #059669);
             border-color: #10b981;
             color: white;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            transform: scale(1.05);
         }
 
         .step-item.completed .step-label-elegant {
             color: #10b981;
+            transform: translateY(-2px);
         }
 
         .step-item.completed .step-connector::before {
             width: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        /* Animación de pulso para el paso activo */
+        .step-item.active .step-circle-elegant::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Mejoras para las estadísticas del hero */
+        #hero-items-count,
+        #hero-total-amount {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Responsive */
@@ -305,12 +350,17 @@
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .quantity-section-new {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
         }
 
         .qty-btn-new {
@@ -324,40 +374,48 @@
             font-size: 0.875rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .qty-btn-new.minus {
-            background: #e53e3e;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
         }
 
         .qty-btn-new.minus:hover {
-            background: #c53030;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
         }
 
         .qty-btn-new.plus {
-            background: #38a169;
+            background: linear-gradient(135deg, #10b981, #059669);
             color: white;
         }
 
         .qty-btn-new.plus:hover {
-            background: #2f855a;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
         }
 
         .qty-display-new {
             font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
             color: #2d3748;
-            min-width: 2rem;
+            min-width: 3rem;
             text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #e2e8f0;
         }
 
         .price-section-new {
             text-align: right;
             flex: 1;
+            min-width: 120px;
         }
 
         .final-price-new {
@@ -365,11 +423,16 @@
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .unit-price-new {
             font-size: 0.875rem;
             color: #718096;
+            font-weight: 500;
         }
 
         .original-price-new {
@@ -383,52 +446,137 @@
             width: 2.5rem;
             height: 2.5rem;
             border-radius: 50%;
-            background: #e53e3e;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin-left: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .delete-btn-new:hover {
-            background: #c53030;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
         }
 
         /* Responsive para tarjetas */
         @media (max-width: 768px) {
             .product-card-new {
                 flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.25rem;
+            }
+
+            .product-image-section {
+                align-self: center;
+            }
+
+            .product-image-new {
+                width: 100px;
+                height: 100px;
+            }
+
+            .product-info-new {
+                text-align: center;
+                margin-bottom: 0;
+            }
+
+            .product-details-new {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .product-controls-new {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .quantity-section-new {
+                justify-content: center;
+                padding: 0.75rem 1rem;
+                min-width: 200px;
+            }
+
+            .qty-btn-new {
+                width: 3rem;
+                height: 3rem;
+                font-size: 1rem;
+            }
+
+            .qty-display-new {
+                font-size: 1.5rem;
+                min-width: 4rem;
+                padding: 0.5rem;
+            }
+
+            .price-section-new {
+                text-align: center;
+                min-width: auto;
+                width: 100%;
+            }
+
+            .final-price-new {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .delete-btn-new {
+                margin-left: 0;
+                width: 3rem;
+                height: 3rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-card-new {
+                padding: 1rem;
                 gap: 1rem;
             }
 
             .product-image-new {
                 width: 80px;
                 height: 80px;
-                align-self: center;
             }
 
-            .product-controls-new {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: stretch;
+            .product-title-new {
+                font-size: 1.125rem;
+            }
+
+            .detail-item-new {
+                font-size: 0.8rem;
             }
 
             .quantity-section-new {
-                justify-content: center;
+                min-width: 180px;
+                padding: 0.5rem 0.75rem;
             }
 
-            .price-section-new {
-                text-align: center;
+            .qty-btn-new {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 0.875rem;
+            }
+
+            .qty-display-new {
+                font-size: 1.25rem;
+                min-width: 3rem;
+            }
+
+            .final-price-new {
+                font-size: 1.75rem;
             }
 
             .delete-btn-new {
-                margin-left: 0;
-                align-self: center;
+                width: 2.5rem;
+                height: 2.5rem;
             }
         }
     </style>
@@ -507,29 +655,94 @@
 
     <!-- Main Content -->
     <main class="pt-20 min-h-screen">
-        <!-- Hero Section Moderno -->
-        <section class="relative py-16 lg:py-20 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-sage-green via-dark-green to-sage-green opacity-90">
-            </div>
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=" 60" height="60" viewBox="0 0 60 60"
-                xmlns="http://www.w3.org/2000/svg" %3E%3Cg fill="none" fill-rule="evenodd" %3E%3Cg fill="%23ffffff"
-                fill-opacity="0.05" %3E%3Ccircle cx="30" cy="30" r="2" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30">
+        <!-- Hero Section Rediseñado - Estilo Moderno y Elegante -->
+        <section
+            class="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-sage-green via-dark-green to-sage-green">
+            <!-- Elementos decorativos de fondo -->
+            <div class="absolute inset-0 opacity-10">
+                <div
+                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent">
+                </div>
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
             </div>
 
-            <div class="relative container mx-auto px-4 text-center">
+            <!-- Patrón de puntos sutil -->
+            <div class="absolute inset-0 opacity-20"
+                style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;">
+            </div>
+
+            <div class="relative container mx-auto px-6 text-center">
+                <!-- Badge superior elegante -->
                 <div
-                    class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                    <i class="fas fa-shopping-bag text-white/80"></i>
-                    <span class="text-white/90 text-sm font-medium">Tu experiencia de compra</span>
+                    class="inline-flex items-center space-x-3 bg-white/15 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20 shadow-lg">
+                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-shopping-bag text-white text-sm"></i>
+                    </div>
+                    <span class="text-white font-medium tracking-wide">Tu experiencia de compra</span>
                 </div>
 
-                <h1 class="text-4xl lg:text-6xl font-serif font-bold text-white mb-4 animate-fade-in">
-                    Carrito de Compras
+                <!-- Título principal -->
+                <h1 class="text-5xl lg:text-7xl font-serif font-bold text-white mb-6 tracking-tight">
+                    <span class="block">Carrito de</span>
+                    <span
+                        class="block bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">Compras</span>
                 </h1>
-                <p class="text-xl text-white/90 max-w-2xl mx-auto animate-slide-up">
-                    Revisa tus productos seleccionados y completa tu pedido de manera fácil y segura
+
+                <!-- Descripción -->
+                <p class="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+                    Revisa tus productos seleccionados y completa tu pedido de manera
+                    <span class="font-medium text-white">fácil y segura</span>
                 </p>
+
+                <!-- Indicadores de progreso modernos -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="progress-steps-elegant">
+                        <div class="step-item active">
+                            <div class="step-circle-elegant">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="step-label-elegant">CARRITO</div>
+                            <div class="step-connector"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-circle-elegant">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="step-label-elegant">ENVÍO</div>
+                            <div class="step-connector"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-circle-elegant">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="step-label-elegant">CONFIRMACIÓN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estadísticas rápidas -->
+                <div class="flex justify-center items-center space-x-8 mt-12">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white mb-1" id="hero-items-count">0</div>
+                        <div class="text-white/70 text-sm uppercase tracking-wider">Productos</div>
+                    </div>
+                    <div class="w-px h-12 bg-white/30"></div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white mb-1" id="hero-total-amount">$0.00</div>
+                        <div class="text-white/70 text-sm uppercase tracking-wider">Total</div>
+                    </div>
+                    <div class="w-px h-12 bg-white/30"></div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white mb-1">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="text-white/70 text-sm uppercase tracking-wider">Seguro</div>
+                    </div>
+                </div>
             </div>
+
+
         </section>
 
 
@@ -2361,6 +2574,37 @@
             setTimeout(() => {
                 clearOldCartData();
             }, 500);
+        });
+
+        // Función para actualizar las estadísticas del hero
+        function updateHeroStats() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const itemsCount = cart.length;
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Actualizar contadores del hero
+            const heroItemsCount = document.getElementById('hero-items-count');
+            const heroTotalAmount = document.getElementById('hero-total-amount');
+
+            if (heroItemsCount) {
+                heroItemsCount.textContent = itemsCount;
+            }
+
+            if (heroTotalAmount) {
+                heroTotalAmount.textContent = `$${totalAmount.toFixed(2)}`;
+            }
+        }
+
+        // Actualizar estadísticas del hero cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function () {
+            updateHeroStats();
+
+            // También actualizar cuando cambie el carrito
+            const originalUpdateCartDisplay = updateCartDisplay;
+            updateCartDisplay = function () {
+                originalUpdateCartDisplay();
+                updateHeroStats();
+            };
         });
     </script>
 </body>
