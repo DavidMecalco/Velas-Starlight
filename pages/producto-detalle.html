@@ -352,12 +352,12 @@
         }
 
         .share-btn {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            background: linear-gradient(135deg, #2196F3, #1976D2);
             color: white;
         }
 
         .share-btn:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #1976D2, #1565C0);
             transform: translateY(-2px);
             box-shadow: var(--shadow-medium);
         }
@@ -1027,6 +1027,28 @@
             opacity: 0.3;
         }
 
+        /* Animaciones para las tarjetas de detalle */
+        .detail-card {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: detailCardFadeIn 0.8s ease-out forwards;
+        }
+
+        .detail-card:nth-child(1) { animation-delay: 0.2s; }
+        .detail-card:nth-child(2) { animation-delay: 0.4s; }
+        .detail-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes detailCardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Título de sección mejorado */
         .details-section-title {
             text-align: center;
@@ -1126,6 +1148,186 @@
             color: white !important;
         }
 
+        /* Loading State Premium para Producto Detalle */
+        .product-loading-state {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 600px;
+            background: linear-gradient(135deg, var(--warm) 0%, #F5F3F0 100%);
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-loading-state::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23A3B18A" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></g></svg>');
+            pointer-events: none;
+        }
+
+        .product-loading-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .product-loading-spinner {
+            width: 5rem;
+            height: 5rem;
+            position: relative;
+        }
+
+        .product-loading-spinner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 5px solid transparent;
+            border-top: 5px solid var(--secondary);
+            border-right: 5px solid var(--accent);
+            border-radius: 50%;
+            animation: productSpin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .product-loading-spinner::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: calc(100% - 16px);
+            height: calc(100% - 16px);
+            border: 4px solid transparent;
+            border-bottom: 4px solid #A3B18A;
+            border-left: 4px solid #3A5A40;
+            border-radius: 50%;
+            animation: productSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
+        }
+
+        .product-loading-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
+            animation: productPulse 2.5s ease-in-out infinite;
+        }
+
+        .product-loading-dots {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .product-loading-dot {
+            width: 1rem;
+            height: 1rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            animation: productBounce 1.6s ease-in-out infinite both;
+            box-shadow: 0 2px 8px rgba(45, 62, 51, 0.3);
+        }
+
+        .product-loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .product-loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        .product-loading-dot:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes productSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes productPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        @keyframes productBounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Animaciones de entrada para el contenido del producto */
+        .product-layout {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: productFadeInUp 0.8s ease-out forwards;
+        }
+
+        .gallery-premium {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.8s ease-out 0.2s forwards;
+        }
+
+        .info-panel {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInRight 0.8s ease-out 0.4s forwards;
+        }
+
+        @keyframes productFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+
         /* Toast responsive */
         @media (max-width: 768px) {
             .toast-premium {
@@ -1140,6 +1342,30 @@
                 min-width: auto;
                 max-width: none;
                 padding: 1rem;
+            }
+
+            /* Loading responsive */
+            .product-loading-state {
+                min-height: 400px;
+                margin: 1rem 0;
+            }
+
+            .product-loading-spinner {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .product-loading-text {
+                font-size: 1.25rem;
+            }
+
+            .product-loading-dots {
+                gap: 0.5rem;
+            }
+
+            .product-loading-dot {
+                width: 0.75rem;
+                height: 0.75rem;
             }
         }
 
@@ -1637,7 +1863,22 @@
     <!-- Main Content -->
     <main>
         <div class="container-premium">
-            <div class="product-layout">
+            <!-- Loading State -->
+            <div id="product-loading-state" class="product-loading-state">
+                <div class="product-loading-container">
+                    <div class="product-loading-spinner"></div>
+                    <div class="product-loading-text">
+                        Cargando producto...
+                        <div class="product-loading-dots">
+                            <div class="product-loading-dot"></div>
+                            <div class="product-loading-dot"></div>
+                            <div class="product-loading-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="product-content" class="product-layout hidden">
                 <!-- Galería Premium -->
                 <div class="gallery-premium">
                     <div class="main-image-container">
@@ -1868,6 +2109,8 @@
                 </div>
             </div>
         </section>
+        </div> <!-- Cierre de product-content -->
+        </div> <!-- Cierre de container-premium -->
     </main>
 
     <!-- Footer -->
@@ -2014,20 +2257,29 @@
         document.addEventListener('DOMContentLoaded', function () {
             console.log('DOM cargado, iniciando producto...');
 
+            // Mostrar loading state
+            showProductLoading();
+
             // Intentar inicializar inmediatamente
             if (typeof productosData !== 'undefined' || typeof window.productosData !== 'undefined') {
-                initializeProduct();
+                // Simular un pequeño delay para mostrar la animación
+                setTimeout(() => {
+                    initializeProduct();
+                    hideProductLoading();
+                }, 800);
             } else {
                 // Si no están disponibles, esperar un poco más
                 console.log('Datos no disponibles inmediatamente, esperando...');
                 setTimeout(() => {
                     if (typeof productosData !== 'undefined' || typeof window.productosData !== 'undefined') {
                         initializeProduct();
+                        hideProductLoading();
                     } else {
                         console.error('Datos de productos no disponibles después de esperar');
+                        hideProductLoading();
                         showError('Error: No se pudieron cargar los datos de productos');
                     }
-                }, 500);
+                }, 1500);
             }
 
             setupEventListeners();
@@ -2824,6 +3076,40 @@
                     }, 300);
                 }
             }, 5000);
+        }
+
+        // Funciones de Loading State
+        function showProductLoading() {
+            const loadingState = document.getElementById('product-loading-state');
+            const productContent = document.getElementById('product-content');
+            
+            if (loadingState) {
+                loadingState.style.display = 'flex';
+            }
+            if (productContent) {
+                productContent.classList.add('hidden');
+            }
+        }
+
+        function hideProductLoading() {
+            const loadingState = document.getElementById('product-loading-state');
+            const productContent = document.getElementById('product-content');
+            
+            if (loadingState) {
+                loadingState.style.animation = 'fadeOut 0.5s ease-out forwards';
+                setTimeout(() => {
+                    loadingState.style.display = 'none';
+                }, 500);
+            }
+            
+            if (productContent) {
+                productContent.classList.remove('hidden');
+                // Trigger animations
+                setTimeout(() => {
+                    productContent.style.opacity = '1';
+                    productContent.style.transform = 'translateY(0)';
+                }, 100);
+            }
         }
 
         // Cargar productos relacionados aleatorios
