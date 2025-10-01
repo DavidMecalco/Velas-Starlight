@@ -457,12 +457,34 @@
             align-items: center;
             justify-content: center;
             font-size: 1.125rem;
+            position: relative;
+            z-index: 10;
         }
 
         .quick-action-btn:hover {
             background: var(--secondary);
             color: white;
             transform: scale(1.1);
+        }
+
+        .quick-action-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Estilos específicos para cada botón */
+        .whatsapp-btn:hover {
+            background: #25D366 !important;
+            color: white;
+        }
+
+        .share-btn:hover {
+            background: #1DA1F2 !important;
+            color: white;
+        }
+
+        .view-btn:hover {
+            background: var(--secondary) !important;
+            color: white;
         }
 
         .product-content {
@@ -977,6 +999,30 @@
         let currentCategory = 'all';
         let searchTerm = '';
 
+        // Debug: Verificar que las funciones estén disponibles
+        window.debugProductActions = function() {
+            console.log('=== DEBUG PRODUCT ACTIONS ===');
+            console.log('allProducts:', allProducts.length);
+            console.log('Funciones disponibles:');
+            console.log('- viewProduct:', typeof viewProduct);
+            console.log('- openWhatsApp:', typeof openWhatsApp);
+            console.log('- shareProduct:', typeof shareProduct);
+            console.log('- showToast:', typeof showToast);
+            
+            // Probar con el primer producto
+            if (allProducts.length > 0) {
+                const firstProduct = allProducts[0];
+                console.log('Probando con producto:', firstProduct.title, 'ID:', firstProduct.id);
+                
+                // Test buttons
+                const buttons = document.querySelectorAll('.quick-action-btn');
+                console.log('Botones encontrados:', buttons.length);
+                buttons.forEach((btn, index) => {
+                    console.log(`Botón ${index}:`, btn.className, 'ProductID:', btn.dataset.productId);
+                });
+            }
+        };
+
         // Inicializar página
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM cargado');
@@ -985,6 +1031,14 @@
                 console.log('Número de productos:', productosData.length);
             }
             initializePage();
+            
+            // Debug después de cargar
+            setTimeout(() => {
+                console.log('🔍 Productos cargados, ejecutando debug...');
+                if (typeof window.debugProductActions === 'function') {
+                    window.debugProductActions();
+                }
+            }, 1000);
         });
 
         // Inicializar página
@@ -1102,13 +1156,13 @@
                     
                     <div class="product-overlay">
                         <div class="product-quick-actions">
-                            <button class="quick-action-btn" onclick="event.stopPropagation(); openWhatsApp('${product.id}')" title="Preguntar por WhatsApp">
+                            <button class="quick-action-btn whatsapp-btn" data-product-id="${product.id}" title="Preguntar por WhatsApp">
                                 <i class="fab fa-whatsapp"></i>
                             </button>
-                            <button class="quick-action-btn" onclick="event.stopPropagation(); shareProduct('${product.id}')" title="Compartir">
+                            <button class="quick-action-btn share-btn" data-product-id="${product.id}" title="Compartir">
                                 <i class="fa fa-share-alt"></i>
                             </button>
-                            <button class="quick-action-btn" onclick="event.stopPropagation(); viewProduct('${product.id}')" title="Ver detalles">
+                            <button class="quick-action-btn view-btn" data-product-id="${product.id}" title="Ver detalles">
                                 <i class="fa fa-eye"></i>
                             </button>
                         </div>
@@ -1130,7 +1184,7 @@
                             ${!product.available ? '<div style="color: #dc2626; font-size: 0.875rem; font-weight: 500;">Sin stock</div>' : ''}
                         </div>
                         <div class="product-actions">
-                            <button class="btn-view ${!product.available ? 'opacity-50' : ''}" onclick="event.stopPropagation(); viewProduct('${product.id}')">
+                            <button class="btn-view view-btn ${!product.available ? 'opacity-50' : ''}" data-product-id="${product.id}">
                                 Ver detalles
                             </button>
                         </div>
@@ -1143,6 +1197,33 @@
 
         // Configurar event listeners
         function setupEventListeners() {
+            // Event delegation para botones de productos
+            document.addEventListener('click', (e) => {
+                // WhatsApp button
+                if (e.target.closest('.whatsapp-btn')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const productId = e.target.closest('.whatsapp-btn').dataset.productId;
+                    openWhatsApp(productId);
+                }
+                
+                // Share button
+                if (e.target.closest('.share-btn')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const productId = e.target.closest('.share-btn').dataset.productId;
+                    shareProduct(productId);
+                }
+                
+                // View button
+                if (e.target.closest('.view-btn')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const productId = e.target.closest('.view-btn').dataset.productId;
+                    viewProduct(productId);
+                }
+            });
+
             // Filtros de categoría
             document.querySelectorAll('[data-category]').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -1220,40 +1301,68 @@
 
         // Acciones rápidas
         function viewProduct(productId) {
-            window.location.href = `producto-detalle.html?id=${productId}`;
+            console.log('Ver producto:', productId);
+            try {
+                window.location.href = `producto-detalle.html?id=${productId}`;
+            } catch (error) {
+                console.error('Error al navegar:', error);
+                showToast('Error al abrir el producto', 'error');
+            }
         }
 
         function openWhatsApp(productId) {
-            const product = allProducts.find(p => p.id == productId);
-            if (!product) return;
-            
-            const productUrl = `${window.location.origin}${window.location.pathname.replace('productos.html', '')}producto-detalle.html?id=${productId}`;
-            const message = `¡Hola! Me interesa este producto: *${product.title}*\n\n${productUrl}\n\n¿Podrías darme más información?`;
-            const whatsappUrl = `https://wa.me/525564682112?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
+            console.log('Abrir WhatsApp para producto:', productId);
+            try {
+                const product = allProducts.find(p => p.id == productId);
+                if (!product) {
+                    console.error('Producto no encontrado:', productId);
+                    showToast('Producto no encontrado', 'error');
+                    return;
+                }
+                
+                const productUrl = `${window.location.origin}${window.location.pathname.replace('productos.html', '')}producto-detalle.html?id=${productId}`;
+                const message = `¡Hola! Me interesa este producto: *${product.title}*\n\n${productUrl}\n\n¿Podrías darme más información?`;
+                const whatsappUrl = `https://wa.me/525564682112?text=${encodeURIComponent(message)}`;
+                
+                console.log('Abriendo WhatsApp:', whatsappUrl);
+                window.open(whatsappUrl, '_blank');
+                showToast('Abriendo WhatsApp...', 'success');
+            } catch (error) {
+                console.error('Error al abrir WhatsApp:', error);
+                showToast('Error al abrir WhatsApp', 'error');
+            }
         }
 
         function shareProduct(productId) {
-            const product = allProducts.find(p => p.id == productId);
-            if (!product) return;
-            
-            const productUrl = `${window.location.origin}${window.location.pathname.replace('productos.html', '')}producto-detalle.html?id=${productId}`;
-            const shareData = {
-                title: `${product.title} - Velas Starlight`,
-                text: `Mira este increíble producto: ${product.title}`,
-                url: productUrl
-            };
-            
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .then(() => showToast('Producto compartido exitosamente', 'success'))
-                    .catch((error) => {
-                        console.log('Error sharing:', error);
-                        fallbackShare(productUrl);
-                    });
-            } else {
-                fallbackShare(productUrl);
+            console.log('Compartir producto:', productId);
+            try {
+                const product = allProducts.find(p => p.id == productId);
+                if (!product) {
+                    console.error('Producto no encontrado:', productId);
+                    showToast('Producto no encontrado', 'error');
+                    return;
+                }
+                
+                const productUrl = `${window.location.origin}${window.location.pathname.replace('productos.html', '')}producto-detalle.html?id=${productId}`;
+                const shareData = {
+                    title: `${product.title} - Velas Starlight`,
+                    text: `Mira este increíble producto: ${product.title}`,
+                    url: productUrl
+                };
+                
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .then(() => showToast('Producto compartido exitosamente', 'success'))
+                        .catch((error) => {
+                            console.log('Error sharing:', error);
+                            fallbackShare(productUrl);
+                        });
+                } else {
+                    fallbackShare(productUrl);
+                }
+            } catch (error) {
+                console.error('Error al compartir:', error);
+                showToast('Error al compartir producto', 'error');
             }
         }
 

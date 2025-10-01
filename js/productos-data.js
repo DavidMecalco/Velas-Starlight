@@ -473,6 +473,124 @@ const productosData = [
     }
 ];
 
+/**
+ * ========================================
+ * PLANTILLA DE ADMINISTRADOR - NUEVO PRODUCTO
+ * ========================================
+ * 
+ * 📝 INSTRUCCIONES DE USO:
+ * 1. Copia la plantilla de abajo
+ * 2. Pégala ANTES de esta sección de comentarios
+ * 3. Modifica los valores según tu nuevo producto
+ * 4. Incrementa el ID al siguiente número disponible
+ * 5. Agrega una coma (,) al final del objeto anterior
+ * 
+ * 🏷️ CATEGORÍAS DISPONIBLES: "Vela", "Belleza"
+ * 🏷️ TIPOS DE VELA: "Soya", "Parafina"
+ * 🏷️ TIPOS DE BELLEZA: "Origen Natural"
+ * 
+ * ========================================
+ */
+
+/*
+// PLANTILLA PARA VELA - Copia desde aquí ⬇️
+{
+    "id": 10, // ⚠️ CAMBIAR: Incrementar al siguiente número
+    "title": "Nombre del Producto", // ✏️ CAMBIAR: Título del producto
+    "category": "Vela", // 🏷️ OPCIONES: "Vela" o "Belleza"
+    "description": "Descripción detallada del producto que capture su esencia y beneficios únicos.", // ✏️ CAMBIAR: Descripción completa
+    "image": "../images/nombre-imagen.jpg", // 🖼️ CAMBIAR: Ruta de la imagen
+    "featured": false, // 🌟 CAMBIAR: true si es producto destacado
+    "new": false, // 🆕 CAMBIAR: true si es producto nuevo
+    "bestseller": false, // 🏆 CAMBIAR: true si es bestseller
+    "available": true, // ✅ CAMBIAR: false si no está disponible
+    "type": "Soya", // 🏷️ OPCIONES VELA: "Soya" o "Parafina"
+    "fragrances": [ // 🌸 CAMBIAR: Seleccionar fragancias disponibles
+        "Lavanda",
+        "Vainilla",
+        "Canela"
+        // Opciones completas: "Rosas Especiales", "Lavanda", "Vainilla", "Canela", 
+        // "Fresa", "Frutos Rojos", "Blue Berry", "Cereza", "Manzana-Canela", 
+        // "Pitaya", "Flores Hawaianas", "Citricos", "Coco", "Menta", "Sandalo"
+    ],
+    "sizes": [ // 💰 CAMBIAR: Tamaños y precios
+        {
+            "label": "50 gr",
+            "price": 80
+        },
+        {
+            "label": "100 gr",
+            "price": 120
+        }
+    ],
+    "characteristics": [ // ⭐ CAMBIAR: Características principales
+        "Característica 1",
+        "Característica 2",
+        "Característica 3",
+        "Característica 4"
+    ],
+    "care": [ // 🛡️ CAMBIAR: Instrucciones de cuidado
+        "Nunca dejar encendida sin supervisión",
+        "Recortar mecha a 5mm antes de encender",
+        "Instrucción específica 1",
+        "Instrucción específica 2"
+    ],
+    "ingredients": [ // 🧪 CAMBIAR: Ingredientes y porcentajes
+        "Cera de soya premium 85%",
+        "Aceites esenciales naturales 10%",
+        "Mecha de algodón 5%"
+    ]
+},
+// PLANTILLA PARA VELA - Hasta aquí ⬆️
+
+// PLANTILLA PARA BELLEZA - Copia desde aquí ⬇️
+{
+    "id": 11, // ⚠️ CAMBIAR: Incrementar al siguiente número
+    "title": "Nombre del Producto de Belleza", // ✏️ CAMBIAR: Título del producto
+    "category": "Belleza", // 🏷️ FIJO: "Belleza"
+    "description": "Descripción detallada del producto de belleza, sus beneficios y propiedades.", // ✏️ CAMBIAR: Descripción completa
+    "image": "../images/nombre-imagen.jpg", // 🖼️ CAMBIAR: Ruta de la imagen
+    "featured": false, // 🌟 CAMBIAR: true si es producto destacado
+    "new": false, // 🆕 CAMBIAR: true si es producto nuevo
+    "bestseller": false, // 🏆 CAMBIAR: true si es bestseller
+    "available": true, // ✅ CAMBIAR: false si no está disponible
+    "type": "Origen Natural", // 🏷️ FIJO: "Origen Natural" para belleza
+    "variants": [ // 🎨 CAMBIAR: Variantes del producto
+        "Variante 1",
+        "Variante 2",
+        "Variante 3"
+    ],
+    "sizes": [ // 💰 CAMBIAR: Tamaños y precios
+        {
+            "label": "30 ml",
+            "price": 180
+        },
+        {
+            "label": "60 ml",
+            "price": 320
+        }
+    ],
+    "characteristics": [ // ⭐ CAMBIAR: Características principales
+        "Característica 1",
+        "Característica 2",
+        "Característica 3",
+        "Característica 4"
+    ],
+    "care": [ // 🛡️ CAMBIAR: Instrucciones de uso
+        "Aplicar sobre piel limpia",
+        "Usar movimientos suaves",
+        "Instrucción específica 1",
+        "Instrucción específica 2"
+    ],
+    "ingredients": [ // 🧪 CAMBIAR: Ingredientes y porcentajes
+        "Ingrediente principal 25%",
+        "Ingrediente secundario 20%",
+        "Otros ingredientes 55%"
+    ]
+}
+// PLANTILLA PARA BELLEZA - Hasta aquí ⬆️
+*/
+
 // Exportar para uso en otros archivos
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = productosData;
