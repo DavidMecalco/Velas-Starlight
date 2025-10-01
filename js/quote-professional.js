@@ -222,24 +222,6 @@ function generateProfessionalQuote() {
             let discountText = 'N/A';
             let discountAmount = 0;
             
-            // Aplicar promoción 2x1
-            if (item.promotion2x1) {
-                const paidQuantity = Math.ceil(item.quantity / 2);
-                itemPrice = item.price * paidQuantity;
-                discountAmount = (item.quantity - paidQuantity) * item.price;
-                discountText = '2x1';
-            }
-            
-            // Aplicar descuento especial
-            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                const additionalDiscount = itemPrice * (item.specialDiscount.percentage / 100);
-                discountAmount += additionalDiscount;
-                itemPrice -= additionalDiscount;
-                discountText = discountText === 'N/A' ? 
-                    `${item.specialDiscount.percentage}%` : 
-                    `${discountText} + ${item.specialDiscount.percentage}%`;
-            }
-            
             subtotal += itemPrice;
             
             // Fondo alternado sutil

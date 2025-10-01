@@ -382,25 +382,7 @@ class EnhancedProductDetailPage {
 
         const promotionBadges = [];
 
-        // Badge para promoción 2x1
-        if (this.product.promotion2x1) {
-            promotionBadges.push(`
-                <div class="promotion-badge-detail bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
-                    <i class="fas fa-gift"></i>
-                    <span class="font-semibold">¡Promoción 2x1!</span>
-                </div>
-            `);
-        }
 
-        // Badge para descuento especial
-        if (this.product.specialDiscount && this.product.specialDiscount.percentage > 0) {
-            promotionBadges.push(`
-                <div class="promotion-badge-detail bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
-                    <i class="fas fa-percent"></i>
-                    <span class="font-semibold">${this.product.specialDiscount.percentage}% de descuento</span>
-                </div>
-            `);
-        }
 
         promotionContainer.innerHTML = promotionBadges.join('');
 
@@ -920,10 +902,7 @@ class EnhancedProductDetailPage {
                 quantity: this.quantity,
                 unitPrice: this.selectedSize.price,
                 price: this.selectedSize.price,
-                total: this.selectedSize.price * this.quantity,
-                // Agregar información de promociones
-                promotion2x1: this.product.promotion2x1 || false,
-                specialDiscount: this.product.specialDiscount || null
+                total: this.selectedSize.price * this.quantity
             };
 
             // Agregar al carrito

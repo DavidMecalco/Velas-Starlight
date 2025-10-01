@@ -341,25 +341,7 @@ class QuotePDFGeneratorUltimate {
 
             yPos += 6;
 
-            // Agregar información de promociones si aplica
-            if (item.promotion2x1 && quantity >= 2) {
-                const freeItems = Math.floor(quantity / 2);
-                doc.setFontSize(8);
-                doc.setTextColor(0, 150, 0); // Verde
-                doc.text(`   ↳ Promoción 2x1: ${freeItems} producto${freeItems > 1 ? 's' : ''} gratis`, 20, yPos);
-                yPos += 4;
-                doc.setFontSize(10);
-                doc.setTextColor(0, 0, 0); // Negro
-            }
 
-            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                doc.setFontSize(8);
-                doc.setTextColor(255, 100, 0); // Naranja
-                doc.text(`   ↳ Descuento especial: ${item.specialDiscount.percentage}%`, 20, yPos);
-                yPos += 4;
-                doc.setFontSize(10);
-                doc.setTextColor(0, 0, 0); // Negro
-            }
         });
 
         return yPos;

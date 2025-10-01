@@ -979,6 +979,11 @@
 
         // Inicializar página
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM cargado');
+            console.log('productosData disponible:', typeof productosData !== 'undefined');
+            if (typeof productosData !== 'undefined') {
+                console.log('Número de productos:', productosData.length);
+            }
             initializePage();
         });
 
@@ -993,8 +998,17 @@
         // Cargar productos
         function loadProducts() {
             try {
-                allProducts = window.getCurrentProducts ? window.getCurrentProducts() : window.productosData || [];
+                // Verificar que los datos estén disponibles
+                if (typeof productosData === 'undefined') {
+                    console.error('productosData no está definido');
+                    showError('Error: No se pudieron cargar los datos de productos');
+                    return;
+                }
+                
+                allProducts = productosData || [];
                 filteredProducts = [...allProducts];
+                
+                console.log('Productos cargados:', allProducts.length);
                 
                 // Actualizar estadísticas
                 document.getElementById('total-products').textContent = allProducts.length;
@@ -1008,7 +1022,7 @@
                 
             } catch (error) {
                 console.error('Error loading products:', error);
-                showError('Error al cargar los productos');
+                showError('Error al cargar los productos: ' + error.message);
             }
         }
 
@@ -1059,17 +1073,18 @@
             if (product.featured) {
                 badges += '<div class="product-badge badge-featured">Destacado</div>';
             }
-            if (product.promotion2x1) {
-                badges += '<div class="product-badge badge-promotion">2x1</div>';
-            }
+
             
             // Crear características
             let features = '';
-            if (product.types && product.types.length > 0) {
-                features += `<span class="product-feature">${product.types[0]}</span>`;
+            if (product.type) {
+                features += `<span class="product-feature">${product.type}</span>`;
             }
             if (product.duration) {
                 features += `<span class="product-feature">${product.duration}</span>`;
+            }
+            if (!product.available) {
+                features += `<span class="product-feature" style="background: #fee2e2; color: #dc2626;">Sin stock</span>`;
             }
             
             // Truncar descripción
@@ -1112,9 +1127,10 @@
                     <div class="product-footer">
                         <div class="product-price">
                             ${minPrice > 0 ? `<span class="product-price-from">Desde</span> $${minPrice} MXN` : 'Consultar precio'}
+                            ${!product.available ? '<div style="color: #dc2626; font-size: 0.875rem; font-weight: 500;">Sin stock</div>' : ''}
                         </div>
                         <div class="product-actions">
-                            <button class="btn-view" onclick="event.stopPropagation(); viewProduct('${product.id}')">
+                            <button class="btn-view ${!product.available ? 'opacity-50' : ''}" onclick="event.stopPropagation(); viewProduct('${product.id}')">
                                 Ver detalles
                             </button>
                         </div>
@@ -1192,7 +1208,9 @@
                 const searchMatch = searchTerm === '' || 
                     product.title.toLowerCase().includes(searchTerm) ||
                     product.description.toLowerCase().includes(searchTerm) ||
-                    (product.fragrances && product.fragrances.some(f => f.toLowerCase().includes(searchTerm)));
+                    (product.fragrances && product.fragrances.some(f => f.toLowerCase().includes(searchTerm))) ||
+                    (product.variants && product.variants.some(v => v.toLowerCase().includes(searchTerm))) ||
+                    (product.type && product.type.toLowerCase().includes(searchTerm));
                 
                 return categoryMatch && searchMatch;
             });

@@ -1945,7 +1945,24 @@
 
         // Inicialización
         document.addEventListener('DOMContentLoaded', function () {
-            initializeProduct();
+            console.log('DOM cargado, iniciando producto...');
+
+            // Intentar inicializar inmediatamente
+            if (typeof productosData !== 'undefined' || typeof window.productosData !== 'undefined') {
+                initializeProduct();
+            } else {
+                // Si no están disponibles, esperar un poco más
+                console.log('Datos no disponibles inmediatamente, esperando...');
+                setTimeout(() => {
+                    if (typeof productosData !== 'undefined' || typeof window.productosData !== 'undefined') {
+                        initializeProduct();
+                    } else {
+                        console.error('Datos de productos no disponibles después de esperar');
+                        showError('Error: No se pudieron cargar los datos de productos');
+                    }
+                }, 500);
+            }
+
             setupEventListeners();
             updateCartCount();
             setupScrollEffects();
@@ -1971,33 +1988,72 @@
 
         // Inicializar producto desde URL
         function initializeProduct() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id');
+            // Esperar un poco para asegurar que los datos estén cargados
+            setTimeout(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get('id');
 
-            if (productId && window.productosData) {
-                currentProduct = window.productosData.find(p => p.id == productId);
-                if (currentProduct) {
-                    loadProductData(currentProduct);
+                console.log('Inicializando producto con ID:', productId);
+
+                // Verificar múltiples fuentes de datos
+                let dataSource = null;
+                if (typeof productosData !== 'undefined' && productosData) {
+                    dataSource = productosData;
+                    console.log('Usando productosData directamente');
+                } else if (typeof window.productosData !== 'undefined' && window.productosData) {
+                    dataSource = window.productosData;
+                    console.log('Usando window.productosData');
                 } else {
-                    showError('Producto no encontrado');
+                    console.error('No se encontraron datos de productos');
+                    showError('Error: No se pudieron cargar los datos de productos');
+                    return;
                 }
-            } else {
-                showError('ID de producto no válido');
-            }
+
+                if (productId && dataSource && dataSource.length > 0) {
+                    console.log('Buscando producto en', dataSource.length, 'productos');
+                    currentProduct = dataSource.find(p => p.id == parseInt(productId));
+                    if (currentProduct) {
+                        console.log('Producto encontrado:', currentProduct.title);
+                        loadProductData(currentProduct);
+                    } else {
+                        console.error('Producto no encontrado con ID:', productId);
+                        showError('Producto no encontrado');
+                    }
+                } else {
+                    console.error('ID inválido o datos no disponibles');
+                    showError('Error al cargar el producto');
+                }
+            }, 100); // Esperar 100ms para que se carguen los datos
         }
 
         // Cargar datos del producto
         function loadProductData(product) {
+            console.log('Cargando datos del producto:', product.title);
+
             // Actualizar título de la página
             document.title = `${product.title} | Velas Starlight`;
 
             // Breadcrumb
-            document.getElementById('breadcrumb-product').textContent = product.title;
+            const breadcrumbEl = document.getElementById('breadcrumb-product');
+            if (breadcrumbEl) {
+                breadcrumbEl.textContent = product.title;
+            } else {
+                console.warn('Elemento breadcrumb-product no encontrado');
+            }
 
             // Información básica
-            document.getElementById('product-category').textContent = product.category;
-            document.getElementById('product-title').textContent = product.title;
-            document.getElementById('product-description').textContent = product.description;
+            const categoryEl = document.getElementById('product-category');
+            const titleEl = document.getElementById('product-title');
+            const descriptionEl = document.getElementById('product-description');
+
+            if (categoryEl) categoryEl.textContent = product.category;
+            else console.warn('Elemento product-category no encontrado');
+
+            if (titleEl) titleEl.textContent = product.title;
+            else console.warn('Elemento product-title no encontrado');
+
+            if (descriptionEl) descriptionEl.textContent = product.description;
+            else console.warn('Elemento product-description no encontrado');
 
             // Disponibilidad
             const availabilityEl = document.getElementById('product-availability');
@@ -2016,29 +2072,36 @@
             mainImage.src = product.image;
             mainImage.alt = product.title;
 
-            // Promoción 2x1
-            const promoBadge = document.getElementById('promo-badge');
-            if (product.promotion2x1) {
-                promoBadge.classList.remove('hidden');
-            }
+
 
             // Cargar opciones de tamaño
+            console.log('Cargando opciones de tamaño...');
             loadSizeOptions(product);
 
-            // Cargar tipos si existen
-            if (product.types && product.types.length > 0) {
-                loadTypeOptions(product);
-            }
+            // Cargar tipo de producto (siempre existe en la nueva estructura)
+            console.log('Cargando tipo de producto...');
+            loadTypeOptions(product);
 
-            // Cargar fragancias si existen
+            // Cargar fragancias o variantes si existen
             if (product.fragrances && product.fragrances.length > 0) {
+                console.log('Cargando fragancias...');
                 loadFragranceOptions(product);
+            } else if (product.variants && product.variants.length > 0) {
+                console.log('Cargando variantes...');
+                loadVariantOptions(product);
             }
 
             // Cargar información adicional
+            console.log('Cargando características...');
             loadProductFeatures(product);
+            console.log('Cargando ingredientes...');
             loadProductIngredients(product);
+            console.log('Cargando cuidados...');
             loadProductCare(product);
+
+            // Cargar productos relacionados
+            console.log('Cargando productos relacionados...');
+            loadRelatedProducts(product);
 
             // Cargar thumbnails si existen
             loadThumbnails(product);
@@ -2049,8 +2112,16 @@
 
         // Cargar opciones de tamaño en dropdown
         function loadSizeOptions(product) {
+            console.log('loadSizeOptions: Iniciando carga de tamaños');
             const container = document.getElementById('size-dropdown-menu');
+
+            if (!container) {
+                console.error('loadSizeOptions: Elemento size-dropdown-menu no encontrado');
+                return;
+            }
+
             container.innerHTML = '';
+            console.log('loadSizeOptions: Tamaños disponibles:', product.sizes);
 
             if (product.sizes && product.sizes.length > 0) {
                 product.sizes.forEach((size, index) => {
@@ -2106,7 +2177,7 @@
             });
         }
 
-        // Cargar opciones de tipo de cera en dropdown
+        // Cargar opciones de tipo de producto
         function loadTypeOptions(product) {
             const section = document.getElementById('type-section');
             const sectionTitle = section.querySelector('.section-title');
@@ -2115,143 +2186,47 @@
 
             section.classList.remove('hidden');
 
-            // Para productos de belleza, mostrar información estática
+            // Para productos de belleza
             if (product.category === 'Belleza') {
                 sectionTitle.textContent = 'Hecho con amor';
                 sectionIcon.className = 'fa fa-heart section-icon';
 
-                // Reemplazar dropdown con información estática
                 typeDropdown.innerHTML = `
                     <div class="option-card selected" style="cursor: default;">
                         <div class="option-info">
-                            <h4>Origen Natural</h4>
-                            <p>Elaborado con ingredientes naturales</p>
+                            <h4>${product.type}</h4>
+                            <p>${getTypeDescription(product.type)}</p>
                         </div>
                         <div class="option-icon">
-                            <i class="fa fa-leaf" style="color: #4CAF50;"></i>
+                            <i class="fa ${getTypeIcon(product.type)}" style="color: ${getTypeColor(product.type)};"></i>
                         </div>
                     </div>
                 `;
-
-                // Establecer tipo seleccionado
-                selectedType = product.types[0] || 'Origen Natural';
-
             } else {
-                // Para velas, mantener dropdown funcional
-                sectionTitle.textContent = 'Selecciona el tipo de cera';
+                // Para velas
+                sectionTitle.textContent = 'Tipo de cera';
                 sectionIcon.className = 'fa fa-fire section-icon';
 
-                const container = document.getElementById('type-dropdown-menu');
-                const selectorSpan = document.getElementById('selected-type');
-
-                // Restaurar estructura de dropdown si fue cambiada
-                if (!typeDropdown.querySelector('#type-selector')) {
-                    typeDropdown.innerHTML = `
-                        <button id="type-selector" class="dropdown-button">
-                            <span id="selected-type">Selecciona el tipo de cera</span>
-                            <i class="fa fa-chevron-down dropdown-icon"></i>
-                        </button>
-                        <div id="type-dropdown-menu" class="dropdown-menu hidden">
-                            <!-- Se llenan dinámicamente -->
+                typeDropdown.innerHTML = `
+                    <div class="option-card selected" style="cursor: default;">
+                        <div class="option-info">
+                            <h4>${product.type}</h4>
+                            <p>${getTypeDescription(product.type)}</p>
                         </div>
-                    `;
-                }
-
-                const newContainer = document.getElementById('type-dropdown-menu');
-                const newSelectorSpan = document.getElementById('selected-type');
-
-                newSelectorSpan.textContent = 'Selecciona el tipo de cera';
-                newContainer.innerHTML = '';
-
-                product.types.forEach((type, index) => {
-                    const option = document.createElement('div');
-                    option.className = 'dropdown-item';
-                    option.dataset.typeIndex = index;
-
-                    // Descripción personalizada según el tipo
-                    let description = '';
-                    switch (type.toLowerCase()) {
-                        case 'soya':
-                            description = 'Cera natural, ecológica y de larga duración';
-                            break;
-                        case 'parafina':
-                            description = 'Cera tradicional con excelente proyección de fragancia';
-                            break;
-                        default:
-                            description = 'Cera de alta calidad para velas artesanales';
-                    }
-
-                    option.innerHTML = `
-                        <div class="dropdown-item-info">
-                            <h4>${type}</h4>
-                            <p>${description}</p>
+                        <div class="option-icon">
+                            <i class="fa ${getTypeIcon(product.type)}" style="color: ${getTypeColor(product.type)};"></i>
                         </div>
-                        <div class="dropdown-item-icon">
-                            <i class="fa fa-fire"></i>
-                        </div>
-                    `;
-
-                    option.addEventListener('click', () => selectType(index));
-                    newContainer.appendChild(option);
-                });
-
-                // Configurar el dropdown
-                setupTypeDropdown();
-
-                // Seleccionar el primer tipo por defecto
-                selectType(0);
+                    </div>
+                `;
             }
+
+            // Establecer tipo seleccionado
+            selectedType = product.type;
         }
 
-        // Configurar funcionalidad del dropdown de tipos
-        function setupTypeDropdown() {
-            const selector = document.getElementById('type-selector');
-            const menu = document.getElementById('type-dropdown-menu');
 
-            selector.addEventListener('click', () => {
-                const isOpen = !menu.classList.contains('hidden');
 
-                if (isOpen) {
-                    menu.classList.add('hidden');
-                    selector.classList.remove('active');
-                } else {
-                    menu.classList.remove('hidden');
-                    selector.classList.add('active');
-                }
-            });
 
-            // Cerrar dropdown al hacer click fuera
-            document.addEventListener('click', (e) => {
-                if (!selector.contains(e.target) && !menu.contains(e.target)) {
-                    menu.classList.add('hidden');
-                    selector.classList.remove('active');
-                }
-            });
-        }
-
-        // Seleccionar tipo de cera
-        function selectType(index) {
-            // Remover selección anterior
-            document.querySelectorAll('#type-dropdown-menu .dropdown-item').forEach(item => {
-                item.classList.remove('selected');
-            });
-
-            // Seleccionar nuevo
-            const selectedItem = document.querySelector(`#type-dropdown-menu .dropdown-item[data-type-index="${index}"]`);
-            selectedItem.classList.add('selected');
-
-            // Actualizar el texto del selector
-            const selectedTypeText = document.getElementById('selected-type');
-            selectedTypeText.textContent = currentProduct.types[index];
-
-            // Cerrar dropdown
-            const menu = document.getElementById('type-dropdown-menu');
-            const selector = document.getElementById('type-selector');
-            menu.classList.add('hidden');
-            selector.classList.remove('active');
-
-            selectedType = currentProduct.types[index];
-        }
 
         // Cargar opciones de fragancia en dropdown
         function loadFragranceOptions(product) {
@@ -2285,6 +2260,48 @@
             setupFragranceDropdown();
 
             // Seleccionar la primera fragancia por defecto
+            selectFragrance(0);
+        }
+
+        // Cargar opciones de variantes para productos de belleza
+        function loadVariantOptions(product) {
+            const section = document.getElementById('fragrance-section');
+            const container = document.getElementById('fragrance-dropdown-menu');
+            const sectionTitle = section.querySelector('.section-title');
+            const sectionIcon = section.querySelector('.section-icon');
+            const selectorSpan = document.getElementById('selected-fragrance');
+
+            // Actualizar título para variantes
+            sectionTitle.textContent = 'Selecciona la variante';
+            sectionIcon.className = 'fa fa-spa section-icon';
+            selectorSpan.textContent = 'Selecciona una variante';
+
+            section.classList.remove('hidden');
+            container.innerHTML = '';
+
+            product.variants.forEach((variant, index) => {
+                const option = document.createElement('div');
+                option.className = 'dropdown-item';
+                option.dataset.fragranceIndex = index;
+
+                option.innerHTML = `
+                    <div class="dropdown-item-info">
+                        <h4>${variant}</h4>
+                        <p>Variante especializada</p>
+                    </div>
+                    <div class="dropdown-item-icon">
+                        <i class="fa fa-spa"></i>
+                    </div>
+                `;
+
+                option.addEventListener('click', () => selectFragrance(index));
+                container.appendChild(option);
+            });
+
+            // Configurar el dropdown
+            setupFragranceDropdown();
+
+            // Seleccionar la primera variante por defecto
             selectFragrance(0);
         }
 
@@ -2333,8 +2350,14 @@
             // Cerrar dropdown
             const menu = document.getElementById('size-dropdown-menu');
             const selector = document.getElementById('size-selector');
-            menu.classList.add('hidden');
-            selector.classList.remove('active');
+            if (menu) menu.classList.add('hidden');
+            if (selector) selector.classList.remove('active');
+
+
+
+
+
+
 
             selectedSize = currentProduct.sizes[index];
             updatePrice();
@@ -2349,19 +2372,24 @@
 
             // Seleccionar nuevo
             const selectedItem = document.querySelector(`#fragrance-dropdown-menu .dropdown-item[data-fragrance-index="${index}"]`);
-            selectedItem.classList.add('selected');
+            if (selectedItem) {
+                selectedItem.classList.add('selected');
+            }
 
             // Actualizar el texto del selector
             const selectedFragranceText = document.getElementById('selected-fragrance');
-            selectedFragranceText.textContent = currentProduct.fragrances[index];
+            const fragrance = currentProduct.fragrances ? currentProduct.fragrances[index] : currentProduct.variants[index];
+            if (selectedFragranceText && fragrance) {
+                selectedFragranceText.textContent = fragrance;
+            }
 
             // Cerrar dropdown
             const menu = document.getElementById('fragrance-dropdown-menu');
             const selector = document.getElementById('fragrance-selector');
-            menu.classList.add('hidden');
-            selector.classList.remove('active');
+            if (menu) menu.classList.add('hidden');
+            if (selector) selector.classList.remove('active');
 
-            selectedFragrance = currentProduct.fragrances[index];
+            selectedFragrance = fragrance;
         }
 
         // Actualizar precio
@@ -2370,11 +2398,7 @@
                 const priceEl = document.getElementById('product-price');
                 let finalPrice = selectedSize.price * quantity;
 
-                // Aplicar promoción 2x1
-                if (currentProduct.promotion2x1) {
-                    const paidQuantity = Math.ceil(quantity / 2);
-                    finalPrice = selectedSize.price * paidQuantity;
-                }
+
 
                 priceEl.textContent = `$${finalPrice.toFixed(2)} MXN`;
             }
@@ -2423,8 +2447,7 @@
                 size: selectedSize.label,
                 fragrance: selectedFragrance || 'Sin fragancia',
                 type: selectedType || 'Sin especificar',
-                quantity: quantity,
-                promotion2x1: currentProduct.promotion2x1 || false
+                quantity: quantity
             };
 
             // Obtener carrito actual
@@ -2480,33 +2503,71 @@
 
         // Cargar características del producto
         function loadProductFeatures(product) {
+            console.log('loadProductFeatures: Cargando características');
             const container = document.getElementById('product-features');
-            container.innerHTML = '';
 
-            const features = [
-                { icon: 'fa-fire', text: `Duración: ${product.duration || '40-50 horas'}` },
-                { icon: 'fa-leaf', text: `Material: ${product.material || 'Cera de soya natural'}` },
-                { icon: 'fa-palette', text: `Colores disponibles: ${product.colors?.length || 'Varios'}` },
-                { icon: 'fa-heart', text: 'Hecho a mano con amor' }
+            if (!container) {
+                console.error('loadProductFeatures: Elemento product-features no encontrado');
+                return;
+            }
+
+            container.innerHTML = '';
+            console.log('loadProductFeatures: Características disponibles:', product.characteristics);
+
+            // Usar las características del producto o valores por defecto
+            const characteristics = product.characteristics || [
+                'Producto artesanal de alta calidad',
+                'Elaborado con ingredientes premium',
+                'Diseño único y exclusivo'
             ];
 
-            features.forEach(feature => {
+            characteristics.forEach(characteristic => {
                 const li = document.createElement('li');
-                li.innerHTML = `<i class="fa ${feature.icon}"></i> ${feature.text}`;
+                li.innerHTML = `<i class="fa fa-star"></i> ${characteristic}`;
                 container.appendChild(li);
             });
+
+            // Agregar información adicional para velas
+            if (product.category === 'Vela') {
+                if (product.duration) {
+                    const durationLi = document.createElement('li');
+                    durationLi.innerHTML = `<i class="fa fa-clock"></i> Duración: ${product.duration}`;
+                    container.appendChild(durationLi);
+                }
+
+                if (product.colors && product.colors.length > 0) {
+                    const colorsLi = document.createElement('li');
+                    colorsLi.innerHTML = `<i class="fa fa-palette"></i> Colores: ${product.colors.join(', ')}`;
+                    container.appendChild(colorsLi);
+                }
+            }
+
+            // Agregar tipo de producto
+            if (product.type) {
+                const typeLi = document.createElement('li');
+                typeLi.innerHTML = `<i class="fa fa-leaf"></i> Tipo: ${product.type}`;
+                container.appendChild(typeLi);
+            }
         }
 
         // Cargar ingredientes
         function loadProductIngredients(product) {
+            console.log('loadProductIngredients: Cargando ingredientes');
             const container = document.getElementById('product-ingredients');
-            container.innerHTML = '';
 
+            if (!container) {
+                console.error('loadProductIngredients: Elemento product-ingredients no encontrado');
+                return;
+            }
+
+            container.innerHTML = '';
+            console.log('loadProductIngredients: Ingredientes disponibles:', product.ingredients);
+
+            // Usar los ingredientes del producto o valores por defecto
             const ingredients = product.ingredients || [
-                'Cera de soya 100% natural',
-                'Aceites esenciales premium',
-                'Mecha de algodón',
-                'Colorantes naturales'
+                'Ingredientes naturales de alta calidad',
+                'Sin aditivos químicos dañinos',
+                'Formulación artesanal'
             ];
 
             ingredients.forEach(ingredient => {
@@ -2518,14 +2579,22 @@
 
         // Cargar cuidados
         function loadProductCare(product) {
+            console.log('loadProductCare: Cargando cuidados');
             const container = document.getElementById('product-care');
-            container.innerHTML = '';
 
-            const care = [
-                'Recortar mecha a 5mm antes de encender',
-                'No dejar encendida más de 4 horas',
-                'Mantener alejada de corrientes de aire',
-                'Extinguir con apagavelas, no soplando'
+            if (!container) {
+                console.error('loadProductCare: Elemento product-care no encontrado');
+                return;
+            }
+
+            container.innerHTML = '';
+            console.log('loadProductCare: Cuidados disponibles:', product.care);
+
+            // Usar los cuidados del producto o valores por defecto
+            const care = product.care || [
+                'Seguir las instrucciones de uso',
+                'Mantener fuera del alcance de niños',
+                'Conservar en lugar fresco y seco'
             ];
 
             care.forEach(careItem => {
@@ -2533,6 +2602,34 @@
                 li.innerHTML = `<i class="fa fa-info-circle"></i> ${careItem}`;
                 container.appendChild(li);
             });
+        }
+
+        // Funciones auxiliares para tipos de producto
+        function getTypeDescription(type) {
+            const descriptions = {
+                'Soya': 'Cera natural, combustión limpia y duradera',
+                'Parafina': 'Cera tradicional, fragancia intensa',
+                'Origen Natural': 'Elaborado con ingredientes naturales'
+            };
+            return descriptions[type] || 'Producto de alta calidad';
+        }
+
+        function getTypeIcon(type) {
+            const icons = {
+                'Soya': 'fa-leaf',
+                'Parafina': 'fa-fire',
+                'Origen Natural': 'fa-spa'
+            };
+            return icons[type] || 'fa-star';
+        }
+
+        function getTypeColor(type) {
+            const colors = {
+                'Soya': '#4CAF50',
+                'Parafina': '#FF9800',
+                'Origen Natural': '#2196F3'
+            };
+            return colors[type] || '#9E9E9E';
         }
 
         // Cargar thumbnails
@@ -2574,7 +2671,7 @@
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            toast.className = `toast-premium ${type}`;
+            toast.className = `toast - premium ${type} `;
 
             const icons = {
                 success: 'fa-check-circle',
@@ -2602,15 +2699,24 @@
 
         // Cargar productos relacionados aleatorios
         function loadRelatedProducts(currentProduct) {
+            console.log('loadRelatedProducts: Cargando productos relacionados');
             const container = document.getElementById('related-products-grid');
+
+            if (!container) {
+                console.error('loadRelatedProducts: Elemento related-products-grid no encontrado');
+                return;
+            }
+
             container.innerHTML = '';
 
-            if (!window.productosData || window.productosData.length <= 1) {
+            const dataSource = (typeof productosData !== 'undefined') ? productosData : window.productosData;
+
+            if (!dataSource || dataSource.length <= 1) {
                 return;
             }
 
             // Filtrar productos (excluir el actual)
-            const otherProducts = window.productosData.filter(p => p.id !== currentProduct.id);
+            const otherProducts = dataSource.filter(p => p.id !== currentProduct.id);
 
             // Mezclar array y tomar 4 productos aleatorios
             const shuffled = otherProducts.sort(() => 0.5 - Math.random());
@@ -2627,7 +2733,7 @@
             const card = document.createElement('div');
             card.className = 'related-product-card';
             card.addEventListener('click', () => {
-                window.location.href = `producto-detalle.html?id=${product.id}`;
+                window.location.href = `producto - detalle.html ? id = ${product.id} `;
             });
 
             // Obtener precio mínimo
@@ -2638,9 +2744,6 @@
 
             // Crear badges de características
             let features = '';
-            if (product.promotion2x1) {
-                features += '<div class="related-product-feature promotion">2x1</div>';
-            }
             if (product.new) {
                 features += '<div class="related-product-feature new">NEW</div>';
             }
@@ -2690,7 +2793,7 @@
             }
 
             const productUrl = window.location.href;
-            const message = `¡Hola! Me interesa este producto: *${currentProduct.title}*\n\n${productUrl}\n\n¿Podrías darme más información?`;
+            const message = `¡Hola! Me interesa este producto: * ${currentProduct.title}*\n\n${productUrl} \n\n¿Podrías darme más información ? `;
             const whatsappUrl = `https://wa.me/525564682112?text=${encodeURIComponent(message)}`;
 
             window.open(whatsappUrl, '_blank');

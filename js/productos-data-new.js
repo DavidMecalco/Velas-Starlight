@@ -435,7 +435,7 @@ const productosData = [
         "title": "Serum Vitamina C",
         "category": "Belleza",
         "description": "Nuestro Serum de Vitamina C es un potente antioxidante que ayuda a iluminar, proteger y rejuvenecer tu piel. Formulado con vitamina C estabilizada y ácido hialurónico, este serum combate los signos del envejecimiento mientras proporciona una hidratación intensa.",
-        "image": "../images/serum-vitamina-c.jpeg",
+        "image": "../images/serum.jpeg",
         "featured": true,
         "new": false,
         "bestseller": true,
@@ -483,9 +483,4 @@ const productosData = [
 // Exportar para uso en otros archivos
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = productosData;
-}
-
-// Hacer disponible globalmente para el navegador
-if (typeof window !== 'undefined') {
-    window.productosData = productosData;
 }

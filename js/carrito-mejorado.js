@@ -428,7 +428,6 @@ class EnhancedShoppingCart {
         let badges = '';
 
         // Badge para promoción 2x1
-        if (item.promotion2x1) {
             const freeItems = Math.floor(item.quantity / 2);
             const savings = freeItems * (item.unitPrice || item.size.price || item.price);
             badges += `
@@ -445,14 +444,11 @@ class EnhancedShoppingCart {
         }
 
         // Badge para descuento especial
-        if (item.specialDiscount && item.specialDiscount.percentage > 0) {
             const unitPrice = item.unitPrice || item.size.price || item.price;
-            const savings = (unitPrice * item.quantity) * (item.specialDiscount.percentage / 100);
             badges += `
                 <div class="bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3 mt-3">
                     <div class="flex items-center space-x-2 mb-1">
                         <i class="fas fa-percent text-orange-600"></i>
-                        <span class="text-orange-700 font-semibold">${item.specialDiscount.percentage}% de descuento aplicado</span>
                     </div>
                     <div class="text-sm text-orange-600">
                         Ahorras $${savings.toFixed(2)} MXN en este producto
@@ -589,15 +585,11 @@ class EnhancedShoppingCart {
             let itemDiscount = 0;
 
             // Aplicar descuento 2x1
-            if (item.promotion2x1 && item.quantity >= 2) {
                 const freeItems = Math.floor(item.quantity / 2);
                 itemDiscount += freeItems * unitPrice;
             }
 
             // Aplicar descuento especial del producto
-            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                const specialDiscountAmount = itemSubtotal * (item.specialDiscount.percentage / 100);
-                itemDiscount += specialDiscountAmount;
             }
 
             subtotal += itemSubtotal;

@@ -421,7 +421,6 @@ class ModernCart {
         let promotionText = '';
         
         // Calcular promoción 2x1
-        if (item.promotion2x1) {
             const paidQuantity = Math.ceil(item.quantity / 2);
             itemTotal = item.price * paidQuantity;
             const savedAmount = originalTotal - itemTotal;
@@ -434,13 +433,10 @@ class ModernCart {
         }
         
         // Aplicar descuento especial del producto
-        if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-            const discount = itemTotal * (item.specialDiscount.percentage / 100);
             const discountedTotal = itemTotal - discount;
             promotionText += `
                 <div class="promotion-badge bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full mt-1">
                     <i class="fas fa-percent mr-1"></i>
-                    ${item.specialDiscount.percentage}% OFF - Ahorras $${discount.toFixed(2)}
                 </div>
             `;
             itemTotal = discountedTotal;
@@ -494,7 +490,6 @@ class ModernCart {
                 <div class="price-display">
                     <div class="price-main">$${itemTotal.toFixed(2)} MXN</div>
                     <div class="price-unit">$${item.price.toFixed(2)} c/u</div>
-                    ${item.promotion2x1 || (item.specialDiscount && item.specialDiscount.percentage > 0) ? `
                         <div class="price-original text-xs text-gray-500 line-through">
                             Original: $${originalTotal.toFixed(2)}
                         </div>
@@ -644,7 +639,6 @@ class ModernCart {
             let itemTotal = 0;
             
             // Manejar promoción 2x1
-            if (item.promotion2x1) {
                 // En 2x1, pagas solo la mitad de las unidades (redondeado hacia arriba)
                 const paidQuantity = Math.ceil(item.quantity / 2);
                 itemTotal = item.price * paidQuantity;
@@ -653,8 +647,6 @@ class ModernCart {
             }
             
             // Aplicar descuento especial del producto si existe
-            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                const discount = itemTotal * (item.specialDiscount.percentage / 100);
                 itemTotal -= discount;
             }
             
@@ -806,16 +798,12 @@ class ModernCart {
                         let itemPrice = item.price * item.quantity;
                         let promotionText = '';
                         
-                        if (item.promotion2x1) {
                             const paidQuantity = Math.ceil(item.quantity / 2);
                             itemPrice = item.price * paidQuantity;
                             promotionText = ' (2x1)';
                         }
                         
-                        if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                            const discountAmount = itemPrice * (item.specialDiscount.percentage / 100);
                             itemPrice -= discountAmount;
-                            promotionText += ` (${item.specialDiscount.percentage}% OFF)`;
                         }
                         
                         return `
@@ -1036,16 +1024,12 @@ class ModernCart {
                 let unitPrice = item.price;
                 let promotionText = '';
                 
-                if (item.promotion2x1) {
                     const paidQuantity = Math.ceil(item.quantity / 2);
                     itemPrice = item.price * paidQuantity;
                     promotionText = ' (2x1)';
                 }
                 
-                if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                    const discountAmount = itemPrice * (item.specialDiscount.percentage / 100);
                     itemPrice -= discountAmount;
-                    promotionText += ` (${item.specialDiscount.percentage}% OFF)`;
                 }
                 
                 // Alternar color de fondo
@@ -1177,16 +1161,12 @@ class ModernCart {
             let itemPrice = item.price * item.quantity;
             let promotionText = '';
             
-            if (item.promotion2x1) {
                 const paidQuantity = Math.ceil(item.quantity / 2);
                 itemPrice = item.price * paidQuantity;
                 promotionText = ' (PROMOCION 2x1)';
             }
             
-            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                const discountAmount = itemPrice * (item.specialDiscount.percentage / 100);
                 itemPrice -= discountAmount;
-                promotionText += ` (${item.specialDiscount.percentage}% OFF)`;
             }
             
             content += `${index + 1}. ${itemName}${promotionText}\n`;
@@ -1309,17 +1289,13 @@ class ModernCart {
             message += `   - Cantidad: ${item.quantity}\n`;
             
             // Mostrar promociones
-            if (item.promotion2x1) {
                 const paidQuantity = Math.ceil(item.quantity / 2);
                 itemPrice = item.price * paidQuantity;
                 message += `   *PROMOCION 2x1*\n`;
                 message += `   - Pagas solo: ${paidQuantity} unidades\n`;
             }
             
-            if (item.specialDiscount && item.specialDiscount.percentage > 0) {
-                const discountAmount = itemPrice * (item.specialDiscount.percentage / 100);
                 itemPrice -= discountAmount;
-                message += `   *DESCUENTO ${item.specialDiscount.percentage}%*\n`;
                 message += `   - Ahorras: $${discountAmount.toFixed(2)} MXN\n`;
             }
             

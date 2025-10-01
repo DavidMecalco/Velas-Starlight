@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Local - Productos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">Debug Local - Productos</h1>
+        
+        <div class="bg-white p-6 rounded-lg shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4">Estado de Carga:</h2>
+            <div id="debug-info" class="space-y-2 text-sm"></div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Productos:</h2>
+            <div id="products-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <!-- Intentar cargar el script -->
+    <script src="../js/productos-data.js"></script>
+    
+    <script>
+        const debugInfo = document.getElementById('debug-info');
+        const productsList = document.getElementById('products-list');
+        
+        function log(message, type = 'info') {
+            const colors = {
+                info: 'text-blue-600',
+                success: 'text-green-600', 
+                error: 'text-red-600'
+            };
+            
+            const div = document.createElement('div');
+            div.className = `p-2 rounded ${colors[type]} bg-gray-50`;
+            div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            debugInfo.appendChild(div);
+            
+            console.log(message);
+        }
+
+        log('Iniciando debug desde pages/');
+        log('Intentando cargar ../js/productos-data.js');
+        
+        // Verificar si el script se cargó
+        setTimeout(() => {
+            if (typeof productosData === 'undefined') {
+                log('ERROR: productosData no está definido', 'error');
+                log('Posibles causas:', 'error');
+                log('1. Archivo no encontrado en ../js/productos-data.js', 'error');
+                log('2. Error de sintaxis en el archivo', 'error');
+                log('3. Problema de permisos', 'error');
+                
+                // Intentar cargar manualmente
+                fetch('../js/productos-data.js')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                        return response.text();
+                    })
+                    .then(text => {
+                        log('Archivo encontrado, tamaño: ' + text.length + ' caracteres', 'success');
+                        log('Primeros 100 caracteres: ' + text.substring(0, 100));
+                    })
+                    .catch(error => {
+                        log('Error al cargar archivo: ' + error.message, 'error');
+                    });
+                    
+            } else {
+                log('SUCCESS: productosData cargado correctamente', 'success');
+                log(`Productos encontrados: ${productosData.length}`, 'success');
+                
+                // Mostrar lista de productos
+                productosData.forEach((product, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'p-2 bg-gray-50 rounded mb-1';
+                    div.innerHTML = `
+                        <strong>${index + 1}. ${product.title}</strong><br>
+                        <small>ID: ${product.id} | Categoría: ${product.category} | Tipo: ${product.type} | Disponible: ${product.available}</small>
+                    `;
+                    productsList.appendChild(div);
+                });
+            }
+        }, 100);
+    </script>
+</body>
+</html>
