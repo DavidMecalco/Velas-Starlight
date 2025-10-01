@@ -1312,6 +1312,12 @@
     <script src="../js/mobile-menu-clean.js"></script>
     <script src="../js/carrito-moderno.js"></script>
 
+    <!-- jsPDF para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Generador profesional de cotización -->
+    <script src="../js/quote-professional.js"></script>
+
     <!-- Script de inicialización del carrito -->
     <script>
         // Limpiar localStorage y inicializar carrito correctamente
@@ -2215,9 +2221,12 @@
 
         // Función para generar PDF
         function generatePDF() {
-            console.log('📄 Generando PDF...');
+            console.log('📄 Generando PDF profesional...');
 
-            if (window.modernCart && typeof window.modernCart.generateActualPDF === 'function') {
+            if (window.generateProfessionalQuote && typeof window.generateProfessionalQuote === 'function') {
+                // Usar el nuevo generador profesional
+                window.generateProfessionalQuote();
+            } else if (window.modernCart && typeof window.modernCart.generateActualPDF === 'function') {
                 // Usar ModernCart si está disponible
                 window.modernCart.generateActualPDF();
             } else {

@@ -1,11 +1,11 @@
 /**
  * ========================================
  * GENERADOR PROFESIONAL DE FICHA TÉCNICA PDF
- * Velas Starlight - Premium PDF Generator
+ * Velas Starlight - Diseño Corporativo Minimalista
  * ========================================
  */
 
-// Función profesional para generar PDF de alta gama
+// Función profesional para generar PDF corporativo
 function generateSimpleTechSheet(product) {
     console.log('📄 Generando ficha técnica profesional para:', product.title);
     
@@ -20,137 +20,140 @@ function generateSimpleTechSheet(product) {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         
-        // Configuración de colores profesionales
+        // Configuración de colores profesionales minimalistas
         const colors = {
-            primary: [45, 62, 51],      // Verde oscuro elegante
-            secondary: [163, 177, 138],  // Verde suave
-            accent: [58, 90, 64],       // Verde medio
-            gold: [212, 175, 55],       // Dorado elegante
-            text: [33, 37, 41],         // Gris muy oscuro
-            lightText: [108, 117, 125], // Gris medio
+            primary: [33, 37, 41],       // Negro corporativo
+            secondary: [108, 117, 125],   // Gris medio
+            accent: [45, 62, 51],        // Verde corporativo sutil
+            text: [33, 37, 41],          // Negro para texto
+            lightText: [108, 117, 125],  // Gris para texto secundario
             background: [248, 249, 250], // Gris muy claro
-            white: [255, 255, 255],     // Blanco puro
-            border: [222, 226, 230]     // Gris claro para bordes
+            white: [255, 255, 255],      // Blanco puro
+            border: [222, 226, 230],     // Gris claro para bordes
+            lightBorder: [233, 236, 239] // Gris muy claro para bordes
         };
         
         let yPos = 0;
 
-        // ===== ENCABEZADO ELEGANTE DE ALTA GAMA =====
+        // ===== ENCABEZADO CORPORATIVO MINIMALISTA =====
         
-        // Fondo degradado del encabezado principal
+        // Fondo blanco limpio
+        doc.setFillColor(...colors.white);
+        doc.rect(0, 0, 210, 45, 'F');
+        
+        // Línea superior corporativa sutil
+        doc.setFillColor(...colors.accent);
+        doc.rect(0, 0, 210, 2, 'F');
+        
+        // Logo simulado (rectángulo con iniciales)
         doc.setFillColor(...colors.primary);
-        doc.rect(0, 0, 210, 50, 'F');
-        
-        // Línea dorada superior elegante
-        doc.setFillColor(...colors.gold);
-        doc.rect(0, 0, 210, 3, 'F');
-        
-        // Logo/Título principal con tipografía elegante
-        doc.setFontSize(24);
+        doc.rect(20, 12, 25, 20, 'F');
+        doc.setFontSize(16);
         doc.setTextColor(...colors.white);
         doc.setFont(undefined, 'bold');
-        doc.text('VELAS STARLIGHT', 20, 25);
+        doc.text('VS', 28, 25);
         
-        // Subtítulo elegante
-        doc.setFontSize(14);
+        // Nombre de la empresa
+        doc.setFontSize(20);
+        doc.setTextColor(...colors.primary);
+        doc.setFont(undefined, 'bold');
+        doc.text('VELAS STARLIGHT', 55, 20);
+        
+        // Subtítulo corporativo
+        doc.setFontSize(12);
+        doc.setTextColor(...colors.secondary);
         doc.setFont(undefined, 'normal');
-        doc.text('FICHA TÉCNICA PREMIUM', 20, 35);
+        doc.text('FICHA TÉCNICA DE PRODUCTO', 55, 28);
         
-        // Fecha y versión en el lado derecho
+        // Fecha y código en el lado derecho
         const today = new Date().toLocaleDateString('es-ES', {
             year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+            month: '2-digit',
+            day: '2-digit'
         });
-        doc.setFontSize(10);
-        doc.setTextColor(200, 200, 200);
-        doc.text(`${today}`, 140, 30);
-        doc.text('Documento Oficial', 140, 37);
+        doc.setFontSize(9);
+        doc.setTextColor(...colors.lightText);
+        doc.text(`Fecha: ${today}`, 140, 18);
+        doc.text(`Código: VS-${String(product.id).padStart(4, '0')}`, 140, 25);
+        doc.text('Documento Oficial', 140, 32);
         
-        // Línea decorativa inferior
-        doc.setFillColor(...colors.secondary);
-        doc.rect(0, 47, 210, 2, 'F');
+        // Línea divisoria sutil
+        doc.setDrawColor(...colors.lightBorder);
+        doc.setLineWidth(0.5);
+        doc.line(20, 40, 190, 40);
 
-        yPos = 65;
+        yPos = 55;
 
         // ===== INFORMACIÓN PRINCIPAL DEL PRODUCTO =====
         
-        // Caja elegante para información principal
-        doc.setFillColor(...colors.background);
-        doc.roundedRect(15, yPos, 180, 40, 3, 3, 'F');
-        doc.setDrawColor(...colors.border);
-        doc.setLineWidth(0.5);
-        doc.roundedRect(15, yPos, 180, 40, 3, 3, 'S');
-        
-        // Título del producto con tipografía elegante
-        doc.setFontSize(22);
+        // Título del producto con tipografía corporativa
+        doc.setFontSize(18);
         doc.setTextColor(...colors.primary);
         doc.setFont(undefined, 'bold');
-        doc.text(product.title, 20, yPos + 15);
+        doc.text(product.title, 20, yPos + 10);
         
-        // Badge de categoría elegante
-        doc.setFillColor(...colors.secondary);
-        doc.roundedRect(20, yPos + 22, 35, 8, 2, 2, 'F');
-        doc.setFontSize(9);
-        doc.setTextColor(...colors.white);
-        doc.setFont(undefined, 'bold');
-        doc.text(product.category.toUpperCase(), 22, yPos + 27);
+        // Línea divisoria bajo el título
+        doc.setDrawColor(...colors.border);
+        doc.setLineWidth(0.3);
+        doc.line(20, yPos + 15, 190, yPos + 15);
         
-        // ID del producto con estilo
-        doc.setFontSize(11);
-        doc.setTextColor(...colors.lightText);
+        // Información básica en formato tabla limpia
+        doc.setFontSize(10);
+        doc.setTextColor(...colors.text);
         doc.setFont(undefined, 'normal');
-        doc.text(`Código: VS-${String(product.id).padStart(4, '0')}`, 140, yPos + 20);
         
-        // Estado de disponibilidad con badge colorido
-        const status = product.available ? 'DISPONIBLE' : 'NO DISPONIBLE';
-        const statusColor = product.available ? [34, 197, 94] : [239, 68, 68];
-        doc.setFillColor(...statusColor);
-        doc.roundedRect(140, yPos + 25, 40, 7, 2, 2, 'F');
-        doc.setFontSize(8);
-        doc.setTextColor(...colors.white);
+        // Categoría
         doc.setFont(undefined, 'bold');
-        doc.text(status, 142, yPos + 30);
-
-        yPos += 55;
-
-        // ===== DESCRIPCIÓN ELEGANTE =====
+        doc.text('Categoría:', 20, yPos + 25);
+        doc.setFont(undefined, 'normal');
+        doc.text(product.category, 50, yPos + 25);
         
-        // Función auxiliar para crear títulos de sección elegantes
+        // Estado de disponibilidad
+        doc.setFont(undefined, 'bold');
+        doc.text('Estado:', 120, yPos + 25);
+        doc.setFont(undefined, 'normal');
+        const status = product.available ? 'Disponible' : 'No Disponible';
+        doc.setTextColor(product.available ? [34, 139, 34] : [220, 20, 60]);
+        doc.text(status, 145, yPos + 25);
+        
+        // Código del producto
+        doc.setTextColor(...colors.text);
+        doc.setFont(undefined, 'bold');
+        doc.text('Código de Producto:', 20, yPos + 35);
+        doc.setFont(undefined, 'normal');
+        doc.text(`VS-${String(product.id).padStart(4, '0')}`, 70, yPos + 35);
+
+        yPos += 50;
+
+        // ===== DESCRIPCIÓN CORPORATIVA =====
+        
+        // Función auxiliar para crear títulos de sección corporativos
         function addSectionTitle(title, yPosition) {
-            // Línea decorativa dorada
-            doc.setDrawColor(...colors.gold);
-            doc.setLineWidth(2);
-            doc.line(20, yPosition, 35, yPosition);
-            
-            // Título de sección
-            doc.setFontSize(16);
+            // Título de sección corporativo
+            doc.setFontSize(12);
             doc.setTextColor(...colors.primary);
             doc.setFont(undefined, 'bold');
-            doc.text(title, 40, yPosition + 2);
+            doc.text(title, 20, yPosition);
             
-            return yPosition + 15;
+            // Línea divisoria sutil
+            doc.setDrawColor(...colors.border);
+            doc.setLineWidth(0.3);
+            doc.line(20, yPosition + 3, 190, yPosition + 3);
+            
+            return yPosition + 12;
         }
         
         yPos = addSectionTitle('DESCRIPCIÓN DEL PRODUCTO', yPos);
         
-        // Caja elegante para la descripción
-        const descLines = doc.splitTextToSize(product.description, 160);
-        const descHeight = Math.max(25, descLines.length * 5 + 10);
+        // Descripción en formato corporativo limpio
+        const descLines = doc.splitTextToSize(product.description, 170);
         
-        doc.setFillColor(...colors.background);
-        doc.roundedRect(20, yPos, 170, descHeight, 2, 2, 'F');
-        doc.setDrawColor(...colors.border);
-        doc.setLineWidth(0.3);
-        doc.roundedRect(20, yPos, 170, descHeight, 2, 2, 'S');
-        
-        // Texto de descripción con tipografía elegante
-        doc.setFontSize(11);
+        doc.setFontSize(10);
         doc.setTextColor(...colors.text);
         doc.setFont(undefined, 'normal');
-        doc.text(descLines, 25, yPos + 8);
+        doc.text(descLines, 20, yPos);
         
-        yPos += descHeight + 20;
+        yPos += (descLines.length * 5) + 15;
 
         // ===== TABLA ELEGANTE DE TAMAÑOS Y PRECIOS =====
         if (product.sizes && product.sizes.length > 0) {
