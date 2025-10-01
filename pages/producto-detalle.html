@@ -57,7 +57,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
@@ -108,23 +110,51 @@
 
         /* Animaciones elegantes */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Header Premium */
@@ -1051,6 +1081,7 @@
                 opacity: 0;
                 transform: translateX(100%);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1458,19 +1489,23 @@
 
                 <!-- Navigation Desktop -->
                 <nav class="hidden md:flex space-x-8 font-medium items-center">
-                    <a href="../index.html" class="text-gray-700 hover:text-dark-green transition-colors duration-300 flex items-center gap-2">
+                    <a href="../index.html"
+                        class="text-gray-700 hover:text-dark-green transition-colors duration-300 flex items-center gap-2">
                         <i class="fa fa-home"></i>Inicio
                     </a>
-                    <a href="productos.html" class="text-gray-700 hover:text-dark-green transition-colors duration-300 flex items-center gap-2">
+                    <a href="productos.html"
+                        class="text-gray-700 hover:text-dark-green transition-colors duration-300 flex items-center gap-2">
                         <i class="fa fa-cube"></i>Productos
                     </a>
-                    <a href="contacto.html" class="text-gray-700 hover:text-dark-green transition-colors duration-300 flex items-center gap-2">
+                    <a href="contacto.html"
+                        class="text-gray-700 hover:text-dark-green transition-colors duration-300 flex items-center gap-2">
                         <i class="fa fa-phone"></i>Contacto
                     </a>
                     <!-- Cart -->
                     <a href="carrito.html" class="relative text-dark-green transition-colors duration-300">
                         <i class="fa fa-shopping-cart text-xl"></i>
-                        <span id="cart-count" class="absolute -top-3 -right-3 bg-dark-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                        <span id="cart-count"
+                            class="absolute -top-3 -right-3 bg-dark-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
                     </a>
                 </nav>
 
@@ -1481,27 +1516,36 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+            <div id="mobile-menu"
+                class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
                 <div class="px-6 py-4 space-y-1">
-                    <a href="../index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 group">
-                        <i class="fa fa-home mr-3 text-dark-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <a href="../index.html"
+                        class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 group">
+                        <i
+                            class="fa fa-home mr-3 text-dark-green group-hover:scale-110 transition-transform duration-200"></i>
                         <span class="font-medium">Inicio</span>
                     </a>
-                    <a href="productos.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 group">
-                        <i class="fa fa-cube mr-3 text-dark-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <a href="productos.html"
+                        class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 group">
+                        <i
+                            class="fa fa-cube mr-3 text-dark-green group-hover:scale-110 transition-transform duration-200"></i>
                         <span class="font-medium">Productos</span>
                     </a>
-                    <a href="contacto.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 group">
-                        <i class="fa fa-phone mr-3 text-dark-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <a href="contacto.html"
+                        class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 group">
+                        <i
+                            class="fa fa-phone mr-3 text-dark-green group-hover:scale-110 transition-transform duration-200"></i>
                         <span class="font-medium">Contacto</span>
                     </a>
                     <div class="border-t border-gray-200 my-2"></div>
-                    <a href="carrito.html" class="flex items-center justify-between px-4 py-3 text-dark-green bg-gray-50 rounded-lg">
+                    <a href="carrito.html"
+                        class="flex items-center justify-between px-4 py-3 text-dark-green bg-gray-50 rounded-lg">
                         <div class="flex items-center">
                             <i class="fa fa-shopping-cart mr-3"></i>
                             <span class="font-medium">Carrito</span>
                         </div>
-                        <span id="cart-count-mobile" class="bg-dark-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                        <span id="cart-count-mobile"
+                            class="bg-dark-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
                     </a>
                 </div>
             </div>
@@ -1531,19 +1575,19 @@
                 <div class="gallery-premium">
                     <div class="main-image-container">
                         <img id="main-image" src="../images/productos/vela-1.jpg" alt="Producto" class="main-image">
-                        
+
                         <!-- Badge flotante -->
                         <div id="promo-badge" class="floating-badge hidden">
                             <i class="fa fa-fire"></i>
                             <span>2x1 Oferta</span>
                         </div>
                     </div>
-                    
+
                     <!-- Thumbnails -->
                     <div id="thumbnail-container" class="thumbnails-premium">
                         <!-- Se llenan dinámicamente -->
                     </div>
-                    
+
                     <!-- Botones de acción -->
                     <div class="gallery-actions">
                         <button id="whatsapp-btn" class="gallery-action-btn whatsapp-btn">
@@ -1566,17 +1610,17 @@
                             <i class="fa fa-check-circle"></i> Disponible
                         </span>
                     </div>
-                    
+
                     <!-- Título -->
                     <h1 id="product-title" class="product-title-premium">
                         Nombre del Producto
                     </h1>
-                    
+
                     <!-- Descripción -->
                     <p id="product-description" class="product-description">
                         Descripción del producto que se carga dinámicamente...
                     </p>
-                    
+
                     <!-- Precio -->
                     <div class="price-section">
                         <span id="product-price" class="price-current">$0.00 MXN</span>
@@ -1657,7 +1701,7 @@
                             <i class="fa fa-shopping-cart"></i>
                             <span>Agregar al Carrito</span>
                         </button>
-                        
+
                         <button id="download-tech-sheet-btn" class="btn-premium btn-secondary">
                             <i class="fa fa-file-pdf"></i>
                             <span>Descargar Ficha Técnica</span>
@@ -1675,7 +1719,7 @@
                                 <p>Productos artesanales únicos</p>
                             </div>
                         </div>
-                        
+
                         <div class="feature-card">
                             <div class="feature-icon warranty">
                                 <i class="fa fa-shield-alt"></i>
@@ -1696,9 +1740,10 @@
                 <!-- Título de sección elegante -->
                 <div class="details-section-title">
                     <h2>Información Detallada</h2>
-                    <p>Conoce todos los aspectos de nuestro producto artesanal, desde sus características únicas hasta los cuidados especiales</p>
+                    <p>Conoce todos los aspectos de nuestro producto artesanal, desde sus características únicas hasta
+                        los cuidados especiales</p>
                 </div>
-                
+
                 <div class="details-grid">
                     <!-- Características -->
                     <div class="detail-card">
@@ -1750,7 +1795,7 @@
                     <h2>Productos Relacionados</h2>
                     <p>Descubre otros productos artesanales que podrían interesarte</p>
                 </div>
-                
+
                 <div id="related-products-grid" class="related-products-grid">
                     <!-- Se llenan dinámicamente -->
                 </div>
@@ -1762,7 +1807,8 @@
     <footer class="bg-gradient-to-br from-sage-green via-dark-green to-sage-green text-white relative overflow-hidden">
         <!-- Patrón de fondo -->
         <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><g fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;><g fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.1&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; /></g></g></svg>');">
+            <div class="absolute inset-0"
+                style="background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><g fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;><g fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.1&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; /></g></g></svg>');">
             </div>
         </div>
 
@@ -1881,10 +1927,10 @@
     <!-- Scripts -->
     <script src="../js/productos-data.js"></script>
     <script src="../js/mobile-menu-clean.js"></script>
-    
+
     <!-- jsPDF para generar PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
+
     <!-- Generador profesional de ficha técnica -->
     <script src="../js/tech-sheet-professional.js"></script>
 
@@ -1898,7 +1944,7 @@
         let quantity = 1;
 
         // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initializeProduct();
             setupEventListeners();
             updateCartCount();
@@ -1912,7 +1958,7 @@
 
             window.addEventListener('scroll', () => {
                 const currentScrollY = window.scrollY;
-                
+
                 if (currentScrollY > 100) {
                     header.classList.add('scrolled');
                 } else {
@@ -1927,7 +1973,7 @@
         function initializeProduct() {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
-            
+
             if (productId && window.productosData) {
                 currentProduct = window.productosData.find(p => p.id == productId);
                 if (currentProduct) {
@@ -1944,15 +1990,15 @@
         function loadProductData(product) {
             // Actualizar título de la página
             document.title = `${product.title} | Velas Starlight`;
-            
+
             // Breadcrumb
             document.getElementById('breadcrumb-product').textContent = product.title;
-            
+
             // Información básica
             document.getElementById('product-category').textContent = product.category;
             document.getElementById('product-title').textContent = product.title;
             document.getElementById('product-description').textContent = product.description;
-            
+
             // Disponibilidad
             const availabilityEl = document.getElementById('product-availability');
             if (product.available) {
@@ -1964,39 +2010,39 @@
                 availabilityEl.style.background = '#FFEBEE';
                 availabilityEl.style.color = '#C62828';
             }
-            
+
             // Imagen principal
             const mainImage = document.getElementById('main-image');
             mainImage.src = product.image;
             mainImage.alt = product.title;
-            
+
             // Promoción 2x1
             const promoBadge = document.getElementById('promo-badge');
             if (product.promotion2x1) {
                 promoBadge.classList.remove('hidden');
             }
-            
+
             // Cargar opciones de tamaño
             loadSizeOptions(product);
-            
+
             // Cargar tipos si existen
             if (product.types && product.types.length > 0) {
                 loadTypeOptions(product);
             }
-            
+
             // Cargar fragancias si existen
             if (product.fragrances && product.fragrances.length > 0) {
                 loadFragranceOptions(product);
             }
-            
+
             // Cargar información adicional
             loadProductFeatures(product);
             loadProductIngredients(product);
             loadProductCare(product);
-            
+
             // Cargar thumbnails si existen
             loadThumbnails(product);
-            
+
             // Cargar productos relacionados
             loadRelatedProducts(product);
         }
@@ -2005,13 +2051,13 @@
         function loadSizeOptions(product) {
             const container = document.getElementById('size-dropdown-menu');
             container.innerHTML = '';
-            
+
             if (product.sizes && product.sizes.length > 0) {
                 product.sizes.forEach((size, index) => {
                     const option = document.createElement('div');
                     option.className = 'dropdown-item';
                     option.dataset.sizeIndex = index;
-                    
+
                     option.innerHTML = `
                         <div class="size-item-content">
                             <div class="size-item-info">
@@ -2021,14 +2067,14 @@
                             <div class="size-item-price">$${size.price} MXN</div>
                         </div>
                     `;
-                    
+
                     option.addEventListener('click', () => selectSize(index));
                     container.appendChild(option);
                 });
-                
+
                 // Configurar el dropdown
                 setupSizeDropdown();
-                
+
                 // Seleccionar el primer tamaño por defecto
                 selectSize(0);
             }
@@ -2038,10 +2084,10 @@
         function setupSizeDropdown() {
             const selector = document.getElementById('size-selector');
             const menu = document.getElementById('size-dropdown-menu');
-            
+
             selector.addEventListener('click', () => {
                 const isOpen = !menu.classList.contains('hidden');
-                
+
                 if (isOpen) {
                     menu.classList.add('hidden');
                     selector.classList.remove('active');
@@ -2050,7 +2096,7 @@
                     selector.classList.add('active');
                 }
             });
-            
+
             // Cerrar dropdown al hacer click fuera
             document.addEventListener('click', (e) => {
                 if (!selector.contains(e.target) && !menu.contains(e.target)) {
@@ -2066,14 +2112,14 @@
             const sectionTitle = section.querySelector('.section-title');
             const sectionIcon = document.getElementById('type-section-icon');
             const typeDropdown = section.querySelector('.type-dropdown');
-            
+
             section.classList.remove('hidden');
-            
+
             // Para productos de belleza, mostrar información estática
             if (product.category === 'Belleza') {
                 sectionTitle.textContent = 'Hecho con amor';
                 sectionIcon.className = 'fa fa-heart section-icon';
-                
+
                 // Reemplazar dropdown con información estática
                 typeDropdown.innerHTML = `
                     <div class="option-card selected" style="cursor: default;">
@@ -2086,18 +2132,18 @@
                         </div>
                     </div>
                 `;
-                
+
                 // Establecer tipo seleccionado
                 selectedType = product.types[0] || 'Origen Natural';
-                
+
             } else {
                 // Para velas, mantener dropdown funcional
                 sectionTitle.textContent = 'Selecciona el tipo de cera';
                 sectionIcon.className = 'fa fa-fire section-icon';
-                
+
                 const container = document.getElementById('type-dropdown-menu');
                 const selectorSpan = document.getElementById('selected-type');
-                
+
                 // Restaurar estructura de dropdown si fue cambiada
                 if (!typeDropdown.querySelector('#type-selector')) {
                     typeDropdown.innerHTML = `
@@ -2110,21 +2156,21 @@
                         </div>
                     `;
                 }
-                
+
                 const newContainer = document.getElementById('type-dropdown-menu');
                 const newSelectorSpan = document.getElementById('selected-type');
-                
+
                 newSelectorSpan.textContent = 'Selecciona el tipo de cera';
                 newContainer.innerHTML = '';
-                
+
                 product.types.forEach((type, index) => {
                     const option = document.createElement('div');
                     option.className = 'dropdown-item';
                     option.dataset.typeIndex = index;
-                    
+
                     // Descripción personalizada según el tipo
                     let description = '';
-                    switch(type.toLowerCase()) {
+                    switch (type.toLowerCase()) {
                         case 'soya':
                             description = 'Cera natural, ecológica y de larga duración';
                             break;
@@ -2134,7 +2180,7 @@
                         default:
                             description = 'Cera de alta calidad para velas artesanales';
                     }
-                    
+
                     option.innerHTML = `
                         <div class="dropdown-item-info">
                             <h4>${type}</h4>
@@ -2144,14 +2190,14 @@
                             <i class="fa fa-fire"></i>
                         </div>
                     `;
-                    
+
                     option.addEventListener('click', () => selectType(index));
                     newContainer.appendChild(option);
                 });
-                
+
                 // Configurar el dropdown
                 setupTypeDropdown();
-                
+
                 // Seleccionar el primer tipo por defecto
                 selectType(0);
             }
@@ -2161,10 +2207,10 @@
         function setupTypeDropdown() {
             const selector = document.getElementById('type-selector');
             const menu = document.getElementById('type-dropdown-menu');
-            
+
             selector.addEventListener('click', () => {
                 const isOpen = !menu.classList.contains('hidden');
-                
+
                 if (isOpen) {
                     menu.classList.add('hidden');
                     selector.classList.remove('active');
@@ -2173,7 +2219,7 @@
                     selector.classList.add('active');
                 }
             });
-            
+
             // Cerrar dropdown al hacer click fuera
             document.addEventListener('click', (e) => {
                 if (!selector.contains(e.target) && !menu.contains(e.target)) {
@@ -2189,21 +2235,21 @@
             document.querySelectorAll('#type-dropdown-menu .dropdown-item').forEach(item => {
                 item.classList.remove('selected');
             });
-            
+
             // Seleccionar nuevo
             const selectedItem = document.querySelector(`#type-dropdown-menu .dropdown-item[data-type-index="${index}"]`);
             selectedItem.classList.add('selected');
-            
+
             // Actualizar el texto del selector
             const selectedTypeText = document.getElementById('selected-type');
             selectedTypeText.textContent = currentProduct.types[index];
-            
+
             // Cerrar dropdown
             const menu = document.getElementById('type-dropdown-menu');
             const selector = document.getElementById('type-selector');
             menu.classList.add('hidden');
             selector.classList.remove('active');
-            
+
             selectedType = currentProduct.types[index];
         }
 
@@ -2212,15 +2258,15 @@
             const section = document.getElementById('fragrance-section');
             const container = document.getElementById('fragrance-dropdown-menu');
             const selector = document.getElementById('fragrance-selector');
-            
+
             section.classList.remove('hidden');
             container.innerHTML = '';
-            
+
             product.fragrances.forEach((fragrance, index) => {
                 const option = document.createElement('div');
                 option.className = 'dropdown-item';
                 option.dataset.fragranceIndex = index;
-                
+
                 option.innerHTML = `
                     <div class="dropdown-item-info">
                         <h4>${fragrance}</h4>
@@ -2230,14 +2276,14 @@
                         <i class="fa fa-leaf"></i>
                     </div>
                 `;
-                
+
                 option.addEventListener('click', () => selectFragrance(index));
                 container.appendChild(option);
             });
-            
+
             // Configurar el dropdown
             setupFragranceDropdown();
-            
+
             // Seleccionar la primera fragancia por defecto
             selectFragrance(0);
         }
@@ -2246,10 +2292,10 @@
         function setupFragranceDropdown() {
             const selector = document.getElementById('fragrance-selector');
             const menu = document.getElementById('fragrance-dropdown-menu');
-            
+
             selector.addEventListener('click', () => {
                 const isOpen = !menu.classList.contains('hidden');
-                
+
                 if (isOpen) {
                     menu.classList.add('hidden');
                     selector.classList.remove('active');
@@ -2258,7 +2304,7 @@
                     selector.classList.add('active');
                 }
             });
-            
+
             // Cerrar dropdown al hacer click fuera
             document.addEventListener('click', (e) => {
                 if (!selector.contains(e.target) && !menu.contains(e.target)) {
@@ -2274,22 +2320,22 @@
             document.querySelectorAll('#size-dropdown-menu .dropdown-item').forEach(item => {
                 item.classList.remove('selected');
             });
-            
+
             // Seleccionar nuevo
             const selectedItem = document.querySelector(`#size-dropdown-menu .dropdown-item[data-size-index="${index}"]`);
             selectedItem.classList.add('selected');
-            
+
             // Actualizar el texto del selector
             const selectedSizeText = document.getElementById('selected-size');
             const size = currentProduct.sizes[index];
             selectedSizeText.textContent = `${size.label} - $${size.price} MXN`;
-            
+
             // Cerrar dropdown
             const menu = document.getElementById('size-dropdown-menu');
             const selector = document.getElementById('size-selector');
             menu.classList.add('hidden');
             selector.classList.remove('active');
-            
+
             selectedSize = currentProduct.sizes[index];
             updatePrice();
         }
@@ -2300,21 +2346,21 @@
             document.querySelectorAll('#fragrance-dropdown-menu .dropdown-item').forEach(item => {
                 item.classList.remove('selected');
             });
-            
+
             // Seleccionar nuevo
             const selectedItem = document.querySelector(`#fragrance-dropdown-menu .dropdown-item[data-fragrance-index="${index}"]`);
             selectedItem.classList.add('selected');
-            
+
             // Actualizar el texto del selector
             const selectedFragranceText = document.getElementById('selected-fragrance');
             selectedFragranceText.textContent = currentProduct.fragrances[index];
-            
+
             // Cerrar dropdown
             const menu = document.getElementById('fragrance-dropdown-menu');
             const selector = document.getElementById('fragrance-selector');
             menu.classList.add('hidden');
             selector.classList.remove('active');
-            
+
             selectedFragrance = currentProduct.fragrances[index];
         }
 
@@ -2323,13 +2369,13 @@
             if (selectedSize) {
                 const priceEl = document.getElementById('product-price');
                 let finalPrice = selectedSize.price * quantity;
-                
+
                 // Aplicar promoción 2x1
                 if (currentProduct.promotion2x1) {
                     const paidQuantity = Math.ceil(quantity / 2);
                     finalPrice = selectedSize.price * paidQuantity;
                 }
-                
+
                 priceEl.textContent = `$${finalPrice.toFixed(2)} MXN`;
             }
         }
@@ -2344,19 +2390,19 @@
                     updatePrice();
                 }
             });
-            
+
             document.getElementById('qty-plus').addEventListener('click', () => {
                 quantity++;
                 document.getElementById('quantity-display').textContent = quantity;
                 updatePrice();
             });
-            
+
             // Agregar al carrito
             document.getElementById('add-to-cart-btn').addEventListener('click', addToCart);
-            
+
             // Descargar ficha técnica
             document.getElementById('download-tech-sheet-btn').addEventListener('click', downloadTechSheet);
-            
+
             // Botones de galería
             document.getElementById('whatsapp-btn').addEventListener('click', openWhatsApp);
             document.getElementById('share-btn').addEventListener('click', shareProduct);
@@ -2368,7 +2414,7 @@
                 showToast('Por favor selecciona un tamaño', 'error');
                 return;
             }
-            
+
             const cartItem = {
                 id: currentProduct.id,
                 title: currentProduct.title,
@@ -2380,30 +2426,30 @@
                 quantity: quantity,
                 promotion2x1: currentProduct.promotion2x1 || false
             };
-            
+
             // Obtener carrito actual
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            
+
             // Buscar si ya existe el producto con las mismas características
-            const existingIndex = cart.findIndex(item => 
-                item.id === cartItem.id && 
-                item.size === cartItem.size && 
+            const existingIndex = cart.findIndex(item =>
+                item.id === cartItem.id &&
+                item.size === cartItem.size &&
                 item.fragrance === cartItem.fragrance &&
                 item.type === cartItem.type
             );
-            
+
             if (existingIndex >= 0) {
                 cart[existingIndex].quantity += cartItem.quantity;
             } else {
                 cart.push(cartItem);
             }
-            
+
             // Guardar carrito
             localStorage.setItem('cart', JSON.stringify(cart));
-            
+
             // Actualizar contador
             updateCartCount();
-            
+
             // Mostrar confirmación
             showToast(`${cartItem.title} agregado al carrito`, 'success');
         }
@@ -2414,7 +2460,7 @@
                 showToast('Error: Producto no disponible', 'error');
                 return;
             }
-            
+
             if (window.generateTechSheet) {
                 window.generateTechSheet(currentProduct);
             } else {
@@ -2426,7 +2472,7 @@
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
+
             document.querySelectorAll('#cart-count, #cart-count-mobile').forEach(el => {
                 el.textContent = totalItems;
             });
@@ -2436,14 +2482,14 @@
         function loadProductFeatures(product) {
             const container = document.getElementById('product-features');
             container.innerHTML = '';
-            
+
             const features = [
                 { icon: 'fa-fire', text: `Duración: ${product.duration || '40-50 horas'}` },
                 { icon: 'fa-leaf', text: `Material: ${product.material || 'Cera de soya natural'}` },
                 { icon: 'fa-palette', text: `Colores disponibles: ${product.colors?.length || 'Varios'}` },
                 { icon: 'fa-heart', text: 'Hecho a mano con amor' }
             ];
-            
+
             features.forEach(feature => {
                 const li = document.createElement('li');
                 li.innerHTML = `<i class="fa ${feature.icon}"></i> ${feature.text}`;
@@ -2455,14 +2501,14 @@
         function loadProductIngredients(product) {
             const container = document.getElementById('product-ingredients');
             container.innerHTML = '';
-            
+
             const ingredients = product.ingredients || [
                 'Cera de soya 100% natural',
                 'Aceites esenciales premium',
                 'Mecha de algodón',
                 'Colorantes naturales'
             ];
-            
+
             ingredients.forEach(ingredient => {
                 const li = document.createElement('li');
                 li.innerHTML = `<i class="fa fa-check"></i> ${ingredient}`;
@@ -2474,14 +2520,14 @@
         function loadProductCare(product) {
             const container = document.getElementById('product-care');
             container.innerHTML = '';
-            
+
             const care = [
                 'Recortar mecha a 5mm antes de encender',
                 'No dejar encendida más de 4 horas',
                 'Mantener alejada de corrientes de aire',
                 'Extinguir con apagavelas, no soplando'
             ];
-            
+
             care.forEach(careItem => {
                 const li = document.createElement('li');
                 li.innerHTML = `<i class="fa fa-info-circle"></i> ${careItem}`;
@@ -2493,14 +2539,14 @@
         function loadThumbnails(product) {
             const container = document.getElementById('thumbnail-container');
             container.innerHTML = '';
-            
+
             // Imagen principal como primer thumbnail
             const mainThumb = document.createElement('div');
             mainThumb.className = 'thumbnail active';
             mainThumb.innerHTML = `<img src="${product.image}" alt="${product.title}">`;
             mainThumb.addEventListener('click', () => changeMainImage(product.image, mainThumb));
             container.appendChild(mainThumb);
-            
+
             // Imágenes adicionales si existen
             if (product.additionalImages) {
                 product.additionalImages.forEach((img, index) => {
@@ -2516,7 +2562,7 @@
         // Cambiar imagen principal
         function changeMainImage(src, thumbElement) {
             document.getElementById('main-image').src = src;
-            
+
             // Actualizar thumbnail activo
             document.querySelectorAll('.thumbnail').forEach(thumb => {
                 thumb.classList.remove('active');
@@ -2529,13 +2575,13 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = `toast-premium ${type}`;
-            
+
             const icons = {
                 success: 'fa-check-circle',
                 error: 'fa-times-circle',
                 info: 'fa-info-circle'
             };
-            
+
             toast.innerHTML = `
                 <i class="fa ${icons[type] || icons.info}"></i>
                 <span>${message}</span>
@@ -2543,9 +2589,9 @@
                     <i class="fa fa-times"></i>
                 </button>
             `;
-            
+
             container.appendChild(toast);
-            
+
             // Auto-remove
             setTimeout(() => {
                 if (toast.parentElement) {
@@ -2558,18 +2604,18 @@
         function loadRelatedProducts(currentProduct) {
             const container = document.getElementById('related-products-grid');
             container.innerHTML = '';
-            
+
             if (!window.productosData || window.productosData.length <= 1) {
                 return;
             }
-            
+
             // Filtrar productos (excluir el actual)
             const otherProducts = window.productosData.filter(p => p.id !== currentProduct.id);
-            
+
             // Mezclar array y tomar 4 productos aleatorios
             const shuffled = otherProducts.sort(() => 0.5 - Math.random());
             const relatedProducts = shuffled.slice(0, 4);
-            
+
             relatedProducts.forEach(product => {
                 const productCard = createRelatedProductCard(product);
                 container.appendChild(productCard);
@@ -2583,13 +2629,13 @@
             card.addEventListener('click', () => {
                 window.location.href = `producto-detalle.html?id=${product.id}`;
             });
-            
+
             // Obtener precio mínimo
             let minPrice = 0;
             if (product.sizes && product.sizes.length > 0) {
                 minPrice = Math.min(...product.sizes.map(size => size.price));
             }
-            
+
             // Crear badges de características
             let features = '';
             if (product.promotion2x1) {
@@ -2601,12 +2647,12 @@
             if (product.bestseller) {
                 features += '<div class="related-product-feature bestseller">★</div>';
             }
-            
+
             // Truncar descripción
-            const shortDescription = product.description.length > 100 
-                ? product.description.substring(0, 100) + '...' 
+            const shortDescription = product.description.length > 100
+                ? product.description.substring(0, 100) + '...'
                 : product.description;
-            
+
             card.innerHTML = `
                 <div class="related-product-image">
                     <img src="${product.image}" alt="${product.title}" loading="lazy">
@@ -2632,7 +2678,7 @@
                     </div>
                 </div>
             `;
-            
+
             return card;
         }
 
@@ -2642,28 +2688,28 @@
                 showToast('Error: Producto no disponible', 'error');
                 return;
             }
-            
+
             const productUrl = window.location.href;
             const message = `¡Hola! Me interesa este producto: *${currentProduct.title}*\n\n${productUrl}\n\n¿Podrías darme más información?`;
             const whatsappUrl = `https://wa.me/525564682112?text=${encodeURIComponent(message)}`;
-            
+
             window.open(whatsappUrl, '_blank');
         }
-        
+
         // Compartir producto
         function shareProduct() {
             if (!currentProduct) {
                 showToast('Error: Producto no disponible', 'error');
                 return;
             }
-            
+
             const productUrl = window.location.href;
             const shareData = {
                 title: `${currentProduct.title} - Velas Starlight`,
                 text: `Mira este increíble producto: ${currentProduct.title}`,
                 url: productUrl
             };
-            
+
             // Usar Web Share API si está disponible
             if (navigator.share) {
                 navigator.share(shareData)
@@ -2677,7 +2723,7 @@
                 fallbackShare(productUrl);
             }
         }
-        
+
         // Función de respaldo para compartir
         function fallbackShare(url) {
             if (navigator.clipboard) {
