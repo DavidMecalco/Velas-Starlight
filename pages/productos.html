@@ -294,6 +294,36 @@
             box-shadow: var(--shadow-medium);
         }
 
+        /* Botón de mezclar especial */
+        #shuffle-btn {
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            border-color: var(--gold);
+            color: white;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #shuffle-btn:hover {
+            background: linear-gradient(135deg, #B8860B, var(--gold));
+            border-color: #B8860B;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        #shuffle-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        #shuffle-btn i {
+            animation: none;
+            transition: transform 0.3s ease;
+        }
+
+        #shuffle-btn:hover i {
+            animation: spin 0.6s ease-in-out;
+        }
+
         .search-container {
             position: relative;
             min-width: 300px;
@@ -835,6 +865,10 @@
                         <i class="fa fa-spa"></i>
                         <span>Belleza</span>
                     </button>
+                    <button class="filter-btn" id="shuffle-btn" title="Mezclar productos aleatoriamente">
+                        <i class="fa fa-random"></i>
+                        <span>Mezclar</span>
+                    </button>
                 </div>
 
                 <div class="search-container">
@@ -1049,6 +1083,16 @@
             setupScrollHeader();
         }
 
+        // Función para mezclar array aleatoriamente (Fisher-Yates shuffle)
+        function shuffleArray(array) {
+            const shuffled = [...array]; // Crear copia para no modificar el original
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
         // Cargar productos
         function loadProducts() {
             try {
@@ -1059,10 +1103,11 @@
                     return;
                 }
                 
-                allProducts = productosData || [];
+                // Cargar productos y mezclarlos aleatoriamente
+                allProducts = shuffleArray(productosData || []);
                 filteredProducts = [...allProducts];
                 
-                console.log('Productos cargados:', allProducts.length);
+                console.log('Productos cargados y mezclados aleatoriamente:', allProducts.length);
                 
                 // Actualizar estadísticas
                 document.getElementById('total-products').textContent = allProducts.length;
@@ -1231,6 +1276,15 @@
                     filterByCategory(category);
                 });
             });
+
+            // Botón de mezclar productos
+            const shuffleBtn = document.getElementById('shuffle-btn');
+            if (shuffleBtn) {
+                shuffleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    shuffleProducts();
+                });
+            }
             
             // Búsqueda
             const searchInput = document.getElementById('search-input');
@@ -1297,6 +1351,20 @@
             });
             
             renderProducts();
+        }
+
+        // Mezclar productos aleatoriamente
+        function shuffleProducts() {
+            // Mezclar todos los productos
+            allProducts = shuffleArray(allProducts);
+            
+            // Aplicar filtros actuales con el nuevo orden
+            applyFilters();
+            
+            // Mostrar feedback visual
+            showToast('Productos mezclados aleatoriamente', 'success');
+            
+            console.log('Productos mezclados aleatoriamente');
         }
 
         // Acciones rápidas
