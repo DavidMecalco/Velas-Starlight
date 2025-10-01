@@ -65,8 +65,7 @@ const productosData = [
             "Aceites esenciales naturales 10%",
             "Mecha de algodón 5%"
         ],
-        "duration": "35-40 horas",
-        "colors": ["Blanco natural", "Crema"]
+
     },
     {
         "id": 2,
@@ -119,8 +118,7 @@ const productosData = [
             "Aceites de fragancia 10%",
             "Mecha de algodón 2%"
         ],
-        "duration": "40-45 horas",
-        "colors": ["Blanco", "Dorado suave"]
+
     },
     {
         "id": 3,
@@ -163,8 +161,7 @@ const productosData = [
             "Cera de parafina 10%",
             "Aceites esenciales navideños 5%"
         ],
-        "duration": "45-50 horas",
-        "colors": ["Verde", "Dorado", "Rojo"]
+
     },
     {
         "id": 4,
@@ -207,8 +204,7 @@ const productosData = [
             "Cera de soya 25%",
             "Aceites esenciales mentolados 5%"
         ],
-        "duration": "40-45 horas",
-        "colors": ["Blanco", "Azul claro"]
+
     },
     {
         "id": 5,
@@ -249,8 +245,7 @@ const productosData = [
             "Esencia de cempasúchil 8%",
             "Colorante natural naranja 2%"
         ],
-        "duration": "35-40 horas",
-        "colors": ["Naranja", "Amarillo"]
+
     },
     {
         "id": 6,
@@ -314,8 +309,7 @@ const productosData = [
             "Cera de soya premium 95%",
             "Aceites esenciales naturales 5%"
         ],
-        "duration": "50-60 horas",
-        "colors": ["Blanco natural", "Crema"]
+
     },
     {
         "id": 7,
@@ -379,8 +373,7 @@ const productosData = [
             "Cera de parafina premium 92%",
             "Aceites de fragancia concentrados 8%"
         ],
-        "duration": "45-55 horas",
-        "colors": ["Blanco", "Crema"]
+
     },
     {
         "id": 8,
@@ -435,7 +428,7 @@ const productosData = [
         "title": "Serum Vitamina C",
         "category": "Belleza",
         "description": "Nuestro Serum de Vitamina C es un potente antioxidante que ayuda a iluminar, proteger y rejuvenecer tu piel. Formulado con vitamina C estabilizada y ácido hialurónico, este serum combate los signos del envejecimiento mientras proporciona una hidratación intensa.",
-        "image": "../images/serum-vitamina-c.jpeg",
+        "image": "../images/serum.jpeg",
         "featured": true,
         "new": false,
         "bestseller": true,

@@ -233,22 +233,24 @@ function generateProfessionalTechSheet(product) {
             yPos = currentY + 15;
         }
 
-        // ===== FRAGANCIAS EN FORMATO CORPORATIVO =====
-        if (product.fragrances && product.fragrances.length > 0) {
+        // ===== FRAGANCIAS/VARIANTES EN FORMATO CORPORATIVO =====
+        const options = product.fragrances || product.variants;
+        if (options && options.length > 0) {
             if (yPos > 220) {
                 doc.addPage();
                 yPos = 20;
             }
             
-            yPos = addSectionTitle('FRAGANCIAS DISPONIBLES', yPos);
+            const sectionTitle = product.fragrances ? 'FRAGANCIAS DISPONIBLES' : 'VARIANTES DISPONIBLES';
+            yPos = addSectionTitle(sectionTitle, yPos);
             
-            // Lista simple de fragancias
+            // Lista simple de opciones
             const itemsPerRow = 3;
             const itemWidth = 55;
             const itemHeight = 8;
             const startX = 20;
             
-            product.fragrances.forEach((fragrance, index) => {
+            options.forEach((option, index) => {
                 const row = Math.floor(index / itemsPerRow);
                 const col = index % itemsPerRow;
                 const x = startX + (col * (itemWidth + 5));
@@ -258,42 +260,38 @@ function generateProfessionalTechSheet(product) {
                 setColor(doc, colors.primary, 'fill');
                 doc.circle(x + 2, y + 4, 1, 'F');
                 
-                // Texto de fragancia
+                // Texto de opción
                 doc.setFontSize(9);
                 setColor(doc, colors.text, 'text');
                 doc.setFont(undefined, 'normal');
-                const fragranceText = fragrance.length > 15 ? fragrance.substring(0, 15) + '...' : fragrance;
-                doc.text(fragranceText, x + 6, y + 5);
+                const optionText = option.length > 15 ? option.substring(0, 15) + '...' : option;
+                doc.text(optionText, x + 6, y + 5);
             });
             
-            const totalRows = Math.ceil(product.fragrances.length / itemsPerRow);
+            const totalRows = Math.ceil(options.length / itemsPerRow);
             yPos += (totalRows * (itemHeight + 2)) + 15;
         }
 
-        // ===== TIPOS DE CERA CORPORATIVO =====
-        if (product.types && product.types.length > 0) {
+        // ===== TIPO DE CERA CORPORATIVO =====
+        if (product.type) {
             if (yPos > 240) {
                 doc.addPage();
                 yPos = 20;
             }
             
-            yPos = addSectionTitle('COMPOSICIÓN DE CERA', yPos);
+            yPos = addSectionTitle('TIPO DE CERA', yPos);
             
-            // Lista simple de tipos
-            product.types.forEach((type, index) => {
-                doc.setFontSize(9);
-                setColor(doc, colors.text, 'text');
-                doc.setFont(undefined, 'normal');
-                
-                // Punto simple
-                setColor(doc, colors.primary, 'fill');
-                doc.circle(22, yPos + 4, 1, 'F');
-                
-                doc.text(type, 28, yPos + 5);
-                yPos += 8;
-            });
+            // Mostrar tipo simple
+            doc.setFontSize(9);
+            setColor(doc, colors.text, 'text');
+            doc.setFont(undefined, 'normal');
             
-            yPos += 10;
+            // Punto simple
+            setColor(doc, colors.primary, 'fill');
+            doc.circle(22, yPos + 4, 1, 'F');
+            
+            doc.text(product.type, 28, yPos + 5);
+            yPos += 18;
         }
 
         // ===== INGREDIENTES CORPORATIVO =====
@@ -306,46 +304,17 @@ function generateProfessionalTechSheet(product) {
             yPos = addSectionTitle('COMPOSICIÓN E INGREDIENTES', yPos);
             
             product.ingredients.forEach((ingredient, index) => {
-                // Número de ingrediente simple
+                // Punto simple
+                setColor(doc, colors.primary, 'fill');
+                doc.circle(22, yPos + 4, 1, 'F');
+                
+                // Ingrediente como string simple
                 doc.setFontSize(9);
-                setColor(doc, colors.primary, 'text');
-                doc.setFont(undefined, 'bold');
-                doc.text(`${index + 1}.`, 20, yPos + 5);
-                
-                // Nombre del ingrediente
                 setColor(doc, colors.text, 'text');
-                doc.text(ingredient.name, 28, yPos + 5);
+                doc.setFont(undefined, 'normal');
+                doc.text(ingredient, 28, yPos + 5);
                 
-                // Porcentaje y origen
-                let infoX = 120;
-                if (ingredient.percentage) {
-                    doc.setFont(undefined, 'normal');
-                    setColor(doc, colors.secondary, 'text');
-                    doc.text(ingredient.percentage, infoX, yPos + 5);
-                    infoX += 25;
-                }
-                
-                if (ingredient.origin) {
-                    if (ingredient.origin === 'Natural') {
-                        doc.setTextColor(34, 139, 34);
-                    } else {
-                        setColor(doc, colors.secondary, 'text');
-                    }
-                    doc.text(ingredient.origin, infoX, yPos + 5);
-                }
-                
-                // Descripción si existe
-                if (ingredient.description) {
-                    yPos += 8;
-                    doc.setFontSize(8);
-                    setColor(doc, colors.lightText, 'text');
-                    doc.setFont(undefined, 'normal');
-                    const descLines = doc.splitTextToSize(ingredient.description, 150);
-                    doc.text(descLines, 28, yPos);
-                    yPos += (descLines.length * 4);
-                }
-                
-                yPos += 10;
+                yPos += 8;
             });
             
             yPos += 10;
@@ -360,26 +329,18 @@ function generateProfessionalTechSheet(product) {
             
             yPos = addSectionTitle('CARACTERÍSTICAS DISTINTIVAS', yPos);
             
-            product.characteristics.forEach((char, index) => {
+            product.characteristics.forEach((characteristic, index) => {
                 // Punto simple
                 setColor(doc, colors.primary, 'fill');
                 doc.circle(22, yPos + 4, 1, 'F');
                 
-                // Título de característica
+                // Característica como string simple
                 doc.setFontSize(9);
-                setColor(doc, colors.primary, 'text');
-                doc.setFont(undefined, 'bold');
-                doc.text(char.title, 28, yPos + 5);
-                
-                // Descripción
-                yPos += 8;
-                doc.setFontSize(8);
                 setColor(doc, colors.text, 'text');
                 doc.setFont(undefined, 'normal');
-                const descLines = doc.splitTextToSize(char.description, 160);
-                doc.text(descLines, 28, yPos);
+                doc.text(characteristic, 28, yPos + 5);
                 
-                yPos += (descLines.length * 4) + 8;
+                yPos += 8;
             });
             
             yPos += 10;
@@ -416,18 +377,13 @@ function generateProfessionalTechSheet(product) {
                 doc.setFont(undefined, 'bold');
                 doc.text(`${index + 1}.`, 20, yPos + 5);
                 
-                // Título del cuidado
+                // Instrucción de cuidado como string simple
                 setColor(doc, colors.text, 'text');
-                doc.text(careItem.title, 28, yPos + 5);
-                
-                // Descripción
-                yPos += 8;
-                doc.setFontSize(8);
                 doc.setFont(undefined, 'normal');
-                const descLines = doc.splitTextToSize(careItem.description, 160);
-                doc.text(descLines, 28, yPos);
+                const careLines = doc.splitTextToSize(careItem, 160);
+                doc.text(careLines, 28, yPos + 5);
                 
-                yPos += (descLines.length * 4) + 8;
+                yPos += (careLines.length * 5) + 8;
             });
         }
 
