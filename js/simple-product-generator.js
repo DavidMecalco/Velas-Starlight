@@ -46,7 +46,7 @@ SimpleProductGenerator.prototype.generateSimpleCard = function(product) {
     
     return `
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-             onclick="window.location.href='producto-detalle.html?id=${product.id}'">
+             onclick="window.location.href='producto-detalle.html?id=${product.id}'"
             <div class="aspect-square overflow-hidden bg-gray-100">
                 <img src="${image}" 
                      alt="${product.title}" 

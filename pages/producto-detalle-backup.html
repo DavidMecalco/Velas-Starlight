@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Producto | Velas Starlight</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" id="page-description" content="Descubre nuestros productos artesanales únicos">
+    <meta name="keywords" content="velas artesanales, productos belleza, soya, parafina, fragancias naturales">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" id="og-title" content="Producto | Velas Starlight">
+    <meta property="og:description" id="og-description" content="Descubre nuestros productos artesanales únicos">
+    <meta property="og:image" id="og-image" content="">
+    <meta property="og:url" id="og-url" content="">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beige-almond': '#F6F1E9',
+                        'dark-green': '#2D3E33',
+                        'warm-cream': '#EDE6DA',
+                        'sage-green': '#3A5A40',
+                        'leaf-green': '#A3B18A',
+                        'gray-sand': '#D6CEC3',
+                        'accent-gold': '#D4AF37',
+                        'soft-pink': '#F8E8E8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'bounce-soft': 'bounceSoft 2s infinite',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+
+    <!-- Estilos elegantes y minimalistas -->
+    <style>
+        /* Variables CSS limpias */
+        :root {
+            --primary: #2D3E33;
+            --secondary: #3A5A40;
+            --accent: #A3B18A;
+            --cream: #F6F1E9;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+        }
+
+        /* Animaciones sutiles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Fondo limpio */
+        body {
+            background: linear-gradient(135deg, var(--cream) 0%, #FEFEFE 100%);
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* Contenedor principal */
+        .product-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Galería de imágenes elegante */
+        .image-gallery {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--gray-100);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Thumbnails limpios */
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 20px;
+            background: var(--gray-50);
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        /* Panel de información */
+        .product-info {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--gray-100);
+        }
+
+        /* Título elegante */
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .product-description {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* Precio destacado */
+        .price-display {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        /* Opciones de producto */
+        .option-section {
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .option-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(163, 177, 138, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .option-card.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 8px 20px rgba(163, 177, 138, 0.25);
+        }
+
+        .option-info h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+
+        .option-info p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .option-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* Control de cantidad */
+        .quantity-section {
+            margin: 2rem 0;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--gray-50);
+            padding: 16px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            width: fit-content;
+        }
+
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .qty-btn.minus {
+            background: #EF4444;
+            color: white;
+        }
+
+        .qty-btn.minus:hover {
+            background: #DC2626;
+            transform: scale(1.1);
+        }
+
+        .qty-btn.plus {
+            background: #10B981;
+            color: white;
+        }
+
+        .qty-btn.plus:hover {
+            background: #059669;
+            transform: scale(1.1);
+        }
+
+        .qty-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Botones principales */
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 32px;
+            border-radius: 16px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary:hover {
+            background: #1F2B25;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 62, 51, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 62, 51, 0.3);
+        }
+
+        /* Badges informativos */
+        .info-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 2rem 0;
+        }
+
+        .info-badge {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .info-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-badge i {
+            font-size: 24px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .info-badge.shipping i {
+            background: #10B981;
+        }
+
+        .info-badge.warranty i {
+            background: #3B82F6;
+        }
+
+        .info-badge-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: var(--primary);
+        }
+
+        .info-badge-content p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        /* Tarjetas de información */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-card h3 i {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            color: var(--gray-600);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list li i {
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Badge de promoción */
+        .promo-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #EF4444;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .breadcrumb nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumb .separator {
+            color: var(--gray-300);
+        }
+
+        .breadcrumb .current {
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 0 1rem;
+            }
+
+            .main-image {
+                height: 400px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-info {
+                padding: 24px;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .price-display {
+                font-size: 2rem;
+            }
+
+            .option-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .quantity-control {
+                justify-content: center;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-beige-almond via-warm-cream to-beige-almond text-dark-green font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <!-- Logo -->
+            <a href="../index.html">
+                <img src="../images/logo.png" alt="Velas Starlight Logo" class="h-12 w-auto">
+            </a>
+
+            <!-- Links Desktop -->
+            <nav class="hidden md:flex space-x-8 font-medium text-dark-green items-center">
+                <a href="../index.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-home mr-1"></i>Inicio
+                </a>
+                <a href="productos.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-cube mr-1"></i>Productos
+                </a>
+                <a href="contacto.html" class="hover:text-sage-green flex items-center transition-colors duration-300">
+                    <i class="fa fa-phone mr-1"></i>Contacto
+                </a>
+                <!-- Carrito Desktop -->
+                <a href="carrito.html" class="relative text-sage-green transition-colors duration-300">
+                    <i class="fa fa-shopping-cart text-xl"></i>
+                    <span id="cart-count"
+                        class="absolute -top-3 -right-3 bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </nav>
+
+            <!-- Botón menú móvil -->
+            <button id="menu-toggle" class="md:hidden text-dark-green text-2xl focus:outline-none ml-auto">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
+            <div class="px-6 py-4 space-y-1">
+                <a href="../index.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-home mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Inicio</span>
+                </a>
+                <a href="productos.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-cube mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Productos</span>
+                </a>
+                <a href="contacto.html"
+                    class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
+                    <i
+                        class="fa fa-phone mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="font-medium">Contacto</span>
+                </a>
+                <div class="border-t border-gray-200 my-2"></div>
+                <a href="carrito.html"
+                    class="flex items-center justify-between px-4 py-3 text-sage-green bg-sage-green/10 rounded-lg transition-all duration-200 group">
+                    <div class="flex items-center">
+                        <i
+                            class="fa fa-shopping-cart mr-3 text-sage-green group-hover:scale-110 transition-transform duration-200"></i>
+                        <span class="font-medium">Carrito</span>
+                    </div>
+                    <span id="cart-count-mobile"
+                        class="bg-sage-green text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20 min-h-screen">
+        <!-- Breadcrumb -->
+        <section class="breadcrumb">
+            <div class="product-container">
+                <nav>
+                    <a href="../index.html">
+                        <i class="fa fa-home"></i> Inicio
+                    </a>
+                    <span class="separator">
+                        <i class="fa fa-chevron-right"></i>
+                    </span>
+                    <a href="productos.html">Productos</a>
+                    <span class="separator">
+                        <i class="fa fa-chevron-right"></i>
+                    </span>
+                    <span id="breadcrumb-product" class="current">Producto</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Product Detail Section -->
+        <section class="py-12">
+            <div class="product-container">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Galería de Imágenes -->
+                    <div class="animate-fade-in">
+                        <div class="image-gallery">
+                            <img id="main-image" src="../images/productos/vela-1.jpg" alt="Producto" class="main-image">
+                            
+                            <!-- Badge de promoción -->
+                            <div id="promo-badge" class="promo-badge hidden">
+                                <i class="fa fa-fire"></i>
+                                <span>2x1 Oferta Especial</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Thumbnails -->
+                        <div id="thumbnail-container" class="thumbnail-grid">
+                            <!-- Se llenan dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Información del Producto -->
+                    <div class="product-info animate-slide-up">
+                        <!-- Badges de estado -->
+                        <div class="flex items-center gap-3 mb-6">
+                            <span id="product-category" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">
+                                Categoría
+                            </span>
+                            <span id="product-availability" class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                                <i class="fa fa-check-circle"></i> Disponible
+                            </span>
+                        </div>
+                        
+                        <!-- Título -->
+                        <h1 id="product-title" class="product-title">
+                            Nombre del Producto
+                        </h1>
+                        
+                        <!-- Descripción -->
+                        <p id="product-description" class="product-description">
+                            Descripción del producto que se carga dinámicamente...
+                        </p>
+                        
+                        <!-- Precio -->
+                        <div class="flex items-center gap-4 mb-8">
+                            <span id="product-price" class="price-display">
+                                $0.00 MXN
+                            </span>
+                            <span id="product-original-price" class="text-xl text-gray-400 line-through hidden">
+                                $0.00 MXN
+                            </span>
+                        </div>
+
+                        <!-- Opciones de Tamaño -->
+                        <div id="size-section" class="option-section">
+                            <h3 class="section-title">
+                                <i class="fa fa-ruler-combined"></i>
+                                Selecciona el tamaño
+                            </h3>
+                            <div id="size-options" class="option-grid">
+                                <!-- Se llenan dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Opciones de Fragancia -->
+                        <div id="fragrance-section" class="option-section hidden">
+                            <h3 class="section-title">
+                                <i class="fa fa-leaf"></i>
+                                Selecciona la fragancia
+                            </h3>
+                            <div id="fragrance-options" class="option-grid">
+                                <!-- Se llenan dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Control de Cantidad -->
+                        <div class="quantity-section">
+                            <h3 class="section-title">
+                                <i class="fa fa-shopping-basket"></i>
+                                Cantidad
+                            </h3>
+                            <div class="quantity-control">
+                                <button id="qty-minus" class="qty-btn minus">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <span id="quantity-display" class="qty-display">1</span>
+                                <button id="qty-plus" class="qty-btn plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="space-y-3 mb-8">
+                            <button id="add-to-cart-btn" class="btn-primary">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Agregar al Carrito</span>
+                            </button>
+                            
+                            <button id="download-tech-sheet-btn" class="btn-secondary">
+                                <i class="fa fa-file-pdf"></i>
+                                <span>Descargar Ficha Técnica</span>
+                            </button>
+                        </div>
+
+                        <!-- Badges informativos -->
+                        <div class="info-badges">
+                            <div class="info-badge shipping">
+                                <i class="fa fa-truck"></i>
+                                <div class="info-badge-content">
+                                    <h4>Envío Gratis</h4>
+                                    <p>En compras mayores a $500 MXN</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-badge warranty">
+                                <i class="fa fa-shield-alt"></i>
+                                <div class="info-badge-content">
+                                    <h4>Garantía Premium</h4>
+                                    <p>Productos artesanales de calidad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información Detallada -->
+        <section class="py-12 bg-gray-50">
+            <div class="product-container">
+                <div class="info-cards">
+                    <!-- Características -->
+                    <div class="info-card animate-scale-in">
+                        <h3>
+                            <i class="fa fa-star"></i>
+                            Características
+                        </h3>
+                        <ul id="product-features" class="info-list">
+                            <!-- Se llenan dinámicamente -->
+                        </ul>
+                    </div>
+
+                    <!-- Ingredientes -->
+                    <div class="info-card animate-scale-in">
+                        <h3>
+                            <i class="fa fa-leaf"></i>
+                            Ingredientes
+                        </h3>
+                        <ul id="product-ingredients" class="info-list">
+                            <!-- Se llenan dinámicamente -->
+                        </ul>
+                    </div>
+
+                    <!-- Cuidados -->
+                    <div class="info-card animate-scale-in">
+                        <h3>
+                            <i class="fa fa-heart"></i>
+                            Cuidados
+                        </h3>
+                        <ul id="product-care" class="info-list">
+                            <!-- Se llenan dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white relative overflow-hidden">
+        <!-- Patrón de fondo -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><g fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;><g fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.1&quot;><circle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot; /></g></g></svg>');">
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <!-- Contenido principal del footer -->
+            <div class="container mx-auto px-6 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Logo y descripción -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <img src="../images/logo.png" alt="Velas Starlight"
+                                class="h-12 w-auto filter brightness-0 invert">
+                        </div>
+                        <p class="text-gray-300 leading-relaxed max-w-md">
+                            Creamos experiencias sensoriales únicas con velas artesanales y productos de belleza
+                            natural, elaborados con amor y dedicación para iluminar tu mundo.
+                        </p>
+                    </div>
+
+                    <!-- Enlaces rápidos -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold mb-4 text-white">Enlaces Rápidos</h4>
+                        <ul class="space-y-3">
+                            <li><a href="../index.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>Inicio
+                                </a></li>
+                            <li><a href="productos.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-cube mr-2 group-hover:scale-110 transition-transform duration-300"></i>Productos
+                                </a></li>
+                            <li><a href="contacto.html"
+                                    class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
+                                    <i
+                                        class="fa fa-phone mr-2 group-hover:scale-110 transition-transform duration-300"></i>Contacto
+                                </a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contacto y redes sociales -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-semibold mb-4 text-white">Conecta con Nosotros</h4>
+
+                        <!-- Información de contacto -->
+                        <div class="space-y-3 text-gray-300">
+                            <a href="mailto:ventas@velasstarlight.com"
+                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                                <i class="fa fa-envelope text-white"></i>
+                                <span>ventas@velasstarlight.com</span>
+                            </a>
+                            <a href="tel:+525564682112"
+                                class="flex items-center space-x-3 hover:text-gray-200 transition-colors">
+                                <i class="fa fa-phone text-white"></i>
+                                <span>5564682112</span>
+                            </a>
+                        </div>
+
+                        <!-- Redes sociales -->
+                        <div class="pt-4">
+                            <h5 class="font-medium mb-3">Síguenos</h5>
+                            <div class="flex space-x-4">
+                                <a href="https://wa.me/5564682112" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-whatsapp text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="https://www.instagram.com/velas_starlight/" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-instagram text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-facebook-f text-lg group-hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
+                                    <i class="fab fa-tiktok text-lg group-hover:text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Línea divisoria -->
+            <div class="border-t border-white/20"></div>
+
+            <!-- Copyright y enlaces legales -->
+            <div class="container mx-auto px-6 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-gray-300 text-sm">
+                        <p>&copy; 2025 Velas Starlight. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="flex items-center space-x-6 text-sm text-gray-300">
+                        <a href="terminos.html" class="hover:text-white transition-colors duration-300">Términos
+                            y Condiciones</a>
+                        <span class="text-gray-500">|</span>
+                        <a href="politicas.html" class="hover:text-white transition-colors duration-300">Política
+                            de Privacidad</a>
+                        <span class="text-gray-500">|</span>
+                        <span class="flex items-center space-x-1">
+                            <i class="fa fa-heart text-red-400"></i>
+                            <span>Hecho con amor</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Scripts -->
+    <script src="../js/productos-data.js"></script>
+    <script src="../js/mobile-menu-clean.js"></script>
+    
+    <!-- jsPDF para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Generador profesional de ficha técnica -->
+    <script src="../js/tech-sheet-professional.js"></script>
+
+    <!-- Script principal del producto -->
+    <script>
+        // Variables globales
+        let currentProduct = null;
+        let selectedSize = null;
+        let selectedFragrance = null;
+        let quantity = 1;
+
+        // Inicialización limpia
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProduct();
+            setupEventListeners();
+            updateCartCount();
+        });
+
+        // Inicializar producto desde URL
+        function initializeProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (productId && window.productosData) {
+                currentProduct = window.productosData.find(p => p.id == productId);
+                if (currentProduct) {
+                    loadProductData(currentProduct);
+                } else {
+                    showError('Producto no encontrado');
+                }
+            } else {
+                showError('ID de producto no válido');
+            }
+        }
+
+        // Cargar datos del producto
+        function loadProductData(product) {
+            // Actualizar título de la página
+            document.title = `${product.title} | Velas Starlight`;
+            document.getElementById('page-title').textContent = `${product.title} | Velas Starlight`;
+            
+            // Breadcrumb
+            document.getElementById('breadcrumb-product').textContent = product.title;
+            
+            // Información básica
+            document.getElementById('product-category').textContent = product.category;
+            document.getElementById('product-title').textContent = product.title;
+            document.getElementById('product-description').textContent = product.description;
+            
+            // Disponibilidad
+            const availabilityEl = document.getElementById('product-availability');
+            if (product.available) {
+                availabilityEl.innerHTML = '<i class="fa fa-check-circle"></i> Disponible';
+                availabilityEl.className = 'px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full';
+            } else {
+                availabilityEl.innerHTML = '<i class="fa fa-times-circle"></i> No Disponible';
+                availabilityEl.className = 'px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full';
+            }
+            
+            // Imagen principal
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = product.image;
+            mainImage.alt = product.title;
+            
+            // Promoción 2x1
+            const promoBadge = document.getElementById('promo-badge');
+            if (product.promotion2x1) {
+                promoBadge.classList.remove('hidden');
+            }
+            
+            // Cargar opciones de tamaño
+            loadSizeOptions(product);
+            
+            // Cargar fragancias si existen
+            if (product.fragrances && product.fragrances.length > 0) {
+                loadFragranceOptions(product);
+            }
+            
+            // Cargar información adicional
+            loadProductFeatures(product);
+            loadProductIngredients(product);
+            loadProductCare(product);
+            
+            // Cargar thumbnails si existen
+            loadThumbnails(product);
+        }
+
+        // Cargar opciones de tamaño
+        function loadSizeOptions(product) {
+            const container = document.getElementById('size-options');
+            container.innerHTML = '';
+            
+            if (product.sizes && product.sizes.length > 0) {
+                product.sizes.forEach((size, index) => {
+                    const option = document.createElement('div');
+                    option.className = 'option-card';
+                    option.dataset.sizeIndex = index;
+                    
+                    option.innerHTML = `
+                        <div class="option-info">
+                            <div class="option-title">${size.label}</div>
+                            <div class="option-description">Tamaño perfecto para cualquier ocasión</div>
+                        </div>
+                        <div class="option-price">$${size.price} MXN</div>
+                    `;
+                    
+                    option.addEventListener('click', () => selectSize(index));
+                    container.appendChild(option);
+                });
+                
+                // Seleccionar el primer tamaño por defecto
+                selectSize(0);
+            }
+        }
+
+        // Cargar opciones de fragancia
+        function loadFragranceOptions(product) {
+            const section = document.getElementById('fragrance-section');
+            const container = document.getElementById('fragrance-options');
+            
+            section.classList.remove('hidden');
+            container.innerHTML = '';
+            
+            product.fragrances.forEach((fragrance, index) => {
+                const option = document.createElement('div');
+                option.className = 'option-card';
+                option.dataset.fragranceIndex = index;
+                
+                option.innerHTML = `
+                    <div class="option-info">
+                        <div class="option-title">${fragrance}</div>
+                        <div class="option-description">Fragancia natural y duradera</div>
+                    </div>
+                    <div class="option-price">
+                        <i class="fa fa-leaf text-leaf-green"></i>
+                    </div>
+                `;
+                
+                option.addEventListener('click', () => selectFragrance(index));
+                container.appendChild(option);
+            });
+            
+            // Seleccionar la primera fragancia por defecto
+            selectFragrance(0);
+        }
+
+        // Seleccionar tamaño
+        function selectSize(index) {
+            // Remover selección anterior
+            document.querySelectorAll('#size-options .option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Seleccionar nuevo
+            const selectedCard = document.querySelector(`#size-options .option-card[data-size-index="${index}"]`);
+            selectedCard.classList.add('selected');
+            
+            selectedSize = currentProduct.sizes[index];
+            updatePrice();
+        }
+
+        // Seleccionar fragancia
+        function selectFragrance(index) {
+            // Remover selección anterior
+            document.querySelectorAll('#fragrance-options .option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Seleccionar nuevo
+            const selectedCard = document.querySelector(`#fragrance-options .option-card[data-fragrance-index="${index}"]`);
+            selectedCard.classList.add('selected');
+            
+            selectedFragrance = currentProduct.fragrances[index];
+        }
+
+        // Actualizar precio
+        function updatePrice() {
+            if (selectedSize) {
+                const priceEl = document.getElementById('product-price');
+                let finalPrice = selectedSize.price * quantity;
+                
+                // Aplicar promoción 2x1
+                if (currentProduct.promotion2x1) {
+                    const paidQuantity = Math.ceil(quantity / 2);
+                    finalPrice = selectedSize.price * paidQuantity;
+                }
+                
+                priceEl.textContent = `$${finalPrice.toFixed(2)} MXN`;
+            }
+        }
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Control de cantidad
+            document.getElementById('qty-minus').addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    document.getElementById('quantity-display').textContent = quantity;
+                    updatePrice();
+                }
+            });
+            
+            document.getElementById('qty-plus').addEventListener('click', () => {
+                quantity++;
+                document.getElementById('quantity-display').textContent = quantity;
+                updatePrice();
+            });
+            
+            // Agregar al carrito
+            document.getElementById('add-to-cart-btn').addEventListener('click', addToCart);
+            
+            // Descargar ficha técnica
+            document.getElementById('download-tech-sheet-btn').addEventListener('click', downloadTechSheet);
+        }
+
+        // Agregar al carrito
+        function addToCart() {
+            if (!currentProduct || !selectedSize) {
+                showToast('Por favor selecciona un tamaño', 'error');
+                return;
+            }
+            
+            const cartItem = {
+                id: currentProduct.id,
+                title: currentProduct.title,
+                image: currentProduct.image,
+                price: selectedSize.price,
+                size: selectedSize.label,
+                fragrance: selectedFragrance || 'Sin fragancia',
+                quantity: quantity,
+                promotion2x1: currentProduct.promotion2x1 || false
+            };
+            
+            // Obtener carrito actual
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            // Buscar si ya existe el producto con las mismas características
+            const existingIndex = cart.findIndex(item => 
+                item.id === cartItem.id && 
+                item.size === cartItem.size && 
+                item.fragrance === cartItem.fragrance
+            );
+            
+            if (existingIndex >= 0) {
+                cart[existingIndex].quantity += cartItem.quantity;
+            } else {
+                cart.push(cartItem);
+            }
+            
+            // Guardar carrito
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Actualizar contador
+            updateCartCount();
+            
+            // Mostrar confirmación
+            showToast(`${cartItem.title} agregado al carrito`, 'success');
+        }
+
+        // Descargar ficha técnica
+        function downloadTechSheet() {
+            if (!currentProduct) {
+                showToast('Error: Producto no disponible', 'error');
+                return;
+            }
+            
+            if (window.generateTechSheet) {
+                window.generateTechSheet(currentProduct);
+            } else {
+                showToast('Error: Generador de PDF no disponible', 'error');
+            }
+        }
+
+        // Actualizar contador del carrito
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            document.querySelectorAll('#cart-count, #cart-count-mobile').forEach(el => {
+                el.textContent = totalItems;
+            });
+        }
+
+        // Cargar características del producto
+        function loadProductFeatures(product) {
+            const container = document.getElementById('product-features');
+            container.innerHTML = '';
+            
+            const features = [
+                { icon: 'fa-fire', text: `Duración: ${product.duration || '40-50 horas'}` },
+                { icon: 'fa-leaf', text: `Material: ${product.material || 'Cera de soya natural'}` },
+                { icon: 'fa-palette', text: `Colores disponibles: ${product.colors?.length || 'Varios'}` },
+                { icon: 'fa-heart', text: 'Hecho a mano con amor' }
+            ];
+            
+            features.forEach(feature => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fa ${feature.icon}"></i> ${feature.text}`;
+                container.appendChild(li);
+            });
+        }
+
+        // Cargar ingredientes
+        function loadProductIngredients(product) {
+            const container = document.getElementById('product-ingredients');
+            container.innerHTML = '';
+            
+            const ingredients = product.ingredients || [
+                'Cera de soya 100% natural',
+                'Aceites esenciales premium',
+                'Mecha de algodón',
+                'Colorantes naturales'
+            ];
+            
+            ingredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fa fa-check"></i> ${ingredient}`;
+                container.appendChild(li);
+            });
+        }
+
+        // Cargar cuidados
+        function loadProductCare(product) {
+            const container = document.getElementById('product-care');
+            container.innerHTML = '';
+            
+            const care = [
+                'Recortar mecha a 5mm antes de encender',
+                'No dejar encendida más de 4 horas',
+                'Mantener alejada de corrientes de aire',
+                'Extinguir con apagavelas, no soplando'
+            ];
+            
+            care.forEach(careItem => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fa fa-info-circle"></i> ${careItem}`;
+                container.appendChild(li);
+            });
+        }
+
+        // Cargar thumbnails
+        function loadThumbnails(product) {
+            const container = document.getElementById('thumbnail-container');
+            container.innerHTML = '';
+            
+            // Imagen principal como primer thumbnail
+            const mainThumb = document.createElement('img');
+            mainThumb.src = product.image;
+            mainThumb.alt = product.title;
+            mainThumb.className = 'thumbnail active';
+            mainThumb.addEventListener('click', () => changeMainImage(product.image, mainThumb));
+            container.appendChild(mainThumb);
+            
+            // Imágenes adicionales si existen
+            if (product.additionalImages) {
+                product.additionalImages.forEach((img, index) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = img;
+                    thumb.alt = `${product.title} - Vista ${index + 2}`;
+                    thumb.className = 'thumbnail';
+                    thumb.addEventListener('click', () => changeMainImage(img, thumb));
+                    container.appendChild(thumb);
+                });
+            }
+        }
+
+        // Cambiar imagen principal
+        function changeMainImage(src, thumbElement) {
+            document.getElementById('main-image').src = src;
+            
+            // Actualizar thumbnail activo
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbElement.classList.add('active');
+        }
+
+        // Mostrar toast notification limpio
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            
+            const config = {
+                success: { bg: 'bg-green-500', icon: 'check-circle' },
+                error: { bg: 'bg-red-500', icon: 'times-circle' },
+                info: { bg: 'bg-blue-500', icon: 'info-circle' }
+            };
+            
+            const { bg, icon } = config[type] || config.info;
+            
+            toast.innerHTML = `
+                <div class="${bg} text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 mb-3">
+                    <i class="fa fa-${icon}"></i>
+                    <span class="font-medium">${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-white/80 hover:text-white">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('toast-container').appendChild(toast);
+            
+            // Auto-remove
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Mostrar error
+        function showError(message) {
+            document.getElementById('product-title').textContent = 'Error';
+            document.getElementById('product-description').textContent = message;
+            showToast(message, 'error');
+        }
+    </script>
+</body>
+
+</html>
