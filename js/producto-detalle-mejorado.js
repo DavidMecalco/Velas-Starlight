@@ -144,8 +144,7 @@ class EnhancedProductDetailPage {
             // Configurar botones de acción
             this.setupButtons();
 
-            // Renderizar productos relacionados
-            this.renderRelatedProducts();
+            // Productos relacionados eliminados
 
             // Ocultar loading state
             this.hideLoadingState();
@@ -497,10 +496,8 @@ class EnhancedProductDetailPage {
 
         const sizesHTML = this.product.sizes.map(size => `
             <div class="option-card size-option" data-size="${size.label}" data-price="${size.price}">
-                <div class="flex justify-between items-center">
-                    <span class="font-medium">${size.label}</span>
-                    <span class="text-sage-green font-bold">$${size.price} MXN</span>
-                </div>
+                <span>${size.label}</span>
+                <span>$${size.price} MXN</span>
             </div>
         `).join('');
 
@@ -1020,6 +1017,8 @@ class EnhancedProductDetailPage {
      * Renderizar productos relacionados mejorado
      */
     renderRelatedProducts() {
+        // Función deshabilitada - sección de productos relacionados eliminada
+        return;
         const relatedContainer = document.getElementById('related-products');
         if (!relatedContainer) return;
 

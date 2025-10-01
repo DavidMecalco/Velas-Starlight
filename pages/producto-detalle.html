@@ -63,6 +63,8 @@
     <!-- CSS Moderno para Producto Detalle -->
     <link rel="stylesheet" href="../css/producto-detalle-modern.css?v=1.0.0">
 
+
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,12 +142,288 @@
         }
 
         /* IMPORTANTE: Estilos para estado seleccionado - DEBE IR AL FINAL */
-        .option-card.selected,
+        .option-card.selected {
+            background: linear-gradient(135deg, #3A5A40, #2D3E33) !important;
+        }
+
+        .option-card.selected .option-title,
+        .option-card.selected .option-price,
         .option-card.selected div,
         .option-card.selected span,
         .option-card.selected p {
-            color: #FFFFFF !important;
-            background: linear-gradient(135deg, #3A5A40, #2D3E33) !important;
+            color: var(--primary-green) !important;
+        }
+
+        /* Estilos específicos para el contenido estructurado */
+        .size-option-content {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
+
+        /* Mejoras para el formato del texto en las tarjetas */
+        .option-card {
+            line-height: 1.4;
+            text-align: center;
+            padding: 1rem 1.25rem;
+        }
+
+        /* Separar visualmente el tamaño del precio usando CSS */
+        .option-card:contains("gr$") {
+            white-space: pre-line;
+        }
+
+        /* Mejorar el espaciado cuando el texto está junto */
+        .option-card {
+            word-spacing: 0.1rem;
+            letter-spacing: 0.01rem;
+        }
+
+        /* Estilos para cuando el contenido tiene formato "XXX gr$YYY MXN" */
+        .option-card {
+            position: relative;
+        }
+
+        /* Usar CSS para mejorar la presentación del texto pegado */
+        .option-card {
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Agregar un pequeño espacio antes del símbolo $ */
+        .option-card {
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Script CSS para mejorar el formato del texto */
+        .option-card {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Mejorar la legibilidad del texto cuando está junto */
+        .option-card {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Solución CSS para separar visualmente el tamaño del precio */
+        .option-card {
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        /* Usar CSS para agregar espacios alrededor del símbolo $ */
+        .option-card {
+            word-spacing: 0.2rem;
+            letter-spacing: 0.02rem;
+        }
+
+        /* Mejorar la presentación con pseudo-elementos */
+        .option-card::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2px;
+            height: 0;
+            background: transparent;
+        }
+
+        /* Estilos específicos para el contenido de tamaño */
+        .option-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* ===== BOTONES DE TAMAÑO SIMPLES Y LIMPIOS ===== */
+
+        #size-options {
+            display: grid;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        #size-options .option-card {
+            background: white !important;
+            border: 2px solid #e5e7eb !important;
+            border-radius: 8px !important;
+            padding: 16px 20px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        #size-options .option-card:hover {
+            border-color: #A3B18A !important;
+            box-shadow: 0 2px 8px rgba(163, 177, 138, 0.15) !important;
+        }
+
+        #size-options .option-card.selected {
+            background: #A3B18A !important;
+            border-color: #A3B18A !important;
+            color: white !important;
+        }
+
+        #size-options .option-card span {
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            color: inherit !important;
+        }
+
+
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Responsive para botones modernos */
+        @media (max-width: 768px) {
+            #size-options .option-card {
+                padding: 16px 20px !important;
+            }
+
+            #size-options .option-card .size-icon {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 12px !important;
+            }
+
+            #size-options .option-card .size-info {
+                gap: 12px !important;
+            }
+
+            #size-options .option-card .size-label {
+                font-size: 16px !important;
+            }
+
+            #size-options .option-card .price-tag {
+                padding: 10px 16px !important;
+                font-size: 14px !important;
+            }
+        }
+
+        /* Efectos adicionales para interactividad */
+        #size-options .option-card:active {
+            transform: translateY(-1px) scale(0.98) !important;
+            transition: all 0.1s ease !important;
+        }
+
+        /* Mejora del focus para accesibilidad */
+        #size-options .option-card:focus {
+            outline: none !important;
+            border-color: #A3B18A !important;
+            box-shadow: 0 0 0 3px rgba(163, 177, 138, 0.2) !important;
+        }
+
+        /* Efecto de pulso sutil para el estado seleccionado */
+        #size-options .option-card.selected {
+            animation: selectedPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes selectedPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 12px 30px rgba(163, 177, 138, 0.3), 0 6px 15px rgba(45, 62, 51, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 12px 30px rgba(163, 177, 138, 0.4), 0 6px 15px rgba(45, 62, 51, 0.3);
+            }
+        }
+
+        /* Mejora del contraste en modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            #size-options .option-card {
+                background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%) !important;
+                border-color: #404040 !important;
+                color: #ffffff !important;
+            }
+
+            #size-options .option-card .price-tag {
+                background: linear-gradient(135deg, #404040, #2a2a2a) !important;
+                color: #ffffff !important;
+                border-color: rgba(163, 177, 138, 0.3) !important;
+            }
+        }
+
+        width: 100% !important;
+        }
+
+        /* Mejoras tipográficas globales para los botones */
+        #size-options .option-card * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+
+        /* Espaciado mejorado del contenedor */
+        #size-options {
+            padding: 8px 0 !important;
+        }
+
+        /* Título de la sección mejorado */
+        .size-section-title {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+            color: #2D3E33 !important;
+            margin-bottom: 1rem !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
+
+        .size-section-title::before {
+            content: '📏' !important;
+            font-size: 1.1rem !important;
+        }
+
+        .size-title {
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            color: #2D3E33 !important;
+            margin: 0 !important;
+        }
+
+        .size-price {
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            color: #3A5A40 !important;
+            background: rgba(163, 177, 138, 0.15) !important;
+            padding: 0.25rem 0.75rem !important;
+            border-radius: 12px !important;
+            margin: 0 !important;
+        }
+
+        /* Estados seleccionados para contenido estructurado */
+        .option-card.selected .size-title,
+        .option-card.selected .size-price {
+            color: var(--primary-green) !important;
+        }
+
+        .option-card.selected .size-price {
+            background: rgba(163, 177, 138, 0.1) !important;
         }
 
         /* Animaciones modernas */
@@ -523,28 +801,15 @@
         }
 
         .option-card.selected {
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green)) !important;
-            color: white !important;
-            border-color: var(--secondary-green);
+            background: #FFFFFF !important;
+            color: var(--primary-green) !important;
+            border: 3px solid var(--secondary-green) !important;
             box-shadow: var(--shadow-xl);
             transform: translateY(-2px);
         }
 
         .option-card.selected::after {
-            content: '✓';
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: bold;
+            display: none;
         }
 
         /* Estilos específicos para el contenido de las tarjetas de opciones */
@@ -554,40 +819,91 @@
             z-index: 5;
         }
 
+        /* Formato mejorado para contenido de tarjetas */
+        .option-card {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            min-height: 70px !important;
+        }
+
         .option-card .option-title {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
             color: var(--primary-green) !important;
-            margin-bottom: 0.5rem;
+            margin: 0 !important;
+            line-height: 1.2 !important;
         }
 
         .option-card .option-price {
-            font-size: 0.875rem;
+            font-size: 0.875rem !important;
             color: var(--secondary-green) !important;
-            font-weight: 500;
+            font-weight: 600 !important;
+            margin: 0 !important;
+            padding: 0.25rem 0.75rem !important;
+            background: rgba(163, 177, 138, 0.1) !important;
+            border-radius: 12px !important;
+            line-height: 1.2 !important;
+        }
+
+        /* Formato para tarjetas seleccionadas */
+        .option-card.selected .option-title {
+            color: white !important;
+        }
+
+        .option-card.selected .option-price {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.2) !important;
         }
 
         .option-card.selected * {
             color: white !important;
         }
 
-        /* Etiquetas de sección */
+        /* Etiquetas de sección mejoradas */
         .section-label {
-            font-size: 1.125rem;
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--primary-green);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            position: relative;
+            padding-left: 1rem;
         }
 
         .section-label::before {
             content: '';
-            width: 4px;
-            height: 20px;
+            width: 5px;
+            height: 24px;
             background: linear-gradient(135deg, var(--secondary-green), var(--accent-green));
-            border-radius: 2px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(58, 90, 64, 0.3);
+        }
+
+        .section-label::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 1rem;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-green) 0%, transparent 100%);
+            border-radius: 1px;
+        }
+
+        /* Contenedor de sección mejorado */
+        .product-section {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(163, 177, 138, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         /* Controles de cantidad modernos */
@@ -808,8 +1124,7 @@
         }
 
         /* Forzar visibilidad del contenido en opciones */
-        #type-options .option-card,
-        #size-options .option-card {
+        #type-options .option-card {
             min-height: 60px;
             display: flex;
             align-items: center;
@@ -819,17 +1134,41 @@
             color: #1F2937 !important;
         }
 
-        #type-options .option-card *,
-        #size-options .option-card * {
+        #type-options .option-card * {
             color: #1F2937 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA TAMAÑOS - DISEÑO ELEGANTE */
+        #size-options .option-card {
+            background: #4A6741 !important;
+            border: none !important;
+            border-radius: 25px !important;
+            padding: 16px 24px !important;
+            min-height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            color: white !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 12px rgba(74, 103, 65, 0.25) !important;
+        }
+
+        #size-options .option-card *,
+        #size-options .option-card div,
+        #size-options .option-card span {
+            color: white !important;
             opacity: 1 !important;
             visibility: visible !important;
         }
 
         /* Estilos específicos para elementos seleccionados */
         .option-card.selected,
-        #type-options .option-card.selected,
-        #size-options .option-card.selected {
+        #type-options .option-card.selected {
             color: white !important;
             background: linear-gradient(135deg, var(--secondary-green), var(--primary-green)) !important;
         }
@@ -838,10 +1177,38 @@
         .option-card.selected div,
         .option-card.selected span,
         .option-card.selected p,
-        #type-options .option-card.selected *,
-        #size-options .option-card.selected * {
+        #type-options .option-card.selected * {
             color: white !important;
             text-shadow: none !important;
+        }
+
+        /* Estado seleccionado para tamaños - más oscuro */
+        #size-options .option-card.selected {
+            background: #2D3E33 !important;
+            box-shadow: 0 6px 20px rgba(45, 62, 51, 0.4) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        #size-options .option-card.selected * {
+            color: white !important;
+        }
+
+        /* Hover para tamaños - MEJORADO */
+        #size-options .option-card:hover {
+            background: #3A5A40 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(74, 103, 65, 0.35) !important;
+        }
+
+        /* Asegurar que el hover afecte a TODO el contenido */
+        #size-options .option-card:hover *,
+        #size-options .option-card:hover div,
+        #size-options .option-card:hover span,
+        #size-options .option-card:hover .font-medium,
+        #size-options .option-card:hover .font-bold,
+        #size-options .option-card:hover .text-sage-green {
+            color: white !important;
+            opacity: 1 !important;
         }
 
         .btn-share {
@@ -1670,33 +2037,7 @@
             </div>
         </section>
 
-        <!-- Productos Relacionados -->
-        <section class="py-20 bg-gradient-to-br from-beige-almond to-warm-cream">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16 animate-fade-in">
-                    <h2 class="font-serif text-4xl font-bold text-dark-green mb-4">
-                        También Te Podría Interesar
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Descubre otros productos artesanales de nuestra colección
-                    </p>
-                    <div class="w-24 h-1 bg-gradient-to-r from-sage-green to-dark-green mx-auto mt-6 rounded-full">
-                    </div>
-                </div>
 
-                <div id="related-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Se llena dinámicamente -->
-                </div>
-
-                <!-- Botón ver más productos -->
-                <div class="text-center mt-12">
-                    <a href="productos.html" class="btn-secondary inline-flex items-center px-8 py-4 text-lg">
-                        <i class="fas fa-th-large mr-3"></i>
-                        Ver Todos los Productos
-                    </a>
-                </div>
-            </div>
-        </section>
 
 
     </main>
@@ -1824,6 +2165,7 @@
     <!-- Scripts -->
     <script src="../js/mobile-menu-clean.js"></script>
     <script src="../js/productos-data.js"></script>
+
     <script src="../js/immediate-fix.js"></script>
     <script src="../js/fix-products-data.js"></script>
     <script src="../js/debug-product-detail.js"></script>
@@ -1842,6 +2184,68 @@
             });
 
             console.log('✅ Página de producto detalle mejorada lista');
+
+            // Mejorar el formato del texto en las tarjetas de opciones
+            function improveOptionCardText() {
+                console.log('🔧 Mejorando formato de tarjetas...');
+
+                // Buscar específicamente en las opciones de tamaño
+                const sizeCards = document.querySelectorAll('#size-options .option-card');
+                console.log('📦 Tarjetas de tamaño encontradas:', sizeCards.length);
+
+                sizeCards.forEach((card, index) => {
+                    const originalText = card.textContent || card.innerText;
+                    console.log(`📝 Texto original ${index}:`, originalText);
+
+                    if (originalText && originalText.includes('gr$')) {
+                        // Crear estructura HTML mejorada
+                        const match = originalText.match(/(\d+)\s*gr\$(\d+)\s*MXN/);
+                        if (match) {
+                            const size = match[1];
+                            const price = match[2];
+
+                            card.innerHTML = `
+                                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <div style="width: 8px; height: 8px; background: #A3B18A; border-radius: 50%;"></div>
+                                        <span style="font-size: 1.1rem; font-weight: 700; color: #2D3E33;">${size} gr</span>
+                                    </div>
+                                    <div style="background: linear-gradient(135deg, #A3B18A, #3A5A40); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 2px 8px rgba(163, 177, 138, 0.3);">
+                                        $${price}.00 MXN
+                                    </div>
+                                </div>
+                            `;
+                            console.log(`✅ Mejorado ${index}: ${size} gr / $${price} MXN`);
+                        }
+                    }
+                });
+            }
+
+            // Ejecutar múltiples veces para asegurar que funcione
+            setTimeout(improveOptionCardText, 100);
+            setTimeout(improveOptionCardText, 500);
+            setTimeout(improveOptionCardText, 1000);
+            setTimeout(improveOptionCardText, 2000);
+
+            // Observer más agresivo
+            const observer = new MutationObserver(function (mutations) {
+                let shouldImprove = false;
+                mutations.forEach(mutation => {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        shouldImprove = true;
+                    }
+                });
+                if (shouldImprove) {
+                    setTimeout(improveOptionCardText, 100);
+                }
+            });
+
+            // Observar todo el documento
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
         });
     </script>
 

@@ -451,7 +451,7 @@ const productosData = [
         "sizes": [
             {
                 "label": "50 gr",
-                "price": 80
+                "price": 80.00
             }
         ],
         "characteristics": [],

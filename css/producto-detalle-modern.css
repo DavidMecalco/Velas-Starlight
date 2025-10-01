@@ -459,6 +459,140 @@ html {
     }
 }
 
+/* Mejoras para el formato de tarjetas de opciones */
+.option-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    min-height: 85px !important;
+    padding: 1.5rem !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* ===== NUEVO DISEÑO ELEGANTE PARA BOTONES DE TAMAÑO ===== */
+#size-options .option-card {
+    background: #4A6741 !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 16px 24px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(74, 103, 65, 0.25) !important;
+    color: white !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 60px !important;
+    width: 100% !important;
+}
+
+#size-options .option-card:hover {
+    background: #3A5A40 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(74, 103, 65, 0.35) !important;
+}
+
+/* Asegurar que el hover afecte a todo el contenido */
+#size-options .option-card:hover * {
+    color: white !important;
+}
+
+#size-options .option-card:hover .font-medium,
+#size-options .option-card:hover span:first-child {
+    color: white !important;
+}
+
+#size-options .option-card:hover .font-bold,
+#size-options .option-card:hover .text-sage-green,
+#size-options .option-card:hover span:last-child {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+#size-options .option-card.selected {
+    background: #2D3E33 !important;
+    box-shadow: 0 6px 20px rgba(45, 62, 51, 0.4) !important;
+    transform: translateY(-1px) !important;
+}
+
+.option-title,
+.size-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+}
+
+.option-price,
+.size-price {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Estilos para el texto dentro de los botones de tamaño */
+#size-options .option-card * {
+    color: white !important;
+}
+
+#size-options .option-card .font-medium,
+#size-options .option-card span:first-child {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+#size-options .option-card .font-bold,
+#size-options .option-card .text-sage-green,
+#size-options .option-card span:last-child {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    opacity: 0.9 !important;
+}
+
+/* Estructura del contenido */
+#size-options .option-card div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+/* Remover cualquier background del precio */
+#size-options .option-card span:last-child {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Forzar estilos en hover para todos los elementos */
+#size-options .option-card:hover div,
+#size-options .option-card:hover span,
+#size-options .option-card:hover .font-medium,
+#size-options .option-card:hover .font-bold,
+#size-options .option-card:hover .text-sage-green {
+    color: white !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Asegurar que el contenedor del botón mantenga su estructura en hover */
+#size-options .option-card:hover div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
 /* Corrección específica para botones de acción */
 #whatsapp-btn,
 #share-btn {
@@ -506,4 +640,146 @@ button {
 button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+/*
+ ===== RESPONSIVE PARA BOTONES DE TAMAÑO ===== */
+@media (max-width: 768px) {
+    #size-options .option-card {
+        padding: 14px 20px !important;
+        min-height: 55px !important;
+        border-radius: 22px !important;
+    }
+    
+    #size-options .option-card .font-medium,
+    #size-options .option-card span:first-child {
+        font-size: 15px !important;
+    }
+    
+    #size-options .option-card .font-bold,
+    #size-options .option-card span:last-child {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #size-options .option-card {
+        padding: 12px 18px !important;
+        min-height: 50px !important;
+        border-radius: 20px !important;
+    }
+    
+    #size-options .option-card .font-medium,
+    #size-options .option-card span:first-child {
+        font-size: 14px !important;
+    }
+    
+    #size-options .option-card .font-bold,
+    #size-options .option-card span:last-child {
+        font-size: 14px !important;
+    }
+    
+    #size-options {
+        gap: 10px;
+    }
+}
+
+/* Asegurar que los botones de tipo mantengan su estilo original */
+#type-options .option-card {
+    background: #FFFFFF !important;
+    border: 2px solid #E5E7EB !important;
+    color: #1F2937 !important;
+    border-radius: 25px !important;
+    padding: 16px 24px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+#type-options .option-card:hover {
+    border-color: #A3B18A !important;
+    box-shadow: 0 4px 12px rgba(163, 177, 138, 0.2) !important;
+    transform: translateY(-1px) !important;
+}
+
+#type-options .option-card.selected {
+    background: linear-gradient(135deg, #3A5A40, #2D3E33) !important;
+    border-color: #3A5A40 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(58, 90, 64, 0.3) !important;
+}
+
+#type-options .option-card.selected * {
+    color: white !important;
+}/* =====
+ SOLUCIÓN DEFINITIVA PARA HOVER EN BOTONES DE TAMAÑO ===== */
+/* Sobrescribir cualquier estilo de Tailwind que pueda interferir */
+#size-options .option-card:hover .text-sage-green {
+    color: white !important;
+}
+
+#size-options .option-card:hover span {
+    color: white !important;
+}
+
+/* Asegurar que el precio mantenga el color blanco en hover */
+#size-options .option-card:hover span:last-child,
+#size-options .option-card:hover .font-bold {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+/* Forzar el color blanco en todos los estados */
+#size-options .option-card span,
+#size-options .option-card .font-medium,
+#size-options .option-card .font-bold,
+#size-options .option-card .text-sage-green {
+    color: white !important;
+}
+
+/* Eliminar cualquier transición de color que pueda causar problemas */
+#size-options .option-card *,
+#size-options .option-card span,
+#size-options .option-card div {
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease !important;
+}/* =====
+ ESTILOS PARA LAS NUEVAS CLASES SIN CONFLICTOS ===== */
+.size-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+.size-label {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+.size-price {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    opacity: 0.9 !important;
+}
+
+/* Hover específico para las nuevas clases */
+#size-options .option-card:hover .size-label,
+#size-options .option-card:hover .size-price {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+/* Responsive para las nuevas clases */
+@media (max-width: 768px) {
+    .size-label,
+    .size-price {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .size-label,
+    .size-price {
+        font-size: 14px !important;
+    }
 }
