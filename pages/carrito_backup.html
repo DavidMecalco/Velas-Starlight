@@ -67,7 +67,7 @@
 
     <!-- jsPDF para generar PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+    
     <!-- Generador profesional de cotización PDF -->
     <script src="../js/quote-pdf-professional.js"></script>
 
@@ -3072,149 +3072,250 @@
             return `VS-${year}${month}${day}-${hours}${minutes}-${random}`;
         }
 
-        // Función para reconstruir datos del pedido desde localStorage si es necesario
-        function ensureOrderData() {
-            if (!window.currentOrderData || !window.currentOrderData.items || window.currentOrderData.items.length === 0) {
-                console.log('🔄 Reconstruyendo datos del pedido desde localStorage...');
-
-                const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const appliedDiscount = JSON.parse(localStorage.getItem('appliedDiscount')) || null;
-
-                if (cart.length === 0) {
-                    throw new Error('No hay productos en el carrito');
-                }
-
-                // Reconstruir currentOrderData básico para PDF
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const total = subtotal - (appliedDiscount ? (subtotal * appliedDiscount.percentage) / 100 : 0);
-
-                window.currentOrderData = {
-                    customer: window.currentOrderData?.customer || {
-                        firstName: 'Cliente',
-                        lastName: '',
-                        email: 'cliente@email.com',
-                        phone: 'No especificado'
-                    },
-                    shipping: window.currentOrderData?.shipping || {
-                        address: 'Dirección no especificada',
-                        city: 'Ciudad',
-                        state: 'Estado',
-                        zipCode: '00000',
-                        references: ''
-                    },
-                    items: cart,
-                    discount: appliedDiscount,
-                    subtotal: subtotal,
-                    total: total
-                };
-
-                console.log('✅ Datos del pedido reconstruidos:', window.currentOrderData);
-            }
-        }
-
         // Generar PDF profesional
         function generatePDF() {
+            if (!window.currentOrderData) {
+                showToast('Error: No hay datos de pedido disponibles', 'error');
+                return;
+            }
+
+            if (!window.generateProfessionalQuotePDF) {
+                showToast('Error: Generador de PDF no disponible', 'error');
+                return;
+            }
+
             try {
-                // Asegurar que tenemos datos del pedido
-                ensureOrderData();
-                if (!window.currentOrderData) {
-                    showToast('Error: No hay datos de pedido disponibles', 'error');
-                    return;
-                }
-
-                // Validar que hay items en el pedido
-                if (!window.currentOrderData.items || !Array.isArray(window.currentOrderData.items) || window.currentOrderData.items.length === 0) {
-                    console.error('❌ No hay productos en el pedido:', window.currentOrderData.items);
-                    showToast('Error: No hay productos en el pedido para generar PDF', 'error');
-                    return;
-                }
-
-                if (!window.generateProfessionalQuotePDF) {
-                    showToast('Error: Generador de PDF no disponible', 'error');
-                    return;
-                }
-                console.log('🔍 Datos del pedido antes de generar PDF:', window.currentOrderData);
-                console.log('🔍 Items del carrito:', window.currentOrderData?.items);
-                console.log('🔍 Número de items:', window.currentOrderData?.items?.length);
-                console.log('🔍 Carrito desde localStorage:', JSON.parse(localStorage.getItem('cart') || '[]'));
-
                 const quoteId = generateQuoteId();
                 const success = window.generateProfessionalQuotePDF(window.currentOrderData, quoteId);
-
+                
                 if (success) {
                     showToast('Cotización PDF generada exitosamente', 'success');
                 } else {
                     showToast('Error al generar el PDF. Intenta nuevamente.', 'error');
                 }
 
+                // Colores corporativos
+                const primaryColor = [45, 62, 51]; // #2D3E33
+                const accentColor = [163, 177, 138]; // #A3B18A
+                const goldColor = [212, 175, 55]; // #D4AF37
+
+                // Header con logo y título
+                doc.setFillColor(...primaryColor);
+                doc.rect(0, 0, 210, 40, 'F');
+
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(24);
+                doc.setFont('helvetica', 'bold');
+                doc.text('VELAS STARLIGHT', 20, 25);
+
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'normal');
+                doc.text('Velas Artesanales Premium', 20, 32);
+
+                // ID de cotización
+                doc.setFillColor(...goldColor);
+                doc.rect(140, 10, 60, 20, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text('COTIZACIÓN', 145, 17);
+                doc.setFontSize(12);
+                doc.text(quoteId, 145, 25);
+
+                // Fecha
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('es-MX', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                doc.setTextColor(...primaryColor);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Fecha: ${dateStr}`, 140, 35);
+
+                let yPos = 55;
+
+                // Información del cliente
+                doc.setFillColor(...accentColor);
+                doc.rect(20, yPos, 170, 8, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('INFORMACIÓN DEL CLIENTE', 25, yPos + 5);
+
+                yPos += 15;
+                doc.setTextColor(...primaryColor);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+
+                doc.text(`Nombre: ${data.customer.firstName} ${data.customer.lastName}`, 25, yPos);
+                yPos += 6;
+                doc.text(`Correo: ${data.customer.email}`, 25, yPos);
+                yPos += 6;
+                doc.text(`Teléfono: ${data.customer.phone}`, 25, yPos);
+
+                yPos += 15;
+
+                // Dirección de envío
+                doc.setFillColor(...accentColor);
+                doc.rect(20, yPos, 170, 8, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('DIRECCIÓN DE ENVÍO', 25, yPos + 5);
+
+                yPos += 15;
+                doc.setTextColor(...primaryColor);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+
+                doc.text(`${data.shipping.address}`, 25, yPos);
+                yPos += 6;
+                doc.text(`${data.shipping.city}, ${data.shipping.state}`, 25, yPos);
+                yPos += 6;
+                doc.text(`CP: ${data.shipping.zipCode}`, 25, yPos);
+                if (data.shipping.references) {
+                    yPos += 6;
+                    doc.text(`Referencias: ${data.shipping.references}`, 25, yPos);
+                }
+
+                yPos += 20;
+
+                // Productos
+                doc.setFillColor(...accentColor);
+                doc.rect(20, yPos, 170, 8, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('PRODUCTOS SOLICITADOS', 25, yPos + 5);
+
+                yPos += 15;
+
+                // Encabezados de tabla
+                doc.setFillColor(245, 245, 245);
+                doc.rect(20, yPos, 170, 8, 'F');
+                doc.setTextColor(...primaryColor);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'bold');
+                doc.text('PRODUCTO', 25, yPos + 5);
+                doc.text('CANT.', 120, yPos + 5);
+                doc.text('PRECIO UNIT.', 140, yPos + 5);
+                doc.text('SUBTOTAL', 170, yPos + 5);
+
+                yPos += 12;
+
+                // Productos
+                doc.setFont('helvetica', 'normal');
+                let subtotal = 0;
+
+                data.items.forEach(item => {
+                    const itemPrice = parseFloat(item.price) || 0;
+                    const itemQuantity = parseInt(item.quantity) || 1;
+                    const itemSubtotal = itemPrice * itemQuantity;
+                    subtotal += itemSubtotal;
+
+                    doc.text(item.name.substring(0, 35), 25, yPos);
+                    doc.text(itemQuantity.toString(), 125, yPos);
+                    doc.text(`$${itemPrice.toFixed(2)}`, 145, yPos);
+                    doc.text(`$${itemSubtotal.toFixed(2)}`, 170, yPos);
+                    yPos += 8;
+                });
+
+                yPos += 10;
+
+                // Totales
+                doc.setDrawColor(...primaryColor);
+                doc.line(120, yPos, 190, yPos);
+                yPos += 8;
+
+                doc.setFont('helvetica', 'bold');
+                doc.text('Subtotal:', 140, yPos);
+                doc.text(`$${subtotal.toFixed(2)} MXN`, 170, yPos);
+
+                if (data.discount) {
+                    yPos += 8;
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(`Descuento (${data.discount.code}):`, 140, yPos);
+                    doc.text(`-$${(subtotal * data.discount.percentage / 100).toFixed(2)} MXN`, 170, yPos);
+                }
+
+                yPos += 8;
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(12);
+                doc.text('TOTAL:', 140, yPos);
+                doc.text(`$${data.total.toFixed(2)} MXN`, 170, yPos);
+
+                yPos += 15;
+
+                // Nota importante
+                doc.setFillColor(255, 248, 220);
+                doc.rect(20, yPos, 170, 25, 'F');
+                doc.setDrawColor(...goldColor);
+                doc.rect(20, yPos, 170, 25);
+
+                doc.setTextColor(...primaryColor);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text('NOTA IMPORTANTE:', 25, yPos + 8);
+                doc.setFont('helvetica', 'normal');
+                doc.text('• El costo de envío se cotizará por separado según la ubicación', 25, yPos + 15);
+                doc.text('• Esta cotización tiene validez de 30 días', 25, yPos + 22);
+
+                // Footer
+                yPos = 280;
+                doc.setFillColor(...primaryColor);
+                doc.rect(0, yPos, 210, 17, 'F');
+
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.text('ventas@velasstarlight.com | WhatsApp: +52 55 6468 2112', 20, yPos + 8);
+                doc.text('www.velasstarlight.com', 20, yPos + 13);
+
+                // Descargar PDF
+                doc.save(`Cotizacion-VelasStarlight-${quoteId}.pdf`);
+                showToast('Cotización PDF generada exitosamente', 'success');
+
             } catch (error) {
                 console.error('Error generando PDF:', error);
-                showToast('Error al generar el PDF. Por favor, inténtalo de nuevo.', 'error');
+                showToast('Error al generar el PDF. Intenta nuevamente.', 'error');
             }
         }
 
         // Enviar por correo
         function sendByEmail() {
-            if (!window.currentOrderData) {
-                showToast('Error: No hay datos de pedido disponibles', 'error');
-                return;
-            }
+            if (!window.currentOrderData) return;
 
             const data = window.currentOrderData;
-            const quoteId = generateQuoteId();
-            const subject = encodeURIComponent(`Cotización ${quoteId} - Velas Starlight`);
-
-            const body = encodeURIComponent(`Estimado equipo de Velas Starlight,
+            const subject = encodeURIComponent('Cotización de Pedido - Velas Starlight');
+            const body = encodeURIComponent(`
+Hola,
 
 Solicito cotización para el siguiente pedido:
 
-═══════════════════════════════════════
-📋 COTIZACIÓN: ${quoteId}
-📅 FECHA: ${new Date().toLocaleDateString('es-MX')}
-═══════════════════════════════════════
+INFORMACIÓN DEL CLIENTE:
+Nombre: ${data.customer.firstName} ${data.customer.lastName}
+Correo: ${data.customer.email}
+Teléfono: ${data.customer.phone}
 
-👤 INFORMACIÓN DEL CLIENTE:
-• Nombre: ${data.customer.firstName} ${data.customer.lastName}
-• Correo: ${data.customer.email}
-• Teléfono: ${data.customer.phone}
+DIRECCIÓN DE ENVÍO:
+${data.shipping.address}
+${data.shipping.city}, ${data.shipping.state}
+CP: ${data.shipping.zipCode}
+${data.shipping.references ? `Referencias: ${data.shipping.references}` : ''}
 
-📍 DIRECCIÓN DE ENVÍO:
-• ${data.shipping.address}
-• ${data.shipping.city}, ${data.shipping.state}
-• CP: ${data.shipping.zipCode}
-${data.shipping.references ? `• Referencias: ${data.shipping.references}` : ''}
+PRODUCTOS:
+${data.items.map(item => `- ${item.name} (Cantidad: ${item.quantity}) - $${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN`).join('\n')}
 
-🛍️ PRODUCTOS SOLICITADOS:
-${data.items.map((item, index) => {
-                const itemPrice = parseFloat(item.price) || 0;
-                const itemQuantity = parseInt(item.quantity) || 1;
-                const itemSubtotal = itemPrice * itemQuantity;
-                return `${index + 1}. ${item.name}
-   • Cantidad: ${itemQuantity}
-   • Precio unitario: $${itemPrice.toFixed(2)} MXN
-   • Subtotal: $${itemSubtotal.toFixed(2)} MXN`;
-            }).join('\n\n')}
+TOTAL: $${data.total.toFixed(2)} MXN
+${data.discount ? `Descuento aplicado: ${data.discount.code} (${data.discount.percentage}%)` : ''}
 
-💰 RESUMEN FINANCIERO:
-• Total del pedido: $${data.total.toFixed(2)} MXN
-${data.discount ? `• Descuento aplicado: ${data.discount.code} (${data.discount.percentage}%)` : ''}
-• Costo de envío: Por cotizar
+Por favor, cotícenme el costo de envío para proceder con el pedido.
 
-Por favor, proporcionen:
-1. Confirmación de disponibilidad de productos
-2. Cotización de costo de envío a la dirección indicada
-3. Tiempo estimado de entrega
-4. Formas de pago disponibles
-
-Quedo atento a su respuesta.
-
-Saludos cordiales.
-
-═══════════════════════════════════════
-🌟 VELAS STARLIGHT - Velas Artesanales Premium
-📧 ventas@velasstarlight.com
-📱 WhatsApp: +52 55 6468 2112
-═══════════════════════════════════════`);
+Gracias.
+            `);
 
             window.open(`mailto:ventas@velasstarlight.com?subject=${subject}&body=${body}`);
             showToast('Cliente de correo abierto con la cotización', 'success');
