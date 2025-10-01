@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velas Starlight | Elegancia y Belleza</title>
+  <title>Contacto | Velas Starlight - Eventos Corporativos y Personalizados</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Contacta con Velas Starlight para eventos corporativos, bodas y celebraciones especiales. Velas personalizadas, descuentos por mayoreo y entregas programadas en México.">
+  <meta name="keywords" content="contacto velas starlight, eventos corporativos, bodas personalizadas, mayoreo velas, velas artesanales México">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -29,7 +33,7 @@
     }
   </script>
 
-  <!-- Font Awesome (solo 1 vez) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -43,12 +47,19 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Estilos Globales -->
   <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+
     /* Iconos del navbar */
     .nav ul li a i {
       color: #2D3E33;
@@ -57,12 +68,127 @@
     .nav ul li a:hover i {
       color: #3A5A40;
     }
+
+    /* Animaciones personalizadas */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Gradientes modernos */
+    .gradient-bg {
+      background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 50%, #A3B18A 100%);
+    }
+
+    .gradient-card {
+      background: linear-gradient(145deg, #F6F1E9 0%, #EDE6DA 100%);
+      border: 1px solid rgba(163, 177, 138, 0.1);
+    }
+
+    .glass-effect {
+      background: rgba(246, 241, 233, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Efectos hover mejorados */
+    .hover-lift {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(45, 62, 51, 0.15);
+    }
+
+    .icon-bounce {
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .icon-bounce:hover {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    /* Formulario moderno */
+    .form-input {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-input:focus {
+      border-color: #3A5A40;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 0 0 4px rgba(58, 90, 64, 0.1);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* Botones modernos */
+    .btn-primary {
+      background: linear-gradient(135deg, #3A5A40 0%, #2D3E33 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(45, 62, 51, 0.3);
+    }
+
+    /* Responsividad mejorada */
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr !important; }
+      .lg\:grid-cols-2 { grid-template-columns: 1fr !important; }
+      .lg\:grid-cols-3 { grid-template-columns: 1fr !important; }
+      .md\:grid-cols-2 { grid-template-columns: 1fr !important; }
+      .md\:grid-cols-3 { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+
+    @media (max-width: 480px) {
+      .md\:grid-cols-3 { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 
 <body class="bg-beige-almond text-dark-green font-sans">
 
-  <!-- 🔝 Header -->
+  <!-- Header -->
   <header class="bg-white shadow-md fixed w-full z-50">
     <div class="container mx-auto flex justify-between items-center py-4 px-6">
       <!-- Logo -->
@@ -98,7 +224,7 @@
       </button>
     </div>
 
-    <!-- Menú móvil mejorado -->
+    <!-- Menú móvil -->
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-100 absolute top-full left-0 w-full z-50">
       <div class="px-6 py-4 space-y-1">
         <a href="../index.html" class="flex items-center px-4 py-3 text-dark-green hover:bg-sage-green/10 hover:text-sage-green rounded-lg transition-all duration-200 group">
@@ -127,430 +253,822 @@
 
   <script src="../js/mobile-menu-clean.js"></script>
 
-
-
-
-  <!-- ========================================
-       ESTILOS PERSONALIZADOS
-       ======================================== -->
-  <style>
-    /* Animaciones personalizadas */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-in-up {
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    /* Gradientes personalizados */
-    .gradient-bg {
-      background: linear-gradient(135deg, #2D3E33 0%, #3A5A40 100%);
-    }
-
-    .gradient-card {
-      background: linear-gradient(135deg, #F6F1E9 0%, #EDE6DA 100%);
-    }
-
-    /* Efectos hover */
-    .hover-lift {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hover-lift:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Iconos animados */
-    .icon-bounce {
-      transition: transform 0.3s ease;
-    }
-
-    .icon-bounce:hover {
-      transform: scale(1.1);
-    }
-  </style>
-
-  <!-- ========================================
-       CONTENIDO PRINCIPAL
-       ======================================== -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="pt-20">
 
-    <!-- ========================================
-         HERO SECTION
-         ======================================== -->
-    <section class="gradient-bg text-white py-16 md:py-20">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <div class="animate-fade-in-up">
-          <h1 class="font-serif text-4xl md:text-6xl font-bold mb-6">
-            <i class="fas fa-envelope mr-4"></i>
-            Contáctanos
-          </h1>
-          <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Estamos aquí para hacer realidad tus ideas. Desde pedidos personalizados hasta eventos especiales,
-            creamos la atmósfera perfecta para cada ocasión.
-          </p>
+    <!-- HERO SECTION MODERNO -->
+    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <!-- Background con parallax -->
+      <div class="absolute inset-0 gradient-bg">
+        <div class="absolute inset-0 bg-gradient-to-r from-dark-green/30 to-transparent"></div>
+      </div>
+
+      <!-- Elementos decorativos flotantes -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-float"></div>
+        <div class="absolute bottom-32 right-16 w-48 h-48 bg-sage-green/20 rounded-full blur-2xl animate-float" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-leaf-green/15 rounded-full blur-lg animate-float" style="animation-delay: 2s;"></div>
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div class="space-y-8" data-aos="fade-up">
+          <!-- Badge superior -->
+          <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+            <i class="fas fa-sparkles text-yellow-300"></i>
+            <span class="text-sm font-medium">Atención Personalizada 24/7</span>
+          </div>
+
+          <!-- Título principal -->
+          <div class="space-y-4">
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <span class="block">Conectemos</span>
+              <span class="block text-leaf-green">Contigo</span>
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
+              Transformamos tus ideas en experiencias sensoriales únicas. Desde eventos corporativos hasta celebraciones íntimas, 
+              creamos la atmósfera perfecta para cada momento especial.
+            </p>
+          </div>
+
+          <!-- Estadísticas rápidas -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto pt-8">
+            <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 hover-lift shadow-lg">
+              <div class="text-3xl font-bold text-white mb-2">24h</div>
+              <div class="text-sm text-white/90">Respuesta Garantizada</div>
+            </div>
+            <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 hover-lift shadow-lg">
+              <div class="text-3xl font-bold text-white mb-2">500+</div>
+              <div class="text-sm text-white/90">Eventos Realizados</div>
+            </div>
+            <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 hover-lift shadow-lg">
+              <div class="text-3xl font-bold text-white mb-2">100%</div>
+              <div class="text-sm text-white/90">Satisfacción</div>
+            </div>
+          </div>
+
+          <!-- Botones de acción rápida -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <a href="https://wa.me/525564682112" target="_blank" 
+               class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <i class="fab fa-whatsapp mr-3 text-xl"></i>
+              WhatsApp Directo
+            </a>
+            <a href="#contact-form" 
+               class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-dark-green px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+              <i class="fas fa-envelope mr-3"></i>
+              Formulario de Contacto
+            </a>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- ========================================
-         SERVICIOS ESPECIALES
-         ======================================== -->
-    <section class="py-16 bg-beige-almond">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-green mb-4">
-            Servicios Especiales
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <i class="fas fa-chevron-down text-2xl opacity-70"></i>
+      </div>
+    </section>   
+ <!-- SERVICIOS ESPECIALES MODERNOS -->
+    <section class="py-20 bg-gradient-to-br from-beige-almond via-warm-cream to-beige-almond relative overflow-hidden">
+      <!-- Elementos decorativos de fondo -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 left-20 w-64 h-64 bg-sage-green/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-leaf-green/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header de sección -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center space-x-2 bg-sage-green/10 rounded-full px-6 py-3 mb-6">
+            <i class="fas fa-star text-sage-green"></i>
+            <span class="text-sage-green font-semibold">Servicios Premium</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark-green mb-6">
+            Experiencias Personalizadas
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Ofrecemos soluciones personalizadas para hacer de tu evento algo único e inolvidable
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Transformamos cada evento en una experiencia sensorial única con nuestros servicios especializados
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Grid de servicios -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
 
           <!-- Eventos Corporativos -->
-          <div class="gradient-card rounded-xl p-8 hover-lift text-center">
-            <div class="bg-sage-green w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 icon-bounce">
-              <i class="fas fa-building text-white text-2xl"></i>
+          <div class="group bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 rounded-3xl p-8 hover-lift text-center relative overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10">
+              <div class="bg-gradient-to-br from-blue-500 to-indigo-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-bounce">
+                <i class="fas fa-building text-white text-2xl"></i>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-dark-green mb-4">Eventos Corporativos</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Eleva tu marca con velas personalizadas para conferencias, inauguraciones y eventos de networking que dejan huella.
+              </p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center justify-center space-x-3 text-sm text-gray-700">
+                  <i class="fas fa-check-circle text-blue-500"></i>
+                  <span>Diseños con logo empresarial</span>
+                </div>
+                <div class="flex items-center justify-center space-x-3 text-sm text-gray-700">
+                  <i class="fas fa-check-circle text-blue-500"></i>
+                  <span>Empaques corporativos premium</span>
+                </div>
+                <div class="flex items-center justify-center space-x-3 text-sm text-gray-700">
+                  <i class="fas fa-check-circle text-blue-500"></i>
+                  <span>Entregas programadas</span>
+                </div>
+              </div>
+              <div class="bg-blue-500/10 rounded-xl p-4">
+                <p class="text-sm font-semibold text-blue-600">Desde 25 piezas</p>
+              </div>
             </div>
-            <h3 class="font-serif text-xl font-bold text-dark-green mb-4">Eventos Corporativos</h3>
-            <p class="text-gray-600 mb-6">
-              Velas personalizadas para conferencias, inauguraciones, regalos empresariales y eventos de networking.
-            </p>
-            <ul class="text-sm text-gray-700 space-y-2">
-              <li>✨ Diseños con logo empresarial</li>
-              <li>🎁 Empaques corporativos</li>
-              <li>📦 Entregas programadas</li>
-            </ul>
           </div>
 
           <!-- Bodas y Celebraciones -->
-          <div class="gradient-card rounded-xl p-8 hover-lift text-center">
-            <div class="bg-sage-green w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 icon-bounce">
-              <i class="fas fa-heart text-white text-2xl"></i>
+          <div class="group bg-gradient-to-br from-pink-50 to-rose-100 border border-pink-200 rounded-3xl p-8 hover-lift text-center relative overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10">
+              <div class="bg-gradient-to-br from-pink-500 to-rose-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-bounce">
+                <i class="fas fa-heart text-white text-2xl"></i>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-dark-green mb-4">Bodas & Celebraciones</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Crea momentos mágicos con velas artesanales que complementan perfectamente tu celebración especial.
+              </p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center justify-center space-x-3 text-sm text-gray-700">
+                  <i class="fas fa-check-circle text-pink-500"></i>
+                  <span>Centros de mesa únicos</span>
+                </div>
+                <div class="flex items-center justify-center space-x-3 text-sm text-gray-700">
+                  <i class="fas fa-check-circle text-pink-500"></i>
+                  <span>Fragancias personalizadas</span>
+                </div>
+                <div class="flex items-center justify-center space-x-3 text-sm text-gray-700">
+                  <i class="fas fa-check-circle text-pink-500"></i>
+                  <span>Recuerdos para invitados</span>
+                </div>
+              </div>
+              <div class="bg-pink-500/10 rounded-xl p-4">
+                <p class="text-sm font-semibold text-pink-600">Paquetes desde 50 piezas</p>
+              </div>
             </div>
-            <h3 class="font-serif text-xl font-bold text-dark-green mb-4">Bodas & Celebraciones</h3>
-            <p class="text-gray-600 mb-6">
-              Crea la atmósfera perfecta para bodas, quinceañeras, aniversarios y celebraciones especiales.
-            </p>
-            <ul class="text-sm text-gray-700 space-y-2">
-              <li>💒 Centros de mesa únicos</li>
-              <li>🌸 Fragancias personalizadas</li>
-              <li>💝 Recuerdos para invitados</li>
-            </ul>
           </div>
 
           <!-- Descuentos por Mayoreo -->
-          <div class="gradient-card rounded-xl p-8 hover-lift text-center border-2 border-sage-green">
-            <div class="bg-sage-green w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 icon-bounce">
-              <i class="fas fa-percentage text-white text-2xl"></i>
-            </div>
-            <h3 class="font-serif text-xl font-bold text-dark-green mb-4">Descuentos por Mayoreo</h3>
-            <p class="text-gray-600 mb-6">
-              Obtén precios especiales en compras grandes. Perfecto para revendedores y eventos masivos.
-            </p>
-            <div class="bg-white rounded-lg p-4 mb-4">
-              <div class="text-sm text-gray-700 space-y-1">
-                <p><strong>50-99 piezas:</strong> 10% descuento</p>
-                <p><strong>100-199 piezas:</strong> 15% descuento</p>
-                <p><strong>200+ piezas:</strong> 20% descuento</p>
+          <div class="group bg-gradient-to-br from-emerald-50 to-green-100 border-2 border-emerald-300 rounded-3xl p-8 hover-lift text-center relative overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10"></div>
+            <div class="relative z-10">
+              <div class="bg-gradient-to-br from-emerald-500 to-green-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-bounce">
+                <i class="fas fa-percentage text-white text-2xl"></i>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-dark-green mb-4">Descuentos por Mayoreo</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Maximiza tu inversión con nuestros descuentos escalonados, perfectos para revendedores y eventos masivos.
+              </p>
+              <div class="bg-white rounded-2xl p-6 mb-6 shadow-inner">
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-dark-green">50-99 piezas</span>
+                    <span class="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold">10%</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-dark-green">100-199 piezas</span>
+                    <span class="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold">15%</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-dark-green">200+ piezas</span>
+                    <span class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">20%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-emerald-500/10 rounded-xl p-4">
+                <p class="text-sm font-semibold text-emerald-600">¡Descuentos automáticos!</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Llamada a la acción -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="glass-effect rounded-3xl p-8 max-w-4xl mx-auto">
+            <h3 class="font-serif text-2xl font-bold text-dark-green mb-4">¿Tienes un proyecto especial en mente?</h3>
+            <p class="text-gray-600 mb-6">Cuéntanos tu visión y crearemos una propuesta personalizada que supere tus expectativas</p>
+            <a href="#contact-form" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center space-x-3 hover-lift">
+              <i class="fas fa-lightbulb"></i>
+              <span>Solicitar Cotización Personalizada</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========================================
-         FORMULARIO DE CONTACTO Y INFO
-         ======================================== -->
-    <section class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- FORMULARIO DE CONTACTO Y INFO MODERNOS -->
+    <section id="contact-form" class="py-20 bg-white relative overflow-hidden">
+      <!-- Elementos decorativos de fondo -->
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-40 left-10 w-96 h-96 bg-sage-green/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-40 right-10 w-80 h-80 bg-leaf-green/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header de sección -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center space-x-2 bg-sage-green/10 rounded-full px-6 py-3 mb-6">
+            <i class="fas fa-comments text-sage-green"></i>
+            <span class="text-sage-green font-semibold">Hablemos</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark-green mb-6">
+            Cuéntanos tu Proyecto
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Cada consulta es importante para nosotros. Completa el formulario y te responderemos en menos de 24 horas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           <!-- Formulario de Contacto -->
-          <div class="gradient-card rounded-xl p-8 hover-lift">
-            <h2 class="font-serif text-2xl font-bold text-dark-green mb-6 text-center">
-              <i class="fas fa-paper-plane mr-2"></i>
-              Envíanos tu Consulta
-            </h2>
-
-            <form id="contact-form" class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label for="name" class="block text-sm font-semibold text-dark-green mb-2">
-                    <i class="fas fa-user mr-1"></i>Nombre Completo
-                  </label>
-                  <input type="text" id="name" name="name" required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+          <div class="lg:col-span-2" data-aos="fade-right">
+            <div class="gradient-card rounded-3xl p-8 lg:p-12 hover-lift shadow-xl">
+              <div class="flex items-center space-x-3 mb-8">
+                <div class="bg-gradient-to-br from-sage-green to-dark-green w-12 h-12 rounded-2xl flex items-center justify-center">
+                  <i class="fas fa-paper-plane text-white text-lg"></i>
                 </div>
-                <div>
-                  <label for="phone" class="block text-sm font-semibold text-dark-green mb-2">
-                    <i class="fas fa-phone mr-1"></i>Teléfono
-                  </label>
-                  <input type="tel" id="phone" name="phone"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
+                <h3 class="font-serif text-2xl font-bold text-dark-green">Formulario de Contacto</h3>
+              </div>
+
+              <form id="contact-form-main" class="space-y-6">
+                <!-- Información personal -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label for="name" class="block text-sm font-semibold text-dark-green">
+                      <i class="fas fa-user mr-2 text-sage-green"></i>Nombre Completo *
+                    </label>
+                    <input type="text" id="name" name="name" required
+                      class="form-input w-full px-4 py-4 rounded-2xl border-0 shadow-sm">
+                  </div>
+                  <div class="space-y-2">
+                    <label for="phone" class="block text-sm font-semibold text-dark-green">
+                      <i class="fas fa-phone mr-2 text-sage-green"></i>Teléfono
+                    </label>
+                    <input type="tel" id="phone" name="phone"
+                      class="form-input w-full px-4 py-4 rounded-2xl border-0 shadow-sm">
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <label for="email" class="block text-sm font-semibold text-dark-green mb-2">
-                  <i class="fas fa-envelope mr-1"></i>Correo Electrónico
-                </label>
-                <input type="email" id="email" name="email" required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
-              </div>
+                <div class="space-y-2">
+                  <label for="email" class="block text-sm font-semibold text-dark-green">
+                    <i class="fas fa-envelope mr-2 text-sage-green"></i>Correo Electrónico *
+                  </label>
+                  <input type="email" id="email" name="email" required
+                    class="form-input w-full px-4 py-4 rounded-2xl border-0 shadow-sm">
+                </div>
 
-              <div>
-                <label for="event-type" class="block text-sm font-semibold text-dark-green mb-2">
-                  <i class="fas fa-calendar-alt mr-1"></i>Tipo de Evento/Consulta
-                </label>
-                <select id="event-type" name="event-type"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
-                  <option value="">Selecciona una opción</option>
-                  <option value="boda">Boda</option>
-                  <option value="corporativo">Evento Corporativo</option>
-                  <option value="quinceañera">Quinceañera</option>
-                  <option value="aniversario">Aniversario</option>
-                  <option value="mayoreo">Compra por Mayoreo</option>
-                  <option value="personalizado">Producto Personalizado</option>
-                  <option value="general">Consulta General</option>
-                </select>
-              </div>
+                <!-- Detalles del proyecto -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label for="event-type" class="block text-sm font-semibold text-dark-green">
+                      <i class="fas fa-calendar-alt mr-2 text-sage-green"></i>Tipo de Evento/Consulta
+                    </label>
+                    <select id="event-type" name="event-type"
+                      class="form-input w-full px-4 py-4 rounded-2xl border-0 shadow-sm">
+                      <option value="">Selecciona una opción</option>
+                      <option value="boda">🤍 Boda</option>
+                      <option value="corporativo">🏢 Evento Corporativo</option>
+                      <option value="quinceañera">👑 Quinceañera</option>
+                      <option value="aniversario">💕 Aniversario</option>
+                      <option value="mayoreo">📦 Compra por Mayoreo</option>
+                      <option value="personalizado">✨ Producto Personalizado</option>
+                      <option value="general">💬 Consulta General</option>
+                    </select>
+                  </div>
+                  <div class="space-y-2">
+                    <label for="quantity" class="block text-sm font-semibold text-dark-green">
+                      <i class="fas fa-cubes mr-2 text-sage-green"></i>Cantidad Aproximada
+                    </label>
+                    <input type="number" id="quantity" name="quantity" min="1" placeholder="Ej: 50"
+                      class="form-input w-full px-4 py-4 rounded-2xl border-0 shadow-sm">
+                  </div>
+                </div>
 
-              <div>
-                <label for="quantity" class="block text-sm font-semibold text-dark-green mb-2">
-                  <i class="fas fa-cubes mr-1"></i>Cantidad Aproximada (opcional)
-                </label>
-                <input type="number" id="quantity" name="quantity" min="1"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition">
-              </div>
+                <div class="space-y-2">
+                  <label for="message" class="block text-sm font-semibold text-dark-green">
+                    <i class="fas fa-comment mr-2 text-sage-green"></i>Cuéntanos sobre tu proyecto *
+                  </label>
+                  <textarea id="message" name="message" rows="6" required
+                    class="form-input w-full px-4 py-4 rounded-2xl border-0 shadow-sm resize-none"
+                    placeholder="Describe tu evento, fechas importantes, preferencias de fragancias, colores, presupuesto aproximado, etc. Mientras más detalles nos proporciones, mejor podremos ayudarte."></textarea>
+                </div>
 
-              <div>
-                <label for="message" class="block text-sm font-semibold text-dark-green mb-2">
-                  <i class="fas fa-comment mr-1"></i>Mensaje Detallado
-                </label>
-                <textarea id="message" name="message" rows="5" required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-sage-green transition"
-                  placeholder="Cuéntanos sobre tu evento, fechas, preferencias de fragancias, colores, etc."></textarea>
-              </div>
-
-              <button type="submit" id="submit-btn"
-                class="w-full gradient-bg text-white py-4 rounded-lg font-bold hover:opacity-90 transition flex items-center justify-center">
-                <i class="fas fa-paper-plane mr-2"></i>
-                Enviar Consulta
-              </button>
-            </form>
+                <!-- Botón de envío -->
+                <div class="pt-4">
+                  <button type="submit" id="submit-btn"
+                    class="btn-primary w-full text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 shadow-xl">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Enviar Consulta</span>
+                  </button>
+                  <p class="text-sm text-gray-500 text-center mt-3">
+                    <i class="fas fa-shield-alt mr-1"></i>
+                    Tus datos están protegidos y solo los usaremos para contactarte sobre tu consulta.
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
 
           <!-- Información de Contacto -->
-          <div class="space-y-8">
+          <div class="space-y-8" data-aos="fade-left">
 
             <!-- Datos de Contacto -->
-            <div class="gradient-card rounded-xl p-8 hover-lift">
-              <h3 class="font-serif text-xl font-bold text-dark-green mb-6">
-                <i class="fas fa-address-book mr-2"></i>
-                Información de Contacto
-              </h3>
+            <div class="gradient-card rounded-3xl p-8 hover-lift shadow-xl">
+              <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-gradient-to-br from-sage-green to-leaf-green w-12 h-12 rounded-2xl flex items-center justify-center">
+                  <i class="fas fa-address-book text-white text-lg"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-dark-green">Contacto Directo</h3>
+              </div>
 
               <div class="space-y-4">
-                <div class="flex items-center space-x-4 p-3 bg-white rounded-lg">
-                  <div class="bg-sage-green w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-phone text-white text-sm"></i>
+                <a href="tel:+525564682112" class="flex items-center space-x-4 p-4 bg-white rounded-2xl hover:bg-sage-green/5 transition-all duration-300 group">
+                  <div class="bg-gradient-to-br from-sage-green to-dark-green w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i class="fas fa-phone text-white"></i>
                   </div>
                   <div>
                     <p class="font-semibold text-dark-green">Teléfono</p>
-                    <a href="tel:+525564682112" class="text-sage-green hover:underline">+52 55 6468 2112</a>
+                    <p class="text-sage-green font-medium">+52 55 6468 2112</p>
                   </div>
-                </div>
+                </a>
 
-                <div class="flex items-center space-x-4 p-3 bg-white rounded-lg">
-                  <div class="bg-sage-green w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-envelope text-white text-sm"></i>
+                <a href="mailto:ventas@velasstarlight.com" class="flex items-center space-x-4 p-4 bg-white rounded-2xl hover:bg-sage-green/5 transition-all duration-300 group">
+                  <div class="bg-gradient-to-br from-sage-green to-leaf-green w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i class="fas fa-envelope text-white"></i>
                   </div>
                   <div class="flex-1 min-w-0">
-                    <p class="font-semibold text-dark-green">Email Empresarial</p>
-                    <a href="mailto:ventas@velasstarlight.com"
-                      class="text-sage-green hover:underline break-all text-sm">ventas@velasstarlight.com</a>
+                    <p class="font-semibold text-dark-green">Email</p>
+                    <p class="text-sage-green font-medium text-sm break-all">ventas@velasstarlight.com</p>
                   </div>
-                </div>
+                </a>
 
-                <div class="flex items-center space-x-4 p-3 bg-white rounded-lg">
-                  <div class="bg-sage-green w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fab fa-whatsapp text-white text-sm"></i>
+                <a href="https://wa.me/525564682112" target="_blank" class="flex items-center space-x-4 p-4 bg-white rounded-2xl hover:bg-green-50 transition-all duration-300 group">
+                  <div class="bg-gradient-to-br from-green-500 to-green-600 w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i class="fab fa-whatsapp text-white"></i>
                   </div>
                   <div>
-                    <p class="font-semibold text-dark-green">WhatsApp Business</p>
-                    <a href="https://wa.me/525564682112" target="_blank" class="text-sage-green hover:underline">Enviar
-                      mensaje</a>
+                    <p class="font-semibold text-dark-green">WhatsApp</p>
+                    <p class="text-green-600 font-medium">Mensaje directo</p>
                   </div>
-                </div>
+                </a>
 
-                <div class="flex items-center space-x-4 p-3 bg-white rounded-lg">
-                  <div class="bg-sage-green w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fab fa-instagram text-white text-sm"></i>
+                <a href="https://www.instagram.com/velas_starlight/" target="_blank" class="flex items-center space-x-4 p-4 bg-white rounded-2xl hover:bg-pink-50 transition-all duration-300 group">
+                  <div class="bg-gradient-to-br from-pink-500 to-purple-600 w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i class="fab fa-instagram text-white"></i>
                   </div>
                   <div>
                     <p class="font-semibold text-dark-green">Instagram</p>
-                    <a href="https://www.instagram.com/velas_starlight/" target="_blank"
-                      class="text-sage-green hover:underline">@velas_starlight</a>
+                    <p class="text-pink-600 font-medium">@velas_starlight</p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 
             <!-- Horarios de Atención -->
-            <div class="gradient-card rounded-xl p-8 hover-lift">
-              <h3 class="font-serif text-xl font-bold text-dark-green mb-6">
-                <i class="fas fa-clock mr-2"></i>
-                Horarios de Atención
-              </h3>
+            <div class="gradient-card rounded-3xl p-8 hover-lift shadow-xl">
+              <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-gradient-to-br from-sage-green to-dark-green w-12 h-12 rounded-2xl flex items-center justify-center">
+                  <i class="fas fa-clock text-white text-lg"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-dark-green">Horarios</h3>
+              </div>
 
               <div class="space-y-3">
-                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                  <span class="font-semibold text-dark-green">Lunes - Viernes</span>
-                  <span class="text-sage-green">9:00 AM - 7:00 PM</span>
+                <div class="flex justify-between items-center p-4 bg-white rounded-2xl">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-calendar-week text-sage-green"></i>
+                    <span class="font-semibold text-dark-green">Lunes - Viernes</span>
+                  </div>
+                  <span class="text-sage-green font-bold">9:00 AM - 7:00 PM</span>
                 </div>
-                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                  <span class="font-semibold text-dark-green">Sábados</span>
-                  <span class="text-sage-green">10:00 AM - 5:00 PM</span>
+                <div class="flex justify-between items-center p-4 bg-white rounded-2xl">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-calendar-day text-sage-green"></i>
+                    <span class="font-semibold text-dark-green">Sábados</span>
+                  </div>
+                  <span class="text-sage-green font-bold">10:00 AM - 5:00 PM</span>
                 </div>
-                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
-                  <span class="font-semibold text-dark-green">Domingos</span>
-                  <span class="text-gray-500">Cerrado</span>
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-2xl">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-calendar-times text-gray-400"></i>
+                    <span class="font-semibold text-gray-500">Domingos</span>
+                  </div>
+                  <span class="text-gray-500 font-bold">Cerrado</span>
                 </div>
               </div>
 
-              <div class="mt-6 p-4 bg-sage-green bg-opacity-10 rounded-lg">
-                <p class="text-sm text-dark-green">
-                  <i class="fas fa-info-circle mr-2"></i>
-                  <strong>Respuesta garantizada:</strong> Contestamos todas las consultas en menos de 24 horas.
-                </p>
+              <div class="mt-6 p-4 bg-gradient-to-r from-sage-green/10 to-leaf-green/10 rounded-2xl border border-sage-green/20">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-clock text-sage-green mt-1"></i>
+                  <div>
+                    <p class="font-semibold text-dark-green mb-1">Respuesta Garantizada</p>
+                    <p class="text-sm text-gray-600">Contestamos todas las consultas en menos de 24 horas, incluso los fines de semana.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Beneficios adicionales -->
+            <div class="gradient-card rounded-3xl p-8 hover-lift shadow-xl">
+              <h4 class="font-serif text-lg font-bold text-dark-green mb-4">¿Por qué elegirnos?</h4>
+              <div class="space-y-3">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check-circle text-sage-green"></i>
+                  <span class="text-sm text-gray-700">Asesoría personalizada gratuita</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check-circle text-sage-green"></i>
+                  <span class="text-sm text-gray-700">Muestras de fragancia disponibles</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check-circle text-sage-green"></i>
+                  <span class="text-sm text-gray-700">Entregas programadas</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-check-circle text-sage-green"></i>
+                  <span class="text-sm text-gray-700">Garantía de satisfacción</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section>  
+  <!-- PREGUNTAS FRECUENTES MODERNAS -->
+    <section class="py-20 bg-gradient-to-br from-beige-almond via-warm-cream to-beige-almond relative overflow-hidden">
+      <!-- Elementos decorativos de fondo -->
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-sage-green/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 bg-leaf-green/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
 
-    <!-- ========================================
-         PREGUNTAS FRECUENTES
-         ======================================== -->
-    <section class="py-16 bg-beige-almond">
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark-green mb-4">
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header de sección -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center space-x-2 bg-sage-green/10 rounded-full px-6 py-3 mb-6">
+            <i class="fas fa-question-circle text-sage-green"></i>
+            <span class="text-sage-green font-semibold">FAQ</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark-green mb-6">
             Preguntas Frecuentes
           </h2>
-          <p class="text-lg text-gray-600">
-            Resolvemos las dudas más comunes sobre nuestros productos y servicios
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Resolvemos las dudas más comunes para que tengas toda la información que necesitas
           </p>
         </div>
 
-        <div class="space-y-4">
-          <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition"
+        <!-- Acordeón de preguntas -->
+        <div class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+          
+          <!-- FAQ 1 -->
+          <div class="glass-effect rounded-3xl shadow-xl overflow-hidden hover-lift">
+            <button class="w-full flex justify-between items-center p-8 text-left hover:bg-sage-green/5 transition-all duration-300 group"
               onclick="toggleFAQ('faq1')">
-              <span class="font-semibold text-dark-green">¿Qué descuentos ofrecen por mayoreo?</span>
-              <i id="icon-faq1" class="fas fa-chevron-down text-sage-green transition-transform"></i>
+              <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-sage-green to-dark-green w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-percentage text-white"></i>
+                </div>
+                <span class="font-bold text-dark-green text-lg">¿Qué descuentos ofrecen por mayoreo?</span>
+              </div>
+              <i id="icon-faq1" class="fas fa-chevron-down text-sage-green text-xl transition-transform duration-300 group-hover:scale-110"></i>
             </button>
-            <div id="faq1" class="hidden px-6 pb-6 text-gray-700">
-              <p>Ofrecemos descuentos escalonados: 10% para 50-99 piezas, 15% para 100-199 piezas, y 20% para 200+
-                piezas. Los descuentos se aplican automáticamente según la cantidad total del pedido.</p>
+            <div id="faq1" class="hidden px-8 pb-8">
+              <div class="bg-white rounded-2xl p-6 ml-16">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  Ofrecemos descuentos escalonados automáticos que se aplican según la cantidad total de tu pedido:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="bg-sage-green/10 rounded-xl p-4 text-center">
+                    <div class="font-bold text-sage-green text-lg">50-99 piezas</div>
+                    <div class="text-2xl font-bold text-dark-green">10%</div>
+                  </div>
+                  <div class="bg-sage-green/10 rounded-xl p-4 text-center">
+                    <div class="font-bold text-sage-green text-lg">100-199 piezas</div>
+                    <div class="text-2xl font-bold text-dark-green">15%</div>
+                  </div>
+                  <div class="bg-sage-green/10 rounded-xl p-4 text-center">
+                    <div class="font-bold text-sage-green text-lg">200+ piezas</div>
+                    <div class="text-2xl font-bold text-dark-green">20%</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition"
+          <!-- FAQ 2 -->
+          <div class="glass-effect rounded-3xl shadow-xl overflow-hidden hover-lift">
+            <button class="w-full flex justify-between items-center p-8 text-left hover:bg-sage-green/5 transition-all duration-300 group"
               onclick="toggleFAQ('faq2')">
-              <span class="font-semibold text-dark-green">¿Hacen velas personalizadas para eventos?</span>
-              <i id="icon-faq2" class="fas fa-chevron-down text-sage-green transition-transform"></i>
+              <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-sage-green to-leaf-green w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-palette text-white"></i>
+                </div>
+                <span class="font-bold text-dark-green text-lg">¿Hacen velas personalizadas para eventos?</span>
+              </div>
+              <i id="icon-faq2" class="fas fa-chevron-down text-sage-green text-xl transition-transform duration-300 group-hover:scale-110"></i>
             </button>
-            <div id="faq2" class="hidden px-6 pb-6 text-gray-700">
-              <p>¡Sí! Creamos velas personalizadas con colores, fragancias y diseños específicos. Podemos incluir logos,
-                nombres, fechas especiales y empaques personalizados. El tiempo de producción es de 7-14 días
-                dependiendo de la cantidad.</p>
+            <div id="faq2" class="hidden px-8 pb-8">
+              <div class="bg-white rounded-2xl p-6 ml-16">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  ¡Absolutamente! Nos especializamos en crear velas únicas para cada ocasión especial:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div class="space-y-2">
+                    <h4 class="font-semibold text-dark-green">Personalización disponible:</h4>
+                    <ul class="space-y-1 text-sm text-gray-600">
+                      <li>✨ Colores corporativos o temáticos</li>
+                      <li>🌸 Fragancias específicas</li>
+                      <li>🏷️ Logos y nombres</li>
+                      <li>📅 Fechas especiales</li>
+                    </ul>
+                  </div>
+                  <div class="space-y-2">
+                    <h4 class="font-semibold text-dark-green">Incluye:</h4>
+                    <ul class="space-y-1 text-sm text-gray-600">
+                      <li>📦 Empaques personalizados</li>
+                      <li>🎁 Etiquetas exclusivas</li>
+                      <li>💝 Presentación premium</li>
+                      <li>🚚 Entrega programada</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="bg-sage-green/10 rounded-xl p-4">
+                  <p class="text-sm text-dark-green">
+                    <i class="fas fa-clock mr-2"></i>
+                    <strong>Tiempo de producción:</strong> 7-14 días dependiendo de la cantidad y complejidad del diseño.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition"
+          <!-- FAQ 3 -->
+          <div class="glass-effect rounded-3xl shadow-xl overflow-hidden hover-lift">
+            <button class="w-full flex justify-between items-center p-8 text-left hover:bg-sage-green/5 transition-all duration-300 group"
               onclick="toggleFAQ('faq3')">
-              <span class="font-semibold text-dark-green">¿Cuál es el pedido mínimo para eventos?</span>
-              <i id="icon-faq3" class="fas fa-chevron-down text-sage-green transition-transform"></i>
+              <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-leaf-green to-sage-green w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-cubes text-white"></i>
+                </div>
+                <span class="font-bold text-dark-green text-lg">¿Cuál es el pedido mínimo para eventos?</span>
+              </div>
+              <i id="icon-faq3" class="fas fa-chevron-down text-sage-green text-xl transition-transform duration-300 group-hover:scale-110"></i>
             </button>
-            <div id="faq3" class="hidden px-6 pb-6 text-gray-700">
-              <p>Para eventos corporativos y celebraciones, el pedido mínimo es de 25 piezas. Para bodas y quinceañeras
-                ofrecemos paquetes especiales desde 50 piezas con diseños exclusivos.</p>
+            <div id="faq3" class="hidden px-8 pb-8">
+              <div class="bg-white rounded-2xl p-6 ml-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-4">
+                    <h4 class="font-semibold text-dark-green">Eventos Corporativos</h4>
+                    <div class="bg-sage-green/10 rounded-xl p-4">
+                      <div class="text-2xl font-bold text-sage-green mb-1">25 piezas</div>
+                      <p class="text-sm text-gray-600">Mínimo para conferencias, inauguraciones y eventos empresariales</p>
+                    </div>
+                  </div>
+                  <div class="space-y-4">
+                    <h4 class="font-semibold text-dark-green">Bodas y Quinceañeras</h4>
+                    <div class="bg-sage-green/10 rounded-xl p-4">
+                      <div class="text-2xl font-bold text-sage-green mb-1">50 piezas</div>
+                      <p class="text-sm text-gray-600">Paquetes especiales con diseños exclusivos y empaques premium</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4 p-4 bg-gradient-to-r from-sage-green/10 to-leaf-green/10 rounded-xl">
+                  <p class="text-sm text-dark-green">
+                    <i class="fas fa-lightbulb mr-2"></i>
+                    <strong>Tip:</strong> Para pedidos menores, consulta nuestros productos individuales en la tienda.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition"
+          <!-- FAQ 4 -->
+          <div class="glass-effect rounded-3xl shadow-xl overflow-hidden hover-lift">
+            <button class="w-full flex justify-between items-center p-8 text-left hover:bg-sage-green/5 transition-all duration-300 group"
               onclick="toggleFAQ('faq4')">
-              <span class="font-semibold text-dark-green">¿Qué métodos de pago aceptan?</span>
-              <i id="icon-faq4" class="fas fa-chevron-down text-sage-green transition-transform"></i>
+              <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-sage-green to-dark-green w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-credit-card text-white"></i>
+                </div>
+                <span class="font-bold text-dark-green text-lg">¿Qué métodos de pago aceptan?</span>
+              </div>
+              <i id="icon-faq4" class="fas fa-chevron-down text-sage-green text-xl transition-transform duration-300 group-hover:scale-110"></i>
             </button>
-            <div id="faq4" class="hidden px-6 pb-6 text-gray-700">
-              <p>Aceptamos tarjetas de crédito/débito, PayPal, transferencias bancarias y pagos en efectivo. Para
-                pedidos grandes ofrecemos planes de pago y facturación empresarial.</p>
+            <div id="faq4" class="hidden px-8 pb-8">
+              <div class="bg-white rounded-2xl p-6 ml-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-3">
+                    <h4 class="font-semibold text-dark-green">Métodos de Pago</h4>
+                    <div class="space-y-2">
+                      <div class="flex items-center space-x-3">
+                        <i class="fas fa-credit-card text-sage-green"></i>
+                        <span class="text-sm">Tarjetas de crédito/débito</span>
+                      </div>
+                      <div class="flex items-center space-x-3">
+                        <i class="fab fa-paypal text-sage-green"></i>
+                        <span class="text-sm">PayPal</span>
+                      </div>
+                      <div class="flex items-center space-x-3">
+                        <i class="fas fa-university text-sage-green"></i>
+                        <span class="text-sm">Transferencias bancarias</span>
+                      </div>
+                      <div class="flex items-center space-x-3">
+                        <i class="fas fa-money-bill text-sage-green"></i>
+                        <span class="text-sm">Efectivo (entregas locales)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="space-y-3">
+                    <h4 class="font-semibold text-dark-green">Para Empresas</h4>
+                    <div class="bg-sage-green/10 rounded-xl p-4">
+                      <ul class="space-y-1 text-sm text-gray-600">
+                        <li>💼 Facturación empresarial</li>
+                        <li>📊 Planes de pago flexibles</li>
+                        <li>🏦 Crédito para clientes frecuentes</li>
+                        <li>📋 Órdenes de compra</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition"
+          <!-- FAQ 5 -->
+          <div class="glass-effect rounded-3xl shadow-xl overflow-hidden hover-lift">
+            <button class="w-full flex justify-between items-center p-8 text-left hover:bg-sage-green/5 transition-all duration-300 group"
               onclick="toggleFAQ('faq5')">
-              <span class="font-semibold text-dark-green">¿Hacen envíos a toda la República?</span>
-              <i id="icon-faq5" class="fas fa-chevron-down text-sage-green transition-transform"></i>
+              <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-leaf-green to-sage-green w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-shipping-fast text-white"></i>
+                </div>
+                <span class="font-bold text-dark-green text-lg">¿Hacen envíos a toda la República?</span>
+              </div>
+              <i id="icon-faq5" class="fas fa-chevron-down text-sage-green text-xl transition-transform duration-300 group-hover:scale-110"></i>
             </button>
-            <div id="faq5" class="hidden px-6 pb-6 text-gray-700">
-              <p>Sí, enviamos a toda la República Mexicana. Los envíos son gratuitos para pedidos mayores a $1,000 MXN.
-                Para eventos, coordinamos entregas programadas en la fecha que necesites.</p>
+            <div id="faq5" class="hidden px-8 pb-8">
+              <div class="bg-white rounded-2xl p-6 ml-16">
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3 mb-4">
+                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                    <span class="font-semibold text-dark-green text-lg">¡Sí, enviamos a toda la República Mexicana!</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                      <h4 class="font-semibold text-dark-green">Envío Gratuito</h4>
+                      <div class="bg-green-50 rounded-xl p-4 border border-green-200">
+                        <div class="text-2xl font-bold text-green-600 mb-1">$1,000 MXN</div>
+                        <p class="text-sm text-gray-600">En pedidos superiores a esta cantidad</p>
+                      </div>
+                    </div>
+                    <div class="space-y-3">
+                      <h4 class="font-semibold text-dark-green">Tiempos de Entrega</h4>
+                      <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                          <span>CDMX y área metropolitana:</span>
+                          <span class="font-semibold text-sage-green">1-2 días</span>
+                        </div>
+                        <div class="flex justify-between">
+                          <span>Interior de la República:</span>
+                          <span class="font-semibold text-sage-green">3-5 días</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-sage-green/10 rounded-xl p-4 mt-4">
+                    <p class="text-sm text-dark-green">
+                      <i class="fas fa-calendar-check mr-2"></i>
+                      <strong>Para eventos:</strong> Coordinamos entregas programadas en la fecha exacta que necesites, sin costo adicional.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Contacto adicional -->
+        <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="400">
+          <div class="glass-effect rounded-3xl p-8 max-w-2xl mx-auto">
+            <h3 class="font-serif text-xl font-bold text-dark-green mb-4">¿No encontraste tu respuesta?</h3>
+            <p class="text-gray-600 mb-6">Nuestro equipo está listo para resolver cualquier duda específica sobre tu proyecto</p>
+            <a href="https://wa.me/525564682112" target="_blank" 
+               class="btn-primary text-white px-8 py-4 rounded-full font-semibold inline-flex items-center space-x-3 hover-lift">
+              <i class="fab fa-whatsapp"></i>
+              <span>Pregúntanos por WhatsApp</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========================================
-         LLAMADA A LA ACCIÓN
-         ======================================== -->
-    <section class="gradient-bg text-white py-16">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
-          ¿Listo para crear algo especial?
-        </h2>
-        <p class="text-xl mb-8 opacity-90">
-          Contáctanos hoy y hagamos realidad la atmósfera perfecta para tu evento
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://wa.me/525564682112" target="_blank"
-            class="bg-white text-dark-green px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition flex items-center justify-center">
-            <i class="fab fa-whatsapp mr-2 text-green-500"></i>
-            WhatsApp Directo
-          </a>
-          <a href="mailto:ventas@velasstarlight.com"
-            class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-dark-green transition flex items-center justify-center">
-            <i class="fas fa-envelope mr-2"></i>
-            Enviar Email
-          </a>
+    <!-- LLAMADA A LA ACCIÓN FINAL -->
+    <section class="relative py-20 overflow-hidden">
+      <!-- Background con gradiente dinámico -->
+      <div class="absolute inset-0 gradient-bg">
+        <div class="absolute inset-0 bg-gradient-to-r from-dark-green/50 to-transparent"></div>
+      </div>
+
+      <!-- Elementos decorativos animados -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-float"></div>
+        <div class="absolute bottom-10 right-10 w-60 h-60 bg-leaf-green/20 rounded-full blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
+        <div class="absolute top-1/2 left-1/3 w-32 h-32 bg-sage-green/15 rounded-full blur-xl animate-float" style="animation-delay: 0.5s;"></div>
+      </div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div class="space-y-8" data-aos="zoom-in">
+          <!-- Badge superior -->
+          <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+            <i class="fas fa-rocket text-yellow-300"></i>
+            <span class="text-sm font-medium">Comienza tu proyecto hoy</span>
+          </div>
+
+          <!-- Título principal -->
+          <div class="space-y-6">
+            <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+              <span class="block">¿Listo para crear</span>
+              <span class="block text-leaf-green">algo extraordinario?</span>
+            </h2>
+            <p class="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed">
+              Transformemos tu visión en una experiencia sensorial única que tus invitados recordarán para siempre
+            </p>
+          </div>
+
+          <!-- Estadísticas rápidas -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto py-8">
+            <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 hover-lift shadow-lg">
+              <div class="text-3xl font-bold text-white mb-2">
+                <i class="fas fa-clock mr-2"></i>24h
+              </div>
+              <div class="text-sm text-white/90">Respuesta garantizada</div>
+            </div>
+            <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 hover-lift shadow-lg">
+              <div class="text-3xl font-bold text-white mb-2">
+                <i class="fas fa-users mr-2"></i>500+
+              </div>
+              <div class="text-sm text-white/90">Clientes satisfechos</div>
+            </div>
+            <div class="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 hover-lift shadow-lg">
+              <div class="text-3xl font-bold text-white mb-2">
+                <i class="fas fa-award mr-2"></i>100%
+              </div>
+              <div class="text-sm text-white/90">Calidad artesanal</div>
+            </div>
+          </div>
+
+          <!-- Botones de acción principales -->
+          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a href="https://wa.me/525564682112" target="_blank"
+              class="group bg-white text-dark-green px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center space-x-3">
+              <div class="bg-green-500 w-8 h-8 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                <i class="fab fa-whatsapp text-white"></i>
+              </div>
+              <span>WhatsApp Directo</span>
+              <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            
+            <a href="mailto:ventas@velasstarlight.com"
+              class="group border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-dark-green transition-all duration-300 transform hover:scale-105 flex items-center space-x-3">
+              <i class="fas fa-envelope group-hover:scale-110 transition-transform"></i>
+              <span>Enviar Email</span>
+              <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
+          <!-- Información adicional -->
+          <div class="pt-8 border-t border-white/20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm opacity-80">
+              <div class="flex items-center justify-center space-x-2">
+                <i class="fas fa-shield-alt text-leaf-green"></i>
+                <span>Asesoría gratuita</span>
+              </div>
+              <div class="flex items-center justify-center space-x-2">
+                <i class="fas fa-truck text-leaf-green"></i>
+                <span>Envío programado</span>
+              </div>
+              <div class="flex items-center justify-center space-x-2">
+                <i class="fas fa-heart text-leaf-green"></i>
+                <span>Garantía de satisfacción</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  </main>
-
-  <!-- Footer Rediseñado -->
+  </main>  <!-
+- Footer -->
   <footer class="bg-gradient-to-br from-dark-green via-dark-green to-sage-green text-white relative overflow-hidden">
     <!-- Elementos decorativos -->
     <div class="absolute inset-0 opacity-10">
@@ -568,12 +1086,10 @@
           <div class="lg:col-span-2 space-y-6">
             <div class="flex items-center space-x-3">
               <img src="../images/logo.png" alt="Velas Starlight" class="h-12 w-auto filter brightness-0 invert">
-
             </div>
             <p class="text-gray-300 leading-relaxed max-w-md">
               Creamos experiencias sensoriales únicas con velas artesanales y productos de belleza natural, elaborados con amor y dedicación para iluminar tu mundo.
             </p>
-
           </div>
 
           <!-- Enlaces rápidos -->
@@ -589,7 +1105,6 @@
               <li><a href="contacto.html" class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group">
                 <i class="fa fa-phone mr-2 group-hover:scale-110 transition-transform duration-300"></i>Contacto
               </a></li>
-
             </ul>
           </div>
 
@@ -621,14 +1136,6 @@
                   class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
                   <i class="fab fa-instagram text-lg group-hover:text-white"></i>
                 </a>
-                <a href="#" target="_blank" 
-                  class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
-                  <i class="fab fa-facebook-f text-lg group-hover:text-white"></i>
-                </a>
-                <a href="#" target="_blank" 
-                  class="w-10 h-10 bg-white/10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage-green hover:scale-110 transition-all duration-300 group">
-                  <i class="fab fa-tiktok text-lg group-hover:text-white"></i>
-                </a>
               </div>
             </div>
           </div>
@@ -638,98 +1145,190 @@
       <!-- Línea divisoria -->
       <div class="border-t border-white/20"></div>
 
-      <!-- Copyright y enlaces legales -->
+      <!-- Copyright -->
       <div class="container mx-auto px-6 py-6">
-        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div class="text-gray-300 text-sm">
-            <p>&copy; 2025 Velas Starlight. Todos los derechos reservados.</p>
-          </div>
-          <div class="flex items-center space-x-6 text-sm text-gray-300">
-            <a href="terminos.html" class="hover:text-white transition-colors duration-300">Términos y Condiciones</a>
-            <span class="text-gray-500">|</span>
-            <a href="politicas.html" class="hover:text-white transition-colors duration-300">Política de Privacidad</a>
-            <span class="text-gray-500">|</span>
-            <span class="flex items-center space-x-1">
-              <i class="fa fa-heart text-red-400"></i>
-              <span>Hecho con amor</span>
-            </span>
-          </div>
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-300">
+          <p>&copy; 2024 Velas Starlight. Todos los derechos reservados.</p>
+          <p class="mt-2 md:mt-0">Hecho con ❤️ para iluminar tu mundo</p>
         </div>
       </div>
     </div>
   </footer>
 
-
-  <!-- ========================================
-       JAVASCRIPT FUNCIONALIDAD
-       ======================================== -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- Sistema de integración de email -->
-  <script src="../js/email-integration.js"></script>
-
-  <!-- Sistema de contacto -->
-  <script src="../js/contact-system.js"></script>
+  <!-- JavaScript para funcionalidades interactivas -->
   <script>
-    // Inicializar AOS
-    AOS.init({
-      once: true,
-      duration: 800,
-    });
-
-    /**
-     * Función para toggle de FAQ
-     */
+    // Función para toggle de FAQ
     function toggleFAQ(faqId) {
       const faqContent = document.getElementById(faqId);
-      const icon = document.getElementById(`icon-${faqId}`);
-
+      const faqIcon = document.getElementById('icon-' + faqId);
+      
       if (faqContent.classList.contains('hidden')) {
+        // Cerrar otros FAQs abiertos
+        document.querySelectorAll('[id^="faq"]').forEach(faq => {
+          if (faq.id !== faqId && !faq.classList.contains('hidden')) {
+            faq.classList.add('hidden');
+            const icon = document.getElementById('icon-' + faq.id);
+            if (icon) {
+              icon.classList.remove('fa-chevron-up', 'rotate-180');
+              icon.classList.add('fa-chevron-down');
+            }
+          }
+        });
+        
+        // Abrir el FAQ seleccionado
         faqContent.classList.remove('hidden');
-        icon.classList.add('rotate-180');
+        faqIcon.classList.remove('fa-chevron-down');
+        faqIcon.classList.add('fa-chevron-up', 'rotate-180');
+        
+        // Animación suave
+        faqContent.style.maxHeight = '0px';
+        faqContent.style.overflow = 'hidden';
+        faqContent.style.transition = 'max-height 0.5s ease-out';
+        
+        setTimeout(() => {
+          faqContent.style.maxHeight = faqContent.scrollHeight + 'px';
+        }, 10);
+        
+        setTimeout(() => {
+          faqContent.style.maxHeight = 'none';
+          faqContent.style.overflow = 'visible';
+        }, 500);
       } else {
-        faqContent.classList.add('hidden');
-        icon.classList.remove('rotate-180');
+        // Cerrar FAQ
+        faqContent.style.maxHeight = faqContent.scrollHeight + 'px';
+        faqContent.style.overflow = 'hidden';
+        faqContent.style.transition = 'max-height 0.3s ease-in';
+        
+        setTimeout(() => {
+          faqContent.style.maxHeight = '0px';
+        }, 10);
+        
+        setTimeout(() => {
+          faqContent.classList.add('hidden');
+          faqContent.style.maxHeight = 'none';
+          faqContent.style.overflow = 'visible';
+        }, 300);
+        
+        faqIcon.classList.remove('fa-chevron-up', 'rotate-180');
+        faqIcon.classList.add('fa-chevron-down');
       }
     }
 
-    /**
-     * El manejo del formulario de contacto ahora se hace a través de contact-system.js
-     * Este sistema incluye validación, envío de emails y integración con WhatsApp
-     */
-    console.log('📞 Sistema de contacto cargado desde contact-system.js');
+    // Manejo del formulario de contacto
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contact-form-main');
+      const submitBtn = document.getElementById('submit-btn');
+      
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Cambiar estado del botón
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+          submitBtn.disabled = true;
+          
+          // Simular envío (aquí integrarías con tu backend)
+          setTimeout(() => {
+            // Mostrar mensaje de éxito
+            showSuccessMessage();
+            
+            // Resetear formulario
+            contactForm.reset();
+            
+            // Restaurar botón
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }, 2000);
+        });
+      }
+    });
 
-    /**
-     * Animaciones al hacer scroll
-     */
-    window.addEventListener('scroll', function () {
-      const elements = document.querySelectorAll('.hover-lift');
-      elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
+    // Función para mostrar mensaje de éxito
+    function showSuccessMessage() {
+      const successDiv = document.createElement('div');
+      successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-2xl shadow-xl z-50 transform translate-x-full transition-transform duration-300';
+      successDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-check-circle text-xl"></i>
+          <div>
+            <div class="font-semibold">¡Mensaje enviado!</div>
+            <div class="text-sm opacity-90">Te responderemos pronto</div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(successDiv);
+      
+      // Animar entrada
+      setTimeout(() => {
+        successDiv.classList.remove('translate-x-full');
+      }, 100);
+      
+      // Remover después de 5 segundos
+      setTimeout(() => {
+        successDiv.classList.add('translate-x-full');
+        setTimeout(() => {
+          document.body.removeChild(successDiv);
+        }, 300);
+      }, 5000);
+    }
 
-        if (elementTop < window.innerHeight - elementVisible) {
-          element.classList.add('animate-fade-in-up');
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
         }
       });
     });
 
-    /**
-     * Efecto de typing en el hero
-     */
-    document.addEventListener('DOMContentLoaded', function () {
-      const heroText = document.querySelector('section h1');
-      if (heroText) {
-        heroText.style.opacity = '0';
-        setTimeout(() => {
-          heroText.style.opacity = '1';
-          heroText.classList.add('animate-fade-in-up');
-        }, 500);
+    // Contador de caracteres para textarea (opcional)
+    const messageTextarea = document.getElementById('message');
+    if (messageTextarea) {
+      const maxLength = 1000;
+      const counterDiv = document.createElement('div');
+      counterDiv.className = 'text-sm text-gray-500 text-right mt-2';
+      messageTextarea.parentNode.appendChild(counterDiv);
+      
+      function updateCounter() {
+        const remaining = maxLength - messageTextarea.value.length;
+        counterDiv.textContent = `${messageTextarea.value.length}/${maxLength} caracteres`;
+        
+        if (remaining < 50) {
+          counterDiv.classList.add('text-orange-500');
+        } else {
+          counterDiv.classList.remove('text-orange-500');
+        }
       }
-    });
+      
+      messageTextarea.addEventListener('input', updateCounter);
+      messageTextarea.setAttribute('maxlength', maxLength);
+      updateCounter();
+    }
   </script>
 
-  <!-- Scripts ya cargados arriba -->
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Inicializar AOS (Animate On Scroll)
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 100
+      });
+    }
+  </script>
+
+  <!-- Carrito JavaScript -->
+  <script src="../js/carrito.js"></script>
 
 </body>
 

@@ -283,6 +283,55 @@
             color: inherit !important;
         }
 
+        /* ===== BOTÓN FICHA TÉCNICA ===== */
+        .btn-tech-sheet {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-tech-sheet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-tech-sheet:hover::before {
+            left: 100%;
+        }
+
+        .btn-tech-sheet:hover {
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-tech-sheet:active {
+            transform: translateY(0);
+        }
+
+        .btn-tech-sheet i {
+            font-size: 18px;
+        }
+
 
 
         @keyframes slideInUp {
@@ -1981,6 +2030,12 @@
 
                             <!-- Botones de Acción -->
                             <div class="space-y-6 mt-10">
+                                <!-- Botón Descargar Ficha Técnica -->
+                                <button id="download-tech-sheet-btn" class="btn-tech-sheet">
+                                    <i class="fas fa-file-pdf mr-3"></i>
+                                    Descargar Ficha Técnica
+                                </button>
+
                                 <button id="add-to-cart-btn" class="btn-primary">
                                     <i class="fas fa-shopping-cart mr-3"></i>
                                     Agregar al Carrito
@@ -2169,6 +2224,15 @@
     <script src="../js/immediate-fix.js"></script>
     <script src="../js/fix-products-data.js"></script>
     <script src="../js/debug-product-detail.js"></script>
+
+    <!-- jsPDF para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+
+    <!-- Generador simple de ficha técnica -->
+    <script src="../js/tech-sheet-simple.js"></script>
+
     <script src="../js/producto-detalle-mejorado.js"></script>
 
     <script>

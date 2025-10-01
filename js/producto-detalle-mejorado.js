@@ -849,6 +849,14 @@ class EnhancedProductDetailPage {
                 this.shareProduct();
             });
         }
+
+        // Botón descargar ficha técnica
+        const techSheetBtn = document.getElementById('download-tech-sheet-btn');
+        if (techSheetBtn) {
+            techSheetBtn.addEventListener('click', () => {
+                this.downloadTechSheet();
+            });
+        }
     }
 
     /**
@@ -1010,6 +1018,47 @@ class EnhancedProductDetailPage {
             navigator.clipboard.writeText(window.location.href).then(() => {
                 this.showNotification('URL copiada al portapapeles', 'info');
             });
+        }
+    }
+
+    /**
+     * Descargar ficha técnica del producto
+     */
+    downloadTechSheet() {
+        console.log('📄 Iniciando descarga de ficha técnica...');
+        
+        if (!this.product) {
+            console.error('❌ No hay producto disponible para generar ficha técnica');
+            this.showNotification('Error: No hay producto disponible', 'error');
+            return;
+        }
+
+        // Mostrar indicador de carga
+        const techSheetBtn = document.getElementById('download-tech-sheet-btn');
+        if (techSheetBtn) {
+            const originalContent = techSheetBtn.innerHTML;
+            techSheetBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>Generando PDF...';
+            techSheetBtn.disabled = true;
+
+            // Generar PDF usando la función global
+            if (window.generateTechSheet && typeof window.generateTechSheet === 'function') {
+                try {
+                    window.generateTechSheet(this.product);
+                    this.showNotification('Ficha técnica descargada exitosamente', 'success');
+                } catch (error) {
+                    console.error('❌ Error generando ficha técnica:', error);
+                    this.showNotification('Error al generar la ficha técnica', 'error');
+                }
+            } else {
+                console.error('❌ Generador de ficha técnica no disponible');
+                this.showNotification('Error: Generador no disponible', 'error');
+            }
+
+            // Restaurar botón después de un delay
+            setTimeout(() => {
+                techSheetBtn.innerHTML = originalContent;
+                techSheetBtn.disabled = false;
+            }, 2000);
         }
     }
 

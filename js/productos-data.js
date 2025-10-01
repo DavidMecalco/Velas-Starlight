@@ -885,7 +885,7 @@ function getCurrentProducts() {
             localStorage.removeItem('adminProducts');
         }
     }
-    
+
     // Fallback a datos del archivo
     console.log(`📦 Cargando ${productosData.length} productos desde archivo base`);
     return [...productosData]; // Crear copia para evitar mutaciones
@@ -895,13 +895,13 @@ function getCurrentProducts() {
 if (typeof window !== 'undefined') {
     // Obtener productos actuales (localStorage o archivo)
     const currentProducts = getCurrentProducts();
-    
+
     window.productosData = currentProducts;
     window.categorias = categorias;
     window.fraganciasPopulares = fraganciasPopulares;
     window.configuracion = configuracion;
     window.getCurrentProducts = getCurrentProducts;
-    
+
     console.log(`✅ Productos cargados: ${currentProducts.length} items`);
 }
 
