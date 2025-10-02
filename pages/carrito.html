@@ -1760,7 +1760,7 @@
                 <div class="summary-content">
                     <div class="summary-line">
                         <span>Subtotal:</span>
-                        <span id="subtotal" class="font-semibold">$0.00 MXN</span>
+                        <span id="subtotal" class="font-semibold">0.00 MXN</span>
                     </div>
                     <div class="shipping-notice">
                         <i class="fas fa-info-circle"></i>
@@ -1768,11 +1768,11 @@
                     </div>
                     <div class="summary-line" id="discount-line" style="display: none;">
                         <span>Descuento:</span>
-                        <span id="discount-amount" class="font-semibold text-green-600">-$0.00 MXN</span>
+                        <span id="discount-amount" class="font-semibold text-green-600">-0.00 MXN</span>
                     </div>
                     <div class="summary-line">
                         <span>Total:</span>
-                        <span id="total" class="font-bold">$0.00 MXN</span>
+                        <span id="total" class="font-bold">0.00 MXN</span>
                     </div>
                 </div>
 
@@ -1936,15 +1936,15 @@
                         <div class="checkout-totals">
                             <div class="checkout-total-line">
                                 <span>Subtotal:</span>
-                                <span id="checkout-subtotal">$0.00 MXN</span>
+                                <span id="checkout-subtotal">0.00 MXN</span>
                             </div>
                             <div class="checkout-total-line" id="checkout-discount-line" style="display: none;">
                                 <span>Descuento:</span>
-                                <span id="checkout-discount" class="text-green-600">-$0.00 MXN</span>
+                                <span id="checkout-discount" class="text-green-600">-0.00 MXN</span>
                             </div>
                             <div class="checkout-total-line checkout-total-final">
                                 <span>Total:</span>
-                                <span id="checkout-total">$0.00 MXN</span>
+                                <span id="checkout-total">0.00 MXN</span>
                             </div>
                             <div class="shipping-note">
                                 <i class="fas fa-info-circle"></i>
@@ -2346,8 +2346,8 @@
                             </div>
 
                             <div class="product-price-premium">
-                                <div class="price-current">$${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN</div>
-                                <div class="price-unit">$${(parseFloat(item.price) || 0).toFixed(2)} c/u</div>
+                                <div class="price-current">${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN</div>
+                                <div class="price-unit">${(parseFloat(item.price) || 0).toFixed(2)} c/u</div>
                             </div>
 
                             <button class="remove-btn" data-product-id="${item.id}" type="button">
@@ -2485,15 +2485,15 @@
             const totalEl = document.getElementById('total');
             const checkoutBtn = document.getElementById('checkout-btn');
 
-            if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)} MXN`;
-            if (totalEl) totalEl.textContent = `$${total.toFixed(2)} MXN`;
+            if (subtotalEl) subtotalEl.textContent = `${subtotal.toFixed(2)} MXN`;
+            if (totalEl) totalEl.textContent = `${total.toFixed(2)} MXN`;
 
 
 
             // Mostrar/ocultar línea de descuento
             if (appliedDiscount && discountAmount > 0) {
                 if (discountLine) discountLine.style.display = 'flex';
-                if (discountAmountEl) discountAmountEl.textContent = `-$${discountAmount.toFixed(2)} MXN`;
+                if (discountAmountEl) discountAmountEl.textContent = `-${discountAmount.toFixed(2)} MXN`;
             } else {
                 if (discountLine) discountLine.style.display = 'none';
             }
@@ -2701,7 +2701,7 @@
                         </div>
                     </div>
                     <div class="checkout-item-price">
-                        $${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN
+                        ${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN
                     </div>
                 </div>
             `).join('');
@@ -2724,12 +2724,12 @@
             const checkoutDiscount = document.getElementById('checkout-discount');
             const checkoutTotal = document.getElementById('checkout-total');
 
-            if (checkoutSubtotal) checkoutSubtotal.textContent = `$${subtotal.toFixed(2)} MXN`;
-            if (checkoutTotal) checkoutTotal.textContent = `$${total.toFixed(2)} MXN`;
+            if (checkoutSubtotal) checkoutSubtotal.textContent = `${subtotal.toFixed(2)} MXN`;
+            if (checkoutTotal) checkoutTotal.textContent = `${total.toFixed(2)} MXN`;
 
             if (appliedDiscount && discountAmount > 0) {
                 if (checkoutDiscountLine) checkoutDiscountLine.style.display = 'flex';
-                if (checkoutDiscount) checkoutDiscount.textContent = `-$${discountAmount.toFixed(2)} MXN`;
+                if (checkoutDiscount) checkoutDiscount.textContent = `-${discountAmount.toFixed(2)} MXN`;
             } else {
                 if (checkoutDiscountLine) checkoutDiscountLine.style.display = 'none';
             }
@@ -3031,7 +3031,7 @@
                             </div>
                         </div>
                         <div class="checkout-item-price">
-                            $${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN
+                            ${((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)} MXN
                         </div>
                     </div>
                 `).join('');
@@ -3043,17 +3043,17 @@
                 finalTotals.innerHTML = `
                     <div class="checkout-total-line">
                         <span>Subtotal:</span>
-                        <span>$${data.subtotal.toFixed(2)} MXN</span>
+                        <span>${data.subtotal.toFixed(2)} MXN</span>
                     </div>
                     ${data.discount ? `
                     <div class="checkout-total-line">
                         <span>Descuento (${data.discount.code}):</span>
-                        <span class="text-green-600">-$${(data.subtotal - data.total).toFixed(2)} MXN</span>
+                        <span class="text-green-600">-${(data.subtotal - data.total).toFixed(2)} MXN</span>
                     </div>
                     ` : ''}
                     <div class="checkout-total-line checkout-total-final">
                         <span>Total:</span>
-                        <span>$${data.total.toFixed(2)} MXN</span>
+                        <span>${data.total.toFixed(2)} MXN</span>
                     </div>
                     <div class="shipping-note">
                         <i class="fas fa-info-circle"></i>
@@ -3195,12 +3195,12 @@ ${data.items.map((item, index) => {
                 const itemSubtotal = itemPrice * itemQuantity;
                 return `${index + 1}. ${item.name}
    • Cantidad: ${itemQuantity}
-   • Precio unitario: $${itemPrice.toFixed(2)} MXN
-   • Subtotal: $${itemSubtotal.toFixed(2)} MXN`;
+   • Precio unitario: ${itemPrice.toFixed(2)} MXN
+   • Subtotal: ${itemSubtotal.toFixed(2)} MXN`;
             }).join('\n\n')}
 
 💰 RESUMEN FINANCIERO:
-• Total del pedido: $${data.total.toFixed(2)} MXN
+• Total del pedido: ${data.total.toFixed(2)} MXN
 ${data.discount ? `• Descuento aplicado: ${data.discount.code} (${data.discount.percentage}%)` : ''}
 • Costo de envío: Por cotizar
 
@@ -3257,11 +3257,11 @@ ${data.items.map((item, index) => {
                 const itemSubtotal = itemPrice * itemQuantity;
                 return `${index + 1}. *${item.name}*
    • Cantidad: ${itemQuantity}
-   • Precio: $${itemPrice.toFixed(2)}
-   • Subtotal: $${itemSubtotal.toFixed(2)} MXN`;
+   • Precio: ${itemPrice.toFixed(2)}
+   • Subtotal: ${itemSubtotal.toFixed(2)} MXN`;
             }).join('\n\n')}
 
-💰 *TOTAL: $${data.total.toFixed(2)} MXN*
+💰 *TOTAL: ${data.total.toFixed(2)} MXN*
 ${data.discount ? `🎯 *Descuento:* ${data.discount.code} (${data.discount.percentage}%)` : ''}
 
 Por favor, cotícenme el costo de envío para proceder con el pedido.

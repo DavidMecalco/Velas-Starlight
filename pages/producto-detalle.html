@@ -1931,8 +1931,8 @@
 
                     <!-- Precio -->
                     <div class="price-section">
-                        <span id="product-price" class="price-current">$0.00 MXN</span>
-                        <span id="product-original-price" class="price-original hidden">$0.00 MXN</span>
+                        <span id="product-price" class="price-current">0.00 MXN</span>
+                        <span id="product-original-price" class="price-original hidden">0.00 MXN</span>
                     </div>
 
                     <!-- Opciones de Tamaño -->
@@ -2454,7 +2454,7 @@
                                 <div class="size-item-label">${size.label}</div>
                                 <div class="size-item-description">Tamaño perfecto para cualquier ocasión</div>
                             </div>
-                            <div class="size-item-price">$${size.price} MXN</div>
+                            <div class="size-item-price">${size.price} MXN</div>
                         </div>
                     `;
 
@@ -2664,7 +2664,7 @@
             // Actualizar el texto del selector
             const selectedSizeText = document.getElementById('selected-size');
             const size = currentProduct.sizes[index];
-            selectedSizeText.textContent = `${size.label} - $${size.price} MXN`;
+            selectedSizeText.textContent = `${size.label} - ${size.price} MXN`;
 
             // Cerrar dropdown
             const menu = document.getElementById('size-dropdown-menu');
@@ -2719,7 +2719,7 @@
 
 
 
-                priceEl.textContent = `$${finalPrice.toFixed(2)} MXN`;
+                priceEl.textContent = `${finalPrice.toFixed(2)} MXN`;
             }
         }
 
@@ -3188,7 +3188,7 @@
                     <p class="related-product-description">${shortDescription}</p>
                     <div class="related-product-footer">
                         <div class="related-product-price">
-                            ${minPrice > 0 ? `Desde $${minPrice} MXN` : 'Consultar precio'}
+                            ${minPrice > 0 ? `Desde ${minPrice} MXN` : 'Consultar precio'}
                         </div>
                         <div class="related-product-features">
                             ${features}

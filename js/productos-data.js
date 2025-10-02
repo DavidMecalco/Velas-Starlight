@@ -376,51 +376,43 @@ const productosData = [
 
     },
     {
-        "id": 8,
-        "title": "Crema Facial Regeneradora",
+        "id": 8, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Exfoliante Antioxidante de Frutos Rojos", // 🍓 Título que evoca frescura y el beneficio clave (Antioxidante)
         "category": "Belleza",
-        "description": "Nuestra Crema Facial Regeneradora combina ingredientes naturales de la más alta calidad para brindar a tu piel la nutrición y regeneración que necesita. Formulada con extractos botánicos y aceites esenciales, esta crema proporciona hidratación profunda y ayuda a restaurar la elasticidad natural de la piel.",
-        "image": "../images/crema-facial.jpeg",
-        "featured": false,
+        "description": "Revitaliza tu piel con la dulce y potente acción de los frutos rojos. Este exfoliante de origen natural utiliza **microgránulos de azúcar (o sal)** para una renovación suave, mientras que los extractos de **fresa y arándano** infunden a tu piel antioxidantes y Vitamina C. La textura en gel se enjuaga fácilmente, dejando la piel increíblemente lisa, radiante y con un aroma a verano.", // Descripción enfocada en la sensación, el mecanismo de exfoliación y los ingredientes activos.
+        "image": "../images/gel-frutosrojos.jpeg", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 Ideal para destacar en la sección corporal
         "new": true,
         "bestseller": false,
         "available": true,
-        "type": "Origen Natural",
+        "type": "Origen Natural", // Fijo: "Origen Natural"
         "variants": [
-            "Piel Seca",
-            "Piel Grasa",
-            "Piel Mixta",
-            "Piel Sensible",
-            "Anti-edad"
+            "Fórmula de Azúcar (Exfoliación suave)",
+            "Fórmula de Sal Marina (Exfoliación profunda)"
         ],
         "sizes": [
             {
-                "label": "50 ml",
-                "price": 180
-            },
-            {
-                "label": "100 ml",
-                "price": 320
+                "label": "50 gr",
+                "price": 120
             }
         ],
-        "characteristics": [
-            "Ingredientes 100% naturales",
-            "Libre de parabenos y sulfatos",
-            "Hidratación profunda de 24 horas",
-            "Apta para todo tipo de piel"
+        "characteristics": [ // ⭐ Características clave
+            "Rico en antioxidantes y Vitamina C",
+            "Exfolia y promueve la renovación celular",
+            "Apto para todo el cuerpo",
+            "Fórmula vegana con emolientes naturales"
         ],
-        "care": [
-            "Aplicar sobre piel limpia y seca",
-            "Usar movimientos circulares suaves",
-            "Evitar el contorno de los ojos",
-            "Usar protector solar durante el día"
+        "care": [ // 🛡️ Instrucciones de uso
+            "Aplicar sobre la piel húmeda con movimientos circulares suaves, concentrándose en codos y rodillas.",
+            "Enjuagar abundantemente con agua tibia.",
+            "Usar 2 a 3 veces por semana.",
+            "Para mejores resultados, finalizar con una crema o aceite corporal hidratante."
         ],
         "ingredients": [
-            "Aceite de jojoba orgánico 25%",
-            "Extracto de aloe vera 20%",
-            "Manteca de karité 15%",
-            "Vitamina E natural 10%",
-            "Agua purificada y emulsificantes 30%"
+            "Microgránulos de azúcar refinada 45%",
+            "Extracto de Fresa y Arándano 20%",
+            "Aceite de Jojoba 10%",
+            "Emolientes y humectantes naturales 25%"
         ]
     },
     {
@@ -469,6 +461,168 @@ const productosData = [
             "Vitamina E 3%",
             "Extracto de té verde 2%",
             "Base acuosa estabilizada 75%"
+        ]
+    },
+    {
+        "id": 10, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Susurro de Mar", // 🐚 Título elegante y evocador
+        "category": "Vela",
+        "description": "Una pieza artesanal que captura la calma del océano. Modelada a mano con cera de soya natural, su forma de concha marina y su suave color rosa pálido la convierten en un objeto decorativo exquisito. Enciéndela para transformar cualquier espacio en un santuario costero, liberando una fragancia fresca y ligera que transporta a la orilla del mar.", // Descripción enfocada en la estética y la sensación
+        "image": "../images/vela-susurromar.png", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 La forma y el color la hacen ideal para destacar
+        "new": false, // 🆕 Perfecto para lanzar como novedad
+        "bestseller": false,
+        "available": true,
+        "type": "Parafina", // Cera de soya para una combustión limpia
+        "fragrances": [ // Opciones frescas y ligeras
+            "Flores Hawaianas",
+            "Coco",
+            "Menta",
+            "Sandalo"
+        ],
+        "sizes": [ // Por ser una vela de figura, se recomienda un solo tamaño/precio
+            {
+                "label": "150 gr",
+                "price": 100
+            }
+        ],
+        "characteristics": [ // ⭐ Características que resaltan su valor
+            "Diseño escultural único (Concha Pecten)",
+            "Cera de soya 100% biodegradable",
+            "Ideal como elemento decorativo",
+            "Aroma ligero que evoca tranquilidad"
+        ],
+        "care": [ // 🛡️ Cuidado especial para velas de figura
+            "Colocar siempre sobre una base o plato resistente al calor para recoger la cera.",
+            "Recortar mecha a 5mm antes de cada uso.",
+            "No quemar más de 2 horas seguidas.",
+            "Mantener lejos de corrientes de aire."
+        ],
+        "ingredients": [
+            "Cera de soya natural premium 90%",
+            "Fragancia de grado cosmético 8%",
+            "Colorante mineral natural 2%"
+        ]
+    },
+    {
+        "id": 11, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Jardín de Luz", // 🪴 Título que combina naturaleza y luz
+        "category": "Vela",
+        "description": "Una pequeña joya de diseño artesanal que rinde homenaje a la resistencia de la naturaleza. Elaborada con cera de parafina premium para un color vibrante y una fragancia potente, esta vela con forma de suculenta en maceta de barro es perfecta para decorar cualquier rincón de estilo rústico o minimalista. Un acento de color y aroma que nunca necesita riego.", // Descripción enfocada en el diseño, el material (parafina) y el estilo decorativo.
+        "image": "../images/vela-jardinluz.png", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 La originalidad la hace destacar
+        "new": true, // 🆕 Ideal como novedad
+        "bestseller": false,
+        "available": true,
+        "type": "Parafina", // Especificación: Parafina para color y aroma intenso
+        "fragrances": [ // Opciones terrosas o herbales que combinan con el diseño
+            "Sándalo",
+            "Menta",
+            "Manzana-Canela", // Un toque especiado
+            "Rosas Especiales"
+        ],
+        "sizes": [
+            {
+                "label": "80 gr",
+                "price": 180
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Diseño botánico realista (Suculenta)",
+            "Elaborada con cera de parafina de alta calidad",
+            "Maceta de barro artesanal reutilizable",
+            "Proyección de aroma potente y duradera"
+        ],
+        "care": [ // 🛡️ Cuidado para velas de figura y parafina
+            "Al primer uso, dejar encendida hasta que la cera se derrita uniformemente.",
+            "Recortar mecha a 5mm antes de cada encendido.",
+            "Mantener la cera libre de residuos y recortes de mecha.",
+            "No quemar más de 3 horas seguidas."
+        ],
+        "ingredients": [
+            "Cera de parafina refinada 90%",
+            "Aceites aromáticos de alta concentración 8%",
+            "Colorante mineral 2%"
+        ]
+    },
+    {
+        "id": 12, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Escultura del Poder", // 🖤 Título que evoca misterio y fuerza
+        "category": "Vela",
+        "description": "Una celebración de la forma femenina y el poder interior. Esta vela escultórica, elaborada con parafina premium para un acabado intenso en negro profundo, lleva un sutil toque de pan de oro que la convierte en una pieza de arte. Su fragancia es rica y embriagadora, perfecta para ceremonias personales, decoración audaz o para encender la intención.", // Descripción enfocada en el arte, el lujo y la intención.
+        "image": "../images/vela-diosa.jpeg", // 🖼️ Ruta de la imagen cargada
+        "featured": true, // 🌟 Pieza de declaración, ideal para destacar
+        "new": true,
+        "bestseller": false,
+        "available": true,
+        "type": "Parafina", // Especificación: Parafina para color y detalle
+        "fragrances": [ // Opciones ricas, sensuales y misteriosas
+            "Sándalo",
+            "Vainilla",
+            "Rosas Especiales",
+            "Canela"
+        ],
+        "sizes": [
+            {
+                "label": "180 gr",
+                "price": 80
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Diseño escultórico moderno ('Body Positive')",
+            "Acabado con sutil pan de oro decorativo",
+            "Cera de parafina de alta calidad para detalles nítidos",
+            "Aroma intenso, ideal para ambientes grandes"
+        ],
+        "care": [ // 🛡️ Cuidado especial para velas de figura
+            "Colocar siempre sobre una base plana y resistente al calor. La cera puede derramarse.",
+            "Recortar mecha a 5mm antes de cada encendido.",
+            "Quemar en sesiones cortas (máximo 1-2 horas) si se busca preservar la forma.",
+            "Mantener alejada de los niños y mascotas."
+        ],
+        "ingredients": [
+            "Cera de parafina de alta pureza 90%",
+            "Aceites esenciales o fragancia concentrada 8%",
+            "Pigmento negro mineral y pan de oro 2%"
+        ]
+    },
+    {
+        "id": 13, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Mascarilla Piña Tropical Radiante", // 🍍 Título elegante que resalta el ingrediente activo (Enzyme/Bromelina)
+        "category": "Belleza",
+        "description": "Despierta la piel apagada con el poder de la enzima de Piña (Bromelina), un exfoliante natural que disuelve suavemente las células muertas. Esta mascarilla cremosa, de origen natural, ilumina, unifica el tono y deja una sensación de frescura inmediata. Ideal para recuperar el resplandor y preparar la piel para la hidratación. El secreto de un cutis vibrante y liso.", // Descripción enfocada en el beneficio (luminosidad, exfoliación enzimática) y la sensación.
+        "image": "../images/mascarilla-pina.jpeg", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 Producto con gran potencial de venta
+        "new": false,
+        "bestseller": true,
+        "available": true,
+        "type": "Origen Natural", // Fijo: "Origen Natural"
+        "variants": [ // Si no hay variantes, se puede dejar el array vacío o especificar un solo tipo
+            "Para todo tipo de piel"
+        ],
+        "sizes": [
+            {
+                "label": "50 gr",
+                "price": 110 // Precio acorde a un tratamiento facial
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Exfoliación enzimática suave (sin gránulos)",
+            "Rica en Vitamina C y antioxidantes",
+            "Aroma tropical natural y energizante",
+            "Fórmula vegana y 95% de origen vegetal"
+        ],
+        "care": [ // 🛡️ Instrucciones de uso para una mascarilla enzimática
+            "Aplicar una capa uniforme sobre el rostro limpio y seco, evitando el área de los ojos.",
+            "Dejar actuar de 10 a 15 minutos.",
+            "Enjuagar con agua tibia y secar a toques.",
+            "Usar 1 a 2 veces por semana para resultados óptimos."
+        ],
+        "ingredients": [
+            "Extracto de Piña (Ananas comosus) 20%",
+            "Glicerina vegetal 15%",
+            "Arcilla Rosa (Kaolin) 10%",
+            "Aceites hidratantes y emolientes 55%"
         ]
     }
 ];
