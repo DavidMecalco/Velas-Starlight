@@ -8,14 +8,68 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description" id="page-description" content="Descubre nuestros productos artesanales únicos">
-    <meta name="keywords" content="velas artesanales, productos belleza, soya, parafina, fragancias naturales">
+    <meta name="keywords" id="page-keywords"
+        content="velas artesanales, productos belleza, soya, parafina, fragancias naturales">
     <meta name="robots" content="index, follow">
+    <meta name="author" content="Velas Starlight">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" id="canonical-url" href="">
 
     <!-- Open Graph -->
     <meta property="og:title" id="og-title" content="Producto | Velas Starlight">
     <meta property="og:description" id="og-description" content="Descubre nuestros productos artesanales únicos">
     <meta property="og:image" id="og-image" content="">
     <meta property="og:url" id="og-url" content="">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Velas Starlight">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="Producto | Velas Starlight">
+    <meta name="twitter:description" id="twitter-description" content="Descubre nuestros productos artesanales únicos">
+    <meta name="twitter:image" id="twitter-image" content="">
+    <meta name="twitter:site" content="@VelasStarlight">
+
+    <!-- Product Meta Tags -->
+    <meta property="product:brand" content="Velas Starlight">
+    <meta property="product:availability" id="product-availability" content="in stock">
+    <meta property="product:condition" content="new">
+    <meta property="product:price:amount" id="product-price-meta" content="">
+    <meta property="product:price:currency" content="MXN">
+    <meta property="product:category" id="product-category-meta" content="">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#2D3E33">
+    <meta name="msapplication-TileColor" content="#2D3E33">
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="MX">
+    <meta name="geo.country" content="México">
+    <meta name="geo.placename" content="México">
+
+    <!-- Business Info -->
+    <meta name="rating" content="5">
+    <meta name="distribution" content="global">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Mobile Optimization -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Velas Starlight">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -63,6 +117,86 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" id="product-structured-data">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Producto | Velas Starlight",
+        "description": "Descubre nuestros productos artesanales únicos",
+        "image": "",
+        "brand": {
+            "@type": "Brand",
+            "name": "Velas Starlight"
+        },
+        "manufacturer": {
+            "@type": "Organization",
+            "name": "Velas Starlight"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "",
+            "priceCurrency": "MXN",
+            "price": "0",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "Velas Starlight"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "1"
+        }
+    }
+    </script>
+
+    <!-- Organization Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Velas Starlight",
+        "url": "https://velasstarlight.com",
+        "logo": "https://velasstarlight.com/images/logo.png",
+        "description": "Velas artesanales y productos de belleza natural de alta calidad",
+        "foundingDate": "2020",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+52-55-6468-2112",
+            "contactType": "customer service",
+            "availableLanguage": "Spanish"
+        },
+        "sameAs": [
+            "https://www.facebook.com/VelasStarlight",
+            "https://www.instagram.com/VelasStarlight",
+            "https://wa.me/525564682112"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "MX",
+            "addressRegion": "México"
+        }
+    }
+    </script>
+
+    <!-- Website Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Velas Starlight",
+        "url": "https://velasstarlight.com",
+        "description": "Velas artesanales y productos de belleza natural",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://velasstarlight.com/pages/productos.html?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 
     <!-- Estilos Premium -->
     <style>
@@ -1034,15 +1168,24 @@
             animation: detailCardFadeIn 0.8s ease-out forwards;
         }
 
-        .detail-card:nth-child(1) { animation-delay: 0.2s; }
-        .detail-card:nth-child(2) { animation-delay: 0.4s; }
-        .detail-card:nth-child(3) { animation-delay: 0.6s; }
+        .detail-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .detail-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .detail-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
         @keyframes detailCardFadeIn {
             from {
                 opacity: 0;
                 transform: translateY(40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1112,12 +1255,18 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 60%, 100% {
+
+            0%,
+            20%,
+            60%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-10px);
             }
+
             80% {
                 transform: translateY(-5px);
             }
@@ -1128,6 +1277,7 @@
                 opacity: 1;
                 transform: translateX(0);
             }
+
             to {
                 opacity: 0;
                 transform: translateX(100%);
@@ -1148,17 +1298,19 @@
             color: white !important;
         }
 
-        /* Loading State Premium para Producto Detalle */
+        /* Loading State Premium para Producto Detalle - Vela Encendida */
         .product-loading-state {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 600px;
-            background: linear-gradient(135deg, var(--warm) 0%, #F5F3F0 100%);
+            background: linear-gradient(135deg, #FEFEFE 0%, #F8F6F3 50%, #FEFEFE 100%);
             border-radius: var(--radius-lg);
             margin: 2rem 0;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.08);
         }
 
         .product-loading-state::before {
@@ -1168,7 +1320,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23A3B18A" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></g></svg>');
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -1178,91 +1330,293 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2.5rem;
+            gap: 3rem;
             text-align: center;
         }
 
-        .product-loading-spinner {
-            width: 5rem;
-            height: 5rem;
+        /* Vela Animada */
+        .candle-container {
             position: relative;
+            width: 80px;
+            height: 200px;
         }
 
-        .product-loading-spinner::before {
-            content: '';
+        /* Cuerpo de la vela */
+        .candle-body {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 5px solid transparent;
-            border-top: 5px solid var(--secondary);
-            border-right: 5px solid var(--accent);
-            border-radius: 50%;
-            animation: productSpin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 160px;
+            background: linear-gradient(135deg, #FEFEFE 0%, #F5F3F0 50%, #EDE6DA 100%);
+            border-radius: 8px 8px 4px 4px;
+            box-shadow:
+                inset -8px 0 16px rgba(212, 175, 55, 0.1),
+                inset 8px 0 16px rgba(255, 255, 255, 0.8),
+                0 8px 32px rgba(212, 175, 55, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .product-loading-spinner::after {
+        /* Mecha */
+        .candle-wick {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 15px;
+            background: linear-gradient(to bottom, #8B4513 0%, #654321 100%);
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        /* Llama */
+        .candle-flame {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 30px;
+            background: radial-gradient(ellipse at center bottom,
+                    #FFD700 0%,
+                    #FFA500 30%,
+                    #FF6B35 60%,
+                    #FF4500 80%,
+                    rgba(255, 69, 0, 0.8) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flameFlicker 2s ease-in-out infinite alternate;
+            z-index: 3;
+        }
+
+        /* Resplandor de la llama */
+        .candle-glow {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle,
+                    rgba(255, 215, 0, 0.4) 0%,
+                    rgba(255, 165, 0, 0.2) 30%,
+                    rgba(255, 69, 0, 0.1) 60%,
+                    transparent 100%);
+            border-radius: 50%;
+            animation: glowPulse 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        /* Cera derretida */
+        .candle-wax {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 8px;
+            background: linear-gradient(135deg, #FEFEFE 0%, #F5F3F0 100%);
+            border-radius: 50%;
+            opacity: 0.9;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.1);
+        }
+
+        .candle-wax::before {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            width: calc(100% - 16px);
-            height: calc(100% - 16px);
-            border: 4px solid transparent;
-            border-bottom: 4px solid #A3B18A;
-            border-left: 4px solid #3A5A40;
-            border-radius: 50%;
-            animation: productSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
+            top: 2px;
+            left: 5px;
+            width: 4px;
+            height: 12px;
+            background: linear-gradient(to bottom, #FEFEFE, rgba(245, 243, 240, 0.3));
+            border-radius: 2px;
+            animation: waxDrip 4s ease-in-out infinite;
+            box-shadow: 1px 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .candle-wax::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            right: 8px;
+            width: 3px;
+            height: 8px;
+            background: linear-gradient(to bottom, #FEFEFE, rgba(245, 243, 240, 0.3));
+            border-radius: 2px;
+            animation: waxDrip 4s ease-in-out infinite 1s;
+            box-shadow: 1px 0 3px rgba(212, 175, 55, 0.1);
         }
 
         .product-loading-text {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 800;
             color: var(--secondary);
             font-family: 'Playfair Display', serif;
-            animation: productPulse 2.5s ease-in-out infinite;
+            letter-spacing: -0.02em;
+            animation: textGlow 3s ease-in-out infinite;
+            text-shadow: 0 2px 8px rgba(45, 62, 51, 0.2);
         }
 
-        .product-loading-dots {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
-            justify-content: center;
-        }
-
-        .product-loading-dot {
-            width: 1rem;
-            height: 1rem;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 50%;
-            animation: productBounce 1.6s ease-in-out infinite both;
-            box-shadow: 0 2px 8px rgba(45, 62, 51, 0.3);
-        }
-
-        .product-loading-dot:nth-child(1) { animation-delay: -0.32s; }
-        .product-loading-dot:nth-child(2) { animation-delay: -0.16s; }
-        .product-loading-dot:nth-child(3) { animation-delay: 0s; }
-
-        @keyframes productSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes productPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
-        }
-
-        @keyframes productBounce {
-            0%, 80%, 100% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-            40% {
-                transform: scale(1.2);
+        /* Animaciones */
+        @keyframes flameFlicker {
+            0% {
+                transform: translateX(-50%) scale(1) rotate(-1deg);
                 opacity: 1;
             }
+
+            25% {
+                transform: translateX(-50%) scale(1.05) rotate(1deg);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: translateX(-50%) scale(0.95) rotate(-0.5deg);
+                opacity: 1;
+            }
+
+            75% {
+                transform: translateX(-50%) scale(1.02) rotate(0.5deg);
+                opacity: 0.95;
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1) rotate(-1deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        @keyframes waxDrip {
+
+            0%,
+            90% {
+                height: 8px;
+                opacity: 0.8;
+            }
+
+            95% {
+                height: 15px;
+                opacity: 0.6;
+            }
+
+            100% {
+                height: 8px;
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes textGlow {
+
+            0%,
+            100% {
+                text-shadow: 0 2px 8px rgba(45, 62, 51, 0.2);
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                text-shadow: 0 4px 16px rgba(45, 62, 51, 0.3), 0 0 20px rgba(212, 175, 55, 0.2);
+                opacity: 0.95;
+                transform: scale(1.02);
+            }
+        }
+
+        /* Partículas de luz flotantes */
+        .candle-container::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 20%;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #FFD700, transparent);
+            border-radius: 50%;
+            animation: floatParticle1 4s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .candle-container::after {
+            content: '';
+            position: absolute;
+            top: -45px;
+            right: 25%;
+            width: 2px;
+            height: 2px;
+            background: radial-gradient(circle, #FFA500, transparent);
+            border-radius: 50%;
+            animation: floatParticle2 3s ease-in-out infinite 1s;
+            opacity: 0.6;
+        }
+
+        @keyframes floatParticle1 {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(5px);
+                opacity: 0.4;
+            }
+
+            90% {
+                opacity: 0.1;
+            }
+        }
+
+        @keyframes floatParticle2 {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(-25px) translateX(-8px);
+                opacity: 0.3;
+            }
+
+            85% {
+                opacity: 0.1;
+            }
+        }
+
+        /* Sombra suave de la vela */
+        .candle-body::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 15px;
+            background: radial-gradient(ellipse, rgba(212, 175, 55, 0.15) 0%, rgba(45, 62, 51, 0.1) 40%, transparent 70%);
+            border-radius: 50%;
         }
 
         /* Animaciones de entrada para el contenido del producto */
@@ -1289,6 +1643,7 @@
                 opacity: 0;
                 transform: translateY(40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1300,6 +1655,7 @@
                 opacity: 0;
                 transform: translateX(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1311,6 +1667,7 @@
                 opacity: 0;
                 transform: translateX(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1322,6 +1679,7 @@
                 opacity: 1;
                 transform: scale(1);
             }
+
             to {
                 opacity: 0;
                 transform: scale(0.95);
@@ -1350,22 +1708,35 @@
                 margin: 1rem 0;
             }
 
-            .product-loading-spinner {
-                width: 4rem;
-                height: 4rem;
+            .candle-container {
+                width: 60px;
+                height: 150px;
+            }
+
+            .candle-body {
+                width: 45px;
+                height: 120px;
+            }
+
+            .candle-flame {
+                width: 15px;
+                height: 22px;
+                top: -28px;
+            }
+
+            .candle-glow {
+                width: 60px;
+                height: 60px;
+                top: -40px;
+            }
+
+            .candle-wax {
+                width: 48px;
+                height: 6px;
             }
 
             .product-loading-text {
                 font-size: 1.25rem;
-            }
-
-            .product-loading-dots {
-                gap: 0.5rem;
-            }
-
-            .product-loading-dot {
-                width: 0.75rem;
-                height: 0.75rem;
             }
         }
 
@@ -1866,14 +2237,16 @@
             <!-- Loading State -->
             <div id="product-loading-state" class="product-loading-state">
                 <div class="product-loading-container">
-                    <div class="product-loading-spinner"></div>
-                    <div class="product-loading-text">
-                        Cargando producto...
-                        <div class="product-loading-dots">
-                            <div class="product-loading-dot"></div>
-                            <div class="product-loading-dot"></div>
-                            <div class="product-loading-dot"></div>
+                    <div class="candle-container">
+                        <div class="candle-glow"></div>
+                        <div class="candle-body">
+                            <div class="candle-wax"></div>
+                            <div class="candle-wick"></div>
+                            <div class="candle-flame"></div>
                         </div>
+                    </div>
+                    <div class="product-loading-text">
+                        Encendiendo la experiencia...
                     </div>
                 </div>
             </div>
@@ -2345,9 +2718,159 @@
             }, 100); // Esperar 100ms para que se carguen los datos
         }
 
+        // Actualizar SEO dinámicamente
+        function updateSEO(product) {
+            const currentUrl = window.location.href;
+            const baseUrl = window.location.origin;
+            const productUrl = currentUrl;
+            const imageUrl = product.image.startsWith('http') ? product.image : baseUrl + '/' + product.image.replace('../', '');
+
+            // Obtener precio mínimo
+            let minPrice = 0;
+            if (product.sizes && product.sizes.length > 0) {
+                minPrice = Math.min(...product.sizes.map(size => size.price));
+            }
+
+            // Crear descripción SEO optimizada
+            const seoDescription = `${product.title} - ${product.description.substring(0, 150)}... Desde ${minPrice} MXN. Velas artesanales de alta calidad en Velas Starlight.`;
+
+            // Crear keywords dinámicas
+            const keywords = [
+                product.title.toLowerCase(),
+                product.category.toLowerCase(),
+                product.type ? product.type.toLowerCase() : '',
+                'velas artesanales',
+                'productos belleza',
+                'méxico',
+                'starlight'
+            ].filter(Boolean).join(', ');
+
+            // Actualizar meta tags básicos
+            document.getElementById('page-title').textContent = `${product.title} | Velas Starlight`;
+            document.getElementById('page-description').setAttribute('content', seoDescription);
+            document.getElementById('page-keywords').setAttribute('content', keywords);
+
+            // Actualizar canonical URL
+            document.getElementById('canonical-url').setAttribute('href', productUrl);
+
+            // Actualizar Open Graph
+            document.getElementById('og-title').setAttribute('content', `${product.title} | Velas Starlight`);
+            document.getElementById('og-description').setAttribute('content', seoDescription);
+            document.getElementById('og-image').setAttribute('content', imageUrl);
+            document.getElementById('og-url').setAttribute('content', productUrl);
+
+            // Actualizar Twitter Cards
+            document.getElementById('twitter-title').setAttribute('content', `${product.title} | Velas Starlight`);
+            document.getElementById('twitter-description').setAttribute('content', seoDescription);
+            document.getElementById('twitter-image').setAttribute('content', imageUrl);
+
+            // Actualizar meta tags de producto
+            document.getElementById('product-availability').setAttribute('content', product.available ? 'in stock' : 'out of stock');
+            document.getElementById('product-price-meta').setAttribute('content', minPrice.toString());
+            document.getElementById('product-category-meta').setAttribute('content', product.category);
+
+            // Actualizar datos estructurados JSON-LD
+            const structuredData = {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": product.title,
+                "description": product.description,
+                "image": imageUrl,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Velas Starlight"
+                },
+                "manufacturer": {
+                    "@type": "Organization",
+                    "name": "Velas Starlight"
+                },
+                "category": product.category,
+                "offers": {
+                    "@type": "Offer",
+                    "url": productUrl,
+                    "priceCurrency": "MXN",
+                    "price": minPrice.toString(),
+                    "availability": product.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                    "seller": {
+                        "@type": "Organization",
+                        "name": "Velas Starlight",
+                        "url": baseUrl
+                    }
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "reviewCount": "1"
+                }
+            };
+
+            // Si el producto tiene características, agregarlas
+            if (product.characteristics && product.characteristics.length > 0) {
+                structuredData.additionalProperty = product.characteristics.map(char => ({
+                    "@type": "PropertyValue",
+                    "name": "Característica",
+                    "value": char
+                }));
+            }
+
+            // Si el producto tiene fragancias, agregarlas
+            if (product.fragrances && product.fragrances.length > 0) {
+                structuredData.additionalProperty = structuredData.additionalProperty || [];
+                structuredData.additionalProperty.push({
+                    "@type": "PropertyValue",
+                    "name": "Fragancias disponibles",
+                    "value": product.fragrances.join(', ')
+                });
+            }
+
+            // Actualizar el script de datos estructurados
+            document.getElementById('product-structured-data').textContent = JSON.stringify(structuredData, null, 2);
+
+            // Agregar breadcrumbs estructurados
+            const breadcrumbData = {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Inicio",
+                        "item": baseUrl
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Productos",
+                        "item": baseUrl + "/pages/productos.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": product.title,
+                        "item": productUrl
+                    }
+                ]
+            };
+
+            // Crear o actualizar script de breadcrumbs
+            let breadcrumbScript = document.getElementById('breadcrumb-structured-data');
+            if (!breadcrumbScript) {
+                breadcrumbScript = document.createElement('script');
+                breadcrumbScript.type = 'application/ld+json';
+                breadcrumbScript.id = 'breadcrumb-structured-data';
+                document.head.appendChild(breadcrumbScript);
+            }
+            breadcrumbScript.textContent = JSON.stringify(breadcrumbData, null, 2);
+
+            console.log('SEO actualizado para:', product.title);
+        }
+
         // Cargar datos del producto
         function loadProductData(product) {
             console.log('Cargando datos del producto:', product.title);
+
+            // Actualizar SEO dinámicamente
+            updateSEO(product);
 
             // Actualizar título de la página
             document.title = `${product.title} | Velas Starlight`;
@@ -2793,7 +3316,7 @@
             updateCartCount();
 
             // Mostrar confirmación con información detallada
-            const message = existingIndex >= 0 
+            const message = existingIndex >= 0
                 ? `${cartItem.title} (${cartItem.size}) - Cantidad actualizada en el carrito`
                 : `${cartItem.title} (${cartItem.size}) - Agregado al carrito exitosamente`;
             showCartToast(message, cartItem.quantity, cart.reduce((sum, item) => sum + item.quantity, 0));
@@ -2999,7 +3522,7 @@
             // Detectar si es un mensaje de carrito para usar ícono especial
             const isCartMessage = message.includes('carrito');
             const iconToUse = isCartMessage && type === 'success' ? 'fa-shopping-cart' : (icons[type] || icons.info);
-            
+
             toast.innerHTML = `
                 <i class="fa ${iconToUse}" style="font-size: 1.25rem;"></i>
                 <div style="flex: 1;">
@@ -3078,11 +3601,56 @@
             }, 5000);
         }
 
+        // Generar URL amigable para SEO
+        function generateSEOUrl(product) {
+            const baseUrl = window.location.origin + window.location.pathname;
+            const slug = product.title
+                .toLowerCase()
+                .replace(/[áàäâ]/g, 'a')
+                .replace(/[éèëê]/g, 'e')
+                .replace(/[íìïî]/g, 'i')
+                .replace(/[óòöô]/g, 'o')
+                .replace(/[úùüû]/g, 'u')
+                .replace(/[ñ]/g, 'n')
+                .replace(/[^a-z0-9]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+
+            return `${baseUrl}?producto=${slug}&id=${product.id}`;
+        }
+
+        // Mejorar función de compartir con SEO
+        function shareProductSEO(product) {
+            const productUrl = generateSEOUrl(product);
+            const imageUrl = product.image.startsWith('http') ? product.image : window.location.origin + '/' + product.image.replace('../', '');
+
+            let minPrice = 0;
+            if (product.sizes && product.sizes.length > 0) {
+                minPrice = Math.min(...product.sizes.map(size => size.price));
+            }
+
+            const shareData = {
+                title: `${product.title} | Velas Starlight`,
+                text: `${product.description.substring(0, 100)}... Desde ${minPrice} MXN`,
+                url: productUrl
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log('Producto compartido exitosamente'))
+                    .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback para navegadores que no soportan Web Share API
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`¡Mira este producto! ${shareData.title}\n\n${shareData.text}\n\n${shareData.url}`)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        }
+
         // Funciones de Loading State
         function showProductLoading() {
             const loadingState = document.getElementById('product-loading-state');
             const productContent = document.getElementById('product-content');
-            
+
             if (loadingState) {
                 loadingState.style.display = 'flex';
             }
@@ -3094,14 +3662,14 @@
         function hideProductLoading() {
             const loadingState = document.getElementById('product-loading-state');
             const productContent = document.getElementById('product-content');
-            
+
             if (loadingState) {
                 loadingState.style.animation = 'fadeOut 0.5s ease-out forwards';
                 setTimeout(() => {
                     loadingState.style.display = 'none';
                 }, 500);
             }
-            
+
             if (productContent) {
                 productContent.classList.remove('hidden');
                 // Trigger animations

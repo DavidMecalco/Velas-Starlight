@@ -624,7 +624,327 @@ const productosData = [
             "Arcilla Rosa (Kaolin) 10%",
             "Aceites hidratantes y emolientes 55%"
         ]
+    }, {
+        "id": 14, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Santuario de Lavanda", // Título que resalta el efecto y el ingrediente
+        "category": "Vela",
+        "description": "El ritual esencial para la relajación profunda. Nuestra vela clásica combina cera de soya natural, de quema limpia y lenta, con el aceite esencial de **Lavanda** pura. Diseñada para disolver el estrés y preparar tu mente para el descanso. El frasco de cristal y la elegante tapa metálica preservan el aroma y decoran cualquier espacio con sofisticación.", // Descripción enfocada en el bienestar, el ingrediente terapéutico y el diseño premium.
+        "image": "../images/vela-lavanda-clasica.png", // 🖼️ Ruta de la imagen cargada
+        "featured": true, // 🌟 Clásico, ideal para destacar en la portada
+        "new": false,
+        "bestseller": true, // 🏆 Perfecto para catalogar como Bestseller
+        "available": true,
+        "type": "Soya", // Especificación: Cera de Soya
+        "fragrances": [ // Opciones clásicas y relajantes
+            "Lavanda",
+            "Vainilla",
+            "Sándalo"
+        ],
+        "sizes": [
+            {
+                "label": "50 gr",
+                "price": 75
+            }
+        ],
+        "characteristics": [ // ⭐ Características que resaltan su valor y calidad
+            "Cera 100% de soya de combustión limpia",
+            "Aroma terapéutico de Lavanda natural",
+            "Hasta 35 horas de quema lenta",
+            "Frasco de cristal reutilizable con tapa de lujo"
+        ],
+        "care": [ // 🛡️ Instrucciones de cuidado
+            "Recortar mecha a 5mm antes de cada encendido.",
+            "Permitir que la cera derretida llegue al borde del frasco en el primer uso (para evitar túneles).",
+            "No quemar más de 4 horas seguidas.",
+            "Mantener lejos de materiales inflamables y fuera del alcance de niños y mascotas."
+        ],
+        "ingredients": [
+            "Cera de soya natural premium 88%",
+            "Aceite esencial de Lavanda 10%",
+            "Mecha de algodón orgánico 2%"
+        ]
+    },
+    {
+        "id": 18, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Mascarilla Carbón Detox", // 🌑 Título que sugiere misterio y desintoxicación
+        "category": "Belleza",
+        "description": "Una fórmula magistral para la piel que necesita un reinicio. Nuestro Velo de Medianoche utiliza el poder del **Carbón Activado** para atraer y absorber impurezas, toxinas y exceso de grasa de los poros. Formulada con arcillas purificantes, esta mascarilla en polvo se activa con agua, dejando la piel visiblemente más limpia, matificada y preparada para la hidratación. El ritual semanal esencial para un rostro fresco.", // Descripción enfocada en el beneficio (desintoxicación, limpieza profunda) y el uso (polvo que se activa con agua).
+        "image": "../images/mascarilla-carbon.jpg", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 Ideal para la línea de tratamientos intensivos
+        "new": true,
+        "bestseller": true,
+        "available": true,
+        "type": "Origen Natural", // Fijo: "Origen Natural"
+        "variants": [
+            "Piel Mixta a Grasa" // Orientar a tipos de piel que más se benefician
+        ],
+        "sizes": [
+            {
+                "label": "50 gr (Polvo Activo)",
+                "price": 150 // Precio acorde a un tratamiento facial de lujo
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Poderosa acción desintoxicante",
+            "Controla el exceso de sebo (efecto matificante)",
+            "Minimiza la apariencia de poros",
+            "Fórmula pura, sin conservantes (se activa al momento de usar)"
+        ],
+        "care": [ // 🛡️ Instrucciones de uso para una mascarilla en polvo
+            "Mezclar 1 cucharadita de polvo con unas gotas de agua o hidrolato hasta formar una pasta suave.",
+            "Aplicar sobre el rostro, evitando el área de los ojos.",
+            "Dejar actuar de 8 a 10 minutos (no dejar secar por completo).",
+            "Enjuagar con agua tibia."
+        ],
+        "ingredients": [
+            "Carbón Activado de coco 30%",
+            "Arcilla Bentonita y Caolín 50%",
+            "Polvo de raíz de Malvavisco (Althaea officinalis) 10%",
+            "Extractos botánicos secos 10%"
+        ]
+    },
+    {
+        "id": 19, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Cosecha Silvestre: Frutos del Bosque", // Título que evoca frescura y naturaleza
+        "category": "Vela",
+        "description": "Una explosión de aroma dulce y ácido que inunda tu espacio con vitalidad. Formulada con cera de **parafina** de alta calidad, esta vela asegura una **potente y rápida difusión** de la fragancia. Su envase con cierre hermético no solo es decorativo, sino que garantiza que el aroma se conserve intacto hasta el último encendido. Ideal para energizar tu hogar.", // Descripción enfocada en la intensidad del aroma (por ser parafina) y el beneficio (vitalidad).
+        "image": "../images/frutos-bosque.png", // 🖼️ Ruta de la imagen cargada
+        "featured": false,
+        "new": true,
+        "bestseller": false,
+        "available": true,
+        "type": "Parafina", // Especificación: Cera de Parafina
+        "fragrances": [
+            "Frutos Rojos",
+            "Fresa",
+            "Cereza"
+        ],
+        "sizes": [
+            {
+                "label": "80 gr (Jarra con Cierre)",
+                "price": 140
+            }
+        ],
+        "characteristics": [ // ⭐ Características que resaltan su valor
+            "Proyección de aroma fuerte e inmediata",
+            "Aroma dulce y energizante de Frutos Rojos",
+            "Envase de cristal estilo vintage con cierre hermético",
+            "Excelente relación calidad-precio"
+        ],
+        "care": [ // 🛡️ Instrucciones de cuidado
+            "Recortar mecha a 5mm antes de cada encendido.",
+            "No quemar más de 3 horas seguidas para evitar el sobrecalentamiento del frasco.",
+            "Mantener el frasco abierto durante la quema."
+        ],
+        "ingredients": [
+            "Cera de parafina refinada 90%",
+            "Aceites aromáticos concentrados de Frutos Rojos 8%",
+            "Colorante mineral y aditivos 2%"
+        ]
+    },
+    {
+        "id": 20, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Minino de Ofrenda: Vela Catrina Artesanal", // Título que une el elemento (gato) con la tradición (ofrenda/catrina)
+        "category": "Vela",
+        "description": "Una pieza de arte única para honrar a quienes ya no están. Esta vela escultórica, con forma de gato sentado y decorada a mano con el estilo vibrante de la calavera de azúcar, es el acento perfecto para tu ofrenda o decoración de temporada. Fabricada con **parafina** para capturar todos sus detalles, enciende esta flama para dar la bienvenida a las almas con calidez y celebración.", // Descripción enfocada en el uso tradicional (ofrenda), el arte y la celebración.
+        "image": "../images/vela-gato.png", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 Pieza de temporada, ideal para destacar durante el otoño
+        "new": true,
+        "bestseller": true,
+        "available": true,
+        "type": "Parafina", // Especificación: Parafina para color y detalles artísticos
+        "fragrances": [ // Opciones que evocan tradición, tierra y festividad
+            "Canela",
+            "Manzana-Canela",
+            "Copal (si lo manejas, si no, usar Sándalo)",
+            "Chocolate (si lo manejas)"
+        ],
+        "sizes": [
+            {
+                "label": "120 gr",
+                "price": 85
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Diseño escultural temático (Día de Muertos)",
+            "Decorada y pintada artesanalmente",
+            "Ideal como elemento central de la ofrenda",
+            "Aroma cálido y especiado de temporada"
+        ],
+        "care": [ // 🛡️ Cuidado especial para velas de figura y decoración
+            "Colocar sobre una base resistente al calor para recoger la cera.",
+            "Si se quema, la cera se derretirá de forma irregular debido a su forma.",
+            "Guardar en un lugar fresco para preservar los colores y la pintura.",
+            "Es un artículo principalmente decorativo."
+        ],
+        "ingredients": [
+            "Cera de parafina refinada 95%",
+            "Aceites aromáticos (Especias) 4%",
+            "Pintura no tóxica y pigmentos de color 1%"
+        ]
+    },
+    {
+        "id": 21, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Fantasma y Calabaza de Travesuras", // 👻 Título que evoca la festividad y el diseño dual
+        "category": "Vela",
+        "description": "¡Añade un toque lúdico y festivo a tu decoración de otoño! Esta encantadora vela combina la clásica calabaza de Halloween con un fantasma juguetón, capturando la alegría de la temporada. Fabricada con **parafina** para un color vibrante y detalles precisos, enciende esta pieza para crear un ambiente divertido y misterioso, perfecto para tus fiestas de Noche de Brujas.", // Descripción enfocada en la decoración, la festividad y el espíritu lúdico.
+        "image": "../images/vela-halloween-fantasma.png", // 🖼️ Ruta de la imagen cargada
+        "featured": true, // 🌟 Pieza de temporada, ideal para destacar en octubre
+        "new": true,
+        "bestseller": false,
+        "available": true,
+        "type": "Parafina", // Especificación: Parafina para detalle artístico
+        "fragrances": [ // Opciones que evocan el otoño, dulces o especias
+            "Manzana-Canela",
+            "Vainilla",
+            "Canela",
+            "Frutos Rojos"
+        ],
+        "sizes": [
+            {
+                "label": "90 gr",
+                "price": 70
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Diseño temático (Halloween / Otoño)",
+            "Colores vibrantes y detalles esculpidos a mano",
+            "Ideal como centro de mesa o acento decorativo",
+            "Aroma acogedor y especiado de temporada"
+        ],
+        "care": [ // 🛡️ Cuidado especial para velas de figura
+            "Colocar siempre sobre una superficie plana y resistente al calor.",
+            "La forma puede alterarse al quemarse; es un artículo principalmente decorativo.",
+            "Recortar mecha a 5mm antes de encender por primera vez.",
+            "Mantener lejos de corrientes de aire y fuera del alcance de niños."
+        ],
+        "ingredients": [
+            "Cera de parafina de alta calidad 95%",
+            "Aceites aromáticos (Especias y Vainilla) 4%",
+            "Pigmentos de color 1%"
+        ]
+    },
+    {
+        "id": 22, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Jack Calavera: Calavera Festiva", // 💀 Título que resalta la expresión y la temática
+        "category": "Vela",
+        "description": "Una calavera artística que celebra la alegría de la temporada. Con un diseño suave y una sonrisa inconfundible, esta vela de **parafina** es el toque de diseño que tu decoración de Halloween o Día de Muertos necesita. Su acabado liso y sus detalles en color negro intenso le dan un aire sofisticado y lúdico a la vez. ¡Enciende la celebración!", // Descripción enfocada en el diseño, la expresión y el uso decorativo.
+        "image": "../images/vela-calavera-sonriente.png", // 🖼️ Ruta de la imagen cargada
+        "featured": false, // 🌟 Pieza de temporada, ideal para destacar
+        "new": true,
+        "bestseller": false,
+        "available": true,
+        "type": "Parafina", // Especificación: Parafina para detalle y acabado liso
+        "fragrances": [ // Opciones que evocan festividad y calidez
+            "Manzana-Canela",
+            "Canela",
+            "Vainilla",
+            "Sándalo"
+        ],
+        "sizes": [
+            {
+                "label": "110 gr",
+                "price": 110
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Diseño minimalista y expresivo (Calavera)",
+            "Ideal para decoración temática de otoño/invierno",
+            "Cera de parafina de alta calidad para un acabado impecable",
+            "Aroma cálido y acogedor"
+        ],
+        "care": [ // 🛡️ Cuidado especial para velas de figura
+            "Colocar siempre sobre una base plana y resistente al calor. La cera puede derramarse.",
+            "Si se quema, la forma se alterará; se recomienda como artículo principalmente decorativo.",
+            "Recortar mecha a 5mm antes de encender por primera vez.",
+            "Mantener lejos de fuentes de calor directo."
+        ],
+        "ingredients": [
+            "Cera de parafina refinada 90%",
+            "Aceites aromáticos concentrados 8%",
+            "Pigmentos de color negro y blanco 2%"
+        ]
+    },
+    {
+        "id": 24, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Esencia Botánica: Pastilla de Rosas y Especias", // Título que resalta el uso (esencia) y los elementos decorativos
+        "category": "Vela", // Se clasifica en velas por su uso aromático (pero es sin flama)
+        "description": "Una tablilla aromática decorativa infundida con fragancias y embellecida con elementos botánicos, como pétalos secos y una flor de cera. Perfecta para aromatizar espacios pequeños (armarios, cajones o baños) sin necesidad de encender una flama. Elaborada con parafina de alta concentración, libera un aroma sutil y continuo que perdura por semanas. También es ideal como detalle de regalo.", // Descripción enfocada en el uso (aromatizar sin fuego), la decoración y la larga duración del aroma.
+        "image": "../images/pastilla-aromatica.png", // 🖼️ Ruta de la imagen cargada
+        "featured": false,
+        "new": true,
+        "bestseller": true,
+        "available": true,
+        "type": "Parafina", // Especificación: Parafina (para retener el aroma)
+        "fragrances": [ // Opciones florales y especiadas que complementan la decoración
+            "Rosas Especiales",
+            "Lavanda",
+            "Sándalo",
+            "Vainilla"
+        ],
+        "sizes": [
+            {
+                "label": "50 gr",
+                "price": 40
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Aromatiza sin fuego (No es para quemar)",
+            "Decorada con elementos botánicos reales",
+            "Ideal para armarios y espacios cerrados",
+            "Libera aroma constante por 4-6 semanas"
+        ],
+        "care": [ // 🛡️ Instrucciones de cuidado
+            "NO ENCIENDA esta pastilla. Es solo para ambientar.",
+            "Colocar en un plato o cuenco pequeño para evitar que manche superficies por el aceite.",
+            "Mantener fuera del sol directo y de fuentes de calor (esto puede derretirla).",
+            "Si el aroma disminuye, raspar ligeramente la parte posterior."
+        ],
+        "ingredients": [
+            "Cera de parafina de alta concentración 90%",
+            "Aceites aromáticos (Rosas/Lavanda) 8%",
+            "Elementos botánicos secos (pétalos, hojas) 2%"
+        ]
+    },
+    {
+        "id": 25, // ⚠️ CAMBIAR: Asegúrate de que sea el siguiente ID disponible
+        "title": "Crema Corporal de Almendras", // Título que evoca lujo y suavidad (Seda)
+        "category": "Belleza",
+        "description": "Envuélvete en una capa de hidratación exquisita. Nuestra crema corporal utiliza el poder nutritivo del **Aceite de Almendras dulces** y mantecas naturales para restaurar la barrera de humedad de la piel. Su textura ligera y de rápida absorción nutre profundamente sin dejar sensación grasosa. Ideal para el uso diario, deja la piel suave como la seda y delicadamente perfumada.", // Descripción enfocada en la sensación (rápida absorción, no grasosa) y el ingrediente nutritivo.
+        "image": "../images/crema-almendras-dosificador.png", // 🖼️ Ruta de la imagen cargada
+        "featured": true, // 🌟 Producto esencial y de uso diario
+        "new": true,
+        "bestseller": true, // 🏆 Perfecto para catalogar como Bestseller
+        "available": true,
+        "type": "Origen Natural", // Fijo: "Origen Natural"
+        "variants": [
+            "Aroma Clásico Almendras"
+        ],
+        "sizes": [
+            {
+                "label": "100 ml (Dosificador Práctico)",
+                "price": 220
+            }
+        ],
+        "characteristics": [ // ⭐ Características clave
+            "Alto poder nutritivo e hidratante",
+            "Rápida absorción (Acabado no graso)",
+            "Formato con dosificador higiénico",
+            "Aroma suave y reconfortante a Almendras"
+        ],
+        "care": [ // 🛡️ Instrucciones de uso
+            "Aplicar generosamente sobre la piel limpia y seca, preferentemente después del baño.",
+            "Masajear con movimientos circulares hasta su completa absorción.",
+            "Ideal para usar en las zonas más secas (piernas, codos)."
+        ],
+        "ingredients": [
+            "Aceite de Almendras Dulces (Prunus dulcis) 30%",
+            "Manteca de Karité (Butyrospermum parkii) 15%",
+            "Glicerina vegetal 10%",
+            "Emolientes e ingredientes naturales 45%"
+        ]
     }
+
 ];
 
 /**
