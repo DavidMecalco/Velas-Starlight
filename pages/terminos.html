@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Términos y Condiciones | Velas Starlight</title>
 
-    <!-- Tailwind -->
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Conoce los términos y condiciones de Velas Starlight. Información sobre compras, devoluciones, envíos y políticas de uso.">
+    <meta name="keywords" content="términos condiciones velas starlight, política devoluciones, envíos, compras online">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Términos y Condiciones | Velas Starlight">
+    <meta property="og:description" content="Términos que rigen el uso de nuestros servicios y la compra de productos">
+    <meta property="og:image" content="../images/og-terminos.jpg">
+    <meta property="og:url" content="">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,42 +30,452 @@
                         'sage-green': '#3A5A40',
                         'leaf-green': '#A3B18A',
                         'gray-sand': '#D6CEC3',
+                        'accent-gold': '#D4AF37',
+                        'soft-pink': '#F8E8E8',
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
                 }
             }
         }
     </script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png">
-
-    <!-- AOS Animations -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Estilos Globales -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+
+    <!-- Estilos Premium -->
     <style>
-        .nav ul li a i {
-            color: #2D3E33;
+        /* Variables CSS Premium */
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2D3E33;
+            --accent: #A3B18A;
+            --gold: #D4AF37;
+            --cream: #FEFEFE;
+            --warm: #F8F6F3;
+            --gray-50: #FAFAFA;
+            --gray-100: #F5F5F5;
+            --gray-200: #EEEEEE;
+            --gray-300: #E0E0E0;
+            --gray-400: #BDBDBD;
+            --gray-500: #9E9E9E;
+            --gray-600: #757575;
+            --gray-700: #616161;
+            --gray-800: #424242;
+            --gray-900: #212121;
+            --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav ul li a:hover i {
-            color: #3A5A40;
+        /* Reset y base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--cream);
+            color: var(--primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animaciones elegantes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Header Premium */
+        .header-premium {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-premium.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Contenedor principal */
+        .container-premium {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section Premium */
+        .hero-premium {
+            background: linear-gradient(135deg, var(--warm) 0%, #F5F3F0 100%);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23A3B18A" fill-opacity="0.03"><circle cx="20" cy="20" r="1"/></g></g></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        /* Secciones Premium */
+        .section-premium {
+            padding: 4rem 0;
+        }
+
+        .content-card {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .section-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .section-content {
+            color: var(--gray-700);
+            line-height: 1.7;
+            font-size: 1.125rem;
+        }
+
+        /* Listas Premium */
+        .list-premium {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .list-premium li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .list-premium li:last-child {
+            border-bottom: none;
+        }
+
+        .list-premium i {
+            color: var(--accent);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .list-premium.danger i {
+            color: #ef4444;
+        }
+
+        /* Grid de características */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .feature-card.danger {
+            border-left-color: #ef4444;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-title.danger {
+            color: #dc2626;
+        }
+
+        .feature-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Proceso de pasos */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--warm);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        /* Sección de contacto destacada */
+        .contact-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="20" cy="20" r="1"/></g></g></svg>');
+            pointer-events: none;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Premium */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .container-premium {
+                padding: 0 1.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container-premium {
+                padding: 0 1rem;
+            }
+
+            .hero-premium {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -147,215 +568,230 @@
         }
     </style>
 
-    <!-- Hero Section -->
-    <section class="page-content bg-gradient-to-br from-sage-green to-dark-green text-white py-20">
-        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
-            <div class="mb-6">
-                <i class="fas fa-file-contract text-6xl text-beige-almond opacity-80"></i>
-            </div>
-            <h1 class="text-5xl font-serif font-bold mb-6">Términos y Condiciones</h1>
-            <p class="text-xl text-beige-almond/90 max-w-2xl mx-auto leading-relaxed">
-                Conoce los términos que rigen el uso de nuestros servicios y la compra de nuestros productos artesanales.
-            </p>
-            <div class="mt-8 text-sm text-beige-almond/70">
-                <p><i class="fas fa-calendar-alt mr-2"></i>Última actualización: 9 de febrero de 2025</p>
+    <!-- Hero Section Premium -->
+    <section class="hero-premium">
+        <div class="container-premium">
+            <div class="hero-content">
+                <i class="fas fa-file-contract hero-icon"></i>
+                <h1 class="hero-title">Términos y Condiciones</h1>
+                <p class="hero-subtitle">
+                    Conoce los términos que rigen el uso de nuestros servicios y la compra de nuestros productos artesanales. Transparencia y claridad en cada transacción.
+                </p>
+                <div class="hero-meta">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Última actualización: 9 de febrero de 2025</span>
+                    <span>•</span>
+                    <i class="fas fa-clock"></i>
+                    <span>Tiempo de lectura: 12 minutos</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-6 py-16">
+    <main class="section-premium">
+        <div class="container-premium">
 
-        <!-- Introducción -->
-        <section class="mb-12" data-aos="fade-up">
-            <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-sage-green">
-                <h2 class="text-2xl font-serif font-bold text-dark-green mb-4 flex items-center">
-                    <i class="fas fa-info-circle text-sage-green mr-3"></i>
-                    Introducción
-                </h2>
-                <p class="text-gray-700 leading-relaxed mb-4">
-                    Bienvenido a <strong>Velas Starlight</strong>. Estos Términos y Condiciones regulan el uso de nuestro sitio web 
-                    y la compra de nuestros productos. Al acceder a nuestro sitio web o realizar una compra, aceptas estar sujeto 
-                    a estos términos.
-                </p>
-                <p class="text-gray-700 leading-relaxed">
-                    Si no estás de acuerdo con alguno de estos términos, te pedimos que no utilices nuestros servicios.
-                </p>
-            </div>
-        </section> 
-       <!-- Información de la Empresa -->
-        <section class="mb-12" data-aos="fade-up" data-aos-delay="100">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h2 class="text-2xl font-serif font-bold text-dark-green mb-6 flex items-center">
-                    <i class="fas fa-building text-sage-green mr-3"></i>
-                    Información de la Empresa
-                </h2>
+            <!-- Introducción -->
+            <div class="content-card">
+                <div class="section-header">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2 class="section-title">Introducción</h2>
+                </div>
+                <div class="section-content">
+                    <p>
+                        Bienvenido a <strong>Velas Starlight</strong>. Estos Términos y Condiciones regulan el uso de nuestro sitio web y la compra de nuestros productos. Al acceder a nuestro sitio web o realizar una compra, aceptas estar sujeto a estos términos.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Si no estás de acuerdo con alguno de estos términos, te pedimos que no utilices nuestros servicios. Nos comprometemos a brindar transparencia y claridad en todas nuestras operaciones.
+                    </p>
+                </div>
+            </div> 
+            <!-- Información de la Empresa -->
+            <div class="content-card">
+                <div class="section-header">
+                    <i class="fas fa-building section-icon"></i>
+                    <h2 class="section-title">Información de la Empresa</h2>
+                </div>
 
-                <div class="bg-beige-almond/30 rounded-lg p-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="text-lg font-semibold text-sage-green mb-3">Datos de la Empresa</h3>
-                            <ul class="text-gray-700 space-y-2">
-                                <li class="flex items-start"><i class="fas fa-store text-sage-green mr-2 mt-1"></i><strong>Razón Social:</strong> Velas Starlight</li>
-                                <li class="flex items-start"><i class="fas fa-envelope text-sage-green mr-2 mt-1"></i><strong>Email:</strong> ventas@velasstarlight.com</li>
-                                <li class="flex items-start"><i class="fas fa-phone text-sage-green mr-2 mt-1"></i><strong>Teléfono:</strong> 5564682112</li>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            <i class="fas fa-store"></i>
+                            Datos de la Empresa
+                        </div>
+                        <div class="feature-description">
+                            <ul class="list-premium">
+                                <li><i class="fas fa-store"></i><strong>Razón Social:</strong> Velas Starlight</li>
+                                <li><i class="fas fa-envelope"></i><strong>Email:</strong> ventas@velasstarlight.com</li>
+                                <li><i class="fas fa-phone"></i><strong>Teléfono:</strong> 5564682112</li>
                             </ul>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-sage-green mb-3">Actividad Comercial</h3>
-                            <p class="text-gray-700 text-sm">
-                                Fabricación y venta de velas artesanales, productos de aromaterapia y artículos de decoración 
-                                para el hogar, elaborados con materiales naturales y de alta calidad.
-                            </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            <i class="fas fa-industry"></i>
+                            Actividad Comercial
+                        </div>
+                        <div class="feature-description">
+                            Fabricación y venta de velas artesanales, productos de aromaterapia y artículos de decoración para el hogar, elaborados con materiales naturales y de alta calidad.
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Uso del Sitio Web -->
-        <section class="mb-12" data-aos="fade-up" data-aos-delay="200">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h2 class="text-2xl font-serif font-bold text-dark-green mb-6 flex items-center">
-                    <i class="fas fa-globe text-sage-green mr-3"></i>
-                    Uso del Sitio Web
-                </h2>
+            <!-- Uso del Sitio Web -->
+            <div class="content-card">
+                <div class="section-header">
+                    <i class="fas fa-globe section-icon"></i>
+                    <h2 class="section-title">Uso del Sitio Web</h2>
+                </div>
 
-                <div class="space-y-6">
-                    <div class="border-l-4 border-leaf-green pl-6">
-                        <h3 class="text-lg font-semibold text-sage-green mb-2">Uso Permitido</h3>
-                        <ul class="text-gray-700 space-y-2">
-                            <li class="flex items-start"><i class="fas fa-check text-sage-green mr-2 mt-1"></i>Navegar y explorar nuestros productos</li>
-                            <li class="flex items-start"><i class="fas fa-check text-sage-green mr-2 mt-1"></i>Realizar compras para uso personal</li>
-                            <li class="flex items-start"><i class="fas fa-check text-sage-green mr-2 mt-1"></i>Contactar con nuestro servicio al cliente</li>
-                            <li class="flex items-start"><i class="fas fa-check text-sage-green mr-2 mt-1"></i>Compartir contenido en redes sociales</li>
-                        </ul>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            <i class="fas fa-check-circle"></i>
+                            Uso Permitido
+                        </div>
+                        <div class="feature-description">
+                            <ul class="list-premium">
+                                <li><i class="fas fa-check"></i>Navegar y explorar nuestros productos</li>
+                                <li><i class="fas fa-check"></i>Realizar compras para uso personal</li>
+                                <li><i class="fas fa-check"></i>Contactar con nuestro servicio al cliente</li>
+                                <li><i class="fas fa-check"></i>Compartir contenido en redes sociales</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="border-l-4 border-red-400 pl-6">
-                        <h3 class="text-lg font-semibold text-red-600 mb-2">Uso Prohibido</h3>
-                        <ul class="text-gray-700 space-y-2">
-                            <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>Usar el sitio para actividades ilegales</li>
-                            <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>Intentar acceder a áreas restringidas</li>
-                            <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>Copiar o reproducir contenido sin autorización</li>
-                            <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>Interferir con el funcionamiento del sitio</li>
-                        </ul>
+                    <div class="feature-card danger">
+                        <div class="feature-title danger">
+                            <i class="fas fa-times-circle"></i>
+                            Uso Prohibido
+                        </div>
+                        <div class="feature-description">
+                            <ul class="list-premium danger">
+                                <li><i class="fas fa-times"></i>Usar el sitio para actividades ilegales</li>
+                                <li><i class="fas fa-times"></i>Intentar acceder a áreas restringidas</li>
+                                <li><i class="fas fa-times"></i>Copiar o reproducir contenido sin autorización</li>
+                                <li><i class="fas fa-times"></i>Interferir con el funcionamiento del sitio</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Productos y Precios -->
-        <section class="mb-12" data-aos="fade-up" data-aos-delay="300">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h2 class="text-2xl font-serif font-bold text-dark-green mb-6 flex items-center">
-                    <i class="fas fa-tags text-sage-green mr-3"></i>
-                    Productos y Precios
-                </h2>
+            <!-- Productos y Precios -->
+            <div class="content-card">
+                <div class="section-header">
+                    <i class="fas fa-tags section-icon"></i>
+                    <h2 class="section-title">Productos y Precios</h2>
+                </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-beige-almond/30 rounded-lg p-6">
-                        <h3 class="text-lg font-semibold text-sage-green mb-3 flex items-center">
-                            <i class="fas fa-candle-holder text-leaf-green mr-2"></i>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            <i class="fas fa-candle-holder"></i>
                             Nuestros Productos
-                        </h3>
-                        <p class="text-gray-700 text-sm mb-3">
-                            Todos nuestros productos son artesanales y pueden presentar ligeras variaciones en color, 
-                            forma o tamaño que los hacen únicos.
-                        </p>
-                        <ul class="text-gray-700 text-sm space-y-1">
-                            <li>• Velas aromáticas de soja natural</li>
-                            <li>• Velas decorativas personalizadas</li>
-                            <li>• Productos de aromaterapia</li>
-                            <li>• Accesorios para el hogar</li>
-                        </ul>
+                        </div>
+                        <div class="feature-description">
+                            <p style="margin-bottom: 1rem;">
+                                Todos nuestros productos son artesanales y pueden presentar ligeras variaciones en color, forma o tamaño que los hacen únicos.
+                            </p>
+                            <ul class="list-premium">
+                                <li><i class="fas fa-leaf"></i>Velas aromáticas de soja natural</li>
+                                <li><i class="fas fa-palette"></i>Velas decorativas personalizadas</li>
+                                <li><i class="fas fa-spa"></i>Productos de aromaterapia</li>
+                                <li><i class="fas fa-home"></i>Accesorios para el hogar</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="bg-beige-almond/30 rounded-lg p-6">
-                        <h3 class="text-lg font-semibold text-sage-green mb-3 flex items-center">
-                            <i class="fas fa-dollar-sign text-leaf-green mr-2"></i>
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            <i class="fas fa-dollar-sign"></i>
                             Precios y Disponibilidad
-                        </h3>
-                        <p class="text-gray-700 text-sm mb-3">
-                            Los precios mostrados incluyen impuestos aplicables y están expresados en pesos mexicanos (MXN).
-                        </p>
-                        <ul class="text-gray-700 text-sm space-y-1">
-                            <li>• Precios sujetos a cambios sin previo aviso</li>
-                            <li>• Disponibilidad limitada por stock</li>
-                            <li>• Ofertas válidas hasta agotar existencias</li>
-                        </ul>
+                        </div>
+                        <div class="feature-description">
+                            <p style="margin-bottom: 1rem;">
+                                Los precios mostrados incluyen impuestos aplicables y están expresados en pesos mexicanos (MXN).
+                            </p>
+                            <ul class="list-premium">
+                                <li><i class="fas fa-exclamation-triangle"></i>Precios sujetos a cambios sin previo aviso</li>
+                                <li><i class="fas fa-boxes"></i>Disponibilidad limitada por stock</li>
+                                <li><i class="fas fa-clock"></i>Ofertas válidas hasta agotar existencias</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Proceso de Compra -->
-        <section class="mb-12" data-aos="fade-up" data-aos-delay="400">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h2 class="text-2xl font-serif font-bold text-dark-green mb-6 flex items-center">
-                    <i class="fas fa-shopping-cart text-sage-green mr-3"></i>
-                    Proceso de Compra
-                </h2>
+            <!-- Proceso de Compra -->
+            <div class="content-card">
+                <div class="section-header">
+                    <i class="fas fa-shopping-cart section-icon"></i>
+                    <h2 class="section-title">Proceso de Compra</h2>
+                </div>
 
-                <div class="space-y-6">
-                    <div class="bg-gradient-to-r from-sage-green/10 to-leaf-green/10 rounded-lg p-6">
-                        <h3 class="text-lg font-semibold text-dark-green mb-4">Pasos para Realizar tu Pedido</h3>
-                        <div class="grid md:grid-cols-4 gap-4">
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-sage-green text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <span class="font-bold">1</span>
-                                </div>
-                                <p class="text-sm text-gray-700">Selecciona productos</p>
+                <div class="section-content">
+                    <div style="background: rgba(163, 177, 138, 0.1); border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 2rem; text-align: center;">Pasos para Realizar tu Pedido</h3>
+                        
+                        <div class="process-steps">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Selecciona productos</div>
+                                <div class="step-description">Explora nuestro catálogo y añade productos al carrito</div>
                             </div>
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-sage-green text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <span class="font-bold">2</span>
-                                </div>
-                                <p class="text-sm text-gray-700">Revisa tu carrito</p>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Revisa tu carrito</div>
+                                <div class="step-description">Verifica cantidades y productos seleccionados</div>
                             </div>
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-sage-green text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <span class="font-bold">3</span>
-                                </div>
-                                <p class="text-sm text-gray-700">Completa tus datos</p>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Completa tus datos</div>
+                                <div class="step-description">Proporciona información de contacto y envío</div>
                             </div>
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-sage-green text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <span class="font-bold">4</span>
-                                </div>
-                                <p class="text-sm text-gray-700">Confirma el pago</p>
+                            <div class="step-card">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Confirma el pago</div>
+                                <div class="step-description">Selecciona método de pago y finaliza</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="border border-gray-200 rounded-lg p-4">
-                            <h4 class="font-semibold text-dark-green mb-2 flex items-center">
-                                <i class="fas fa-credit-card text-sage-green mr-2"></i>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">
+                                <i class="fas fa-credit-card"></i>
                                 Métodos de Pago
-                            </h4>
-                            <ul class="text-gray-700 text-sm space-y-1">
-                                <li>• Transferencia bancaria</li>
-                                <li>• Depósito en efectivo</li>
-                                <li>• Pago contra entrega (área metropolitana)</li>
-                            </ul>
+                            </div>
+                            <div class="feature-description">
+                                <ul class="list-premium">
+                                    <li><i class="fas fa-university"></i>Transferencia bancaria</li>
+                                    <li><i class="fas fa-money-bill"></i>Depósito en efectivo</li>
+                                    <li><i class="fas fa-truck"></i>Pago contra entrega (área metropolitana)</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="border border-gray-200 rounded-lg p-4">
-                            <h4 class="font-semibold text-dark-green mb-2 flex items-center">
-                                <i class="fas fa-truck text-sage-green mr-2"></i>
+                        <div class="feature-card">
+                            <div class="feature-title">
+                                <i class="fas fa-shipping-fast"></i>
                                 Envíos
-                            </h4>
-                            <ul class="text-gray-700 text-sm space-y-1">
-                                <li>• Envío nacional disponible</li>
-                                <li>• Tiempo de entrega: 3-7 días hábiles</li>
-                                <li>• Costo calculado según destino</li>
-                            </ul>
+                            </div>
+                            <div class="feature-description">
+                                <ul class="list-premium">
+                                    <li><i class="fas fa-map-marked-alt"></i>Envío nacional disponible</li>
+                                    <li><i class="fas fa-clock"></i>Tiempo de entrega: 3-7 días hábiles</li>
+                                    <li><i class="fas fa-calculator"></i>Costo calculado según destino</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
         <!-- Política de Devoluciones -->
         <section class="mb-12" data-aos="fade-up" data-aos-delay="500">
@@ -483,92 +919,88 @@
             </div>
         </section>
 
-        <!-- Contacto y Soporte -->
-        <section class="mb-12" data-aos="fade-up" data-aos-delay="800">
-            <div class="bg-gradient-to-r from-sage-green to-dark-green text-white rounded-2xl p-8">
-                <h2 class="text-2xl font-serif font-bold mb-6 flex items-center">
-                    <i class="fas fa-headset text-beige-almond mr-3"></i>
-                    Contacto y Soporte
-                </h2>
-
-                <p class="text-beige-almond/90 mb-6 leading-relaxed">
-                    Si tienes preguntas sobre estos Términos y Condiciones o necesitas ayuda con tu pedido, 
-                    nuestro equipo está aquí para ayudarte.
-                </p>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-phone text-beige-almond text-xl"></i>
-                        <div>
-                            <p class="font-semibold">Teléfono</p>
-                            <p class="text-beige-almond/80">5564682112</p>
-                        </div>
+            <!-- Contacto y Soporte -->
+            <div class="contact-section">
+                <div class="contact-content">
+                    <div class="section-header" style="color: white;">
+                        <i class="fas fa-headset section-icon" style="color: rgba(255, 255, 255, 0.9);"></i>
+                        <h2 class="section-title" style="color: white;">Contacto y Soporte</h2>
                     </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-envelope text-beige-almond text-xl"></i>
-                        <div>
-                            <p class="font-semibold">Email</p>
-                            <p class="text-beige-almond/80">ventas@velasstarlight.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fab fa-whatsapp text-beige-almond text-xl"></i>
-                        <div>
-                            <p class="font-semibold">WhatsApp</p>
-                            <p class="text-beige-almond/80">Atención inmediata</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="mt-6 pt-6 border-t border-beige-almond/20">
-                    <p class="text-sm text-beige-almond/70">
-                        <i class="fas fa-clock mr-2"></i>
-                        Horario de atención: Lunes a Viernes de 9:00 AM a 6:00 PM
+                    <p style="margin-bottom: 2rem; opacity: 0.9;">
+                        Si tienes preguntas sobre estos Términos y Condiciones o necesitas ayuda con tu pedido, nuestro equipo está aquí para ayudarte.
                     </p>
+
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p style="font-weight: 600;">Teléfono</p>
+                                <p style="opacity: 0.8;">5564682112</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p style="font-weight: 600;">Email</p>
+                                <p style="opacity: 0.8;">ventas@velasstarlight.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <p style="font-weight: 600;">WhatsApp</p>
+                                <p style="opacity: 0.8;">Atención inmediata</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="font-size: 0.875rem; opacity: 0.8;">
+                            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                            Horario de atención: Lunes a Viernes de 9:00 AM a 6:00 PM
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Modificaciones y Vigencia -->
-        <section data-aos="fade-up" data-aos-delay="900">
-            <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-sage-green">
-                <h2 class="text-2xl font-serif font-bold text-dark-green mb-4 flex items-center">
-                    <i class="fas fa-edit text-sage-green mr-3"></i>
-                    Modificaciones y Vigencia
-                </h2>
+            <!-- Modificaciones y Vigencia -->
+            <div class="content-card" style="border-top: 4px solid var(--accent);">
+                <div class="section-header">
+                    <i class="fas fa-edit section-icon"></i>
+                    <h2 class="section-title">Modificaciones y Vigencia</h2>
+                </div>
 
-                <div class="space-y-4">
-                    <p class="text-gray-700 leading-relaxed">
-                        <strong>Velas Starlight</strong> se reserva el derecho de modificar estos Términos y Condiciones 
-                        en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación 
-                        en el sitio web.
+                <div class="section-content">
+                    <p>
+                        <strong>Velas Starlight</strong> se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación en el sitio web.
                     </p>
 
-                    <div class="bg-leaf-green/10 rounded-lg p-4">
-                        <h4 class="font-semibold text-dark-green mb-2">Aceptación de Cambios</h4>
-                        <p class="text-gray-700 text-sm">
-                            El uso continuado del sitio web después de la publicación de cambios constituye tu aceptación 
-                            de los nuevos términos. Te recomendamos revisar periódicamente esta página.
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(163, 177, 138, 0.1); border-radius: var(--radius);">
+                        <h4 style="font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Aceptación de Cambios</h4>
+                        <p style="color: var(--gray-600); font-size: 0.9rem;">
+                            El uso continuado del sitio web después de la publicación de cambios constituye tu aceptación de los nuevos términos. Te recomendamos revisar periódicamente esta página.
                         </p>
                     </div>
 
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="p-4 bg-beige-almond/20 rounded-lg">
-                            <p class="text-sm text-gray-600">
-                                <i class="fas fa-calendar-check text-sage-green mr-2"></i>
+                    <div class="features-grid" style="margin-top: 2rem;">
+                        <div style="padding: 1.5rem; background: rgba(163, 177, 138, 0.1); border-radius: var(--radius);">
+                            <p style="font-size: 0.875rem; color: var(--gray-600);">
+                                <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: 0.5rem;"></i>
                                 <strong>Fecha de vigencia:</strong> 9 de febrero de 2025
                             </p>
                         </div>
-                        <div class="p-4 bg-beige-almond/20 rounded-lg">
-                            <p class="text-sm text-gray-600">
-                                <i class="fas fa-gavel text-sage-green mr-2"></i>
+                        <div style="padding: 1.5rem; background: rgba(163, 177, 138, 0.1); border-radius: var(--radius);">
+                            <p style="font-size: 0.875rem; color: var(--gray-600);">
+                                <i class="fas fa-gavel" style="color: var(--accent); margin-right: 0.5rem;"></i>
                                 <strong>Jurisdicción:</strong> México
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+
+        </div>
     </main>
 
     <!-- Footer -->
