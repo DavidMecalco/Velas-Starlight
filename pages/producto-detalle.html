@@ -548,10 +548,43 @@
         /* Descripción */
         .product-description {
             font-size: 1.125rem;
-            color: var(--gray-600);
+            color: var(--color-textSecondary, #6B7280);
             line-height: 1.7;
             margin-bottom: 2rem;
             max-width: 90%;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Asegurar visibilidad en todos los temas */
+        .theme-dark .product-description {
+            color: #B0B0B0 !important;
+        }
+
+        .theme-sepia .product-description {
+            color: #8B7355 !important;
+        }
+
+        .theme-midnight .product-description {
+            color: #8B949E !important;
+        }
+
+        /* Asegurar que la descripción sea visible incluso durante animaciones */
+        .info-panel .product-description {
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+            /* Anular cualquier restricción de altura o line-clamp */
+            height: auto !important;
+            max-height: none !important;
+            -webkit-line-clamp: unset !important;
+            line-clamp: unset !important;
+            -webkit-box-orient: unset !important;
+            display: block !important;
+            overflow: visible !important;
         }
 
         /* Precio Premium */
@@ -2634,6 +2667,11 @@
     <script src="../js/productos-data.js"></script>
     <script src="../js/mobile-menu-clean.js"></script>
 
+    <!-- Sistemas Premium -->
+    <script src="../js/visual-effects.js"></script>
+    <script src="../js/theme-system.js"></script>
+    <script src="../js/notification-system.js"></script>
+
     <!-- jsPDF para generar PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -2681,6 +2719,17 @@
             setupEventListeners();
             updateCartCount();
             setupScrollEffects();
+
+            // Efectos de bienvenida
+            setTimeout(() => {
+                // Agregar efectos visuales
+                if (window.visualEffects) {
+                    // Solo agregar efectos de ripple, sin animaciones de scroll
+                    document.querySelectorAll('button').forEach(btn => {
+                        btn.classList.add('ripple-effect');
+                    });
+                }
+            }, 2000);
         });
 
         // Efectos de scroll para header
@@ -2917,8 +2966,16 @@
             if (titleEl) titleEl.textContent = product.title;
             else console.warn('Elemento product-title no encontrado');
 
-            if (descriptionEl) descriptionEl.textContent = product.description;
-            else console.warn('Elemento product-description no encontrado');
+            if (descriptionEl) {
+                descriptionEl.textContent = product.description;
+                console.log('Descripción cargada:', product.description);
+                // Asegurar que sea visible
+                descriptionEl.style.display = 'block';
+                descriptionEl.style.visibility = 'visible';
+                descriptionEl.style.opacity = '1';
+            } else {
+                console.warn('Elemento product-description no encontrado');
+            }
 
             // Disponibilidad
             const availabilityEl = document.getElementById('product-availability');
@@ -3532,39 +3589,24 @@
 
         // Mostrar toast notification
         function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `toast-premium ${type}`;
+            // Usar el nuevo sistema de notificaciones premium
+            if (window.notificationSystem) {
+                const isCartMessage = message.includes('carrito');
 
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-times-circle',
-                info: 'fa-info-circle'
-            };
-
-            // Detectar si es un mensaje de carrito para usar ícono especial
-            const isCartMessage = message.includes('carrito');
-            const iconToUse = isCartMessage && type === 'success' ? 'fa-shopping-cart' : (icons[type] || icons.info);
-
-            toast.innerHTML = `
-                <i class="fa ${iconToUse}" style="font-size: 1.25rem;"></i>
-                <div style="flex: 1;">
-                    <span style="font-weight: 600; display: block; margin-bottom: 0.25rem;">${isCartMessage && type === 'success' ? '¡Producto agregado!' : 'Notificación'}</span>
-                    <span style="font-size: 0.9rem; opacity: 0.9;">${message}</span>
-                </div>
-                <button onclick="this.parentElement.remove()" style="margin-left: auto; background: none; border: none; color: inherit; cursor: pointer; padding: 0.5rem; border-radius: 50%; transition: background 0.2s;">
-                    <i class="fa fa-times"></i>
-                </button>
-            `;
-
-            container.appendChild(toast);
-
-            // Auto-remove
-            setTimeout(() => {
-                if (toast.parentElement) {
-                    toast.remove();
+                if (type === 'success' && isCartMessage) {
+                    // Notificación especial para carrito
+                    window.notificationSystem.cart('¡Producto agregado!', message);
+                } else if (type === 'success') {
+                    window.notificationSystem.success('¡Éxito!', message);
+                } else if (type === 'error') {
+                    window.notificationSystem.error('Error', message);
+                } else {
+                    window.notificationSystem.info('Información', message);
                 }
-            }, 4000);
+            } else {
+                // Fallback al sistema anterior
+                console.log(`${type.toUpperCase()}: ${message}`);
+            }
         }
 
         // Toast especializado para carrito
@@ -3686,6 +3728,8 @@
             const loadingState = document.getElementById('product-loading-state');
             const productContent = document.getElementById('product-content');
 
+            console.log('hideProductLoading: Ocultando loading y mostrando contenido');
+
             if (loadingState) {
                 loadingState.style.animation = 'fadeOut 0.5s ease-out forwards';
                 setTimeout(() => {
@@ -3695,10 +3739,21 @@
 
             if (productContent) {
                 productContent.classList.remove('hidden');
+                console.log('hideProductLoading: Clase hidden removida del product-content');
+
                 // Trigger animations
                 setTimeout(() => {
                     productContent.style.opacity = '1';
                     productContent.style.transform = 'translateY(0)';
+
+                    // Asegurar que la descripción sea visible
+                    const descriptionEl = document.getElementById('product-description');
+                    if (descriptionEl) {
+                        descriptionEl.style.display = 'block';
+                        descriptionEl.style.visibility = 'visible';
+                        descriptionEl.style.opacity = '1';
+                        console.log('hideProductLoading: Descripción forzada a ser visible');
+                    }
                 }, 100);
             }
         }

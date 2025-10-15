@@ -1173,6 +1173,11 @@
     <script src="../js/productos-data.js"></script>
     <script src="../js/mobile-menu-clean.js"></script>
     
+    <!-- Sistemas Premium -->
+    <script src="../js/visual-effects.js"></script>
+    <script src="../js/theme-system.js"></script>
+    <script src="../js/notification-system.js"></script>
+    
     <script>
         // Variables globales
         let allProducts = [];
@@ -1212,6 +1217,26 @@
                 console.log('Número de productos:', productosData.length);
             }
             initializePage();
+            
+            // Efectos de bienvenida
+            setTimeout(() => {
+                // Agregar efectos visuales a elementos
+                if (window.visualEffects) {
+                    // Solo agregar efectos de ripple, sin animaciones de scroll
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.add('ripple-effect');
+                    });
+                }
+                
+                // Mostrar notificación de bienvenida
+                if (window.notificationSystem) {
+                    window.notificationSystem.info(
+                        '¡Bienvenido!', 
+                        'Explora nuestro catálogo premium de velas artesanales',
+                        { duration: 4000 }
+                    );
+                }
+            }, 1500);
             
             // Debug después de cargar
             setTimeout(() => {
@@ -1630,31 +1655,23 @@
 
         // Mostrar toast notification
         function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `toast-premium ${type}`;
-            
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-times-circle',
-                info: 'fa-info-circle'
-            };
-            
-            toast.innerHTML = `
-                <i class="fa ${icons[type] || icons.info}"></i>
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()" style="margin-left: auto; background: none; border: none; color: inherit; cursor: pointer;">
-                    <i class="fa fa-times"></i>
-                </button>
-            `;
-            
-            container.appendChild(toast);
-            
-            setTimeout(() => {
-                if (toast.parentElement) {
-                    toast.remove();
+            // Usar el nuevo sistema de notificaciones premium
+            if (window.notificationSystem) {
+                const title = type === 'success' ? '¡Éxito!' : 
+                             type === 'error' ? 'Error' : 
+                             'Información';
+                
+                if (type === 'success') {
+                    window.notificationSystem.success(title, message);
+                } else if (type === 'error') {
+                    window.notificationSystem.error(title, message);
+                } else {
+                    window.notificationSystem.info(title, message);
                 }
-            }, 4000);
+            } else {
+                // Fallback al sistema anterior
+                console.log(`${type.toUpperCase()}: ${message}`);
+            }
         }
 
         // Mostrar error

@@ -45,8 +45,8 @@
     overflow: hidden;
 }
 
-/* La descripción tiene altura fija */
-.product-description {
+/* La descripción tiene altura fija SOLO en tarjetas de productos del catálogo */
+.product-card .product-description {
     color: var(--gray-600);
     font-size: 0.9rem;
     line-height: 1.5;
